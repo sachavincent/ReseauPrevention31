@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_main);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,10 +39,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 
-
         Button boutonex = findViewById(R.id.bouton);
+
         boutonex.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity.this, AccueilActivity.class));
+            Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
+
+            startActivity(intent);
         });
     }
 

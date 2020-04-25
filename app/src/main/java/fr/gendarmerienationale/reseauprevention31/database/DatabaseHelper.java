@@ -1,13 +1,13 @@
 package fr.gendarmerienationale.reseauprevention31.database;
 
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
+
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
-import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -31,7 +31,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Supprime les anciennes tables
         try {
-
             onCreate(db);
         } catch (SQLException e) {
             Log.w(LOG, e.getMessage());
