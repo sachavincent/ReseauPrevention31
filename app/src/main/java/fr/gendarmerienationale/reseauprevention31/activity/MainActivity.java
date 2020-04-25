@@ -1,29 +1,26 @@
 package fr.gendarmerienationale.reseauprevention31.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.List;
-
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.database.DatabaseHelper;
+import java.util.List;
 import pub.devrel.easypermissions.BuildConfig;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
-    private final String[] appPerms = {/*Manifest.permission.*/};
+    private final String[] appPerms = {Manifest.permission_group.LOCATION, Manifest.permission_group.CAMERA};
     private final int PERMS_CALLBACK = 5555;
 
     public static DatabaseHelper sDatabaseHelper;
@@ -31,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
 
         setContentView(R.layout.activity_main);
 
@@ -44,8 +41,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
 
         Button boutonex = findViewById(R.id.bouton);
-        boutonex.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        boutonex.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, AccueilActivity.class));
+        });
     }
 
     @Override
