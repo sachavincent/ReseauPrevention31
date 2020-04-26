@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 24, 2020 at 09:22 PM
+-- Generation Time: Apr 26, 2020 at 05:14 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -17,38 +17,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Chambre`
---
-
-CREATE TABLE `Chambre` (
-  `nom_chambre` enum('CMA','CA','CCI') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `Chambre`
---
-
-INSERT INTO `Chambre` (`nom_chambre`) VALUES
-('CMA'),
-('CA'),
-('CCI');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `CodeActivite`
 --
 
 CREATE TABLE `CodeActivite` (
   `code` smallint(5) UNSIGNED NOT NULL,
-  `activité` varchar(255) NOT NULL
+  `activite` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `CodeActivite`
 --
 
-INSERT INTO `CodeActivite` (`code`, `activité`) VALUES
+INSERT INTO `CodeActivite` (`code`, `activite`) VALUES
 (11, 'Culture'),
 (12, 'Elevage'),
 (20, 'Exploitation forestière'),
@@ -789,7 +770,7 @@ CREATE TABLE `Gestionnaire` (
   `mdp_gestionnaire` varchar(255) NOT NULL,
   `nom_gestionnaire` varchar(255) NOT NULL,
   `prenom_gestionnaire` varchar(255) NOT NULL,
-  `chambre` varchar(3) NOT NULL
+  `chambre` enum('CMA','CA','CCI') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -802,23 +783,7 @@ CREATE TABLE `Message` (
   `id_message` int(255) UNSIGNED NOT NULL,
   `id_auteur` int(255) UNSIGNED NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_chambre` int(5) UNSIGNED NOT NULL,
   `texte` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Societe`
---
-
-CREATE TABLE `Societe` (
-  `id_societe` int(255) UNSIGNED NOT NULL,
-  `id_activite` smallint(5) UNSIGNED NOT NULL,
-  `secteur` tinyint(2) UNSIGNED NOT NULL,
-  `codePostal` smallint(5) UNSIGNED NOT NULL,
-  `telephone` int(10) UNSIGNED NOT NULL,
-  `mail` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -835,18 +800,12 @@ CREATE TABLE `Utilisateur` (
   `codePostal` smallint(5) UNSIGNED NOT NULL,
   `telephone` varchar(255) NOT NULL,
   `mail` text NOT NULL,
-  `chambre` varchar(3) NOT NULL
+  `chambre` enum('CMA','CA','CCI','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `Chambre`
---
-ALTER TABLE `Chambre`
-  ADD PRIMARY KEY (`nom_chambre`);
 
 --
 -- Indexes for table `CodeActivite`
@@ -874,13 +833,6 @@ ALTER TABLE `Message`
   ADD KEY `fk_idAuteur` (`id_auteur`);
 
 --
--- Indexes for table `Societe`
---
-ALTER TABLE `Societe`
-  ADD PRIMARY KEY (`id_societe`),
-  ADD KEY `fk_idActivite` (`id_activite`);
-
---
 -- Indexes for table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
@@ -904,12 +856,6 @@ ALTER TABLE `Message`
   MODIFY `id_message` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Societe`
---
-ALTER TABLE `Societe`
-  MODIFY `id_societe` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
@@ -924,12 +870,6 @@ ALTER TABLE `Utilisateur`
 --
 ALTER TABLE `Message`
   ADD CONSTRAINT `fk_idAuteur` FOREIGN KEY (`id_auteur`) REFERENCES `Utilisateur` (`id_utilisateur`);
-
---
--- Constraints for table `Societe`
---
-ALTER TABLE `Societe`
-  ADD CONSTRAINT `fk_idActivite` FOREIGN KEY (`id_activite`) REFERENCES `CodeActivite` (`code`);
 
 --
 -- Constraints for table `Utilisateur`
