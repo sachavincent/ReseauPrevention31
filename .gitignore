@@ -1,8 +1,14 @@
 *.iml
 .gradle
+Android/app/local.properties
+Android/app/.idea
+Android/app/gradle
+Android/app/build
+Android/app/gradlew
+Android/app/gradlew.bat
 Android/local.properties
 Android/.idea
-.DS_Store
+Android/gradle
 Android/build
+.DS_Store
 .externalNativeBuild
-Android/app/build

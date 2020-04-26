@@ -1,9 +1,12 @@
 package fr.gendarmerienationale.reseauprevention31.activity;
 
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
+
 import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -15,13 +18,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.database.DatabaseHelper;
+import fr.gendarmerienationale.reseauprevention31.struct.Secteur;
 import java.util.List;
 import pub.devrel.easypermissions.BuildConfig;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
-    private final String[] appPerms = {Manifest.permission_group.LOCATION, Manifest.permission_group.CAMERA};
-    private final int PERMS_CALLBACK = 5555;
+
+    private final String[] appPerms       = {Manifest.permission_group.LOCATION, Manifest.permission_group.CAMERA};
+    private final int      PERMS_CALLBACK = 5555;
 
     public static DatabaseHelper sDatabaseHelper;
 
@@ -46,6 +51,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
             startActivity(intent);
         });
+
+        Secteur zone1 = Secteur.ZONE_1;
+        Secteur zone2 = Secteur.ZONE_2;
+
+        Log.d(LOG, "zone1:" + zone1.ordinal());
+        Log.d(LOG, "zone2:" + zone2.ordinal());
     }
 
     @Override
@@ -95,7 +106,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
@@ -115,7 +127,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                         .setCancelable(false)
                         .setMessage(R.string.permissions_accepter)
                         .setPositiveButton(R.string.ok, (dialog, which) -> {
-                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + BuildConfig.APPLICATION_ID)));
+                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                    Uri.parse("package:" + BuildConfig.APPLICATION_ID)));
                             finish();
                         })
                         .create();
