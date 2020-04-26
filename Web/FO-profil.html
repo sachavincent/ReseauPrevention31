@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <!-- header -->
+        <header>
+            <title>Profil</title>
+            <p class="pseudo">Prenom</p><p class="disconnect"><img src="images\disconnect.png" alt="disconnect" width="20px" height="20px"/></p> 
+        </header>
+
+        <div id="barre_actions">
+            <input type="button" class="new_msg" value="Nouveau message">
+        </div>
+
+        <div id="deco_droite"></div>
+
+        <!-- pan gauche -->
+        <nav id="nav_gauche">
+            <div class="onglets"><img class="img_nav" src="images/received.png" />Boîte de réception<p class="number_msg">4</p></div>
+            <div class="onglets"><img class="img_nav" src="images/sent.png" />Envoyés<p class="number_msg">1</p></div>
+            <div class="onglets"><img class="img_nav" src="images/brouillon.png" />Brouillons</div>
+            <div class="onglets"><img class="img_nav" src="images/bin.png" />Corbeille</div>
+
+            <img src="images/gendarmerie.png" class="logo" width="130px" height="130px"/>
+        </nav>
+
+        <!-- pan profil -->
+        <section id="pan_profil">
+            <aside>
+                <h1>Mon Profil</h1>
+            </aside>
+
+            <section id="pan_nom_prenom">
+                <p class="img_profil"><img src="images\user.png"></p><p class="affichage_nom">Nom User</p><p class="affichage_prenom">Prenom User</p>
+            </section>
+
+            <section id="pan_infos_user">
+                <p class="infos">Nom <input class="input_infos"/></p>
+                <p class="infos">Prénom <input class="input_infos"/></p>
+                <p class="infos">Adresse Mail <input class="input_infos" type="email"/></p>
+                <p class="infos">Mot de passe actuel <input class="input_infos" type="password"/></p>
+                <p class="infos">Nouveau mot de passe <input class="input_infos" type="password"/></p>
+                <p class="infos">Confirmation <input class="input_infos" type="password"/></p>
+                <p class="infos"><input type="button" class="valider_infos" value="valider"></p>
+            </section>
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <div>
+                <div class="deco_footer"></div>
+                Réalisé par NGUYEN-PAGES Minh Thanh.<br />
+                Tous droits réservés.
+            </div><!-- .centercolumn -->
+        </footer>
+    
+    </body>
+</html>

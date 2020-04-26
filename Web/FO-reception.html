@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <!-- header -->
+        <header>
+            <title>Boite de réception</title>
+            <p class="pseudo">Prenom</p><p class="disconnect"><img src="images\disconnect.png" alt="disconnect" width="20px" height="20px"/></p> 
+        </header>
+
+        <div id="barre_actions">
+            <input type="button" class="new_msg" value="Nouveau message">
+            <input type="checkbox" class="checkbox">
+            <img class="refresh_rapide" src="images/refresh.png" />
+            <img class="actions_rapide" src="images/reply.png" />
+            <img class="actions_rapide" src="images/bin.png" />
+
+            <input type="button" class="repondre" value="répondre"/> 
+            <input type="button" class="actions" value="supprimer"/>
+        </div>
+
+        <div id="deco_droite"></div>
+
+        <!-- pan gauche -->
+        <nav id="nav_gauche">
+            <div class="onglets"><img class="img_nav" src="images/received.png" />Boîte de réception<p class="number_msg">4</p></div>
+            <div class="onglets"><img class="img_nav" src="images/sent.png" />Envoyés<p class="number_msg">1</p></div>
+            <div class="onglets"><img class="img_nav" src="images/brouillon.png" />Brouillons</div>
+            <div class="onglets"><img class="img_nav" src="images/bin.png" />Corbeille</div>
+
+            <img src="images/gendarmerie.png" class="logo" width="130px" height="130px"/>
+        </nav>
+
+        <!-- pan liste msg -->
+        <section id="pan_content">
+
+            <nav id="pan_reception">
+                <div class="onglet_msg"></div>
+                <div class="onglet_msg"></div>
+                <div class="onglet_msg"></div>
+            </nav>
+
+            <div id="zone_msg">
+                <div id="objet">Objet du message</div>
+                <time class="date" datetime="18 avr. 2020 10:39">18 avr. 2020 10:39</time>
+                <div id="infos1">DUDURU Catherine  <Adra31@gmail.com>, <Grida31@outlook.com> - 06 12 45 78 89 / 06 25 14 36 98</div>
+                <div id="infos2"><b>Zone 2</b> - Muret 31600 - Société : Batplus</div>
+            </div>
+
+            <textarea id="write_msg"></textarea>
+
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <div>
+                <div class="deco_footer"></div>
+                Réalisé par NGUYEN-PAGES Minh Thanh.<br />
+                Tous droits réservés.
+            </div><!-- .centercolumn -->
+        </footer>
+    
+    </body>
+</html>

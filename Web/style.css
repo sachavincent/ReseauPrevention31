@@ -1,0 +1,565 @@
+*
+{
+    font-family: Arial;
+}
+
+html, body { 
+    min-width: 1200px;
+    min-height: 100vh;
+	margin:0; 
+    padding:0; 
+    background-color: white;
+}
+
+header{
+    height: 42px;
+    padding-top: 2px;
+    padding-bottom: 15px;
+    margin-top: -5px;
+    background-color: #0073CC;
+    text-align:right;/*texte centré*/
+}
+
+body
+{
+    background-color: white; /* couleur background */
+    color: #151515; /* couleur texte */
+}
+
+/* mon profil */
+h1
+{
+    margin-left: 10px;
+    color: #0073CC;
+}
+
+/* identification */
+h2
+{
+    font-size: 26px;
+    margin-top: 30px;
+}
+
+
+/* =============== HEADER =============== */
+.pseudo
+{
+    height: 28px;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    margin-right: 60px;
+    margin-top: 20px;
+}
+
+.pseudo:hover
+{
+    color: #EDEBE9;
+}
+
+.disconnect
+{
+    float: right;
+    color: white;
+    text-align: right;
+    margin-right: 24px;
+    margin-top: -48px;
+    padding-right: 0px;
+}
+
+/* =============== BARRE ACTIONS =============== */
+
+#barre_actions
+{
+    width: auto;
+    height: 40px;
+    background-color: #F3F2F1;
+    border-bottom: 1px solid #E1E1E1;
+    padding: 3px;
+}
+
+.new_msg
+{
+    font-size: 13px;
+    font-weight: bold;
+    width: 135px;
+    height: 35px;
+    color: white;
+    background-color: #0073CC;
+    border: 0px;
+    border-radius: 2px 2px 2px;
+
+    margin-top: 3px;
+    margin-bottom: 0px;
+    margin-left: 37px;
+}
+.new_msg:hover
+{
+    background-color: #005A9E;
+}
+
+.checkbox
+{
+    width: 16px;
+    height: 16px;
+
+    margin-left: 50px;
+    margin-top: 0px;
+}
+
+.refresh_rapide
+{
+    width: 15px;
+    height: 15px;
+
+    margin-left: 30px;
+}
+
+.refresh_rapide:hover
+{
+    background-color: #C7E0F4;
+}
+
+.actions_rapide
+{
+    width: 17px;
+    height: 17px;
+
+    margin-left: 35px;
+}
+.actions_rapide:hover
+{
+    background-color: #C7E0F4;
+}
+
+.actions
+{
+    width: 100px;
+    height: 34px;
+    background-color: white;
+    color: #0073CC;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px 2px 2px;
+
+    margin-left: 15px;
+}
+.actions:hover
+{
+    background-color: #C7E0F4;
+}
+
+.accepter
+{
+    width: 100px;
+    height: 34px;
+    background-color: white;
+    color: #0073CC;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px 2px 2px;
+
+    margin-left: -7px;
+}
+.accepter:hover
+{
+    background-color: #C7E0F4;
+}
+
+.repondre
+{
+    width: 100px;
+    height: 34px;
+    background-color: white;
+    color: #0073CC;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px 2px 2px;
+
+    margin-left: 50px;
+}
+.repondre:hover
+{
+    background-color: #C7E0F4;
+}
+
+#deco_droite
+{
+    float: right;
+    width: 25px;
+    height: 786px;
+    background-color: #F3F2F1;
+    border: 1px solid #E1E1E1;
+    border-right: 0px;
+    margin-top: -1px;
+}
+
+/* =============== CHOIX CHAMBRE =============== */
+
+#id_content
+{
+    width: auto;
+    min-height: 700px;
+}
+
+#pan_identification
+{   
+    margin: auto;
+    width: 400px;
+    height: 500px;
+    background-color: #F3F2F1;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px 3px 3px;
+    text-align: center;
+    margin-top: 5%;
+}
+
+#logo_ca
+{
+    float: left;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+#logo_cma
+{
+    float: right;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+#logo_cci
+{
+    float: left;
+    margin-top: 35px;
+    margin-left: 65px;
+
+}
+
+#logo_police, #logo_gendarmerie
+{
+    padding-top: 30px;
+}
+
+
+#logo_ca:hover, #logo_cma:hover, #logo_cci:hover, #logo_police:hover, #logo_gendarmerie:hover
+{
+    background-color: #E1E1E1;
+}
+
+/* =============== IDENTIFICATION =============== */
+
+#logo_choisi
+{
+    margin-top: 5px;
+}
+
+#nom_user
+{
+    margin: auto;
+    margin-top: 5px;
+}
+
+input[type=username_id], input[type=password_id] 
+{
+    font-size: 15px;
+    width: 250px;
+    height: 28px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    
+}
+
+.bouton_id
+{
+    height: 35px;
+    width: 100px;
+    font-size: 16px;
+    color: white;
+    background-color: #0073CC;
+    border: 0px;
+    border-radius: 2px 2px 2px;
+
+    margin: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.bouton_id:hover
+{
+    background-color: #005A9E;
+}
+
+/* =============== NAV GAUCHE =============== */
+
+#nav_gauche
+{
+    float: left;
+    width: 215px;    
+    min-height: 786px;
+    background-color: #F3F2F1;
+    border: 1px solid #E1E1E1;
+    margin-top: -1px;
+}
+
+.img_nav
+{
+    width: 17px;
+    height: 17px;
+
+    margin-bottom: -3px;
+    margin-left: -35px;
+    margin-right: 15px;
+}
+
+.onglets
+{
+    font-size: 15px;
+    width: auto;
+    height: 30px;
+    color: #151515;
+    background-color: #F3F2F1;
+
+    padding-left: 55px;
+    padding-top: 10px;
+
+} 
+
+.onglets:hover
+{
+    background-color: #C7E0F4;
+    color: #151515;
+}
+
+.number_msg
+{
+    font-size: 14px;
+    float: right;
+    margin: 0px;
+    padding-right: 20px;
+}
+
+.logo
+{
+    margin-left: 45px;
+    margin-top: 450px;
+}
+
+/* =============== PAGE RECEPTION =============== */
+
+#pan_content
+{
+    width: auto;
+    min-width: 600px;
+    min-height: 785px;
+    margin-bottom: -25px;
+    margin-left: 200px;
+    padding-left: 60px;
+}
+
+#pan_reception
+{
+    float: left;
+    width: 225px;
+    height: 784px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+    border-right: 1px solid #E1E1E1;
+
+    margin-top: 1px;
+    margin-left: -44px;
+    margin-bottom: 0px;
+
+}
+
+.onglet_msg
+{
+    width: auto;
+    height: 60px;
+    background-color: white;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+#zone_msg
+{
+    width: auto;
+    height: 122px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+
+    margin-top: 1px;
+    margin-left: 182px;
+}
+
+#objet
+{
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 10px;
+    padding-top: 18px;
+}
+
+.date
+{
+    font-size: 13px;
+    float: right;
+    margin-top: -18px;
+    margin-right: 10px;
+    color: grey;
+}
+
+#infos1
+{
+    font-size: 14px;
+    margin-left: 10px;
+    padding-top: 15px;
+}
+
+#infos2
+{
+    font-size: 14px;
+    margin-left: 10px;
+    padding-top: 15px;
+}
+
+#write_msg
+{
+    min-width: 75%;
+    /* max-width: 78%; */
+    min-height: 635px;
+    resize: none;
+    border: 0px;
+    margin: 10px;
+
+}
+
+/* =============== PAGE PROFIL =============== */
+
+#pan_profil
+{
+    width: auto;
+    min-width: 600px;
+    min-height: 783px;
+
+    margin-bottom: -25px;
+    margin-left: 200px;
+    padding-top: 4px;
+    padding-left: 60px;
+}
+
+#pan_nom_prenom
+{
+    width: auto;
+    height: 250px;
+    min-width: 500px;
+    background-color: #EDEBE9;
+    color: #101010;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #E1E1E1;
+
+    padding-top: 25px;
+    margin-right: 60px;
+    margin-top: 15px;
+}
+
+.img_profil
+{
+    float: left;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.affichage_nom
+{
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.affichage_prenom
+{
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: -20px;
+}
+
+
+#pan_infos_user
+{
+    width: auto;
+    height: 375px;
+    min-width: 500px;
+    color: #101010;
+    background-color: #EDEBE9;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px 3px 3px 3px;
+
+    padding-top: 15px;
+    padding-left: 50px;
+    margin-right: 60px;
+    margin-top: 20px;
+}
+
+.infos
+{
+    width: 560px;
+    font-size: 15px;
+    margin-top: 25px;
+    margin-left: 15px;
+}
+.input_infos
+{
+    font-size: 15px;
+    float: right;
+    width: 250px;
+    height: 28px;
+    margin-left: 50px;
+    margin-top: -5px;
+}
+.valider_infos
+{
+    float: right;
+    height: 40px;
+    width: 120px;
+    font-size: 16px;
+    font-weight: regular;
+    color: white;
+    background-color: #0073CC;
+    border: 0px;
+    border-radius: 2px 2px 2px;
+
+    margin-top: 5px;
+    margin-right: 134px;
+}
+
+.valider_infos:hover
+{
+    background-color: #005A9E;
+}
+
+/* =============== FOOTER =============== */
+
+footer
+{
+    font-size: 13px;
+    height: 50px;
+    background-color: #0073CC; 
+    color: white;
+    margin-bottom: 0px;
+    margin-top: 25px;
+    padding:25px;/*Marge verticale*/
+	text-align:right;/*texte centré*/
+    
+}
+
+/* barre bleue footer */
+.deco_footer
+{
+    background-color: #F3F2F1;
+    width: auto;
+    height: 25px;
+    margin-top: -26px;
+    margin-right: -25px;
+    margin-left: -25px;
+    margin-bottom: 25px;
+    border: 1px solid #E1E1E1;
+
+}
