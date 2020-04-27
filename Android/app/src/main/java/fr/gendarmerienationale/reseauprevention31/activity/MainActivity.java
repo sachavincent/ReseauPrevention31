@@ -51,12 +51,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
             startActivity(intent);
         });
-
-        Secteur zone1 = Secteur.ZONE_1;
-        Secteur zone2 = Secteur.ZONE_2;
-
-        Log.d(LOG, "zone1:" + zone1.ordinal());
-        Log.d(LOG, "zone2:" + zone2.ordinal());
     }
 
     @Override
