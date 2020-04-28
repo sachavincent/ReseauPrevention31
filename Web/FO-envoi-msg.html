@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <!-- header -->
+        <header>
+            <title>Nouveau message</title>
+            <p class="pseudo">Prenom</p><p class="disconnect"><img src="images\disconnect.png" alt="disconnect" width="20px" height="20px"/></p> 
+        </header>
+
+        <div id="barre_actions">
+            <input type="button" class="new_msg" value="Nouveau message">
+            <input type="checkbox" class="checkbox">
+            <img class="refresh_rapide" src="images/refresh.png" />
+            <img class="actions_rapide" src="images/reply.png" />
+            <img class="actions_rapide" src="images/bin.png" />
+
+            <input type="button" class="repondre" value="Envoyer"/> 
+            <input type="button" class="actions" value="supprimer"/>
+            <input type="button" class="actions" value="brouillon"/>
+        </div>
+
+        <div id="deco_droite"></div>
+
+        <!-- pan gauche -->
+        <nav id="nav_gauche">
+            <div class="onglets"><img class="img_nav" src="images/received.png" />Boîte de réception<p class="number_msg">4</p></div>
+            <div class="onglets"><img class="img_nav" src="images/sent.png" />Envoyés<p class="number_msg">1</p></div>
+            <div class="onglets"><img class="img_nav" src="images/brouillon.png" />Brouillons</div>
+            <div class="onglets"><img class="img_nav" src="images/bin.png" />Corbeille</div>
+
+            <img src="images/gendarmerie.png" class="logo" width="130px" height="130px"/>
+        </nav>
+
+        <!-- pan liste msg -->
+        <section id="pan_content">
+
+            <nav id="pan_reception">
+                <div class="onglet_msg"></div>
+                <div class="onglet_msg"></div>
+                <div class="onglet_msg"></div>
+            </nav>
+
+            <div id="saisie_infos">
+                <div class="saisie_msg">Activités :
+                    <select class="activites" size="l">
+                        <option>activité 1</option>
+                        <option>activité 2</option>
+                        <option>activité 3</option>               
+                    </select>
+
+                    <select class="activites" size="l">
+                        <option>activité 1</option>
+                        <option>activité 2</option>
+                        <option>activité 3</option>               
+                    </select>
+
+                    <select class="activites" size="l">
+                        <option>activité 1</option>
+                        <option>activité 2</option>
+                        <option>activité 3</option>               
+                    </select>
+                </div>
+
+                <div class="saisie_msg">Commune :
+                    <select id="select_commune" size="l">
+                        <option>commune 1</option>
+                        <option>commune 2</option>
+                        <option>commune 3</option>               
+                    </select>
+                </div>
+
+                <div class="saisie_msg">Zone Gendarmerie :
+                    <input name="choix_gendarmerie" id="zone_gen_oui" type="radio" value="oui"><label for="zone_gen_oui">Oui</label>
+                    <input name="choix_gendarmerie" id="zone_gen_non" type="radio" value="non"><label for="zone_gen_non">Non</label>
+                </div>
+
+                <div class="saisie_msg">Zone Police :
+                    <input name="choix_police" id="zone_pol_oui" type="radio" value="oui"><label for="zone_gen_oui">Oui</label>
+                    <input name="choix_police" id="zone_pol_non" type="radio" value="non"><label for="zone_pol_non">Non</label>
+                </div>
+
+                <div class="saisie_msg">Type d'envoi :
+                    <input name="type_envoi" type="checkbox" id="envoi_mail" value="mail"><label for="envoi_mail">Mail</label>
+                    <input name="type_envoi" type="checkbox" id="envoi_sms" value="sms"><label for="envoi_sms">SMS</label>
+                </div>
+
+                <div id="total_destinataires">Nombre de destinataire concernés : 121</div>
+            </div>
+
+            <textarea id="write_msg"></textarea>
+
+        </section>
+
+        
+    
+    </body>
+</html>
