@@ -12,3 +12,4 @@ Android/gradle
 Android/build
 .DS_Store
 .externalNativeBuild
+Web/vendor
