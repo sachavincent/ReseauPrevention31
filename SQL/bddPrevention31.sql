@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 26, 2020 at 05:14 PM
+-- Generation Time: Apr 29, 2020 at 01:25 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -732,7 +732,7 @@ INSERT INTO `Commune` (`id_commune`, `codePostal`, `commune`, `secteur`) VALUES
 (569, 31800, 'POINTIS-INARD', 6),
 (570, 31800, 'REGADES', 6),
 (571, 31800, 'RIEUCAZE', 6),
-(572, 31800, 'SAINT-GAUDENS', 7),
+(572, 31800, 'SAINT-GAUDENS', 6),
 (573, 31800, 'SAINT-IGNAN', 3),
 (574, 31800, 'SAINT-MARCET', 3),
 (575, 31800, 'SAUX-ET-POMAREDE', 3),
@@ -754,10 +754,7 @@ INSERT INTO `Commune` (`id_commune`, `codePostal`, `commune`, `secteur`) VALUES
 (591, 31860, 'VILLATE', 5),
 (592, 31870, 'BEAUMONT-SUR-LEZE', 5),
 (593, 31870, 'LAGARDELLE-SUR-LEZE', 5),
-(594, 31880, 'LA SALVETAT-SAINT-GILLES', 3),
-(595, 47340, 'HAUTEFAGE-LA-TOUR', NULL),
-(596, 47380, 'PINEL-HAUTERIVE', NULL),
-(597, 47400, 'HAUTESVIGNES', NULL);
+(594, 31880, 'LA SALVETAT-SAINT-GILLES', 3);
 
 -- --------------------------------------------------------
 
