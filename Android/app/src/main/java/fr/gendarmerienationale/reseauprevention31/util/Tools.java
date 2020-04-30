@@ -1,8 +1,12 @@
 package fr.gendarmerienationale.reseauprevention31.util;
 
+import static fr.gendarmerienationale.reseauprevention31.application.App.getContext;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Environment;
@@ -11,17 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-
-import org.apache.commons.net.ftp.FTPFile;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,15 +26,31 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.PatternSyntaxException;
-
+import org.apache.commons.net.ftp.FTPFile;
 import pub.devrel.easypermissions.EasyPermissions;
 
-import static fr.gendarmerienationale.reseauprevention31.application.App.getContext;
-
 public class Tools {
-    public final static String LOG = "ReseauPrevention31";
+
+    public final static  String LOG         = "ReseauPrevention31";
     private final static String MAIN_FOLDER = "ReseauPrevention31";
-    private static final String TRACE_FILE = "ReseauPrevention31.txt";
+    private static final String TRACE_FILE  = "ReseauPrevention31.txt";
+
+    private static int width;
+
+    public static int getScreenWidth(Activity _activity) {
+        Point size = new Point();
+        _activity.getWindowManager().getDefaultDisplay().getSize(size);
+        return size.x;
+    }
+
+
+    public static int getWidth() {
+        return width;
+    }
+
+    public static void setWidth(int _width) {
+        Tools.width = _width;
+    }
 
     /**
      * Volume music à fond
@@ -48,8 +58,10 @@ public class Tools {
     public static void setMaxVolume(Context _context) {
         try {
             AudioManager mAudioManager = (AudioManager) _context.getSystemService(Context.AUDIO_SERVICE);
-            if (Build.VERSION.SDK_INT >= 21 && mAudioManager.isVolumeFixed()) return;
-            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+            if (Build.VERSION.SDK_INT >= 21 && mAudioManager.isVolumeFixed())
+                return;
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+                    mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,7 +73,8 @@ public class Tools {
     public static void showKeyboardOnView(View v, Context _context) {
         v.requestFocus();
         InputMethodManager imm = (InputMethodManager) _context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT);
+        if (imm != null)
+            imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT);
     }
 
     /**
@@ -89,7 +102,8 @@ public class Tools {
      * Permet de récupérer la date formattée à partir d'un String
      */
     public static Date getDateFromDatabase(String _date) {
-        if (_date == null || _date.equals("")) return null;
+        if (_date == null || _date.equals(""))
+            return null;
 
         try {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", getCurrentLocale()).parse(_date);
@@ -121,7 +135,8 @@ public class Tools {
      * Permet de récupérer la date formatée pour une insertion à partir d'une date
      */
     public static String getDateFromDatabase(Date _date) {
-        if (_date == null) return "";
+        if (_date == null)
+            return "";
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", getCurrentLocale()).format(_date);
     }
 
@@ -143,7 +158,8 @@ public class Tools {
      * Permet de récupérer la date formattée à partir d'une date
      */
     public static String getStringDate(Date _date) {
-        if (_date == null) return "";
+        if (_date == null)
+            return "";
         return new SimpleDateFormat("dd/MM/yyyy", getCurrentLocale()).format(_date);
     }
 
@@ -164,7 +180,8 @@ public class Tools {
                 String[] ftpFileName = file.getName().split("_");
                 String[] extSplit = file.getName().substring(file.getName().lastIndexOf("_") + 1).split("\\.");
 
-                if (ftpFileName.length < 2 && extSplit[0].length() == "ddMMyyyy".length()) // On vérifie que le fichier est de type "NOM_ddMMyyyy.EXT"
+                if (ftpFileName.length < 2 && extSplit[0].length() ==
+                        "ddMMyyyy".length()) // On vérifie que le fichier est de type "NOM_ddMMyyyy.EXT"
                     continue;
 
                 if (ftpFileName[0].equals(name[0]) && extSplit[1].equals(nameExtension)) {
@@ -175,7 +192,9 @@ public class Tools {
             SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy", getCurrentLocale());
             Collections.sort(foundFiles, (f1, f2) -> {
                 try {
-                    return dateFormat.parse(f1.getName().substring(f1.getName().lastIndexOf("_") + 1).split("\\.")[0]).compareTo(dateFormat.parse(f2.getName().substring(f2.getName().lastIndexOf("_") + 1).split("\\.")[0]));
+                    return dateFormat.parse(f1.getName().substring(f1.getName().lastIndexOf("_") + 1).split("\\.")[0])
+                            .compareTo(dateFormat
+                                    .parse(f2.getName().substring(f2.getName().lastIndexOf("_") + 1).split("\\.")[0]));
                 } catch (ParseException e) {
                     Log.w(LOG, e.getMessage());
                     Log.w(LOG, "Exception : " + _file);
@@ -201,8 +220,10 @@ public class Tools {
         File[] files = _directory.listFiles();
         if (files != null) {
             for (File f : files) {
-                if (f.isDirectory()) deleteDirectory(f);
-                else f.delete();
+                if (f.isDirectory())
+                    deleteDirectory(f);
+                else
+                    f.delete();
             }
         }
         _directory.delete();
@@ -231,7 +252,8 @@ public class Tools {
                 }
             }
 
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true),
+                    StandardCharsets.UTF_8);
             BufferedWriter bfWriter = new BufferedWriter(outputStreamWriter);
             bfWriter.write(_message);
             bfWriter.write("\r\n");
@@ -385,10 +407,14 @@ public class Tools {
             writeTraceException(e);
         } finally {
             try {
-                if (bfWriter != null) bfWriter.close();
-                if (outputStreamWriter != null) outputStreamWriter.close();
-                if (brReader != null) brReader.close();
-                if (inputStreamReader != null) inputStreamReader.close();
+                if (bfWriter != null)
+                    bfWriter.close();
+                if (outputStreamWriter != null)
+                    outputStreamWriter.close();
+                if (brReader != null)
+                    brReader.close();
+                if (inputStreamReader != null)
+                    inputStreamReader.close();
             } catch (IOException e) {
                 Log.w(LOG, e.getMessage());
                 writeTraceException(e);
@@ -416,9 +442,11 @@ public class Tools {
             return;
         }
 
-        String time = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", getCurrentLocale()).format(Calendar.getInstance().getTime());
+        String time = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", getCurrentLocale())
+                .format(Calendar.getInstance().getTime());
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true),
+                    StandardCharsets.UTF_8);
             BufferedWriter bfWriter = new BufferedWriter(outputStreamWriter);
             bfWriter.write(time + " => " + _message);
             bfWriter.write("\r\n");
@@ -450,9 +478,11 @@ public class Tools {
             return;
         }
 
-        String time = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", getCurrentLocale()).format(Calendar.getInstance().getTime());
+        String time = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", getCurrentLocale())
+                .format(Calendar.getInstance().getTime());
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true),
+                    StandardCharsets.UTF_8);
             BufferedWriter bfWriter = new BufferedWriter(outputStreamWriter);
             bfWriter.write(time + " => (" + getExceptionLine(_exception));
             bfWriter.write("\r\n");

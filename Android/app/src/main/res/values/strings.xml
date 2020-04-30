@@ -10,4 +10,20 @@
     <string name="debut">Début</string>
     <string name="fin">Fin</string>
     <string name="localiser_une_gendarmerie">Localiser\nune gendarmerie</string>
+  <string name="connexion">Connexion</string>
+    <string name="creer_un_compte">Créer un compte</string>
+  <string name="connexion_anonyme">Connexion anonyme</string>
+  <string name="valider">Valider</string>
+  <string name="cle_identification">Clé d\'identification</string>
+
+  <!-- communication avec le serveur HTTP -->
+  <string name="err_http_connect">Erreur connexion serveur HTTP</string>
+  <string name="err_http_auth_requise">Authentification requise ou connexion supprimée par l\'administrateur</string>
+  <string name="err_http_acces_interdit">Accès interdit</string>
+  <string name="err_http_page_non_trouvee">Page non trouvée</string>
+  <string name="err_http_err_serveur_interne">Erreur serveur interne</string>
+
+
+  <string name="connection_successful">Connexion réussie</string>
+  <string name="connection_unsuccessful">Connexion impossible</string>
 </resources>

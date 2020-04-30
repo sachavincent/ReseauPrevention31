@@ -1,37 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.gendarmerienationale.reseauprevention31"
-    android:hardwareAccelerated="true">
+  package="fr.gendarmerienationale.reseauprevention31"
+  android:hardwareAccelerated="true">
 
-    <application
-        android:name="fr.gendarmerienationale.reseauprevention31.application.App"
-        android:allowBackup="false"
-        android:hardwareAccelerated="true"
-        android:icon="@mipmap/logo"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
 
-        <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
+  <application
+    android:allowBackup="false"
+    android:hardwareAccelerated="true"
+    android:icon="@mipmap/logo"
+    android:label="@string/app_name"
+    android:name="fr.gendarmerienationale.reseauprevention31.application.App"
+    android:roundIcon="@mipmap/logo"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme"
+    android:usesCleartextTraffic="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+    <activity
+      android:label="@string/app_name"
+      android:launchMode="singleTop"
+      android:name=".activity.MainActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <action android:name="android.intent.action.VIEW"/>
 
-        <activity
-            android:name=".activity.AccueilActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
-    </application>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
+    <activity
+      android:label="@string/app_name"
+      android:launchMode="singleTop"
+      android:name=".activity.AccueilActivity"
+      android:screenOrientation="portrait"/>
+    <activity
+      android:label="@string/app_name"
+      android:launchMode="singleTop"
+      android:name=".activity.CreationCompteActivity"
+      android:screenOrientation="portrait"/>
+  </application>
 
 </manifest>
