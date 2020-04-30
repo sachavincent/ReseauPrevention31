@@ -14,9 +14,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class APICaller extends AsyncTask<Void, Void, Boolean> {
 
@@ -24,7 +26,7 @@ public class APICaller extends AsyncTask<Void, Void, Boolean> {
 
     private String mKeyID, mStrRep;
 
-    private final static String URL = "";
+    private final static String URL = "http://176.158.18.92:25003";
 
     private final WeakReference<RequestConnectionDialog> mDialog;
 
@@ -41,7 +43,7 @@ public class APICaller extends AsyncTask<Void, Void, Boolean> {
         StringBuilder chaine = new StringBuilder();
 
         HttpURLConnection httpConnection = null;
-        OutputStreamWriter writer = null;
+        PrintWriter writer = null;
         InputStream stream = null;
         BufferedReader buffer = null;
         try {
@@ -53,9 +55,12 @@ public class APICaller extends AsyncTask<Void, Void, Boolean> {
             httpConnection.connect();
 
             // ajout de la clé d'identification
-            writer = new OutputStreamWriter(httpConnection.getOutputStream());
+
+            writer  = new PrintWriter(httpConnection.getOutputStream());
             writer.write("cle_identification=" + mKeyID);
             writer.flush();
+
+
 
             int codeRep = httpConnection.getResponseCode();
             if (codeRep == HttpURLConnection.HTTP_OK) {

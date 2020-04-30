@@ -23,7 +23,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
     private final String[] appPerms       = {Manifest.permission.ACCESS_NETWORK_STATE,
-            permission.WRITE_EXTERNAL_STORAGE, permission.READ_EXTERNAL_STORAGE};
+            permission.WRITE_EXTERNAL_STORAGE, permission.READ_EXTERNAL_STORAGE, Manifest.permission.INTERNET};
     private final int      PERMS_CALLBACK = 5555;
 
     public static DatabaseHelper sDatabaseHelper;
