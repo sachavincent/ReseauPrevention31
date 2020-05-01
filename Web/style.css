@@ -9,7 +9,6 @@ html, body {
 	margin:0; 
     padding:0; 
     background-color: white;
-    
 }
 
 header{
@@ -44,7 +43,9 @@ h2
 
 
 /* =============== HEADER =============== */
-.pseudo
+
+/* bouton profil */
+.profil
 {
     height: 28px;
     font-weight: bold;
@@ -52,13 +53,15 @@ h2
     color: white;
     margin-right: 60px;
     margin-top: 20px;
+    cursor: pointer;
 }
 
-.pseudo:hover
+.profil:hover
 {
     color: #EDEBE9;
 }
 
+/* bouton deconnexion */
 .disconnect
 {
     float: right;
@@ -67,10 +70,13 @@ h2
     margin-right: 24px;
     margin-top: -48px;
     padding-right: 0px;
+    cursor: pointer;
 }
+
 
 /* =============== BARRE ACTIONS =============== */
 
+/* barre grise contenant plusieurs actions */
 #barre_actions
 {
     width: auto;
@@ -80,6 +86,7 @@ h2
     padding: 3px;
 }
 
+/* bouton nouveau msg */
 .new_msg
 {
     font-size: 13px;
@@ -90,29 +97,35 @@ h2
     background-color: #0073CC;
     border: 0px;
     border-radius: 2px 2px 2px;
+    cursor: pointer;
 
     margin-top: 3px;
     margin-bottom: 0px;
     margin-left: 37px;
 }
+
 .new_msg:hover
 {
     background-color: #005A9E;
 }
 
+/* case "tout sélectionner" */
 .checkbox
 {
     width: 16px;
     height: 16px;
+    cursor: pointer;
 
     margin-left: 50px;
     margin-top: 0px;
 }
 
+/* bouton rafraichir */
 .refresh_rapide
 {
     width: 15px;
     height: 15px;
+    cursor: pointer;
 
     margin-left: 30px;
 }
@@ -122,18 +135,28 @@ h2
     background-color: #C7E0F4;
 }
 
+/* mini boutons d'actions 
+chambre : | accepter |  refuser  |
+forces :  | repondre | supprimer |
+*/
 .actions_rapide
 {
     width: 17px;
     height: 17px;
+    cursor: pointer;
 
     margin-left: 35px;
 }
+
 .actions_rapide:hover
 {
     background-color: #C7E0F4;
 }
 
+/* boutons d'actions (sauf premiers à gauche)
+chambre : |  refuser  | supprimer |
+forces  : | supprimer |
+*/
 .actions
 {
     width: 100px;
@@ -142,14 +165,17 @@ h2
     color: #0073CC;
     border: 1px solid #E1E1E1;
     border-radius: 2px 2px 2px;
+    cursor: pointer;
 
     margin-left: 15px;
 }
+
 .actions:hover
 {
     background-color: #C7E0F4;
 }
 
+/* bouton accepter (le premier bouton à gauche - chambre) */
 .accepter
 {
     width: 100px;
@@ -158,14 +184,17 @@ h2
     color: #0073CC;
     border: 1px solid #E1E1E1;
     border-radius: 2px 2px 2px;
+    cursor: pointer;
 
     margin-left: 50px;
 }
+
 .accepter:hover
 {
     background-color: #C7E0F4;
 }
 
+/* bouton répondre (le premier bouton à gauche - forces) */
 .repondre
 {
     width: 100px;
@@ -174,14 +203,17 @@ h2
     color: #0073CC;
     border: 1px solid #E1E1E1;
     border-radius: 2px 2px 2px;
+    cursor: pointer;
 
     margin-left: 50px;
 }
+
 .repondre:hover
 {
     background-color: #C7E0F4;
 }
 
+/* barre grise droite (décoration) */
 #deco_droite
 {
     float: right;
@@ -196,13 +228,15 @@ h2
 
 /* =============== CHOIX CHAMBRE =============== */
 
-#id_content
+/* page d'identification */
+#page_identification
 {
     width: auto;
     min-height: 700px;
 }
 
-#pan_identification
+/* panel identification */
+#panel_identification
 {   
     margin: auto;
     width: 400px;
@@ -219,6 +253,7 @@ h2
     float: left;
     margin-left: 20px;
     margin-top: 30px;
+    cursor: pointer;
 }
 
 #logo_cma
@@ -226,6 +261,7 @@ h2
     float: right;
     margin-right: 20px;
     margin-top: 30px;
+    cursor: pointer;
 }
 
 #logo_cci
@@ -233,34 +269,39 @@ h2
     float: left;
     margin-top: 35px;
     margin-left: 65px;
+    cursor: pointer;
 
 }
 
 #logo_police, #logo_gendarmerie
 {
     padding-top: 30px;
+    cursor: pointer;
 }
-
 
 #logo_ca:hover, #logo_cma:hover, #logo_cci:hover, #logo_police:hover, #logo_gendarmerie:hover
 {
     background-color: #E1E1E1;
 }
 
+
 /* =============== IDENTIFICATION =============== */
 
+/* affichage logo sélectionné */
 #logo_choisi
 {
     margin-top: 5px;
 }
 
-#nom_user
+/* labels "nom d'utilisateur" et "mot de passe" */
+.identifiants
 {
     margin: auto;
     margin-top: 5px;
 }
 
-input[type=username_id], input[type=password_id] 
+/* zones de saisies */
+#login_username, #login_password
 {
     font-size: 15px;
     width: 250px;
@@ -269,9 +310,9 @@ input[type=username_id], input[type=password_id]
     margin-top: 10px;
     margin-bottom: 10px;
     padding-left: 10px;
-    
 }
 
+/* boutons retour | valider (identification) */
 .bouton_id
 {
     height: 35px;
@@ -281,6 +322,7 @@ input[type=username_id], input[type=password_id]
     background-color: #0073CC;
     border: 0px;
     border-radius: 2px 2px 2px;
+    cursor: pointer;
 
     margin: 5px;
     margin-right: 10px;
@@ -292,8 +334,22 @@ input[type=username_id], input[type=password_id]
     background-color: #005A9E;
 }
 
+
 /* =============== NAV GAUCHE =============== */
 
+/* panel gauche
+chambre :
+|  En attente          |
+|  Acceptées           |
+|  Refusées            |
+|  Corbeille           |
+
+forces :
+|  Boite de reception  |
+|  Envoyés             |
+|  Brouillons          |
+|  Corbeille           |
+*/
 #nav_gauche
 {
     float: left;
@@ -305,6 +361,7 @@ input[type=username_id], input[type=password_id]
     margin-top: -1px;
 }
 
+/* icones des categories */
 .img_nav
 {
     width: 17px;
@@ -315,6 +372,7 @@ input[type=username_id], input[type=password_id]
     margin-right: 15px;
 }
 
+/* onglet d'une catégorie */
 .onglets
 {
     font-size: 15px;
@@ -322,11 +380,12 @@ input[type=username_id], input[type=password_id]
     height: 30px;
     color: #151515;
     background-color: #F3F2F1;
+    cursor: pointer;
 
     padding-left: 55px;
     padding-top: 10px;
 
-} 
+}
 
 .onglets:hover
 {
@@ -334,6 +393,7 @@ input[type=username_id], input[type=password_id]
     color: #151515;
 }
 
+/* affichage du nombre de msgs dans une catégorie */
 .number_msg
 {
     font-size: 14px;
@@ -342,161 +402,17 @@ input[type=username_id], input[type=password_id]
     padding-right: 20px;
 }
 
+/* logo de la page en bas des onglets */
 .logo
 {
     margin-left: 45px;
     margin-top: 65vh;
 }
 
-/* =============== PAGE RECEPTION =============== */
-
-#pan_content
-{
-    width: auto;
-    min-width: 600px;
-    min-height: 785px;
-    margin-bottom: -25px;
-    margin-left: 199px;
-    padding-left: 60px;
-}
-
-#pan_reception
-{
-    float: left;
-    width: 225px;   
-    height: 100vh;
-    min-height: 784px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    border-right: 1px solid #E1E1E1;
-
-    margin-top: 0px;
-    margin-left: -42px;
-    margin-bottom: 0px;
-}
-
-.onglet_msg
-{
-    width: auto;
-    height: 60px;
-    background-color: white;
-    border-bottom: 1px solid #E1E1E1;
-}
-
-#zone_msg
-{
-    width: auto;
-    height: 121px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    
-    margin-top: 0px;
-    margin-left: 182px;
-}
-
-#objet
-{
-    font-weight: bold;
-    font-size: 16px;
-    margin-left: 10px;
-    padding-top: 18px;
-}
-
-.date
-{
-    font-size: 13px;
-    float: right;
-    margin-top: -18px;
-    margin-right: 10px;
-    color: grey;
-}
-
-#infos1
-{
-    font-size: 14px;
-    margin-left: 10px;
-    padding-top: 15px;
-}
-
-#infos2
-{
-    font-size: 14px;
-    margin-left: 10px;
-    padding-top: 15px;
-}
-
-#write_msg
-{
-    min-width: 75%;
-    /* max-width: 78%; */
-    min-height: 530px;
-    resize: none;
-    border: 0px;
-    margin: 10px;
-}
-
-/* =============== NOUVEAU MSG =============== */
-
-#saisie_infos
-{
-    width: auto;
-    height: 235px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    
-    margin-top: 0px;
-    margin-left: 182px;
-}
-
-.saisie_msg
-{
-    font-size: 14px;
-    font-weight: regular;
-    padding: 10px;
-    padding-left: 20px;
-}
-
-.activites
-{
-    margin-left: 50px;
-}
-
-#select_commune
-{
-    margin-left: 40px;
-}
-
-#zone_gen_oui, #zone_gen_non, #zone_pol_non
-{
-    margin-left: 20px;
-}
-
-#zone_pol_oui
-{
-    margin-left: 65px;
-}
-
-#envoi_mail
-{
-    margin-left: 60px;
-}
-
-#envoi_sms
-{
-    margin-left: 15px;
-}
-
-#total_destinataires
-{
-    font-size: 15px;
-    font-weight: bold;
-    padding-top: 5px;
-    padding-left: 20px;
-}
-
 
 /* =============== PAGE PROFIL =============== */
 
+/* Titre "mon profil" */
 #pan_profil
 {
     width: auto;
@@ -509,6 +425,7 @@ input[type=username_id], input[type=password_id]
     padding-left: 60px;    
 }
 
+/* conteneur image de profil + nom, prenom */
 #pan_nom_prenom
 {
     width: auto;
@@ -544,7 +461,7 @@ input[type=username_id], input[type=password_id]
     margin-top: -20px;
 }
 
-
+/* conteneur des infos de l'user */
 #pan_infos_user
 {
     width: auto;
@@ -561,7 +478,15 @@ input[type=username_id], input[type=password_id]
     margin-top: 20px;
 }
 
-.infos
+/* labels infos :
+|  Nom                   |
+|  Prenom                |
+|  Adresse Mail          |
+|  Mot de passe          |
+|  Nouveau mot de passe  |
+|  Confirmation          |
+*/
+.infos_user
 {
     width: 560px;
     font-size: 15px;
@@ -569,6 +494,7 @@ input[type=username_id], input[type=password_id]
     margin-left: 15px;
 }
 
+/* zone de saisies des infos (si l'user veut modifier) */
 .input_infos
 {
     font-size: 15px;
@@ -578,6 +504,8 @@ input[type=username_id], input[type=password_id]
     margin-left: 50px;
     margin-top: -5px;
 }
+
+/* bouton valider les modifications  */
 .valider_infos
 {
     float: right;
@@ -589,6 +517,7 @@ input[type=username_id], input[type=password_id]
     background-color: #0073CC;
     border: 0px;
     border-radius: 2px 2px 2px;
+    cursor: pointer;
 
     margin-top: 5px;
     margin-right: 134px;
@@ -599,31 +528,170 @@ input[type=username_id], input[type=password_id]
     background-color: #005A9E;
 }
 
-/* =============== FOOTER =============== */
 
-footer
+/* =============== PAGE RECEPTION =============== */
+
+/* conteneur de la page reception / new msg */
+#pan_content
 {
-    font-size: 13px;
-    height: 50px;
-    background-color: #0073CC; 
-    color: white;
-    margin-bottom: 0px;
-    margin-top: 25px;
-    padding:25px;/*Marge verticale*/
-	text-align:right;/*texte centré*/
-    
+    width: auto;
+    min-width: 600px;
+    min-height: 785px;
+    margin-bottom: -25px;
+    margin-left: 199px;
+    padding-left: 60px;
 }
 
-/* barre bleue footer */
-.deco_footer
+/* listes des msgs / demandes reçu(e)s (gauche) */
+#pan_reception
 {
-    background-color: #F3F2F1;
-    width: auto;
-    height: 25px;
-    margin-top: -26px;
-    margin-right: -25px;
-    margin-left: -25px;
-    margin-bottom: 25px;
-    border: 1px solid #E1E1E1;
+    float: left;
+    width: 225px;   
+    height: 100vh;
+    min-height: 784px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+    border-right: 1px solid #E1E1E1;
 
+    margin-top: 0px;
+    margin-left: -42px;
+    margin-bottom: 0px;
+}
+
+/* onglet d'un msg */
+.onglet_msg
+{
+    width: auto;
+    height: 60px;
+    background-color: white;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+/* conteneur d'un msg lors de son ouverture */
+#zone_msg
+{
+    width: auto;
+    height: 121px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+    
+    margin-top: 0px;
+    margin-left: 182px;
+}
+
+#objet
+{
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 10px;
+    padding-top: 18px;
+}
+
+.date
+{
+    font-size: 13px;
+    float: right;
+    margin-top: -18px;
+    margin-right: 10px;
+    color: grey;
+}
+
+#infos1, #infos2
+{
+    font-size: 14px;
+    margin-left: 10px;
+    padding-top: 15px;
+}
+
+#write_msg
+{
+    min-width: 75%;
+    /* max-width: 78%; */
+    min-height: 460px;
+    resize: none;
+    border: 0px;
+    margin: 10px;
+}
+
+
+/* =============== NOUVEAU MSG =============== */
+
+/* zone de selection des parametres du message */
+#zone_saisie_infos
+{
+    width: auto;
+    height: 290px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+    
+    padding-top: 1px;
+    margin-left: 182px;
+}
+
+/* correspond à une ligne des parametres */
+.selection_params
+{
+    font-size: 14px;
+    font-weight: regular;
+    padding: 0px;
+    padding-left: 20px;
+}
+
+/* parametre d'alignement */
+.alignement_msg
+{
+    width: 530px;
+}
+
+/* ligne de selection des activites, communes, zones */
+.select_activites, .select_commune, .select_zone
+{
+    float: right;
+    margin-left: 50px;
+    height: 20px;
+    width: 100px;
+}
+
+/* checkbox toutes les activites */
+#toutes_activites
+{
+    height: 16px;
+    width: 16px;
+    margin-left: 20px;
+}
+
+/* checkbox toutes les communes */
+#toutes_communes
+{
+    height: 16px;
+    width: 16px;
+}
+
+/* checkbox toutes les zones */
+#toutes_zones
+{
+    height: 16px;
+    width: 16px;
+    margin-left: 35px;
+}
+
+/* checkbox envoi par mail */
+#envoi_mail
+{
+    height: 15px;
+    width: 15px;
+    margin-left: 40px;
+}
+
+/* #envoi_sms
+{
+    margin-left: 15px;
+} */
+
+/* affichage destinataires concernés */
+#total_destinataires
+{
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 20px;
 }

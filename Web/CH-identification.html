@@ -11,20 +11,27 @@
             <title>Identification</title>
         </header>
 
-        <section id="id_content">
-            <section id="pan_identification">
+        <!-- conteneur principal -->
+        <section id="page_identification">
+            <!-- conteneur identification -->
+            <section id="panel_identification">
                 <h2>IDENTIFICATION</h2>
+
+                <!-- affichage des elements de connexion -->
                 <div id="logo_choisi"><img src="images/ca.png" width="170px" height="170px"></div>
                 
-                <div id="nom_user"><b>Nom d'utilisateur</b></div>
-                <input type="username_id" placeholder="Entrer le nom d'utilisateur" name="username" required>
+                <div class="identifiants"><b>Nom d'utilisateur</b></div>
+                <!-- zone de saisie identifiant -->
+                <input id="login_username" type="login" placeholder="Entrer le nom d'utilisateur" required>
 
-                <div id="nom_user"><b>Mot de passe</b></div>
-                <input type="password_id" placeholder="Entrer le mot de passe" name="password" required>
+                <div class="identifiants"><b>Mot de passe</b></div>
+                <!-- zone de saisie mdp -->
+                <input id="login_password" type="password" placeholder="Entrer le mot de passe" required>
 
                 <br>
-                <input onclick=window.location.href='CH-choix-chambre.html'; type="button" class="bouton_id" value="retour" >
-                <input type="button" class="bouton_id" value="valider" >
+                <!-- boutons retour / valider -->
+                <input onclick=window.location.href='CH-choix-chambre.html'; class="bouton_id" type="button" value="retour" >
+                <input onclick=window.location.href='CH-reception.html'; class="bouton_id" type="button" value="valider" >
 
             </section>
         </section>

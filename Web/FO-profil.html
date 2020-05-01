@@ -9,43 +9,53 @@
         <!-- header -->
         <header>
             <title>Profil</title>
-            <p class="pseudo">Prenom</p><p class="disconnect"><img src="images\disconnect.png" alt="disconnect" width="20px" height="20px"/></p> 
+            <!-- boutons profil / deconnexion -->
+            <p class="profil" onclick=window.location.href='FO-profil.html'>Prenom</p>
+            <p class="disconnect"><img onclick=window.location.href='FO-choix-force.html'; src="images\disconnect.png" width="20px" height="20px"/></p> 
         </header>
 
+        <!-- barre d'actions -->
         <div id="barre_actions">
-            <input type="button" class="new_msg" value="Nouveau message">
+            <!-- boutons "nouveau_message" -->
+            <input type="button" class="new_msg" value="Nouveau message" onclick=window.location.href='FO-envoi-msg.html';>
         </div>
 
+        <!-- barre grise a droite (decoratif) -->
         <div id="deco_droite"></div>
 
         <!-- pan gauche -->
         <nav id="nav_gauche">
+            <!-- onglets d'interfaces -->
             <div class="onglets"><img class="img_nav" src="images/received.png" />Boîte de réception<p class="number_msg">4</p></div>
             <div class="onglets"><img class="img_nav" src="images/sent.png" />Envoyés<p class="number_msg">1</p></div>
             <div class="onglets"><img class="img_nav" src="images/brouillon.png" />Brouillons</div>
             <div class="onglets"><img class="img_nav" src="images/bin.png" />Corbeille</div>
 
+            <!-- logo -->
             <img src="images/gendarmerie.png" class="logo" width="130px" height="130px"/>
         </nav>
 
-        <!-- pan profil -->
+        <!-- page du profil -->
         <section id="pan_profil">
             <aside>
                 <h1>Mon Profil</h1>
             </aside>
 
+            <!-- conteneur image de profil avec nom prenom -->
             <section id="pan_nom_prenom">
                 <p class="img_profil"><img src="images\user.png"></p><p class="affichage_nom">Nom User</p><p class="affichage_prenom">Prenom User</p>
             </section>
 
+            <!-- conteneur avec les infos modifiables -->
             <section id="pan_infos_user">
-                <p class="infos">Nom <input class="input_infos"/></p>
-                <p class="infos">Prénom <input class="input_infos"/></p>
-                <p class="infos">Adresse Mail <input class="input_infos" type="email"/></p>
-                <p class="infos">Mot de passe actuel <input class="input_infos" type="password"/></p>
-                <p class="infos">Nouveau mot de passe <input class="input_infos" type="password"/></p>
-                <p class="infos">Confirmation <input class="input_infos" type="password"/></p>
-                <p class="infos"><input type="button" class="valider_infos" value="valider"></p>
+                <p class="infos_user">Nom <input class="input_infos"/></p>
+                <p class="infos_user">Prénom <input class="input_infos"/></p>
+                <p class="infos_user">Adresse Mail <input class="input_infos" type="email"/></p>
+                <p class="infos_user">Mot de passe actuel <input class="input_infos" type="password"/></p>
+                <p class="infos_user">Nouveau mot de passe <input class="input_infos" type="password"/></p>
+                <p class="infos_user">Confirmation <input class="input_infos" type="password"/></p>
+                <!-- bouton valider -->
+                <p class="infos_user"><input class="valider_infos" type="button" value="valider"></p>
             </section>
         </section>
 
