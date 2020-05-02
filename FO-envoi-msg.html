@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <!-- header -->
+        <header>
+            <title>Nouveau message</title>
+            <!-- boutons profil / deconnexion -->
+            <p class="profil" onclick=window.location.href='FO-profil.html'>Prenom</p>
+            <p class="disconnect"><img onclick=window.location.href='FO-choix-force.html'; src="images\disconnect.png" width="20px" height="20px"/></p> 
+        </header>
+
+        <!-- barre d'actions -->
+        <div id="barre_actions">
+            <input type="button" class="new_msg" value="Nouveau message" onclick=window.location.href='FO-envoi-msg.html';>
+
+            <!-- actions rapides -->
+            <input type="checkbox" class="checkbox">
+            <img class="refresh_rapide" src="images/refresh.png" />
+            <img class="actions_rapide" src="images/reply.png" />
+            <img class="actions_rapide" src="images/bin.png" />
+
+            <!-- actions de la demande ouverte -->
+            <input class="repondre" type="button" value="Envoyer"/> 
+            <input class="actions" type="button" value="supprimer"/>
+            <input class="actions" type="button" value="brouillon"/>
+        </div>
+
+        <!-- barre grise a droite (decoratif) -->
+        <div id="deco_droite"></div>
+
+        <!-- pan gauche -->
+        <nav id="nav_gauche">
+            <!-- onglets d'interfaces -->
+            <div class="onglets"><img class="img_nav" src="images/received.png" />Boîte de réception<p class="number_msg">4</p></div>
+            <div class="onglets"><img class="img_nav" src="images/sent.png" />Envoyés<p class="number_msg">1</p></div>
+            <div class="onglets"><img class="img_nav" src="images/brouillon.png" />Brouillons</div>
+            <div class="onglets"><img class="img_nav" src="images/bin.png" />Corbeille</div>
+
+            <!-- logo -->
+            <img src="images/gendarmerie.png" class="logo" width="130px" height="130px"/>
+        </nav>
+
+        <!-- pan liste msg -->
+        <section id="pan_content">
+            <!-- liste deroulante des demandes reçues -->
+            <nav id="pan_reception">
+                <div class="onglet_msg"></div>
+                <div class="onglet_msg"></div>
+                <div class="onglet_msg"></div>
+            </nav>
+
+            <!-- zone de saisies du message -->
+            <div id="zone_saisie_infos">
+                <div class="selection_params">
+                    <p class="alignement_msg">Activités :
+                    <!-- menu deroulant des activites -->
+                    <select class="select_activites" size="l">
+                        <option>activité 1</option>
+                        <option>activité 2</option>
+                        <option>activité 3</option>               
+                    </select>
+
+                    <select class="select_activites" size="l">
+                        <option>activité 1</option>
+                        <option>activité 2</option>
+                        <option>activité 3</option>               
+                    </select>
+
+                    <select class="select_activites" size="l">
+                        <option>activité 1</option>
+                        <option>activité 2</option>
+                        <option>activité 3</option>               
+                    </select>
+                    </p>
+                </div>
+
+                <!-- ligne selection toutes activites -->
+                <div class="selection_params">Sélectionner toutes les activités :
+                    <input id="toutes_activites" name="toutes_activites" type="checkbox"/>
+                </div>
+
+                <!-- menu deroulant des communes -->
+                <div class="selection_params">
+                    <p class="alignement_msg">Commune :
+                    <select class="select_commune" size="l">
+                        <option>commune 1</option>
+                        <option>commune 2</option>
+                        <option>commune 3</option>               
+                    </select>
+
+                    <select class="select_commune" size="l">
+                        <option>commune 1</option>
+                        <option>commune 2</option>
+                        <option>commune 3</option>               
+                    </select>
+
+                    <select class="select_commune" size="l">
+                        <option>commune 1</option>
+                        <option>commune 2</option>
+                        <option>commune 3</option>               
+                    </select>
+                    </p>
+                </div>
+
+                <!-- ligne selection toutes communes -->
+                <div class="selection_params">Sélectionner toutes les communes :
+                    <input id="toutes_communes" name="toutes_communes" type="checkbox"/>
+                </div>
+
+                <!-- menu deroulant des communes -->
+                <div class="selection_params">
+                    <p class="alignement_msg">Zone :
+                    <select class="select_zone" size="l">
+                        <option>zone 1</option>
+                        <option>zone 2</option>
+                        <option>zone 3</option>               
+                    </select>
+
+                    <select class="select_zone" size="l">
+                        <option>zone 1</option>
+                        <option>zone 2</option>
+                        <option>zone 3</option>               
+                    </select>
+
+                    <select class="select_zone" size="l">
+                        <option>zone 1</option>
+                        <option>zone 2</option>
+                        <option>zone 3</option>               
+                    </select>
+                    </p>
+                </div>
+
+                <!-- ligne selection toutes zones -->
+                <div class="selection_params">Sélectionner toutes les zones :
+                    <input id="toutes_zones" name="toutes_zones" type="checkbox"/>
+                </div><br>
+
+                <!-- ligne selection envoi par mail -->
+                <div class="selection_params">Type d'envoi :
+                    <input id="envoi_mail" name="type_envoi" type="checkbox" value="mail"><label for="envoi_mail">Mail</label>
+                    <!-- a implementer plus tard ?? -->
+                    <!-- <input name="type_envoi" type="checkbox" id="envoi_sms" value="sms"><label for="envoi_sms">SMS</label> -->
+                </div><br>
+
+                <!-- affichage des destinataires concernés -->
+                <div id="total_destinataires">Nombre de destinataire concernés : 121</div>
+            </div>
+
+            <!-- zone de redaction du message -->
+            <textarea id="write_msg"></textarea>
+
+        </section>
+
+    </body>
+</html>

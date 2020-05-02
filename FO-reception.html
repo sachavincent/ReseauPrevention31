@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <!-- header -->
+        <header>
+            <title>Boite de réception</title>
+            <!-- boutons profil / deconnexion -->
+            <p class="profil" onclick=window.location.href='FO-profil.html'>Prenom</p>
+            <p class="disconnect"><img onclick=window.location.href='FO-choix-force.html'; src="images\disconnect.png" width="20px" height="20px"/></p> 
+        </header>
+
+        <!-- barre d'actions -->
+        <div id="barre_actions">
+            <input type="button" class="new_msg" value="Nouveau message" onclick=window.location.href='FO-envoi-msg.html';>
+
+            <!-- actions rapides -->
+            <input type="checkbox" class="checkbox">
+            <img class="refresh_rapide" src="images/refresh.png" />
+            <img class="actions_rapide" src="images/reply.png" />
+            <img class="actions_rapide" src="images/bin.png" />
+
+            <!-- actions de la demande ouverte -->
+            <input class="repondre" type="button" value="répondre"/> 
+            <input class="actions" type="button" value="supprimer"/>
+        </div>
+
+        <!-- barre grise a droite (decoratif) -->
+        <div id="deco_droite"></div>
+
+        <!-- pan gauche -->
+        <nav id="nav_gauche">
+            <!-- onglets d'interfaces -->
+            <div class="onglets"><img class="img_nav" src="images/received.png" />Boîte de réception<p class="number_msg">4</p></div>
+            <div class="onglets"><img class="img_nav" src="images/sent.png" />Envoyés<p class="number_msg">1</p></div>
+            <div class="onglets"><img class="img_nav" src="images/brouillon.png" />Brouillons</div>
+            <div class="onglets"><img class="img_nav" src="images/bin.png" />Corbeille</div>
+
+            <!-- logo -->
+            <img src="images/gendarmerie.png" class="logo" width="130px" height="130px"/>
+        </nav>
+
+        <!-- pan liste msg -->
+        <section id="pan_content">
+            <!-- liste deroulante des demandes reçues -->
+            <nav id="pan_reception">
+                <div class="onglet_msg"></div>
+                <div class="onglet_msg"></div>
+                <div class="onglet_msg"></div>
+            </nav>
+
+            <!-- zone de la demande ouverte -->
+            <div id="zone_msg">
+                <!-- informations du message -->
+                <time id="date_msg" datetime="18 avr. 2020 10:39">18 avr. 2020 10:39</time>
+                <div id="objet">Objet du message</div>
+                <div id="infos1">DUDURU Catherine  <Adra31@gmail.com>, <Grida31@outlook.com> - 06 12 45 78 89 / 06 25 14 36 98</div>
+                <div id="infos2"><b>Zone 2</b> - Muret 31600 - Société : Batplus</div>
+            </div>
+
+        </section>
+    
+    </body>
+</html>
