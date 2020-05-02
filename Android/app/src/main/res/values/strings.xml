@@ -17,13 +17,23 @@
   <string name="cle_identification">Clé d\'identification</string>
 
   <!-- communication avec le serveur HTTP -->
+  <string name="http_success">success</string>
+  <string name="http_error">error</string>
+
   <string name="err_http_connect">Erreur connexion serveur HTTP</string>
   <string name="err_http_auth_requise">Authentification requise ou connexion supprimée par l\'administrateur</string>
   <string name="err_http_acces_interdit">Accès interdit</string>
   <string name="err_http_page_non_trouvee">Page non trouvée</string>
   <string name="err_http_err_serveur_interne">Erreur serveur interne</string>
 
+  <string name="err_http_cle_inconnue">Clé d\'identification inconnue</string>
+
+
 
   <string name="connection_successful">Connexion réussie</string>
   <string name="connection_unsuccessful">Connexion impossible</string>
+  <string name="connection_error">Erreur lors de la connexion</string>
+  <string name="deconnexion">Déconnexion</string>
+  <string name="deconnexion_reussie">Déconnexion réussie</string>
+  <string name="accueil">Accueil</string>
 </resources>

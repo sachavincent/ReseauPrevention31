@@ -12,4 +12,12 @@ public class CodeActivite {
     public String getActivite() {
         return this.activite;
     }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setActivite(String activite) {
+        this.activite = activite;
+    }
 }

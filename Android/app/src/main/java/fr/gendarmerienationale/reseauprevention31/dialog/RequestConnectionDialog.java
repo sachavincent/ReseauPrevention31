@@ -18,15 +18,16 @@ import com.google.android.material.textfield.TextInputEditText;
 import androidx.annotation.NonNull;
 import fr.gendarmerienationale.reseauprevention31.BuildConfig;
 import fr.gendarmerienationale.reseauprevention31.R;
+import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
 import fr.gendarmerienationale.reseauprevention31.asynctask.APICaller;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
 
 public class RequestConnectionDialog extends Dialog {
 
-    private Activity mActivity;
+    private MainActivity mActivity;
     private Context  mContext;
 
-    public RequestConnectionDialog(@NonNull Context _context, @NonNull Activity _activity) {
+    public RequestConnectionDialog(@NonNull Context _context, @NonNull MainActivity _activity) {
         super(_context);
 
         this.mContext = _context;
@@ -65,8 +66,7 @@ public class RequestConnectionDialog extends Dialog {
 
         switchValiderState();
 
-        //TODO: Call API with request
-        new APICaller(keyField.getText().toString(), mContext, this).execute();
+        new APICaller(keyField.getText().toString(), mContext, mActivity.getLogoutItem(), this).execute();
     }
 
     public void switchValiderState() {

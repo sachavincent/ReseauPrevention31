@@ -13,4 +13,13 @@ public enum Secteur {
     public int getNum() {
         return super.ordinal() + 1;
     }
+
+    public static Secteur getSecteur(int numSecteur) {
+        for (Secteur secteur : Secteur.values()) {
+            if (secteur.getNum() == numSecteur)
+                return secteur;
+        }
+
+        return null;
+    }
 }

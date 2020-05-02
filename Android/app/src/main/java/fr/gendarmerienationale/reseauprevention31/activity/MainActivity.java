@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     public static DatabaseHelper sDatabaseHelper;
 
+    private MenuItem mLogoutItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
-            actionBar.setSubtitle(R.string.app_name);
+            actionBar.setSubtitle(R.string.accueil);
 
         // Vérifie les permissions
         if (EasyPermissions.hasPermissions(this, appPerms))
@@ -82,8 +85,18 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        return super.onSupportNavigateUp();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        this.mLogoutItem = menu.findItem(R.id.logout);
+
+        if (MainActivity.sDatabaseHelper.isUserConnected())
+            this.mLogoutItem.setVisible(true);
 
         return true;
     }
@@ -92,11 +105,27 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings)
-            return true;
+        if (id == R.id.logout) {
+            AlertDialog alertDialog = new AlertDialog.Builder(this)
+                    .setTitle("Voulez-vous vous déconnecter ?")
+                    .setIcon(R.drawable.logout_black)
+                    .setNegativeButton(R.string.non, (dialog, which) -> dialog.dismiss())
+                    .setPositiveButton(R.string.oui, (dialog, which) -> disconnectUser())
+                    .create();
+
+            alertDialog.show();
+        }
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void disconnectUser() {
+        if (sDatabaseHelper.deleteUser()) {
+            mLogoutItem.setVisible(false);
+
+            Toast.makeText(this, R.string.deconnexion_reussie, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -156,5 +185,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             } else
                 finish();
         }
+    }
+
+    public MenuItem getLogoutItem() {
+        return this.mLogoutItem;
     }
 }

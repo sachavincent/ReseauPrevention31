@@ -3,11 +3,16 @@ package fr.gendarmerienationale.reseauprevention31.database;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
+import fr.gendarmerienationale.reseauprevention31.struct.Utilisateur;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -111,7 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // Création de la table Societe
             _database.execSQL(
                     "CREATE TABLE " + SOCIETE_TABLE_NAME +
-                            "(" + SOCIETE_COLUMN_ID + " INTEGER NOT NULL, " +
+                            "(" + SOCIETE_COLUMN_ID + " INTEGER NOT NULL PRIMARY KEY, " +
                             SOCIETE_COLUMN_ID_ACTIVITE + " INTEGER NOT NULL, " +
                             SOCIETE_COLUMN_SECTEUR + " INTEGER NOT NULL, " +
                             SOCIETE_COLUMN_CODE_POSTAL + " INTEGER NOT NULL, " +
@@ -124,7 +129,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // Création de la table Utilisateur
             _database.execSQL(
                     "CREATE TABLE " + UTILISATEUR_TABLE_NAME +
-                            "(" + UTILISATEUR_COLUMN_ID + " INTEGER NOT NULL, " +
+                            "(" + UTILISATEUR_COLUMN_ID + " INTEGER NOT NULL PRIMARY KEY, " +
                             UTILISATEUR_COLUMN_CLE + " TEXT NOT NULL, " +
                             UTILISATEUR_COLUMN_CODE_ACT + " INTEGER NOT NULL, " +
                             UTILISATEUR_COLUMN_SECTEUR + " INTEGER NOT NULL, " +
@@ -135,6 +140,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             "FOREIGN KEY(" + UTILISATEUR_COLUMN_CODE_ACT + ") REFERENCES " +
                             CODE_ACTIVITE_TABLE_NAME + "(" + CODE_ACTIVITE_COLUMN_CODE + "))"
             );
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(CODE_ACTIVITE_COLUMN_CODE, 11);
+            contentValues.put(CODE_ACTIVITE_COLUMN_ACTIVITE, "Culture");
+
+            _database.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", contentValues);
+            Log.d(LOG, "done");
         } catch (SQLException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
@@ -211,5 +223,99 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             return false;
         }
+    }
+
+    /**
+     * Permet de récupérer l'activité correspondante à son code dans la base de données
+     *
+     * @param code_act le code de l'activité
+     * @return l'activité
+     */
+    public CodeActivite getActiviteByCode(String code_act) {
+        CodeActivite codeActivite = null;
+
+        Cursor cursor = null;
+        try {
+            String[] projection = {CODE_ACTIVITE_COLUMN_CODE, CODE_ACTIVITE_COLUMN_ACTIVITE};
+            cursor = mDb.query(CODE_ACTIVITE_TABLE_NAME, projection, CODE_ACTIVITE_COLUMN_CODE + " = ?",
+                    new String[]{code_act},
+                    null, null, null);
+
+            if (cursor != null && cursor.moveToFirst()) { // Il y a bien une activité avec ce code
+                codeActivite = new CodeActivite();
+                codeActivite.setCode(cursor.getInt(0));
+                codeActivite.setActivite(cursor.getString(1));
+            }
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+
+        return codeActivite;
+    }
+
+    /**
+     * Permet d'enregistrer un utilisateur dans la base de données
+     * Seul l'utilisateur courant est enregistré ici et est supprimé lorsqu'il est déconnecté
+     *
+     * @param utilisateur l'utilisateur à enregister
+     * @return true si l'enregistrement s'est bien passé
+     */
+    public boolean saveUser(Utilisateur utilisateur) {
+        try {
+            ContentValues values = new ContentValues();
+            values.put(UTILISATEUR_COLUMN_ID, utilisateur.getId());
+            values.put(UTILISATEUR_COLUMN_CLE, utilisateur.getCle());
+            values.put(UTILISATEUR_COLUMN_CHAMBRE, utilisateur.getChambre().toString());
+            values.put(UTILISATEUR_COLUMN_CODE_ACT, utilisateur.getCode_act().toString());
+            values.put(UTILISATEUR_COLUMN_CODE_POSTAL, utilisateur.getCode_postal());
+            values.put(UTILISATEUR_COLUMN_TELEPHONE, utilisateur.getTelephone());
+            values.put(UTILISATEUR_COLUMN_SECTEUR, utilisateur.getSecteur().toString());
+            values.put(UTILISATEUR_COLUMN_MAIL, utilisateur.getMail());
+
+            return mDb.insertOrThrow(UTILISATEUR_TABLE_NAME, "", values) != -1;
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return false;
+    }
+
+    /**
+     * Permet de supprimer l'utilisateur de la base de données aka le déconnecter
+     *
+     * @return true si la suppression a fonctionné
+     */
+    public boolean deleteUser() {
+        try {
+            return mDb.delete(UTILISATEUR_TABLE_NAME, "", new String[0]) == 1;
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return false;
+    }
+
+    /**
+     * Permet de savoir si l'utilisateur est connecté
+     *
+     * @return true si l'utilisateur est connecté
+     */
+    public boolean isUserConnected() {
+        try {
+            Cursor cursor = mDb.rawQuery("SELECT * FROM " + UTILISATEUR_TABLE_NAME, new String[0]);
+
+            return cursor.getCount() == 1;
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return false;
     }
 }
