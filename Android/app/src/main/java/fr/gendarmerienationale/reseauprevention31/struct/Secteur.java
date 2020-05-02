@@ -22,4 +22,9 @@ public enum Secteur {
 
         return null;
     }
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase().replace("_", " ").replace("z", "Z");
+    }
 }

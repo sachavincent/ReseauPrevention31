@@ -12,7 +12,11 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
+import fr.gendarmerienationale.reseauprevention31.struct.Commune;
+import fr.gendarmerienationale.reseauprevention31.struct.Secteur;
 import fr.gendarmerienationale.reseauprevention31.struct.Utilisateur;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -144,6 +148,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues contentValues = new ContentValues();
             contentValues.put(CODE_ACTIVITE_COLUMN_CODE, 11);
             contentValues.put(CODE_ACTIVITE_COLUMN_ACTIVITE, "Culture");
+
+            _database.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", contentValues);
+            contentValues.put(CODE_ACTIVITE_COLUMN_CODE, 22);
+            contentValues.put(CODE_ACTIVITE_COLUMN_ACTIVITE, "Cul ture");
 
             _database.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", contentValues);
             Log.d(LOG, "done");
@@ -307,15 +315,73 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return true si l'utilisateur est connecté
      */
     public boolean isUserConnected() {
-        try {
-            Cursor cursor = mDb.rawQuery("SELECT * FROM " + UTILISATEUR_TABLE_NAME, new String[0]);
+        boolean res = false;
 
-            return cursor.getCount() == 1;
+        try (Cursor cursor = mDb.rawQuery("SELECT * FROM " + UTILISATEUR_TABLE_NAME, new String[0])) {
+            res = cursor.getCount() == 1;
         } catch (SQLiteException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
         }
 
-        return false;
+        return res;
+    }
+
+    /**
+     * Permet de récupérer la liste des codes APE
+     *
+     * @return la liste des codes APE
+     */
+    public List<CodeActivite> getCodesAPE() {
+        List<CodeActivite> codesAPE = new ArrayList<>();
+        try (Cursor cursor = mDb
+                .query(CODE_ACTIVITE_TABLE_NAME, new String[]{CODE_ACTIVITE_COLUMN_CODE, CODE_ACTIVITE_COLUMN_ACTIVITE},
+                        "", new String[0], null, null,
+                        null)) {
+
+            while (cursor.moveToNext()) {
+                CodeActivite codeActivite = new CodeActivite();
+
+                codeActivite.setCode(cursor.getInt(0));
+                codeActivite.setActivite(cursor.getString(1));
+
+                codesAPE.add(codeActivite);
+            }
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return codesAPE;
+    }
+
+    /**
+     * Permet de récupérer la liste des communes
+     *
+     * @return la liste des communes
+     */
+    public List<Commune> getCommunes() {
+        List<Commune> communes = new ArrayList<>();
+
+        try (Cursor cursor = mDb.query(COMMUNE_TABLE_NAME,
+                new String[]{COMMUNE_COLUMN_ID, COMMUNE_COLUMN_COMMUNE, COMMUNE_COLUMN_CODE_POSTAL,
+                        COMMUNE_COLUMN_SECTEUR}, "", new String[0], null, null, null)) {
+
+            while (cursor.moveToNext()) {
+                Commune commune = new Commune();
+
+                commune.setId(cursor.getInt(0));
+                commune.setNom(cursor.getString(1));
+                commune.setCode_postal(cursor.getInt(2));
+                commune.setSecteur(Secteur.getSecteur(cursor.getInt(3)));
+
+                communes.add(commune);
+            }
+        } catch (SQLiteException | IllegalArgumentException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return communes;
     }
 }

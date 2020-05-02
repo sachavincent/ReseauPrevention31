@@ -17,4 +17,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="customHintSize" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>

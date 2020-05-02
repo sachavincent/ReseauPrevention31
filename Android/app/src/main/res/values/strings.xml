@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">Reseau Prevention 31</string>
-    <string name="action_settings">Settings</string>
-    <string name="permissions_accepter">Il est nécessaire d\'accepter toutes les permissions</string>
-    <string name="ok">OK</string>
-    <string name="oui">Oui</string>
-    <string name="non">Non</string>
-    <string name="annuler">Annuler</string>
-    <string name="ajouter">Ajouter</string>
-    <string name="debut">Début</string>
-    <string name="fin">Fin</string>
-    <string name="localiser_une_gendarmerie">Localiser\nune gendarmerie</string>
+  <string name="app_name">Reseau Prevention 31</string>
+  <string name="action_settings">Settings</string>
+  <string name="permissions_accepter">Il est nécessaire d\'accepter toutes les permissions</string>
+  <string name="ok">OK</string>
+  <string name="oui">Oui</string>
+  <string name="non">Non</string>
+  <string name="annuler">Annuler</string>
+  <string name="ajouter">Ajouter</string>
+  <string name="debut">Début</string>
+  <string name="fin">Fin</string>
+  <string name="localiser_une_gendarmerie">Localiser\nune gendarmerie</string>
   <string name="connexion">Connexion</string>
-    <string name="creer_un_compte">Créer un compte</string>
+  <string name="creer_un_compte">Créer un compte</string>
   <string name="connexion_anonyme">Connexion anonyme</string>
   <string name="valider">Valider</string>
   <string name="cle_identification">Clé d\'identification</string>
@@ -29,11 +29,21 @@
   <string name="err_http_cle_inconnue">Clé d\'identification inconnue</string>
 
 
-
   <string name="connection_successful">Connexion réussie</string>
   <string name="connection_unsuccessful">Connexion impossible</string>
   <string name="connection_error">Erreur lors de la connexion</string>
   <string name="deconnexion">Déconnexion</string>
   <string name="deconnexion_reussie">Déconnexion réussie</string>
   <string name="accueil">Accueil</string>
+  <string name="numero_siret">Numéro Siret</string>
+  <string name="nom">Nom</string>
+  <string name="prenom">Prénom</string>
+  <string name="nom_societe">Nom de la société</string>
+  <string name="erreur">Erreur</string>
+  <string name="code_ape_incorrect">Code APE incorrect</string>
+  <string name="code_ape_inexistant">Code APE inexistant</string>
+  <string name="code_ape">Code APE</string>
+  <string name="localisation">Localisation</string>
+  <string name="localisation_inexistante">Localisation inexistante</string>
+  <string name="localisation_imprecise">Plusieurs communes ont été trouvées</string>
 </resources>

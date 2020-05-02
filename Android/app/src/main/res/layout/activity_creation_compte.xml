@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:focusable="true"
+  android:focusableInTouchMode="true">
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/numSiretLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:hintTextAppearance="@style/customHintSize"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/numSiretField"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:ellipsize="end"
+      android:gravity="center_horizontal"
+      android:hint="@string/numero_siret"
+      android:lines="1"
+      android:inputType="number"
+      android:maxLength="10"
+      android:scrollHorizontally="false"
+      android:singleLine="true"/>
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/nomLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:hintTextAppearance="@style/customHintSize"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/numSiretLayout">
+
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/nomField"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:ellipsize="end"
+      android:gravity="center_horizontal"
+      android:hint="@string/nom"
+      android:lines="1"
+      android:scrollHorizontally="false"
+      android:singleLine="true"/>
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/prenomLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:hintTextAppearance="@style/customHintSize"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/nomLayout">
+
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/prenomField"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:ellipsize="end"
+      android:gravity="center_horizontal"
+      android:hint="@string/prenom"
+      android:inputType="textEmailAddress"
+      android:lines="1"
+      android:scrollHorizontally="false"
+      android:singleLine="true"/>
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/nomSocieteLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:hintTextAppearance="@style/customHintSize"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/prenomLayout">
+
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/nomSocieteField"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:ellipsize="end"
+      android:gravity="center_horizontal"
+      android:hint="@string/nom_societe"
+      android:lines="1"
+      android:scrollHorizontally="false"
+      android:singleLine="true"/>
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/codeAPELayout"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:hintTextAppearance="@style/customHintSize"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/nomSocieteLayout"
+    app:layout_constraintWidth_percent=".8">
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+      android:id="@+id/codeAPEField"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:ellipsize="end"
+      android:hint="@string/code_ape"
+      android:gravity="center_horizontal"
+      android:lines="1"
+      android:scrollHorizontally="false"
+      android:singleLine="true"/>
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+  <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/infoAPE"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scaleX="1.6"
+    android:scaleY="1.6"
+    android:src="@drawable/info"
+    app:layout_constraintBottom_toBottomOf="@id/codeAPELayout"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/codeAPELayout"
+    app:layout_constraintTop_toTopOf="@id/codeAPELayout"/>
+
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/localisationLayout"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:hintTextAppearance="@style/customHintSize"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/codeAPELayout"
+    app:layout_constraintWidth_percent=".8">
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+      android:id="@+id/localisationField"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:hint="@string/localisation"
+      android:ellipsize="end"
+      android:gravity="center_horizontal"
+      android:lines="1"
+      android:scrollHorizontally="false"
+      android:singleLine="true"/>
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+  <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/localisationButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scaleX="1.6"
+    android:scaleY="1.6"
+    android:src="@drawable/place"
+    app:layout_constraintBottom_toBottomOf="@id/localisationLayout"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/localisationLayout"
+    app:layout_constraintTop_toTopOf="@id/localisationLayout"/>
+
+  <Button
+    android:id="@+id/btnValiderCreationCompte"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:text="@string/valider"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintWidth_percent=".4"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
