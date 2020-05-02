@@ -579,40 +579,54 @@ forces :
     margin-left: 182px;
 }
 
+#date_msg
+{
+    font-size: 13px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: grey;
+}
+
 #objet
 {
     font-weight: bold;
     font-size: 16px;
-    margin-left: 10px;
+    margin-left: 25px;
     padding-top: 18px;
-}
-
-.date
-{
-    font-size: 13px;
-    float: right;
-    margin-top: -18px;
-    margin-right: 10px;
-    color: grey;
 }
 
 #infos1, #infos2
 {
     font-size: 14px;
-    margin-left: 10px;
+    margin-left: 25px;
     padding-top: 15px;
 }
 
-#write_msg
+
+/* =============== RECEPTION CHAMBRE =============== */
+
+/* zone des informations de la demande */
+#zone_demande
 {
-    min-width: 75%;
-    /* max-width: 78%; */
-    min-height: 460px;
-    resize: none;
-    border: 0px;
-    margin: 10px;
+    width: auto;
+    height: 300px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+
+    margin-left: 182px;
+    padding: 1px;
+    padding-left: 25px;
 }
 
+#date_demande
+{
+    font-size: 13px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: grey;
+}
 
 /* =============== NOUVEAU MSG =============== */
 
@@ -634,7 +648,7 @@ forces :
     font-size: 14px;
     font-weight: regular;
     padding: 0px;
-    padding-left: 20px;
+    padding-left: 25px;
 }
 
 /* parametre d'alignement */
@@ -657,7 +671,7 @@ forces :
 {
     height: 16px;
     width: 16px;
-    margin-left: 20px;
+    margin-left: 25px;
 }
 
 /* checkbox toutes les communes */
@@ -693,5 +707,15 @@ forces :
 {
     font-size: 15px;
     font-weight: bold;
-    padding-left: 20px;
+    padding-left: 25px;
+}
+
+#write_msg
+{
+    min-width: 75%;
+    /* max-width: 78%; */
+    min-height: 460px;
+    resize: none;
+    border: 0px;
+    margin: 10px;
 }
