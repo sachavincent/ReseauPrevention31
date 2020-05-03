@@ -18,6 +18,7 @@
   <string name="localiser_une_brigade">Localiser une\nbrigade</string>
   <string name="consulter_les_infos">Consulter\nles infos</string>
   <string name="conseils_protection">Conseils protections\net liens utiles</string>
+  <string name="texte_bandeau">Réseau Prévention 31</string>
 
   <!-- communication avec le serveur HTTP -->
   <string name="http_success">success</string>
