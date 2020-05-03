@@ -690,11 +690,11 @@ forces :
 }
 
 /* checkbox envoi par mail */
-#envoi_mail
+#envoi_mail, #envoi_notif
 {
     height: 15px;
     width: 15px;
-    margin-left: 40px;
+    margin-left: 47px;
 }
 
 /* #envoi_sms
