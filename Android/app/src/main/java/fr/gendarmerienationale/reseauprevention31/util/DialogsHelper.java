@@ -18,4 +18,18 @@ public class DialogsHelper {
                 .setIcon(android.R.drawable.stat_notify_error)
                 .show();
     }
+
+    /**
+     * Génère un message Toast avec le message donné et la longueur donnée
+     */
+    public static void displayToast(Context _context, String _message, int _length) {
+        Toast.makeText(_context, _message, _length).show();
+    }
+
+    /**
+     * Génère un message Toast avec le message donné et la longueur donnée
+     */
+    public static void displayToast(Context _context, int _idMessage, int _length) {
+        Toast.makeText(_context, _idMessage, _length).show();
+    }
 }

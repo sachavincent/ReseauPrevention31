@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:padding="10dp">
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/loadingDatabaseTitle"
+    android:textStyle="bold"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:minWidth="100dp"
+    android:text="@string/update_database"
+    android:textSize="24sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/updateDatabaseState"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="22dp"
+    android:gravity="center"
+    android:text="@string/initialisation"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/loadingDatabaseTitle"/>
+
+  <ProgressBar
+    android:id="@+id/updateDatabaseProgressbar"
+    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Inverse"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/updateDatabaseState"/>
+
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btnAnnulerUpdateDatabase"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="@string/annuler"
+    android:textColor="@android:color/white"
+    app:backgroundTint="@android:color/red"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/updateDatabaseProgressbar"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

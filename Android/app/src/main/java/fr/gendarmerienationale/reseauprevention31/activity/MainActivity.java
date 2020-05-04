@@ -15,7 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.database.DatabaseHelper;
-import fr.gendarmerienationale.reseauprevention31.dialog.RequestConnectionDialog;
+import fr.gendarmerienationale.reseauprevention31.dialog.ConnectionDialog;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
 import java.util.List;
 import pub.devrel.easypermissions.BuildConfig;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
 
         buttonConnexion.setOnClickListener(v -> {
-            new RequestConnectionDialog(MainActivity.this, this).show();
+            new ConnectionDialog(MainActivity.this, this).show();
         });
 
         buttonConnexionAnonyme

@@ -50,4 +50,12 @@
   <string name="localisation">Localisation</string>
   <string name="localisation_inexistante">Localisation inexistante</string>
   <string name="localisation_imprecise">Plusieurs communes ont été trouvées</string>
+  <string name="num_telephone">Numéro de téléphone</string>
+  <string name="mail">Mail</string>
+  <string name="update_database">Mise à jour de la base de données</string>
+  <string name="initialisation">Initialisation</string>
+  <string name="connexion_en_cours">Connexion…</string>
+  <string name="update">Mise à jour</string>
+  <string name="mise_a_jour_reussie">Mise à jour réussie</string>
+  <string name="mise_a_jour_commencee">Mise à jour en cours…</string>
 </resources>
