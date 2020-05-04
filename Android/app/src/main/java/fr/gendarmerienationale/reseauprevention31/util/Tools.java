@@ -31,9 +31,13 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class Tools {
 
-    public final static  String LOG         = "ReseauPrevention31";
-    private final static String MAIN_FOLDER = "ReseauPrevention31";
-    private static final String TRACE_FILE  = "ReseauPrevention31.txt";
+    public final static String LOG = "ReseauPrevention31";
+
+    private final static String MAIN_FOLDER  = "ReseauPrevention31";
+    private final static String FILES_FOLDER = MAIN_FOLDER + File.separator + "FILES";
+    private static final String TRACE_FILE   = "ReseauPrevention31.txt";
+
+    private final static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     private static int width;
 
@@ -106,7 +110,7 @@ public class Tools {
             return null;
 
         try {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", getCurrentLocale()).parse(_date);
+            return new SimpleDateFormat(DATE_PATTERN, getCurrentLocale()).parse(_date);
         } catch (ParseException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
@@ -137,21 +141,21 @@ public class Tools {
     public static String getDateFromDatabase(Date _date) {
         if (_date == null)
             return "";
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", getCurrentLocale()).format(_date);
+        return new SimpleDateFormat(DATE_PATTERN, getCurrentLocale()).format(_date);
     }
 
     /**
      * Permet de récupérer la date actuelle formatée pour une insertion
      */
     public static String getCurrentDateForInsert() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", getCurrentLocale()).format(Calendar.getInstance().getTime());
+        return new SimpleDateFormat(DATE_PATTERN, getCurrentLocale()).format(Calendar.getInstance().getTime());
     }
 
     /**
      * Permet de récupérer la date formattée pour une insertion
      */
     public static String getDateForInsert(Date _date) {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", getCurrentLocale()).format(_date);
+        return new SimpleDateFormat(DATE_PATTERN, getCurrentLocale()).format(_date);
     }
 
     /**
@@ -304,6 +308,17 @@ public class Tools {
         return path;
     }
 
+    /**
+     * Permet de récupérer le chemin complet du dossier FILES de l'application
+     */
+    public static String getFilesDirectoryPath() {
+        String path = Environment.getExternalStorageDirectory() + File.separator + FILES_FOLDER;
+        File directory = new File(path);
+        if (!directory.exists())
+            directory.mkdirs();
+
+        return path;
+    }
 
     /**
      * Permet de changer le chemin du fichier source vers le fichier destination à partir des noms des fichiers

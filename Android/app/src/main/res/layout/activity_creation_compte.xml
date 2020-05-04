@@ -26,8 +26,8 @@
       android:ellipsize="end"
       android:gravity="center_horizontal"
       android:hint="@string/numero_siret"
-      android:lines="1"
       android:inputType="number"
+      android:lines="1"
       android:maxLength="10"
       android:scrollHorizontally="false"
       android:singleLine="true"/>
@@ -126,8 +126,8 @@
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:ellipsize="end"
-      android:hint="@string/code_ape"
       android:gravity="center_horizontal"
+      android:hint="@string/code_ape"
       android:lines="1"
       android:scrollHorizontally="false"
       android:singleLine="true"/>
@@ -164,9 +164,9 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_weight="1"
-      android:hint="@string/localisation"
       android:ellipsize="end"
       android:gravity="center_horizontal"
+      android:hint="@string/localisation"
       android:lines="1"
       android:scrollHorizontally="false"
       android:singleLine="true"/>
@@ -184,6 +184,59 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@id/localisationLayout"
     app:layout_constraintTop_toTopOf="@id/localisationLayout"/>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/numTelLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:hintTextAppearance="@style/customHintSize"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/localisationLayout">
+
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/numTelField"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:ellipsize="end"
+      android:gravity="center_horizontal"
+      android:hint="@string/num_telephone"
+      android:inputType="phone"
+      android:lines="1"
+      android:scrollHorizontally="false"
+      android:singleLine="true"/>
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/mailLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:hintTextAppearance="@style/customHintSize"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/numTelLayout">
+
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/mailField"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:ellipsize="end"
+      android:gravity="center_horizontal"
+      android:hint="@string/mail"
+      android:inputType="textEmailAddress"
+      android:lines="1"
+      android:scrollHorizontally="false"
+      android:singleLine="true"/>
+  </com.google.android.material.textfield.TextInputLayout>
+
 
   <Button
     android:id="@+id/btnValiderCreationCompte"

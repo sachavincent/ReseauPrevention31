@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
 import fr.gendarmerienationale.reseauprevention31.struct.Commune;
@@ -36,6 +38,10 @@ public class CreationCompteActivity extends AppCompatActivity {
         if (actionBar != null)
             actionBar.setSubtitle(R.string.creer_un_compte);
 
+        initListeners();
+    }
+
+    private void initListeners() {
         final List<CodeActivite> listeAPE = MainActivity.sDatabaseHelper.getCodesAPE();
         final List<String> listeLocalisations = new ArrayList<>();
         List<Commune> listeCommunes = MainActivity.sDatabaseHelper.getCommunes();
@@ -99,6 +105,7 @@ public class CreationCompteActivity extends AppCompatActivity {
             // Empêche la fermeture du clavier
             return true;
         });
+
         // Quand on appuie sur la touche valider/entrer du clavier
         localisationField.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -109,6 +116,14 @@ public class CreationCompteActivity extends AppCompatActivity {
 
             // Empêche la fermeture du clavier
             return true;
+        });
+
+
+        // Le bouton valider
+        final Button boutonValider = findViewById(R.id.btnValiderCreationCompte);
+        boutonValider.setOnClickListener(v -> {
+
+
         });
     }
 

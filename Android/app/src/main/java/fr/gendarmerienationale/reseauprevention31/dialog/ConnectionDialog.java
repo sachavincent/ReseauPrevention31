@@ -1,33 +1,31 @@
 package fr.gendarmerienationale.reseauprevention31.dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-
-import com.google.android.material.textfield.TextInputEditText;
-
 import androidx.annotation.NonNull;
-import fr.gendarmerienationale.reseauprevention31.BuildConfig;
+import com.google.android.material.textfield.TextInputEditText;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
-import fr.gendarmerienationale.reseauprevention31.asynctask.APICaller;
+import fr.gendarmerienationale.reseauprevention31.asynctask.DatabaseDateAPICaller;
+import fr.gendarmerienationale.reseauprevention31.asynctask.ConnectionAPICaller;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
+import java.util.Date;
 
-public class RequestConnectionDialog extends Dialog {
+public class ConnectionDialog extends Dialog {
 
     private MainActivity mActivity;
-    private Context  mContext;
+    private Context      mContext;
 
-    public RequestConnectionDialog(@NonNull Context _context, @NonNull MainActivity _activity) {
+    private Button mBtnValider;
+
+    public ConnectionDialog(@NonNull Context _context, @NonNull MainActivity _activity) {
         super(_context);
 
         this.mContext = _context;
@@ -52,8 +50,8 @@ public class RequestConnectionDialog extends Dialog {
         setContentView(dialogView);
 
         // Event quand on appuie sur "Valider"
-        Button btnValider = findViewById(R.id.btnValiderConnection);
-        btnValider.setOnClickListener(dialog -> valider());
+        mBtnValider = findViewById(R.id.btnValiderConnection);
+        mBtnValider.setOnClickListener(dialog -> valider());
     }
 
     /**
@@ -66,11 +64,27 @@ public class RequestConnectionDialog extends Dialog {
 
         switchValiderState();
 
-        new APICaller(keyField.getText().toString(), mContext, mActivity.getLogoutItem(), this).execute();
+        new ConnectionAPICaller(keyField.getText().toString(), mContext, mActivity.getLogoutItem(), this).execute();
     }
 
     public void switchValiderState() {
-        Button button = findViewById(R.id.btnValiderConnection);
-        button.setEnabled(!button.isEnabled());
+        if (mBtnValider != null) {
+            mBtnValider.setText(R.string.valider);
+            mBtnValider.setEnabled(!mBtnValider.isEnabled());
+
+            mBtnValider.setText(mBtnValider.isEnabled() ? R.string.valider : R.string.connexion_en_cours);
+        }
+    }
+
+    /**
+     * Méthode appelée quand la connexion a réussie
+     */
+    @Override
+    public void dismiss() {
+        super.dismiss();
+
+        Date lastConnectionDate = MainActivity.sDatabaseHelper.getLastDatabaseUpdateDate();
+        String cleIdentification = MainActivity.sDatabaseHelper.getUserID();
+        new DatabaseDateAPICaller(mContext, cleIdentification, lastConnectionDate).execute();
     }
 }

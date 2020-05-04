@@ -1,6 +1,7 @@
 package fr.gendarmerienationale.reseauprevention31.database;
 
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.getDateFromDatabase;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
 import android.content.ContentValues;
@@ -15,7 +16,13 @@ import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
 import fr.gendarmerienationale.reseauprevention31.struct.Commune;
 import fr.gendarmerienationale.reseauprevention31.struct.Secteur;
 import fr.gendarmerienationale.reseauprevention31.struct.Utilisateur;
+import fr.gendarmerienationale.reseauprevention31.util.Tools;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -71,6 +78,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String UTILISATEUR_COLUMN_TELEPHONE   = "telephone";
     private static final String UTILISATEUR_COLUMN_MAIL        = "mail";
     private static final String UTILISATEUR_COLUMN_CHAMBRE     = "chambre";
+
+    private static final String CONFIG_TABLE_NAME            = "Config";
+    private static final String CONFIG_LOCK                  = "lock";
+    private static final String CONFIG_COLUMN_LAST_DB_UPDATE = "last_db_update";
+    private static final String CONFIG_COLUMN_FTP_ADRESSE    = "ftp_adresse";
+    private static final String CONFIG_COLUMN_FTP_LOGIN      = "ftp_login";
+    private static final String CONFIG_COLUMN_FTP_PASSWORD   = "ftp_password";
 
     public DatabaseHelper(Context _context) {
         super(_context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -145,13 +159,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             CODE_ACTIVITE_TABLE_NAME + "(" + CODE_ACTIVITE_COLUMN_CODE + "))"
             );
 
+            // Création de la table Config
+            _database.execSQL(
+                    "CREATE TABLE " + CONFIG_TABLE_NAME +
+                            "(" + CONFIG_LOCK + " CHAR(1) NOT NULL DEFAULT 'X', " +
+                            CONFIG_COLUMN_LAST_DB_UPDATE + " TEXT NOT NULL DEFAULT \"\", " +
+                            CONFIG_COLUMN_FTP_ADRESSE + " TEXT NOT NULL DEFAULT \"\", " +
+                            CONFIG_COLUMN_FTP_LOGIN + " TEXT NOT NULL DEFAULT \"\", " +
+                            CONFIG_COLUMN_FTP_PASSWORD + " TEXT NOT NULL DEFAULT \"\", " +
+                            "CONSTRAINT PK_CONFIG PRIMARY KEY (" + CONFIG_LOCK + "), " +
+                            "CONSTRAINT CK_CONFIG_LOCKED CHECK (" + CONFIG_LOCK + "='X'))"
+            );
+
+            // Temp
             ContentValues contentValues = new ContentValues();
             contentValues.put(CODE_ACTIVITE_COLUMN_CODE, 11);
             contentValues.put(CODE_ACTIVITE_COLUMN_ACTIVITE, "Culture");
 
             _database.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", contentValues);
             contentValues.put(CODE_ACTIVITE_COLUMN_CODE, 22);
-            contentValues.put(CODE_ACTIVITE_COLUMN_ACTIVITE, "Cul ture");
+            contentValues.put(CODE_ACTIVITE_COLUMN_ACTIVITE, "Culture 2");
 
             _database.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", contentValues);
             Log.d(LOG, "done");
@@ -377,11 +404,91 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 communes.add(commune);
             }
-        } catch (SQLiteException | IllegalArgumentException e) {
+        } catch (SQLiteException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
         }
 
         return communes;
+    }
+
+    /**
+     * Permet de savoir si la base de données est à jour
+     */
+    public Date getLastDatabaseUpdateDate() {
+        Date date = null;
+        try (Cursor cursor = mDb.query(CONFIG_TABLE_NAME,
+                new String[]{CONFIG_COLUMN_LAST_DB_UPDATE}, "", new String[0], null, null, null)) {
+
+            if (cursor.moveToNext())
+                date = getDateFromDatabase(cursor.getString(0));
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return date;
+    }
+
+    /**
+     * Permet de récupérer l'id de l'utilisateur s'il est connecté
+     *
+     * @return l'id de l'utilisateur
+     */
+    public String getUserID() {
+        if (!isUserConnected())
+            return null;
+
+        String res = null;
+        try (Cursor cursor = mDb.query(UTILISATEUR_TABLE_NAME,
+                new String[]{UTILISATEUR_COLUMN_ID}, "", new String[0], null, null, null)) {
+
+            if (cursor.moveToNext())
+                res = cursor.getString(0);
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return res;
+    }
+
+    /**
+     * Permet de mettre à jour la base de données
+     */
+    public boolean updateDatabase() {
+        File databaseFile = new File(Tools.getFilesDirectoryPath() + File.separator + "DATABASE.CSV");
+        FileReader reader = null;
+        BufferedReader bufferedReader = null;
+        boolean res = false;
+
+        try {
+            reader = new FileReader(databaseFile);
+            bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] values = line.split(";");
+            }
+            // Mise à jour de la date de dernière mise à jour de la base de données
+            ContentValues values = new ContentValues();
+            values.put(CONFIG_COLUMN_LAST_DB_UPDATE, Tools.getCurrentDateForInsert());
+
+            res = mDb.update(CONFIG_TABLE_NAME, values, "", new String[0]) == 1;
+        } catch (IOException | SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                Log.w(LOG, e.getMessage());
+                writeTraceException(e);
+            }
+        }
+
+        return res;
     }
 }

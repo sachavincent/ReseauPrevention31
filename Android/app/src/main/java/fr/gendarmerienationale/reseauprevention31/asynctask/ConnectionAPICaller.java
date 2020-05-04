@@ -8,12 +8,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.widget.Toolbar;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
-import fr.gendarmerienationale.reseauprevention31.dialog.RequestConnectionDialog;
+import fr.gendarmerienationale.reseauprevention31.dialog.ConnectionDialog;
 import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
 import fr.gendarmerienationale.reseauprevention31.struct.Secteur;
 import fr.gendarmerienationale.reseauprevention31.struct.Utilisateur;
+import fr.gendarmerienationale.reseauprevention31.util.DialogsHelper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +28,7 @@ import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class APICaller extends AsyncTask<Void, Void, Boolean> {
+public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
 
     private final WeakReference<Context> mContext;
 
@@ -34,11 +36,11 @@ public class APICaller extends AsyncTask<Void, Void, Boolean> {
 
     private final static String URL = "http://192.168.42.26:80";
 
-    private final WeakReference<RequestConnectionDialog> mDialog;
+    private final WeakReference<ConnectionDialog> mDialog;
 
     private MenuItem mLogoutItem;
 
-    public APICaller(String _keyID, Context _context, MenuItem _logoutItem, RequestConnectionDialog _dialog) {
+    public ConnectionAPICaller(String _keyID, Context _context, MenuItem _logoutItem, ConnectionDialog _dialog) {
         mKeyID = _keyID;
 
         mContext = new WeakReference<>(_context);
@@ -157,8 +159,7 @@ public class APICaller extends AsyncTask<Void, Void, Boolean> {
         } else // erreur
             mDialog.get().switchValiderState();
 
-
-        Toast.makeText(mContext.get(), mStrRep, Toast.LENGTH_LONG).show();
+        DialogsHelper.displayToast(mContext.get(), mStrRep, Toast.LENGTH_LONG);
     }
 
     private boolean extractUtilisateur(JSONObject response) throws JSONException {
