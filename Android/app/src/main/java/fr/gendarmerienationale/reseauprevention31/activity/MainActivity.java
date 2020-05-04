@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
 
         buttonConnexionAnonyme
-                .setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AccueilActivity.class)));
+                .setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AccueilActivity_non_connecte.class)));
 
     }
 
