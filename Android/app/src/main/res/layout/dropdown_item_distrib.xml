@@ -4,11 +4,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/Bandeau"
+        android:id="@+id/Bandeau_accueil"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/colorBandeau"
-        app:layout_constraintTop_toTopOf="0">
+        android:layout_height="wrap_content"
+        android:background="@color/colorBandeau" >
 
         <TextView
             android:id="@+id/TitreAppli"
@@ -19,7 +18,6 @@
             android:text="Réseau prévention 31"
             android:textColor="@android:color/white"
             android:textSize="25sp"
-            android:fontFamily="Segoe UI"
             app:layout_constraintLeft_toLeftOf="0"
             app:layout_constraintTop_toTopOf="0" />
 
