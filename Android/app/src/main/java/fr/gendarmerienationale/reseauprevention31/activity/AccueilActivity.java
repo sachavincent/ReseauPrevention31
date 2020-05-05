@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import fr.gendarmerienationale.reseauprevention31.R;
@@ -15,17 +14,27 @@ public class AccueilActivity extends AppCompatActivity {
 
     private MenuItem mLogoutItem;
 
+    private boolean mConnected;
+
+    private ActionBar mActionBar;
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mConnected = MainActivity.sDatabaseHelper.isUserConnected();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
-//        Button buttonEnvoyerMessage = findViewById(R.id.ButtonEnvoyerMessage);
-//        Button buttonConsulterInfos = findViewById(R.id.ButtonConsulterInfos);
+
+//        Button buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
+//        Button buttonConsulterInfos = findViewById(R.id.buttonConsulterInfos);
 //        Button buttonLocaliserBrigade;
 //        Button buttonConseilsProtection;
 //
-//        if (MainActivity.sDatabaseHelper.isUserConnected()) {
-            setContentView(R.layout.activity_accueil_connecte);
+//        if (mConnected) {
+        setContentView(R.layout.activity_accueil_connecte);
 //
 //            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
 //            buttonConseilsProtection = findViewById(R.id.ButtonConseilsProtection);
@@ -40,7 +49,7 @@ public class AccueilActivity extends AppCompatActivity {
 //                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
 //
 //        } else {
-//            setContentView(R.layout.activity_accueil_non_connecte);ok
+//            setContentView(R.layout.activity_accueil_non_connecte);
 //
 //            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
 //            buttonConseilsProtection = findViewById(R.id.ButtonConseilsProtection);
@@ -51,10 +60,23 @@ public class AccueilActivity extends AppCompatActivity {
 //                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
 //
 //        }
+        mActionBar = getSupportActionBar();
+        if (mActionBar != null) {
+            mActionBar.setDisplayHomeAsUpEnabled(!mConnected);
+            mActionBar.setSubtitle(mConnected ? R.string.accueil : R.string.accueil_anonyme);
+        }
 //
 //        ImageView imageView = findViewById(R.id.imageChambre);
 //
 //        imageView.setImageResource(R.mipmap.cci);
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        AccueilActivity.super.onBackPressed();
+
+        return true;
     }
 
     @Override
@@ -62,9 +84,25 @@ public class AccueilActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
 
         this.mLogoutItem = menu.findItem(R.id.logout);
-        this.mLogoutItem.setVisible(true);
+        // La déconnexion n'est visible que si l'utilisateur est connecté
+        this.mLogoutItem.setVisible(mConnected);
 
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (this.mLogoutItem != null) {
+            this.mConnected = MainActivity.sDatabaseHelper.isUserConnected();
+            this.mLogoutItem.setVisible(this.mConnected);
+        }
+
+        if (mActionBar != null) {
+            mActionBar.setDisplayHomeAsUpEnabled(!mConnected);
+            mActionBar.setSubtitle(mConnected ? R.string.accueil : R.string.accueil_anonyme);
+        }
     }
 
     @Override
@@ -98,6 +136,8 @@ public class AccueilActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        // Si l'utilisateur n'est pas connecté, lui permettre de revenir à l'activité de connexion (MainActivity)
+        if (!mConnected)
+            super.onBackPressed();
     }
 }

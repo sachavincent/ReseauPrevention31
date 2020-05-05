@@ -1,11 +1,8 @@
 package fr.gendarmerienationale.reseauprevention31.dialog;
 
-import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;

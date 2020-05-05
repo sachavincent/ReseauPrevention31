@@ -1,73 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/colorArrierePlan">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/carre_blanc"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorArrierePlan">
+    android:layout_height="300dp"
+    android:background="@android:color/white"
+    app:layout_constraintBottom_toTopOf="@id/buttonEnvoyerMessage"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ButtonEnvoyerMessage"
-        android:layout_width="160dp"
-        android:layout_height="90dp"
-        android:layout_marginLeft="30dp"
-        android:hint="@string/envoyer_un_message"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/connexion_necessaire"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:text="Connectez-vous"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="507dp" />
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/buttonEnvoyerMessage"
+    android:layout_width="160dp"
+    android:layout_height="90dp"
+    android:layout_marginLeft="30dp"
+    android:background="@android:color/white"
+    android:hint="@string/envoyer_un_message"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.68"/>
 
-    <Button
-        android:id="@+id/ButtonConsulterMessage"
-        android:layout_width="160dp"
-        android:layout_height="90dp"
-        android:layout_marginRight="30dp"
-        android:hint="@string/consulter_les_messages"
-        android:background="@color/colorMessages"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+  <TextView
+    android:id="@+id/connexion_necessaire"
+    android:layout_width="150dp"
+    android:layout_height="40dp"
+    android:text="Connectez-vous"
+    android:textColor="@android:color/black"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.68"
+    tools:layout_editor_absoluteX="30dp"
+    tools:layout_editor_absoluteY="507dp"/>
+
+  <Button
+    android:id="@+id/buttonConsulterMessage"
+    android:layout_width="160dp"
+    android:layout_height="90dp"
+    android:layout_marginRight="30dp"
+    android:background="@color/colorMessages"
+    android:hint="@string/consulter_les_messages"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.68"/>
 
 
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/buttonLocaliserBrigade"
+    android:layout_width="160dp"
+    android:layout_height="90dp"
+    android:layout_marginLeft="30dp"
+    android:background="@color/colorLocaliser"
+    android:text="@string/localiser_une_brigade"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.9"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonLocaliserBrigade"
-        android:layout_width="160dp"
-        android:layout_height="90dp"
-        android:layout_marginLeft="30dp"
-        android:text="@string/localiser_une_brigade"
-        android:background="@color/colorLocaliser"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ButtonConseilsProtection"
-        android:layout_width="160dp"
-        android:layout_height="90dp"
-        android:layout_marginRight="30dp"
-        android:text="@string/conseils_protection"
-        android:background="@color/colorConseils"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/buttonConseilsProtection"
+    android:layout_width="160dp"
+    android:layout_height="90dp"
+    android:layout_marginRight="30dp"
+    android:background="@color/colorConseils"
+    android:text="@string/conseils_protection"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.9"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
