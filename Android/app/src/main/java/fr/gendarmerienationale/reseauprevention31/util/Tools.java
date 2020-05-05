@@ -736,44 +736,4 @@ public class Tools {
 
         return res;
     }
-
-    /**
-     * Permet d'extraire le login et le mot de passe du FTP
-     *
-     * @param _dbFile le fichier donné contenant les données du FTP
-     */
-    public static boolean extractFTP(File _dbFile) {
-        FileReader reader = null;
-        BufferedReader bufferedReader = null;
-
-        boolean res = true;
-        try {
-            reader = new FileReader(_dbFile);
-            bufferedReader = new BufferedReader(reader);
-            String line = bufferedReader.readLine();
-
-            if (line != null) {
-                String[] values = line.split(";");
-
-                res = MainActivity.sDatabaseHelper.updateFTPConfig(values[0], values[1]);
-            }
-        } catch (IOException | NumberFormatException e) {
-            Log.w(LOG, e.getMessage());
-            writeTraceException(e);
-
-            res = false;
-        } finally {
-            try {
-                if (reader != null)
-                    reader.close();
-                if (bufferedReader != null)
-                    bufferedReader.close();
-            } catch (IOException e) {
-                Log.w(LOG, e.getMessage());
-                writeTraceException(e);
-            }
-        }
-
-        return res;
-    }
 }

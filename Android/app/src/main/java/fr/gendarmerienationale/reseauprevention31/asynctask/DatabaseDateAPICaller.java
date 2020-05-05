@@ -4,10 +4,12 @@ import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 import fr.gendarmerienationale.reseauprevention31.R;
+import fr.gendarmerienationale.reseauprevention31.activity.AccueilActivity;
 import fr.gendarmerienationale.reseauprevention31.dialog.UpdateDatabaseDialog;
 import fr.gendarmerienationale.reseauprevention31.util.DialogsHelper;
 import java.io.BufferedReader;
@@ -29,7 +31,7 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
     private String mKeyID, mStrRep;
     private Date mLastConnectionDate;
 
-    private final static String URL = "http://192.168.42.26:80/updatebdd";
+    private final static String URL = "http://192.168.43.174:80/updatebdd.php";
 
     public DatabaseDateAPICaller(Context _context, String _keyID, Date _lastConnectionDate) {
         mLastConnectionDate = _lastConnectionDate;
@@ -72,7 +74,7 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
                 while ((s = buffer.readLine()) != null)
                     chaine.append(s);
 
-                Log.d(LOG, chaine.toString());
+                Log.d(LOG, "DatabaseDateAPICaller=" + chaine.toString());
 
 
                 JSONObject response = new JSONObject(chaine.toString());
@@ -87,7 +89,7 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
 
                     if (res.equals(mContext.get()
                             .getString(R.string.http_success))) { // Connexion réussie, initialisation des données
-                        resultat = Boolean.parseBoolean(chaine.toString());
+                        resultat = Boolean.parseBoolean(response.getString(res));
                     } else if (res.equals(mContext.get()
                             .getString(R.string.http_error))) { // Connexion impossible, lecture du code d'erreur
                         resultat = false;
@@ -131,13 +133,14 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
-
+        Log.d(LOG, "DatabaseDateAPICaller result=" + result);
         if (result) { // La base de données est à jour
             DialogsHelper.displayToast(mContext.get(), "Base de données à jour", Toast.LENGTH_SHORT);
+
+            mContext.get().startActivity(new Intent(mContext.get(), AccueilActivity.class));
         } else {
             if (mStrRep == null) { // La base de données doit être mise à jour
                 new UpdateDatabaseDialog(mContext.get()).show();
-                //TODO: Mise à jour de la base de données
             } else { // Erreur lors de la requête
                 DialogsHelper.displayToast(mContext.get(), mStrRep, Toast.LENGTH_LONG);
             }

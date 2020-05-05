@@ -7,11 +7,13 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
 import fr.gendarmerienationale.reseauprevention31.dialog.ConnectionDialog;
 import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
+import fr.gendarmerienationale.reseauprevention31.struct.Commune;
 import fr.gendarmerienationale.reseauprevention31.struct.Secteur;
 import fr.gendarmerienationale.reseauprevention31.struct.Utilisateur;
 import fr.gendarmerienationale.reseauprevention31.util.DialogsHelper;
@@ -33,17 +35,21 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
 
     private String mKeyID, mStrRep;
 
-    private final static String URL = "http://192.168.42.26:80/connexion.php";
+    private final static String URL = "http://192.168.43.174:80/connexion.php";
 
     private final WeakReference<ConnectionDialog> mDialog;
+    private final WeakReference<MainActivity>     mMainActivity;
 
     private MenuItem mLogoutItem;
 
-    public ConnectionAPICaller(String _keyID, Context _context, MenuItem _logoutItem, ConnectionDialog _dialog) {
+    public ConnectionAPICaller(String _keyID, Context _context, MainActivity _mainActivity, MenuItem _logoutItem,
+            ConnectionDialog _dialog) {
         mKeyID = _keyID;
 
         mContext = new WeakReference<>(_context);
+        mMainActivity = new WeakReference<>(_mainActivity);
         mDialog = new WeakReference<>(_dialog);
+
         mLogoutItem = _logoutItem;
     }
 
@@ -155,6 +161,9 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
             mDialog.get().dismiss();
 
             mLogoutItem.setVisible(true);
+
+            Button buttonConnexion = mMainActivity.get().findViewById(R.id.buttonConnexion);
+            buttonConnexion.setEnabled(false);
         } else // erreur
             mDialog.get().switchValiderState();
 
@@ -165,13 +174,15 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
         String res;
         String cle_utilisateur = "";
         String mail = "";
-        String numero_tel = "";
+        String num_telephone = "";
+        String num_siret = "";
         String chambre = "";
         String nom = "";
         String prenom = "";
         String nom_societe = "";
-        String num_secteur = "";
+        String secteur = "";
         String code_act = "";
+        String id_commune = "";
         Iterator<String> keys = response.keys();
         while (keys.hasNext()) {
             res = keys.next();
@@ -183,14 +194,17 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
                 case "mail":
                     mail = val;
                     break;
-                case "numero_tel":
-                    numero_tel = val;
+                case "num_telephone":
+                    num_telephone = val;
                     break;
                 case "chambre":
                     chambre = val;
                     break;
-                case "num_secteur":
-                    num_secteur = val;
+                case "id_commune":
+                    id_commune = val;
+                    break;
+                case "secteur":
+                    secteur = val;
                     break;
                 case "code_activite":
                     code_act = val;
@@ -203,6 +217,9 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
                     break;
                 case "nom_societe":
                     nom_societe = val;
+                    break;
+                case "num_siret":
+                    num_siret = val;
                     break;
                 default:
                     Log.e(LOG, "Unknown field : " + res);
@@ -218,9 +235,11 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
         utilisateur.setNomSociete(nom_societe);
-        utilisateur.setNumeroTelephone(numero_tel);
+        utilisateur.setNumeroTelephone(num_telephone);
         utilisateur.setChambre(chambre);
-        utilisateur.setSecteur(Secteur.getSecteur(Integer.parseInt(num_secteur)));
+        utilisateur.setNumeroSiret(num_siret);
+        utilisateur.setSecteur(Secteur.getSecteur(Integer.parseInt(secteur)));
+        utilisateur.setCommune(new Commune(Integer.parseInt(id_commune)));
 
         return MainActivity.sDatabaseHelper.saveUser(utilisateur);
     }

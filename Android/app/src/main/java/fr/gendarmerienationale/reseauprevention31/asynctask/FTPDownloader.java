@@ -6,6 +6,7 @@ import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceEx
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
 import fr.gendarmerienationale.reseauprevention31.dialog.UpdateDatabaseDialog;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
@@ -79,8 +80,9 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
             writeTraceException(e);
             Log.w(LOG, e.getMessage());
             Log.w(LOG, "Downloading failed!");
-
             MainActivity.sDatabaseHelper.cancelTransaction();
+
+            mStrRep = mContext.get().getResources().getString(R.string.connection_error);
 
             return false;
         }

@@ -541,10 +541,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         if (extractConseils(dbFile))
                             deleteFile(dbFile);
                         break;
-                    case "ftp.csv":
-                        if (extractFTP(dbFile))
-                            deleteFile(dbFile);
-                        break;
                 }
             }
 

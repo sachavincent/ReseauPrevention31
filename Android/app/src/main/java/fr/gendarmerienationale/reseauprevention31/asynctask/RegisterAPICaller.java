@@ -86,7 +86,7 @@ public class RegisterAPICaller extends AsyncTask<Void, Void, Boolean> {
 
                     if (res.equals(mContext.get()
                             .getString(R.string.http_success))) { // Connexion réussie, initialisation des données
-                        resultat = Boolean.parseBoolean(chaine.toString());
+                        resultat = Boolean.parseBoolean(response.getString(res));
                     } else if (res.equals(mContext.get()
                             .getString(R.string.http_error))) { // Connexion impossible, lecture du code d'erreur
                         resultat = false;

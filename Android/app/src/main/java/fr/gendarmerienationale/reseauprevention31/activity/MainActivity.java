@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         buttonConnexionAnonyme
                 .setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AccueilActivity.class)));
 
+        if (sDatabaseHelper.isUserConnected())
+            startActivity(new Intent(MainActivity.this, AccueilActivity.class));
     }
 
     @Override
@@ -90,8 +92,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         this.mLogoutItem = menu.findItem(R.id.logout);
 
-        if (MainActivity.sDatabaseHelper.isUserConnected())
+        if (MainActivity.sDatabaseHelper.isUserConnected()) {
             this.mLogoutItem.setVisible(true);
+            Button buttonConnexion = findViewById(R.id.buttonConnexion);
+            buttonConnexion.setEnabled(false);
+        }
 
         return true;
     }
@@ -101,14 +106,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         int id = item.getItemId();
 
         if (id == R.id.logout) {
-            AlertDialog alertDialog = new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this)
                     .setTitle("Voulez-vous vous déconnecter ?")
                     .setIcon(R.drawable.logout_black)
                     .setNegativeButton(R.string.non, (dialog, which) -> dialog.dismiss())
                     .setPositiveButton(R.string.oui, (dialog, which) -> disconnectUser())
-                    .create();
-
-            alertDialog.show();
+                    .show();
         }
 
 
@@ -118,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private void disconnectUser() {
         if (sDatabaseHelper.deleteUser()) {
             mLogoutItem.setVisible(false);
+            Button buttonConnexion = findViewById(R.id.buttonConnexion);
+            buttonConnexion.setEnabled(true);
 
             Toast.makeText(this, R.string.deconnexion_reussie, Toast.LENGTH_SHORT).show();
         }
@@ -132,6 +137,17 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         if (MainActivity.sDatabaseHelper == null)
             initApp();
+
+        if (this.mLogoutItem != null) {
+            Button buttonConnexion = findViewById(R.id.buttonConnexion);
+            if (sDatabaseHelper.isUserConnected()) {
+                mLogoutItem.setVisible(true);
+                buttonConnexion.setEnabled(false);
+            } else {
+                mLogoutItem.setVisible(false);
+                buttonConnexion.setEnabled(true);
+            }
+        }
     }
 
     @Override

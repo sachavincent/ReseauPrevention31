@@ -9,6 +9,13 @@ public class Commune {
     private String  nom;
     private Secteur secteur;
 
+    public Commune() {
+    }
+
+    public Commune(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return this.id;
     }

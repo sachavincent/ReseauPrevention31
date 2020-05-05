@@ -2,6 +2,7 @@ package fr.gendarmerienationale.reseauprevention31.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import fr.gendarmerienationale.reseauprevention31.R;
+import fr.gendarmerienationale.reseauprevention31.activity.AccueilActivity;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
 import fr.gendarmerienationale.reseauprevention31.asynctask.FTPDownloader;
 import fr.gendarmerienationale.reseauprevention31.util.DialogsHelper;
@@ -77,6 +79,8 @@ public class UpdateDatabaseDialog extends Dialog {
         dismiss();
 
         DialogsHelper.displayToast(mContext, error, Toast.LENGTH_LONG);
+
+        mContext.startActivity(new Intent(mContext, AccueilActivity.class));
     }
 
     /**
@@ -89,6 +93,9 @@ public class UpdateDatabaseDialog extends Dialog {
         dismiss();
 
         DialogsHelper.displayToast(mContext, R.string.mise_a_jour_reussie, Toast.LENGTH_LONG);
+
+
+        mContext.startActivity(new Intent(mContext, AccueilActivity.class));
     }
 
     public String onDownloadStart() {
