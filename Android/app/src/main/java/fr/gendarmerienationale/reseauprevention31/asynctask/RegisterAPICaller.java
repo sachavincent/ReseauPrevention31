@@ -3,12 +3,13 @@ package fr.gendarmerienationale.reseauprevention31.asynctask;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 import fr.gendarmerienationale.reseauprevention31.R;
-import fr.gendarmerienationale.reseauprevention31.dialog.UpdateDatabaseDialog;
+import fr.gendarmerienationale.reseauprevention31.struct.Utilisateur;
 import fr.gendarmerienationale.reseauprevention31.util.DialogsHelper;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,23 +19,21 @@ import java.io.PrintWriter;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 import java.util.Iterator;
 import org.json.JSONObject;
 
-public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
+public class RegisterAPICaller extends AsyncTask<Void, Void, Boolean> {
 
     private final WeakReference<Context> mContext;
 
-    private String mKeyID, mStrRep;
-    private Date mLastConnectionDate;
+    private String      mStrRep;
+    private Utilisateur mUtilisateur;
 
-    private final static String URL = "http://192.168.42.26:80/updatebdd";
+    private final static String URL = "http://192.168.42.26:80/inscription";
 
-    public DatabaseDateAPICaller(Context _context, String _keyID, Date _lastConnectionDate) {
-        mLastConnectionDate = _lastConnectionDate;
+    public RegisterAPICaller(Context _context, Utilisateur _utilisateur) {
+        mUtilisateur = _utilisateur;
 
-        mKeyID = _keyID;
         mContext = new WeakReference<>(_context);
     }
 
@@ -60,7 +59,7 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
             httpConnection.connect();
 
             writer = new PrintWriter(httpConnection.getOutputStream());
-            writer.write("cle_identification=" + mKeyID + " derniere_mise_a_jour=" + mLastConnectionDate);
+            writer.write(constructRequest());
             writer.flush();
 
 
@@ -128,19 +127,44 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
         return resultat;
     }
 
+    /**
+     * Permet de construire la requête avec les données de l'utilisateur
+     *
+     * @return la requête construite
+     */
+    private String constructRequest() {
+        return "prenom=" +
+                mUtilisateur.getPrenom() +
+                " nom=" +
+                mUtilisateur.getNom() +
+                " chambre=" +
+                mUtilisateur.getChambre() +
+                " code_activite=" +
+                mUtilisateur.getCodeActivite().getCode() +
+                " mail=" +
+                mUtilisateur.getMail() +
+                " num_telephone=" +
+                mUtilisateur.getNumeroTelephone() +
+                " nom_societe=" +
+                mUtilisateur.getNomSociete() +
+                (mUtilisateur.getCommune() != null ? " id_commune=" + mUtilisateur.getCommune().getId() : "") +
+                " secteur=" +
+                mUtilisateur.getSecteur().getNum();
+    }
+
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
 
-        if (result) { // La base de données est à jour
-            DialogsHelper.displayToast(mContext.get(), "Base de données à jour", Toast.LENGTH_SHORT);
+        if (result) { // Fenêtre de confirmation d'envoi de mail
+            new AlertDialog.Builder(mContext.get())
+                    .setTitle(mContext.get().getString(R.string.envoi_cle, mUtilisateur.getMail()))
+                    .setNeutralButton(R.string.ok, (dialog, which) -> dialog.dismiss())
+                    .setIcon(R.drawable.mail)
+                    .setCancelable(false)
+                    .show();
         } else {
-            if (mStrRep == null) { // La base de données doit être mise à jour
-                new UpdateDatabaseDialog(mContext.get()).show();
-                //TODO: Mise à jour de la base de données
-            } else { // Erreur lors de la requête
-                DialogsHelper.displayToast(mContext.get(), mStrRep, Toast.LENGTH_LONG);
-            }
+            DialogsHelper.displayToast(mContext.get(), mStrRep, Toast.LENGTH_LONG);
         }
     }
 

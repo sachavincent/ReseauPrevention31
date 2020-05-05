@@ -6,14 +6,60 @@ import static fr.gendarmerienationale.reseauprevention31.struct.Chambre.CMA;
 
 public class Utilisateur {
 
-    private int          id;
-    private String       cle;
-    private CodeActivite code_act;
+    private int    id;
+    private String cle;
+
+    private String       prenom;
+    private String       nom;
+    private String       numeroSiret;
+    private CodeActivite codeActivite;
     private Secteur      secteur;
-    private int          code_postal;
-    private String       telephone;
+    private String       numeroTelephone;
+    private String       nomSociete;
     private String       mail;
+    private Commune      commune;
     private Chambre      chambre;
+
+
+    public Commune getCommune() {
+        return this.commune;
+    }
+
+    public void setCommune(Commune commune) {
+        this.commune = commune;
+    }
+
+    public void setNomSociete(String nomSociete) {
+        this.nomSociete = nomSociete;
+    }
+
+    public String getNomSociete() {
+        return this.nomSociete;
+    }
+
+    public String getPrenom() {
+        return this.prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getNumeroSiret() {
+        return this.numeroSiret;
+    }
+
+    public void setNumeroSiret(String numeroSiret) {
+        this.numeroSiret = numeroSiret;
+    }
 
     public int getId() {
         return this.id;
@@ -23,20 +69,16 @@ public class Utilisateur {
         return this.cle;
     }
 
-    public CodeActivite getCode_act() {
-        return this.code_act;
+    public CodeActivite getCodeActivite() {
+        return this.codeActivite;
     }
 
     public Secteur getSecteur() {
         return this.secteur;
     }
 
-    public int getCode_postal() {
-        return this.code_postal;
-    }
-
-    public String getTelephone() {
-        return this.telephone;
+    public String getNumeroTelephone() {
+        return this.numeroTelephone;
     }
 
     public String getMail() {
@@ -47,12 +89,8 @@ public class Utilisateur {
         return this.chambre;
     }
 
-    public void setCode_act(CodeActivite code_act) {
-        this.code_act = code_act;
-    }
-
-    public void setCode_postal(int code_postal) {
-        this.code_postal = code_postal;
+    public void setCodeActivite(CodeActivite codeActivite) {
+        this.codeActivite = codeActivite;
     }
 
     public void setMail(String mail) {
@@ -89,7 +127,7 @@ public class Utilisateur {
         this.secteur = secteur;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setNumeroTelephone(String numeroTelephone) {
+        this.numeroTelephone = numeroTelephone;
     }
 }

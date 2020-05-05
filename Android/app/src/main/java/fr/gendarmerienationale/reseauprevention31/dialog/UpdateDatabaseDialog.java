@@ -6,23 +6,16 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
-import com.google.android.material.textfield.TextInputEditText;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
-import fr.gendarmerienationale.reseauprevention31.asynctask.ConnectionAPICaller;
-import fr.gendarmerienationale.reseauprevention31.asynctask.DatabaseDateAPICaller;
 import fr.gendarmerienationale.reseauprevention31.asynctask.FTPDownloader;
 import fr.gendarmerienationale.reseauprevention31.util.DialogsHelper;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
-import java.io.File;
-import java.util.Collections;
-import java.util.Date;
 
 public class UpdateDatabaseDialog extends Dialog {
 
@@ -65,9 +58,7 @@ public class UpdateDatabaseDialog extends Dialog {
         mCancelButton = findViewById(R.id.btnAnnulerUpdateDatabase);
         mCancelButton.setOnClickListener(dialog -> cancel());
 
-        setOnShowListener(
-                dialog -> new FTPDownloader(mContext, this, Collections.singletonList(new File("DATABASE.CSV")))
-                        .execute());
+        setOnShowListener(dialog -> new FTPDownloader(mContext, this).execute());
     }
 
     /**
@@ -77,16 +68,27 @@ public class UpdateDatabaseDialog extends Dialog {
         mTextView.setText(R.string.initialisation);
     }
 
+    /**
+     * En cas d'erreur du téléchargement
+     *
+     * @param error le message d'erreur à afficher
+     */
     public void onError(String error) {
         dismiss();
 
         DialogsHelper.displayToast(mContext, error, Toast.LENGTH_LONG);
     }
 
+    /**
+     * En cas de succès du téléchargement
+     */
     public void onSuccess() {
+        // Mise à jour de la base de données
+        MainActivity.sDatabaseHelper.updateDatabase();
+
         dismiss();
 
-        DialogsHelper.displayToast(mContext,  R.string.mise_a_jour_reussie, Toast.LENGTH_LONG);
+        DialogsHelper.displayToast(mContext, R.string.mise_a_jour_reussie, Toast.LENGTH_LONG);
     }
 
     public String onDownloadStart() {

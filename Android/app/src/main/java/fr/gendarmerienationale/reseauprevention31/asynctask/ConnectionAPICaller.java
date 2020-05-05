@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.widget.Toolbar;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
 import fr.gendarmerienationale.reseauprevention31.dialog.ConnectionDialog;
@@ -34,7 +33,7 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
 
     private String mKeyID, mStrRep;
 
-    private final static String URL = "http://192.168.42.26:80";
+    private final static String URL = "http://192.168.42.26:80/connexion.php";
 
     private final WeakReference<ConnectionDialog> mDialog;
 
@@ -84,7 +83,7 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
                 while ((s = buffer.readLine()) != null)
                     chaine.append(s);
 
-                Log.v(LOG, chaine.toString());
+                Log.d(LOG, chaine.toString());
 
                 JSONObject response = new JSONObject(chaine.toString());
 
@@ -164,11 +163,13 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
 
     private boolean extractUtilisateur(JSONObject response) throws JSONException {
         String res;
-        String id_utilisateur = "";
+        String cle_utilisateur = "";
         String mail = "";
         String numero_tel = "";
         String chambre = "";
-        String code_postal = "";
+        String nom = "";
+        String prenom = "";
+        String nom_societe = "";
         String num_secteur = "";
         String code_act = "";
         Iterator<String> keys = response.keys();
@@ -176,8 +177,8 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
             res = keys.next();
             String val = response.getString(res);
             switch (res) {
-                case "id_utilisateur":
-                    id_utilisateur = val;
+                case "cle_utilisateur":
+                    cle_utilisateur = val;
                     break;
                 case "mail":
                     mail = val;
@@ -188,26 +189,36 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
                 case "chambre":
                     chambre = val;
                     break;
-                case "code_postal":
-                    code_postal = val;
-                    break;
                 case "num_secteur":
                     num_secteur = val;
                     break;
-                case "code_act":
+                case "code_activite":
                     code_act = val;
+                    break;
+                case "nom":
+                    nom = val;
+                    break;
+                case "prenom":
+                    prenom = val;
+                    break;
+                case "nom_societe":
+                    nom_societe = val;
+                    break;
+                default:
+                    Log.e(LOG, "Unknown field : " + res);
                     break;
             }
         }
 
         CodeActivite codeActivite = MainActivity.sDatabaseHelper.getActiviteByCode(code_act);
         Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setId(Integer.parseInt(id_utilisateur));
-        utilisateur.setCle(mKeyID);
-        utilisateur.setCode_act(codeActivite);
-        utilisateur.setCode_postal(Integer.parseInt(code_postal));
+        utilisateur.setCle(cle_utilisateur);
+        utilisateur.setCodeActivite(codeActivite);
         utilisateur.setMail(mail);
-        utilisateur.setTelephone(numero_tel);
+        utilisateur.setNom(nom);
+        utilisateur.setPrenom(prenom);
+        utilisateur.setNomSociete(nom_societe);
+        utilisateur.setNumeroTelephone(numero_tel);
         utilisateur.setChambre(chambre);
         utilisateur.setSecteur(Secteur.getSecteur(Integer.parseInt(num_secteur)));
 

@@ -15,27 +15,28 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
+import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
+import fr.gendarmerienationale.reseauprevention31.struct.Commune;
+import fr.gendarmerienationale.reseauprevention31.struct.Conseil;
+import fr.gendarmerienationale.reseauprevention31.struct.Secteur;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.regex.PatternSyntaxException;
-import org.apache.commons.net.ftp.FTPFile;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class Tools {
 
     public final static String LOG = "ReseauPrevention31";
 
-    private final static String MAIN_FOLDER  = "ReseauPrevention31";
-    private final static String FILES_FOLDER = MAIN_FOLDER + File.separator + "FILES";
-    private static final String TRACE_FILE   = "ReseauPrevention31.txt";
+    private final static String MAIN_FOLDER     = "ReseauPrevention31";
+    private final static String DATABASE_FOLDER = MAIN_FOLDER + File.separator + "Database";
+    private static final String TRACE_FILE      = "ReseauPrevention31.txt";
 
     private final static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
@@ -168,56 +169,6 @@ public class Tools {
     }
 
     /**
-     * Permet de trouver le fichier le plus récent contenant le nom donné
-     */
-    public static FTPFile findMostRecentFile(FTPFile[] _fileList, String _file) {
-        List<FTPFile> foundFiles = new ArrayList<>();
-
-        try {
-            String[] name = _file.split("\\.");
-            String nameExtension = name[1];
-
-            for (FTPFile file : _fileList) {
-                if (file == null || !file.getName().contains("_") || !file.getName().contains("."))
-                    continue;
-
-                String[] ftpFileName = file.getName().split("_");
-                String[] extSplit = file.getName().substring(file.getName().lastIndexOf("_") + 1).split("\\.");
-
-                if (ftpFileName.length < 2 && extSplit[0].length() ==
-                        "ddMMyyyy".length()) // On vérifie que le fichier est de type "NOM_ddMMyyyy.EXT"
-                    continue;
-
-                if (ftpFileName[0].equals(name[0]) && extSplit[1].equals(nameExtension)) {
-                    // Le nom est le même, on peut comparer les dates
-                    foundFiles.add(file);
-                }
-            }
-            SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy", getCurrentLocale());
-            Collections.sort(foundFiles, (f1, f2) -> {
-                try {
-                    return dateFormat.parse(f1.getName().substring(f1.getName().lastIndexOf("_") + 1).split("\\.")[0])
-                            .compareTo(dateFormat
-                                    .parse(f2.getName().substring(f2.getName().lastIndexOf("_") + 1).split("\\.")[0]));
-                } catch (ParseException e) {
-                    Log.w(LOG, e.getMessage());
-                    Log.w(LOG, "Exception : " + _file);
-                    writeTraceException(e);
-                }
-                return 0;
-            });
-
-            Collections.reverse(foundFiles);
-        } catch (Exception e) {
-            Log.w(LOG, e.getMessage());
-            Log.w(LOG, "Exception : " + _file);
-            writeTraceException(e);
-        }
-
-        return foundFiles.size() > 0 ? foundFiles.get(0) : null;
-    }
-
-    /**
      * Permet de supprimer un dossier
      */
     public static void deleteDirectory(File _directory) {
@@ -309,10 +260,10 @@ public class Tools {
     }
 
     /**
-     * Permet de récupérer le chemin complet du dossier FILES de l'application
+     * Permet de récupérer le chemin complet du dossier Database de l'application
      */
-    public static String getFilesDirectoryPath() {
-        String path = Environment.getExternalStorageDirectory() + File.separator + FILES_FOLDER;
+    public static String getDatabaseFolder() {
+        String path = Environment.getExternalStorageDirectory() + File.separator + DATABASE_FOLDER;
         File directory = new File(path);
         if (!directory.exists())
             directory.mkdirs();
@@ -585,5 +536,244 @@ public class Tools {
         }
 
         return phrase.toString();
+    }
+
+    /**
+     * Permet de vérifier que le numéro Siret est correct
+     *
+     * @param _numSiret le num Siret
+     * @return true si le numéro Siret est correct
+     */
+    public static boolean isNumSiretCorrect(String _numSiret) {
+        if (_numSiret.length() != 14)
+            return false;
+
+        try {
+            Long.parseLong(_numSiret);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        int resultat = 0;
+        for (int i = 0; i < 14; i++) {
+            int val = Character.getNumericValue(_numSiret.charAt(i));
+            int res;
+
+            if (i % 2 == 0) // Emplacement pair
+                res = val * 2;
+            else
+                res = val;
+
+            if (res > 9)
+                res = sumDigits(res);
+
+            resultat += res;
+        }
+
+        return resultat % 10 == 0;
+    }
+
+    /**
+     * Permet d'additionner les chiffres d'un nombre jusqu'à que celui ci soit un chiffre
+     *
+     * @param n le nombre
+     * @return le chiffre
+     */
+    public static int sumDigits(int n) {
+        return (1 + ((n - 1) % 9));
+    }
+
+
+    /**
+     * Permet d'extraire les CodeActivités du fichier donné et de les insérer dans la base de données
+     *
+     * @param _dbFile le fichier donné contenant les données des CodeActivités
+     */
+    public static boolean extractCodeActivites(File _dbFile) {
+        FileReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        boolean res = true;
+        try {
+            reader = new FileReader(_dbFile);
+            bufferedReader = new BufferedReader(reader);
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] values = line.split(";");
+
+                CodeActivite codeActivite = new CodeActivite();
+                codeActivite.setCode(Integer.parseInt(values[0]));
+                codeActivite.setActivite(values[1]);
+
+                boolean done = MainActivity.sDatabaseHelper.insertCodeActivite(codeActivite);
+                if (!done) {
+                    res = false;
+
+                    Log.w(LOG, "Insertion went wrong for CodeActivite: " + codeActivite.toString());
+                }
+            }
+
+        } catch (IOException | NumberFormatException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+
+            res = false;
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                Log.w(LOG, e.getMessage());
+                writeTraceException(e);
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Permet d'extraire les communes du fichier donné et de les insérer dans la base de données
+     *
+     * @param _dbFile le fichier donné contenant les données des communes
+     */
+    public static boolean extractCommunes(File _dbFile) {
+        FileReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        boolean res = true;
+        try {
+            reader = new FileReader(_dbFile);
+            bufferedReader = new BufferedReader(reader);
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] values = line.split(";");
+
+                Commune commune = new Commune();
+                commune.setId(Integer.parseInt(values[0]));
+                commune.setCodePostal(Integer.parseInt(values[1]));
+                commune.setNom(values[2]);
+                commune.setSecteur(Secteur.getSecteur(Integer.parseInt(values[3])));
+
+                boolean done = MainActivity.sDatabaseHelper.insertCommune(commune);
+                if (!done) {
+                    res = false;
+
+                    Log.w(LOG,
+                            "Insertion went wrong for Commune: " + commune.toString() + ", with id " + commune.getId());
+                }
+            }
+
+        } catch (IOException | NumberFormatException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+
+            res = false;
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                Log.w(LOG, e.getMessage());
+                writeTraceException(e);
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Permet d'extraire les conseils du fichier donné et de les insérer dans la base de données
+     *
+     * @param _dbFile le fichier donné contenant les données des conseils
+     */
+    public static boolean extractConseils(File _dbFile) {
+        FileReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        boolean res = true;
+        try {
+            reader = new FileReader(_dbFile);
+            bufferedReader = new BufferedReader(reader);
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] values = line.split(";");
+
+                Conseil conseil = new Conseil();
+                conseil.setId(Integer.parseInt(values[0]));
+                conseil.setTexte(values[1]);
+
+                boolean done = MainActivity.sDatabaseHelper.insertConseil(conseil);
+                if (!done) {
+                    res = false;
+
+                    Log.w(LOG, "Insertion went wrong for Conseil: " + conseil.toString());
+                }
+            }
+
+        } catch (IOException | NumberFormatException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+
+            res = false;
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                Log.w(LOG, e.getMessage());
+                writeTraceException(e);
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Permet d'extraire le login et le mot de passe du FTP
+     *
+     * @param _dbFile le fichier donné contenant les données du FTP
+     */
+    public static boolean extractFTP(File _dbFile) {
+        FileReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        boolean res = true;
+        try {
+            reader = new FileReader(_dbFile);
+            bufferedReader = new BufferedReader(reader);
+            String line = bufferedReader.readLine();
+
+            if (line != null) {
+                String[] values = line.split(";");
+
+                res = MainActivity.sDatabaseHelper.updateFTPConfig(values[0], values[1]);
+            }
+        } catch (IOException | NumberFormatException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+
+            res = false;
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                Log.w(LOG, e.getMessage());
+                writeTraceException(e);
+            }
+        }
+
+        return res;
     }
 }
