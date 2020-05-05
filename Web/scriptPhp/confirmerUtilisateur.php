@@ -13,28 +13,28 @@ catch(Exception $e){
 }
 
 //Test si variable $_POST def
-if (empty($_POST['validation']) OR empty($_POST['id_utilisateur']) OR empty($_POST['id_utilisateur'])){
+if (empty($_POST['validation']) OR empty($_POST['idUtilisateur']) OR empty($_POST['idUtilisateur'])){
     $retour['sucess'] = false;
     $retour['message'] = 'il manque des infos';
 } else {
     $retour['success'] = true;
-    $requeteUpdateUtilisateur = $bdd->prepare('UPDATE `Utilisateur` SET `cle` = ?, codeAct = ?, demande = ? WHERE `Utilisateur`.`id_utilisateur` = ?');
+    $requeteUpdateUtilisateur = $bdd->prepare('UPDATE `Utilisateur` SET `cle` = ?, codeAct = ?, demande = ? WHERE `Utilisateur`.`idUtilisateur` = ?');
     switch ($_POST['validation']){
         case 'true':
-            $requeteInfoCle = $bdd->prepare('SELECT codePostal, secteur FROM Utilisateur WHERE id_utilisateur = ?');
-            $requeteInfoCle->execute(array($_POST['id_utilisateur']));
+            $requeteInfoCle = $bdd->prepare('SELECT codePostal, secteur FROM Utilisateur WHERE idUtilisateur = ?');
+            $requeteInfoCle->execute(array($_POST['idUtilisateur']));
             $infoCle = $requeteInfoCle->fetch();
 
             $cle = $_POST['ape'] . 
                 $infoCle['codePostal'] . 
                 $infoCle['secteur'] . 
-                sprintf("%04d", $_POST['id_utilisateur']);
-            $requeteUpdateUtilisateur->execute(array($cle, $_POST['ape'], 'VALIDE', $_POST['id_utilisateur']));
+                sprintf("%04d", $_POST['idUtilisateur']);
+            $requeteUpdateUtilisateur->execute(array($cle, $_POST['ape'], 'VALIDE', $_POST['idUtilisateur']));
             $retour['message'] = 'Utilisateur valide';
             //TODO envoyer mail a l'utilisateur avec sa cle
         break;
         case 'false':
-            $requeteUpdateUtilisateur->execute(array(NULL, NULL, 'REFUSE', $_POST['id_utilisateur']));
+            $requeteUpdateUtilisateur->execute(array(NULL, NULL, 'REFUSE', $_POST['idUtilisateur']));
             $retour['message'] = 'Utilisateur refuse';
         break;
         default: $retour['message'] = 'gros pb';

@@ -13,18 +13,17 @@ catch(Exception $e){
 }
 
 //Test si variable $_POST def
-if (!empty($_POST['codeActivite']) AND !empty($_POST['secteur']) AND !empty($_POST['codePostal']) 
+if (!empty($_POST['codeActivite']) AND !empty($_POST['idCommune']) 
     AND !empty($_POST['telephone']) AND !empty($_POST['mail']) AND !empty($_POST['chambre'])){
-        $requete = $bdd->prepare('  INSERT INTO `Utilisateur`(`codeAct`, `secteur`, `codePostal`, `telephone`, `mail`, `chambre`, `demande`) 
-                                    VALUES (?,?,?,?,?,?,?)');
+        
+        $requete = $bdd->prepare('  INSERT INTO `Utilisateur`(`codeAct`, `idCommune`, `telephone`, `mail`, `chambre`) 
+                                    VALUES (?,?,?,?,?)');
         $requete->execute(array(
             $_POST['codeActivite'],
-            $_POST['secteur'],
-            $_POST['codePostal'],
+            $_POST['idCommune'],
             $_POST['telephone'],
             $_POST['mail'],
-            $_POST['chambre'],
-            'EN_COURS'
+            $_POST['chambre']
         ));
         $retour['success'] = true;
 } else {

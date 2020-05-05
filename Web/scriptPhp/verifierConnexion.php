@@ -1,7 +1,7 @@
 <?php
 session_start();
 //Pour les testes avec Postman
-$_SESSION['chambre'] = 'CA';
+$_SESSION['chambre'] = 'CMA';
 
 header('Content-type: application/json');
 
@@ -21,18 +21,18 @@ if (empty($_POST['id']) OR empty($_POST['mdp'])){
     $retour['message'] = 'Il manque des infos';
 } else {
     //Recuperation des valeurs de la bdd 
-    $requete = $bdd->prepare('SELECT id_gestionnaire, mdp_gestionnaire, chambre FROM Gestionnaire WHERE id_gestionnaire = ?');
+    $requete = $bdd->prepare('SELECT idGestionnaire, mdpGestionnaire, chambre, nomGestionnaire, prenomGestionnaire, mail FROM Gestionnaire WHERE idGestionnaire = ?');
     $requete->execute(array($_POST['id']));
     $info_gestionnaireDansBDD = $requete->fetch();
     
     $retour['success'] = true;
 
     //Verification de la cx
-    if (!isset($info_gestionnaireDansBDD['id_gestionnaire'])){
+    if (!isset($info_gestionnaireDansBDD['idGestionnaire'])){
         $retour['success'] = false;
         $retour['message'] = 'Utilisateur inconnu';   
     }
-    elseif ($_POST['mdp'] != $info_gestionnaireDansBDD['mdp_gestionnaire']){
+    elseif ($_POST['mdp'] != $info_gestionnaireDansBDD['mdpGestionnaire']){
         $retour['success'] = false;
         $retour['message'] = 'Mdp incorrect';    
     }
@@ -40,6 +40,10 @@ if (empty($_POST['id']) OR empty($_POST['mdp'])){
         $retour['success'] = false;
         $retour['message'] = 'Pas de droit d\'acces pour cette chambre';
     }
+
+    $_SESSION['nom'] = $info_gestionnaireDansBDD['nomGestionnaire'];
+    $_SESSION['prenom'] = $info_gestionnaireDansBDD['prenomGestionnaire'];
+    $_SESSION['mail'] = $info_gestionnaireDansBDD['mail'];
 }
 echo json_encode($retour);
 ?>

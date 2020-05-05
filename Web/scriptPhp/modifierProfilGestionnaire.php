@@ -16,37 +16,37 @@ catch(Exception $e){
     die();
 }
 
-if (empty($_POST['mdp_actuel'])){
+if (empty($_POST['mdpActuel'])){
     $retour['success'] = false;
     $retour['message'] = 'Il manque des infos';
 } else {
     //Test du mdp
-    $requeteMdp = $bdd->prepare('SELECT mdp_gestionnaire FROM Gestionnaire WHERE id_gestionnaire = ?');
+    $requeteMdp = $bdd->prepare('SELECT mdpGestionnaire FROM Gestionnaire WHERE idGestionnaire = ?');
     $requeteMdp->execute(array($_SESSION['id']));
     $mdpA = $requeteMdp->fetch();
-    $mdp = $mdpA['mdp_gestionnaire'];
-    if ($mdp != $_POST['mdp_actuel']){
+    $mdp = $mdpA['mdpGestionnaire'];
+    if ($mdp != $_POST['mdpActuel']){
         $retour['success'] = false;
         $retour['message'] = 'mdp incorrect';
     } else {
         $retour['success'] = true;
         $retour['message'] = 'Info modifiee(s)';
-        if (!empty($_POST['nouveau_mdp'])){
-            if (empty($_POST['confirmation_mdp']) OR $_POST['nouveau_mdp'] != $_POST['confirmation_mdp']){
+        if (!empty($_POST['nouveauMdp'])){
+            if (empty($_POST['confirmationMdp']) OR $_POST['nouveauMdp'] != $_POST['confirmationMdp']){
                 $retour['success'] = false;
                 $retour['message'] = 'Les mdp ne correspondent pas';
             } else {
-                $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET mdp_gestionnaire = ? WHERE id_gestionnaire = ?');
-                $requeteModifierMdp->execute(array($_POST['nouveau_mdp'], $_SESSION['id']));
+                $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET mdpGestionnaire = ? WHERE idGestionnaire = ?');
+                $requeteModifierMdp->execute(array($_POST['nouveauMdp'], $_SESSION['id']));
             }
         } if (!empty($_POST['nom'])){
-            $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET nom_gestionnaire = ? WHERE id_gestionnaire = ?');
+            $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET nomGestionnaire = ? WHERE idGestionnaire = ?');
             $requeteModifierMdp->execute(array($_POST['nom'], $_SESSION['id']));
         } if (!empty($_POST['prenom'])){
-            $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET prenom_gestionnaire = ? WHERE id_gestionnaire = ?');
+            $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET prenomGestionnaire = ? WHERE idGestionnaire = ?');
             $requeteModifierMdp->execute(array($_POST['prenom'], $_SESSION['id']));
         } if (!empty($_POST['mail'])){
-            $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET mail = ? WHERE id_gestionnaire = ?');
+            $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET mail = ? WHERE idGestionnaire = ?');
             $requeteModifierMdp->execute(array($_POST['mail'], $_SESSION['id']));
         }
     }
