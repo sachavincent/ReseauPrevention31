@@ -19,7 +19,38 @@ public class AccueilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_accueil);
+        Button buttonEnvoyerMessage = findViewById(R.id.ButtonEnvoyerMessage);
+        Button buttonConsulterInfos = findViewById(R.id.ButtonConsulterInfos);
+        Button buttonLocaliserBrigade;
+        Button buttonConseilsProtection;
+
+        if (MainActivity.sDatabaseHelper.isUserConnected()) {
+            setContentView(R.layout.activity_accueil_connecte);
+
+            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
+            buttonConseilsProtection = findViewById(R.id.ButtonConseilsProtection);
+
+            buttonEnvoyerMessage.setOnClickListener(
+                    v -> startActivity(new Intent(AccueilActivity.this, EnvoyerMessageActivity.class)));
+            buttonConsulterInfos.setOnClickListener(
+                    v -> startActivity(new Intent(AccueilActivity.this, ConsulterMessagesActivity.class)));
+            buttonConseilsProtection.setOnClickListener(
+                    v -> startActivity(new Intent(AccueilActivity.this, ConseilsProctectionActivity.class)));
+            buttonLocaliserBrigade.setOnClickListener(
+                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
+
+        } else {
+            setContentView(R.layout.activity_accueil_non_connecte);ok 
+
+            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
+            buttonConseilsProtection = findViewById(R.id.ButtonConseilsProtection);
+
+            buttonConseilsProtection.setOnClickListener(
+                    v -> startActivity(new Intent(AccueilActivity.this, ConseilsProctectionActivity.class)));
+            buttonLocaliserBrigade.setOnClickListener(
+                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
+
+        }
 
         ImageView imageView = findViewById(R.id.imageChambre);
 
@@ -35,6 +66,7 @@ public class AccueilActivity extends AppCompatActivity {
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

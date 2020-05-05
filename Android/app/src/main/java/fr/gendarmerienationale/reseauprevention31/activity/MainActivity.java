@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     .requestPermissions(this, getString(R.string.permissions_accepter), PERMS_CALLBACK, appPerms);
     }
 
+
+
     /**
      * Initialise l'appli
      */

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name">Reseau Prevention 31</string>
   <string name="action_settings">Settings</string>
   <string name="permissions_accepter">Il est nécessaire d\'accepter toutes les permissions</string>
@@ -9,13 +9,18 @@
   <string name="ajouter">Ajouter</string>
   <string name="debut">Début</string>
   <string name="fin">Fin</string>
-  <string name="localiser_une_gendarmerie">Localiser\nune gendarmerie</string>
   <string name="connexion">Connexion</string>
   <string name="creer_un_compte">Créer un compte</string>
   <string name="connexion_anonyme">Connexion anonyme</string>
   <string name="valider">Valider</string>
   <string name="cle_identification">Clé d\'identification</string>
+  <string name="envoyer_un_message">Envoyer\nun message</string>
+  <string name="localiser_une_brigade">Localiser une\nbrigade</string>
+  <string name="consulter_les_messages">Consulter\nles messages</string>
+  <string name="conseils_protection">Conseils protections\net liens utiles</string>
+  <string name="texte_bandeau">Réseau Prévention 31</string>
   <string name="num_siret_incorrect">Numéro Siret incorrect</string>
+  <string name="joindre_une_photo">Joindre une photo</string>
 
   <!-- communication avec le serveur HTTP -->
   <string name="http_success">success</string>
