@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                     .requestPermissions(this, getString(R.string.permissions_accepter), PERMS_CALLBACK, appPerms);
     }
 
+
+
     /**
      * Initialise l'appli
      */
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
 
         buttonConnexionAnonyme
-                .setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AccueilActivity_non_connecte.class)));
+                .setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AccueilActivity.class)));
 
     }
 

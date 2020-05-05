@@ -49,17 +49,10 @@
         android:background="@android:color/white"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="85dp"
-        app:layout_constraintTop_toTopOf=""/>
-    <TextView
-        android:id="@+id/connexion_necessaire"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:text="Connectez-vous"
-        android:textColor="@android:color/black"
-        app:layout_constraintLeft_toLeftOf="1"
-        app:layout_constraintTop_toTopOf="1"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="461dp"/>
+        app:layout_constraintTop_toTopOf="">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ButtonEnvoyerMessage"
@@ -73,13 +66,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.68" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ButtonConsulterInfos"
+    <TextView
+        android:id="@+id/connexion_necessaire"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Connectez-vous"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="507dp" />
+
+    <Button
+        android:id="@+id/ButtonConsulterMessage"
         android:layout_width="160dp"
         android:layout_height="90dp"
         android:layout_marginRight="30dp"
-        android:hint="@string/consulter_les_infos"
-        android:background="@color/colorInfos"
+        android:hint="@string/consulter_les_messages"
+        android:background="@color/colorMessages"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"

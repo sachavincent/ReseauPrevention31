@@ -14,15 +14,13 @@
   <string name="connexion_anonyme">Connexion anonyme</string>
   <string name="valider">Valider</string>
   <string name="cle_identification">Clé d\'identification</string>
-<<<<<<< HEAD
   <string name="envoyer_un_message">Envoyer\nun message</string>
   <string name="localiser_une_brigade">Localiser une\nbrigade</string>
-  <string name="consulter_les_infos">Consulter\nles infos</string>
+  <string name="consulter_les_messages">Consulter\nles messages</string>
   <string name="conseils_protection">Conseils protections\net liens utiles</string>
   <string name="texte_bandeau">Réseau Prévention 31</string>
-=======
   <string name="num_siret_incorrect">Numéro Siret incorrect</string>
->>>>>>> eb6beb55afdd3f2609873f110ba72b7ff205ad44
+  <string name="joindre_une_photo">Joindre une photo</string>
 
   <!-- communication avec le serveur HTTP -->
   <string name="http_success">success</string>

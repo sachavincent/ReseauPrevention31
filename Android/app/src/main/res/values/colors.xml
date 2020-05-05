@@ -6,6 +6,6 @@
     <color name="colorBandeau">#3F43AB</color>
     <color name="colorConseils">#22BE2C</color>
     <color name="colorArrierePlan">#0F056B</color>
-    <color name="colorInfos">#AFAF11</color>
+    <color name="colorMessages">#AFAF11</color>
     <color name="colorLocaliser">#CC1616</color>
 </resources>
