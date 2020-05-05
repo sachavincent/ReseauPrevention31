@@ -226,7 +226,7 @@ forces  : | supprimer |
     margin-top: -1px;
 }
 
-/* =============== CHOIX CHAMBRE =============== */
+/* =============== CHOIX CHAMBRE / FORCES =============== */
 
 /* page d'identification */
 #page_identification
@@ -239,7 +239,7 @@ forces  : | supprimer |
 #panel_identification
 {   
     margin: auto;
-    width: 400px;
+    width: 700px;
     height: 500px;
     background-color: #F3F2F1;
     border: 1px solid #E1E1E1;
@@ -251,32 +251,38 @@ forces  : | supprimer |
 #logo_ca
 {
     float: left;
-    margin-left: 20px;
-    margin-top: 30px;
+    margin-left: 25px;
+    margin-top: 15px;
     cursor: pointer;
 }
 
 #logo_cma
 {
-    float: right;
-    margin-right: 20px;
-    margin-top: 30px;
+    float: left;
+    margin-left: 45px;
+    margin-top: 15px;
     cursor: pointer;
 }
 
 #logo_cci
 {
     float: left;
-    margin-top: 35px;
-    margin-left: 65px;
+    margin-top: 50px;
+    margin-left: 50px;
     cursor: pointer;
-
 }
 
-#logo_police, #logo_gendarmerie
+#logo_gendarmerie
 {
-    padding-top: 30px;
-    cursor: pointer;
+    float: right;
+    margin-right: 15px;
+}
+
+#logo_police
+{
+    float: right;
+    margin-top: 40px;
+    margin-right: 45px;
 }
 
 #logo_ca:hover, #logo_cma:hover, #logo_cci:hover, #logo_police:hover, #logo_gendarmerie:hover
