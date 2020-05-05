@@ -84,7 +84,7 @@ public class ConnectionDialog extends Dialog {
         super.dismiss();
 
         Date lastConnectionDate = MainActivity.sDatabaseHelper.getLastDatabaseUpdateDate();
-        String cleIdentification = MainActivity.sDatabaseHelper.getUserID();
+        String cleIdentification = MainActivity.sDatabaseHelper.getUserKey();
         new DatabaseDateAPICaller(mContext, cleIdentification, lastConnectionDate).execute();
     }
 }

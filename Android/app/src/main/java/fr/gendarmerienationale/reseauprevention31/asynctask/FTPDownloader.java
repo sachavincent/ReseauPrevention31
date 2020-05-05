@@ -8,10 +8,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
 import fr.gendarmerienationale.reseauprevention31.dialog.UpdateDatabaseDialog;
+import fr.gendarmerienationale.reseauprevention31.util.Tools;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.lang.ref.WeakReference;
-import java.util.List;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -24,13 +24,15 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
     private       FTPClient              mFtpClient;
     private       String                 mStrRep;
 
-    private List<File> mFilesToUpdate;
 
-    public FTPDownloader(Context _context, UpdateDatabaseDialog _dialog, List<File> _filesToUpdate) {
+    public final static String FTP_URL = "192.168.42.68:21";
+
+    public final static String FTP_LOGIN    = "root";
+    public final static String FTP_PASSWORD = "root";
+
+    public FTPDownloader(Context _context, UpdateDatabaseDialog _dialog) {
         this.mContext = new WeakReference<>(_context);
         this.mDialog = _dialog;
-
-        this.mFilesToUpdate = _filesToUpdate;
     }
 
     @Override
@@ -42,12 +44,6 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
     @Override
     protected Boolean doInBackground(Void... dialog) {
         try {
-            // Le context
-            Context context = mContext.get();
-
-            // Démarre la transaction SqlLite
-            MainActivity.sDatabaseHelper.beginTransaction();
-
             // Initialise le client FTP
             mFtpClient = new FTPClient();
 
@@ -57,8 +53,8 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
             mFtpClient.setControlEncoding("UTF-8");
 
             // Connexion FTP
-//            mFtpClient.connect(Config.sFTPAddress);
-//            mFtpClient.login(Config.sFTPLogin, Config.sFTPPassword);
+            mFtpClient.connect(FTP_URL);
+            mFtpClient.login(FTP_LOGIN, FTP_PASSWORD);
 
             // Passage en mode passif
             mFtpClient.enterLocalPassiveMode();
@@ -67,19 +63,13 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
             mFtpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
             // Change de working directory
-            mFtpClient.changeWorkingDirectory(mFtpClient.printWorkingDirectory() + "/PARAMETRES");
-
-            // Chemin de sauvegarde des fichiers
-            String savePath = context.getFilesDir().getAbsolutePath();
+            mFtpClient.changeWorkingDirectory(mFtpClient.printWorkingDirectory() + "/DATABASE");
 
             publishProgress(mDialog.onDownloadStart());
 
-            for (File f : mFilesToUpdate) {
-                downloadFile(f.getName(), savePath + File.separator + f.getName());
+            for (FTPFile f : mFtpClient.listFiles()) {
+                downloadFile(f.getName(), Tools.getDatabaseFolder() + File.separator + f.getName());
             }
-
-            // Termine la transaction SqlLite
-            MainActivity.sDatabaseHelper.endTransaction();
 
             // Déconnexion du FTP
             mFtpClient.disconnect();

@@ -1,12 +1,11 @@
 package fr.gendarmerienationale.reseauprevention31.struct;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class Commune {
 
     private int     id;
-    private int     code_postal;
+    private int     codePostal;
     private String  nom;
     private Secteur secteur;
 
@@ -18,12 +17,12 @@ public class Commune {
         this.id = id;
     }
 
-    public int getCode_postal() {
-        return this.code_postal;
+    public int getCodePostal() {
+        return this.codePostal;
     }
 
-    public void setCode_postal(int code_postal) {
-        this.code_postal = code_postal;
+    public void setCodePostal(int codePostal) {
+        this.codePostal = codePostal;
     }
 
     public String getNom() {
@@ -45,6 +44,6 @@ public class Commune {
     @NonNull
     @Override
     public String toString() {
-        return nom + " (" + code_postal + ") " + " - " + secteur.toString();
+        return nom + " (" + codePostal + ") " + " - " + secteur.toString();
     }
 }

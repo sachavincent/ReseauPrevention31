@@ -15,6 +15,7 @@
   <string name="connexion_anonyme">Connexion anonyme</string>
   <string name="valider">Valider</string>
   <string name="cle_identification">Clé d\'identification</string>
+  <string name="num_siret_incorrect">Numéro Siret incorrect</string>
 
   <!-- communication avec le serveur HTTP -->
   <string name="http_success">success</string>
@@ -38,7 +39,7 @@
   <string name="numero_siret">Numéro Siret</string>
   <string name="nom">Nom</string>
   <string name="prenom">Prénom</string>
-  <string name="nom_societe">Nom de la société</string>
+  <string name="nomSociete">Nom de la société</string>
   <string name="erreur">Erreur</string>
   <string name="code_ape_incorrect">Code APE incorrect</string>
   <string name="code_ape_inexistant">Code APE inexistant</string>
@@ -46,7 +47,7 @@
   <string name="localisation">Localisation</string>
   <string name="localisation_inexistante">Localisation inexistante</string>
   <string name="localisation_imprecise">Plusieurs communes ont été trouvées</string>
-  <string name="num_telephone">Numéro de téléphone</string>
+  <string name="numeroTelephone">Numéro de téléphone</string>
   <string name="mail">Mail</string>
   <string name="update_database">Mise à jour de la base de données</string>
   <string name="initialisation">Initialisation</string>
@@ -54,4 +55,15 @@
   <string name="update">Mise à jour</string>
   <string name="mise_a_jour_reussie">Mise à jour réussie</string>
   <string name="mise_a_jour_commencee">Mise à jour en cours…</string>
+  <string name="lieu_activite_checkbox">Avez-vous plusieurs lieux d\'activités sur le département ?</string>
+  <string name="renseigner_prenom">Veuillez renseigner votre prénom</string>
+  <string name="renseigner_nom">Veuillez renseigner votre nom</string>
+  <string name="renseigner_nom_societe">Veuillez renseigner le nom de votre société</string>
+  <string name="renseigner_localisation">Veuillez renseigner la localisation</string>
+  <string name="renseigner_code_ape">Veuillez renseigner le code d\'activité</string>
+  <string name="renseigner_num_telephone">Veuillez renseigner votre numéro de téléphone</string>
+  <string name="renseigner_mail">Veuillez renseigner votre adresse email</string>
+  <string name="mail_incorrect">Format du mail incorrect</string>
+  <string name="num_telephone_incorrect">Numéro de téléphone incorrect</string>
+  <string name="envoi_cle">Une clé d\'identification va vous être envoyée par mail à l\'adresse %1$s</string>
 </resources>
