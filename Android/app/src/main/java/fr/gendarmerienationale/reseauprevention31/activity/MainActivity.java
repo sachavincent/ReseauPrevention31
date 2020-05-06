@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
-            actionBar.setSubtitle(R.string.accueil);
+            actionBar.setSubtitle(R.string.connexion);
 
         // Vérifie les permissions
         if (EasyPermissions.hasPermissions(this, appPerms))

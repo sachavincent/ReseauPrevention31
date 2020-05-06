@@ -71,4 +71,5 @@
   <string name="mail_incorrect">Format du mail incorrect</string>
   <string name="num_telephone_incorrect">Numéro de téléphone incorrect</string>
   <string name="envoi_cle">Une clé d\'identification va vous être envoyée par mail à l\'adresse %1$s</string>
+  <string name="accueil_anonyme">Accueil — Anonyme</string>
 </resources>

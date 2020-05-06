@@ -3,9 +3,6 @@ package fr.gendarmerienationale.reseauprevention31.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,9 +11,8 @@ import androidx.annotation.NonNull;
 import com.google.android.material.textfield.TextInputEditText;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
-import fr.gendarmerienationale.reseauprevention31.asynctask.DatabaseDateAPICaller;
 import fr.gendarmerienationale.reseauprevention31.asynctask.ConnectionAPICaller;
-import fr.gendarmerienationale.reseauprevention31.struct.Chambre;
+import fr.gendarmerienationale.reseauprevention31.asynctask.DatabaseDateAPICaller;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
 import java.util.Date;
 
@@ -25,7 +21,8 @@ public class ConnectionDialog extends Dialog {
     private MainActivity mActivity;
     private Context      mContext;
 
-    private Button mBtnValider;
+    private Button  mBtnValider;
+    private boolean mCancelled;
 
     public ConnectionDialog(@NonNull Context _context, @NonNull MainActivity _activity) {
         super(_context);
@@ -40,16 +37,17 @@ public class ConnectionDialog extends Dialog {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         getWindow().setLayout((int) (Tools.getWidth() * .9), ViewGroup.LayoutParams.WRAP_CONTENT);
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        setCanceledOnTouchOutside(false);
+//        setCancelable(false);
 
-        LayoutInflater inflater = LayoutInflater.from(mActivity);
-        View dialogView = inflater.inflate(R.layout.dialog_request_connection, null);
-        setContentView(dialogView);
+        setContentView(R.layout.dialog_request_connection);
 
         // Event quand on appuie sur "Valider"
         mBtnValider = findViewById(R.id.btnValiderConnection);
@@ -66,7 +64,8 @@ public class ConnectionDialog extends Dialog {
 
         switchValiderState();
 
-        new ConnectionAPICaller(keyField.getText().toString(), mContext, mActivity, mActivity.getLogoutItem(), this).execute();
+        new ConnectionAPICaller(keyField.getText().toString(), mContext, mActivity, mActivity.getLogoutItem(), this)
+                .execute();
     }
 
     public void switchValiderState() {
@@ -78,6 +77,18 @@ public class ConnectionDialog extends Dialog {
         }
     }
 
+    @Override
+    public void cancel() {
+        mCancelled = true;
+
+        super.cancel();
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancel();
+    }
+
     /**
      * Méthode appelée quand la connexion a réussie
      */
@@ -85,11 +96,10 @@ public class ConnectionDialog extends Dialog {
     public void dismiss() {
         super.dismiss();
 
-        Handler handler = new Handler();
-        handler.postDelayed(() -> {
+        if (!mCancelled) {
             Date lastConnectionDate = MainActivity.sDatabaseHelper.getLastDatabaseUpdateDate();
             String cleIdentification = MainActivity.sDatabaseHelper.getUserKey();
             new DatabaseDateAPICaller(mContext, cleIdentification, lastConnectionDate).execute();
-        }, 1200);
+        }
     }
 }

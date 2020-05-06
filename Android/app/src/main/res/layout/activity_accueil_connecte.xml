@@ -1,107 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/colorArrierePlan">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+  <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorArrierePlan"
-    tools:context=".activity.MainActivity">
-
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/carre_blanc"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@android:color/white"
-        app:layout_constraintTop_toTopOf=""
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="85dp">
+      android:id="@+id/carre_blanc"
+      android:layout_width="match_parent"
+      android:layout_height="300dp"
+      android:background="@android:color/white"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:layout_editor_absoluteX="0dp"
+      tools:layout_editor_absoluteY="85dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ecrivez_votre_message"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="25dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+      <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/ecrivez_votre_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_action_button_photo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:backgroundTint="@android:color/white"
-        app:fabCustomSize="50dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/carre_blanc"
-        app:srcCompat="@android:drawable/ic_menu_camera"
-        app:tint="@android:color/black" />
-
-    <TextView
-        android:id="@+id/joindre_une_photo"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="9dp"
-        android:text="@string/joindre_une_photo"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toRightOf="@id/float_action_button_photo"
-        app:layout_constraintTop_toBottomOf="@id/carre_blanc" />
-
+    <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/button_envoyer_message"
+      android:layout_width="160dp"
+      android:layout_height="90dp"
+      android:layout_marginStart="30dp"
+      android:background="@android:color/white"
+      android:text="@string/envoyer_un_message"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.72"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_envoyer_message"
-        android:layout_width="160dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="30dp"
-        android:background="@android:color/white"
-        android:text="@string/envoyer_un_message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72" />
+      android:id="@+id/button_localiser_brigade"
+      android:layout_width="160dp"
+      android:layout_height="90dp"
+      android:layout_marginStart="30dp"
+      android:background="@color/colorLocaliser"
+      android:text="@string/localiser_une_brigade"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.93"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_localiser_brigade"
-        android:layout_width="160dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="30dp"
-        android:background="@color/colorLocaliser"
-        android:text="@string/localiser_une_brigade"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
+      android:id="@+id/button_consulter_messages"
+      android:layout_width="160dp"
+      android:layout_height="90dp"
+      android:layout_marginEnd="30dp"
+      android:background="@color/colorMessages"
+      android:text="@string/consulter_les_messages"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.72"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_consulter_messages"
-        android:layout_width="160dp"
-        android:layout_height="90dp"
-        android:layout_marginEnd="30dp"
-        android:background="@color/colorMessages"
-        android:text="@string/consulter_les_messages"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72" />
+      android:id="@+id/button_conseils_protection"
+      android:layout_width="160dp"
+      android:layout_height="90dp"
+      android:layout_marginEnd="30dp"
+      android:background="@color/colorConseils"
+      android:text="@string/conseils_protection"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.93"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_conseils_protection"
-        android:layout_width="160dp"
-        android:layout_height="90dp"
-        android:layout_marginEnd="30dp"
-        android:background="@color/colorConseils"
-        android:text="@string/conseils_protection"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
+    <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/joindre_une_photo"
+    android:layout_width="200dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="9dp"
+    android:layout_marginStart="12dp"
+    android:text="@string/joindre_une_photo"
+    android:textColor="@android:color/white"
+    android:textSize="24sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/carre_blanc"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/float_action_button_photo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="16dp"
+      android:layout_gravity="center|start"
+      android:scaleType="center"
+      android:src="@drawable/camera"
+      app:fabCustomSize="64dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

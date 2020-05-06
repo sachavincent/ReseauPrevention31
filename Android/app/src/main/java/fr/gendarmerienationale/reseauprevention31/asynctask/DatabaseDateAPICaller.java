@@ -6,6 +6,7 @@ import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceEx
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 import fr.gendarmerienationale.reseauprevention31.R;
@@ -62,7 +63,7 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
             httpConnection.connect();
 
             writer = new PrintWriter(httpConnection.getOutputStream());
-            writer.write("cle_identification=" + mKeyID + " derniere_mise_a_jour=" + mLastConnectionDate);
+            writer.write("cle_identification=" + mKeyID + "&derniere_mise_a_jour=" + mLastConnectionDate);
             writer.flush();
 
 
@@ -135,9 +136,12 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
         super.onPostExecute(result);
         Log.d(LOG, "DatabaseDateAPICaller result=" + result);
         if (result) { // La base de données est à jour
-            DialogsHelper.displayToast(mContext.get(), "Base de données à jour", Toast.LENGTH_SHORT);
-
             mContext.get().startActivity(new Intent(mContext.get(), AccueilActivity.class));
+
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                DialogsHelper.displayToast(mContext.get(), "Base de données à jour", Toast.LENGTH_SHORT);
+            }, 1200);
         } else {
             if (mStrRep == null) { // La base de données doit être mise à jour
                 new UpdateDatabaseDialog(mContext.get()).show();

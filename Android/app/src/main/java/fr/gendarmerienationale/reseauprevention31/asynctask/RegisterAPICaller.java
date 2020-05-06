@@ -135,20 +135,20 @@ public class RegisterAPICaller extends AsyncTask<Void, Void, Boolean> {
     private String constructRequest() {
         return "prenom=" +
                 mUtilisateur.getPrenom() +
-                " nom=" +
+                "&nom=" +
                 mUtilisateur.getNom() +
-                " chambre=" +
+                "&chambre=" +
                 mUtilisateur.getChambre() +
-                " code_activite=" +
+                "&code_activite=" +
                 mUtilisateur.getCodeActivite().getCode() +
-                " mail=" +
+                "&mail=" +
                 mUtilisateur.getMail() +
-                " num_telephone=" +
+                "&num_telephone=" +
                 mUtilisateur.getNumeroTelephone() +
-                " nom_societe=" +
+                "&nom_societe=" +
                 mUtilisateur.getNomSociete() +
-                (mUtilisateur.getCommune() != null ? " id_commune=" + mUtilisateur.getCommune().getId() : "") +
-                " secteur=" +
+                (mUtilisateur.getCommune() != null ? "&id_commune=" + mUtilisateur.getCommune().getId() : "") +
+                "&secteur=" +
                 mUtilisateur.getSecteur().getNum();
     }
 
