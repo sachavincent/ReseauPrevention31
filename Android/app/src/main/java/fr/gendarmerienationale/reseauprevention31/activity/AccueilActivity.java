@@ -40,7 +40,7 @@ public class AccueilActivity extends AppCompatActivity {
                     v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
 
         } else {
-            setContentView(R.layout.activity_accueil_non_connecte);ok 
+            setContentView(R.layout.activity_accueil_non_connecte);
 
             buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
             buttonConseilsProtection = findViewById(R.id.ButtonConseilsProtection);
