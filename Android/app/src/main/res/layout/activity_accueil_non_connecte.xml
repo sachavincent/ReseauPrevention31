@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/carre_blanc"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:background="@android:color/white"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -17,41 +17,58 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:columnCount="2"
-        android:padding="30dp"
-        android:rowCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/carre_blanc">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonEnvoyerMessage"
-            android:background="@android:color/white"
-            android:hint="@string/envoyer_un_message"
-            android:padding="20dp"
+            android:id="@+id/buttonLocaliserBrigade"
+            android:layout_gravity="fill"
+            android:layout_margin="10dp"
+            android:background="@color/colorLocaliser"
+            android:padding="30dp"
+            android:text="@string/localiser_une_brigade"
+            android:textAllCaps="true"
+            android:textSize="15sp"
             app:layout_column="0"
             app:layout_row="0" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonConsulterMessage"
-            android:background="@color/colorMessages"
-            android:hint="@string/consulter_les_messages"
-            android:padding="20dp"
-            app:layout_column="1"
-            app:layout_row="0" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonLocaliserBrigade"
-            android:background="@color/colorLocaliser"
-            android:padding="20dp"
-            android:text="@string/localiser_une_brigade"
+            android:id="@+id/buttonConseilsProtection"
+            android:layout_gravity="fill"
+            android:layout_margin="10dp"
+            android:background="@color/colorConseils"
+            android:padding="25dp"
+            android:text="@string/conseils_protection"
+            android:textAllCaps="true"
+            android:textSize="15sp"
             app:layout_column="0"
             app:layout_row="1" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonConseilsProtection"
-            android:background="@color/colorConseils"
-            android:padding="20dp"
-            android:text="@string/conseils_protection"
+            android:id="@+id/buttonConsulterMessage"
+            android:layout_gravity="fill"
+            android:layout_margin="10dp"
+            android:background="@color/colorMessages"
+            android:padding="30dp"
+            android:text="@string/connexion_consulter_messages"
+            android:textAllCaps="true"
+            android:textSize="15sp"
+            app:layout_column="0"
+            app:layout_row="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonEnvoyerMessage"
+            android:layout_gravity="fill"
+            android:layout_margin="10dp"
+            android:background="@android:color/white"
+            android:padding="30dp"
+            android:text="@string/connexion_envoyer_message"
+            android:textAllCaps="true"
+            android:textSize="15sp"
             app:layout_column="1"
             app:layout_row="1" />
     </GridLayout>
