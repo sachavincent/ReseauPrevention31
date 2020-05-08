@@ -23,6 +23,7 @@
   <string name="texte_bandeau">Réseau Prévention 31</string>
   <string name="num_siret_incorrect">Numéro Siret incorrect</string>
   <string name="joindre_une_photo">Joindre une photo</string>
+  <string name="ecrivez_votre_message">Ecrivez votre message</string>
 
   <!-- communication avec le serveur HTTP -->
   <string name="http_success">success</string>

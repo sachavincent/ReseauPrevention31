@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorArrierePlan">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorArrierePlan"
+    tools:context=".activity.AccueilActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/carre_blanc"
@@ -21,6 +23,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:columnCount="2"
+        android:rowCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/carre_blanc">
 
