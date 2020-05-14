@@ -3,7 +3,7 @@ package fr.gendarmerienationale.reseauprevention31.struct;
 import androidx.annotation.NonNull;
 import java.util.Date;
 
-public class Annonce {
+public class Message {
 
     private int    id;
     private Date   date;
@@ -36,6 +36,6 @@ public class Annonce {
     @NonNull
     @Override
     public String toString() {
-        return "Annonce (id=" + id + ", date=" + date.toString() + ", texte=" + texte;
+        return "Message (id=" + id + ", date=" + date.toString() + ", texte=" + texte;
     }
 }

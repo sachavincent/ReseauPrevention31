@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/selector_row"
+	android:clickable="true"
+	android:focusable="true"
+	android:paddingTop="4dp"
+	android:paddingBottom="4dp">
+
+	<TextView
+		android:id="@+id/typeText"
+		android:layout_width="0dp"
+		android:layout_height="40dp"
+		android:gravity="center"
+		android:textSize="16sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/dateText"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintWidth_percent=".13" />
+
+	<TextView
+		android:id="@+id/dateText"
+		android:layout_width="0dp"
+		android:layout_height="40dp"
+		android:gravity="center"
+		android:textSize="16sp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/numInvText"
+		app:layout_constraintStart_toEndOf="@id/typeText"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintWidth_percent=".29" />
+
+	<TextView
+		android:id="@+id/numInvText"
+		android:layout_width="0dp"
+		android:layout_height="40dp"
+		android:gravity="center"
+		android:textSize="16sp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/numDisText"
+		app:layout_constraintStart_toEndOf="@+id/dateText"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintWidth_percent=".29" />
+
+	<TextView
+		android:id="@+id/numDisText"
+		android:layout_width="0dp"
+		android:layout_height="40dp"
+		android:gravity="center"
+		android:textSize="16sp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/numInvText"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintWidth_percent=".29" />
+</androidx.constraintlayout.widget.ConstraintLayout>

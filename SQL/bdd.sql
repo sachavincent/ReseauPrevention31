@@ -1024,3 +1024,6 @@ ALTER TABLE `MessagePrive`
 ALTER TABLE `Utilisateur`
   ADD CONSTRAINT `fk_codeAct` FOREIGN KEY (`codeAct`) REFERENCES `CodeActivite` (`code`),
   ADD CONSTRAINT `fk_idCommuneUtilisateur` FOREIGN KEY (`idCommune`) REFERENCES `Commune` (`idCommune`);
+
+CREATE TRIGGER last_message_trigger AFTER INSERT ON messageprive for EACH ROW
+UPDATE fildediscussion f SET f.idDernierMessage = NEW.idMessagePrive WHERE f.idFilDeDiscussion = NEW.idFilDeDiscussion;
