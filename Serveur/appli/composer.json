@@ -1,0 +1,17 @@
+{
+    "name": "thomas/slim",
+    "authors": [
+        {
+            "name": "Thomas Appriou",
+            "email": "thomas.appriou@univ-tlse3.fr"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.5",
+        "slim/psr7": "^1.1"
+    },
+    "autoload": {
+      "psr-4": {
+        "ReseauPrevention31\\": "src/"
+    }
+}}
