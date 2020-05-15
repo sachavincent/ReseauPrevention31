@@ -9,23 +9,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.database.DatabaseHelper;
 import fr.gendarmerienationale.reseauprevention31.dialog.ConnectionDialog;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
+
 import java.util.List;
+
 import pub.devrel.easypermissions.BuildConfig;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
-    private final String[] appPerms       = {Manifest.permission.ACCESS_NETWORK_STATE,
+    private final String[] appPerms = {Manifest.permission.ACCESS_NETWORK_STATE,
             permission.WRITE_EXTERNAL_STORAGE, permission.READ_EXTERNAL_STORAGE, Manifest.permission.INTERNET};
-    private final int      PERMS_CALLBACK = 5555;
+    private final int PERMS_CALLBACK = 5555;
 
     public static DatabaseHelper sDatabaseHelper;
 
@@ -48,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             EasyPermissions
                     .requestPermissions(this, getString(R.string.permissions_accepter), PERMS_CALLBACK, appPerms);
     }
-
 
 
     /**
@@ -170,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }

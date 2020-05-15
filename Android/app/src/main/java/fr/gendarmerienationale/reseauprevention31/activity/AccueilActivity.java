@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.gendarmerienationale.reseauprevention31.R;
+import fr.gendarmerienationale.reseauprevention31.dialog.ConnectionDialog;
 
 public class AccueilActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class AccueilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        Button buttonEnvoyerMessage;
+        Button buttonEnvoyerMessage;
 //        Button buttonConsulterMessage;
 //        Button buttonLocaliserBrigade;
 //        Button buttonConseilsProtection;
@@ -53,9 +54,9 @@ public class AccueilActivity extends AppCompatActivity {
 //                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
 
         } else {
-            setContentView(R.layout.activity_accueil_connecte);
+            setContentView(R.layout.activity_accueil_non_connecte);
 //
-//            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
+            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
 //            buttonConsulterMessage = findViewById(R.id.buttonConsulterMessage);
 //            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
 //            buttonConseilsProtection = findViewById(R.id.ButtonConseilsProtection);
@@ -64,6 +65,8 @@ public class AccueilActivity extends AppCompatActivity {
 //                    v -> startActivity(new Intent(AccueilActivity.this, ConseilsProctectionActivity.class)));
 //            buttonLocaliserBrigade.setOnClickListener(
 //                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
+
+            buttonEnvoyerMessage.setOnClickListener(v -> startActivity(new Intent(AccueilActivity.this, MainActivity.class)));
 //
         }
         mActionBar = getSupportActionBar();
