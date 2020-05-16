@@ -10,18 +10,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
-import fr.gendarmerienationale.reseauprevention31.struct.Commune;
-import fr.gendarmerienationale.reseauprevention31.struct.Conseil;
-import fr.gendarmerienationale.reseauprevention31.struct.Secteur;
-import fr.gendarmerienationale.reseauprevention31.struct.Utilisateur;
+import androidx.annotation.NonNull;
+import fr.gendarmerienationale.reseauprevention31.struct.*;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -54,12 +51,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String GESTIONNAIRE_COLUMN_PRENOM   = "prenom_gestionnaire";
     private static final String GESTIONNAIRE_COLUMN_CHAMBRE  = "chambre";
 
-    private static final String MESSAGE_TABLE_NAME       = "Message";
-    private static final String MESSAGE_COLUMN_ID        = "id_message";
-    private static final String MESSAGE_COLUMN_ID_AUTEUR = "id_auteur";
-    private static final String MESSAGE_COLUMN_CHAMBRE   = "chambre";
-    private static final String MESSAGE_COLUMN_DATE      = "date";
-    private static final String MESSAGE_COLUMN_TEXTE     = "texte";
+    private static final String ANNONCE_TABLE_NAME   = "Annonce";
+    private static final String ANNONCE_COLUMN_ID    = "id_annonce";
+    private static final String ANNONCE_COLUMN_DATE  = "date";
+    private static final String ANNONCE_COLUMN_TEXTE = "texte";
+    private static final String ANNONCE_COLUMN_SEEN  = "vu";
+
+    private static final String MESSAGE_TABLE_NAME    = "Message";
+    private static final String MESSAGE_COLUMN_ID     = "id_message";
+    private static final String MESSAGE_COLUMN_ID_FIL = "id_fil_message";
+    private static final String MESSAGE_COLUMN_DATE   = "date";
+    private static final String MESSAGE_COLUMN_TEXTE  = "texte";
+    private static final String MESSAGE_COLUMN_SEEN   = "vu";
+
+    private static final String FIL_TABLE_NAME     = "Fil";
+    private static final String FIL_COLUMN_ID      = "id_fil";
+    private static final String FIL_COLUMN_ID_USER = "id_utilisateur";
 
     private static final String UTILISATEUR_TABLE_NAME         = "Utilisateur";
     private static final String UTILISATEUR_COLUMN_ID          = "id_utilisateur";
@@ -112,16 +119,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             GESTIONNAIRE_COLUMN_CHAMBRE + " TEXT NOT NULL)"
             );
 
+            // Création de la table Annonce
+            _database.execSQL(
+                    "CREATE TABLE " + ANNONCE_TABLE_NAME +
+                            "(" + ANNONCE_COLUMN_ID + " INTEGER NOT NULL PRIMARY KEY, " +
+                            ANNONCE_COLUMN_DATE + " TEXT NOT NULL, " +
+                            ANNONCE_COLUMN_SEEN + " INTEGER NOT NULL DEFAULT 0, " +
+                            ANNONCE_COLUMN_TEXTE + " TEXT NOT NULL)"
+            );
+
+            // Création de la table Fil
+            _database.execSQL(
+                    "CREATE TABLE " + FIL_TABLE_NAME +
+                            "(" + FIL_COLUMN_ID + " INTEGER NOT NULL PRIMARY KEY, " +
+                            FIL_COLUMN_ID_USER + " INTEGER NOT NULL, " +
+                            "FOREIGN KEY(" + FIL_COLUMN_ID_USER + ") REFERENCES " +
+                            UTILISATEUR_TABLE_NAME + "(" + UTILISATEUR_COLUMN_ID + "))"
+            );
+
             // Création de la table Message
             _database.execSQL(
                     "CREATE TABLE " + MESSAGE_TABLE_NAME +
                             "(" + MESSAGE_COLUMN_ID + " INTEGER NOT NULL PRIMARY KEY, " +
-                            MESSAGE_COLUMN_ID_AUTEUR + " INTEGER NOT NULL, " +
-                            MESSAGE_COLUMN_CHAMBRE + " TEXT NOT NULL, " +
+                            MESSAGE_COLUMN_ID_FIL + " INTEGER NOT NULL, " +
                             MESSAGE_COLUMN_DATE + " TEXT NOT NULL, " +
+                            MESSAGE_COLUMN_SEEN + " INTEGER NOT NULL DEFAULT 0, " +
                             MESSAGE_COLUMN_TEXTE + " TEXT NOT NULL, " +
-                            "FOREIGN KEY(" + MESSAGE_COLUMN_ID_AUTEUR + ") REFERENCES " +
-                            UTILISATEUR_TABLE_NAME + "(" + UTILISATEUR_COLUMN_ID + "))"
+                            "FOREIGN KEY(" + MESSAGE_COLUMN_ID + ") REFERENCES " +
+                            FIL_TABLE_NAME + "(" + FIL_COLUMN_ID + "))"
             );
 
             // Création de la table Utilisateur
@@ -165,12 +190,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues contentValues = new ContentValues();
             contentValues.put(CODE_ACTIVITE_COLUMN_CODE, 11);
             contentValues.put(CODE_ACTIVITE_COLUMN_ACTIVITE, "Culture");
-
             _database.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", contentValues);
+
+            contentValues = new ContentValues();
             contentValues.put(CODE_ACTIVITE_COLUMN_CODE, 22);
             contentValues.put(CODE_ACTIVITE_COLUMN_ACTIVITE, "Culture 2");
-
             _database.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", contentValues);
+
+            contentValues = new ContentValues();
+            contentValues.put(ANNONCE_COLUMN_ID, 1);
+            contentValues.put(ANNONCE_COLUMN_TEXTE,
+                    "Contenu de l'annonce numéro 1, ce message est destiné aux particuliers et adresse les problèmes dans le secteur de Toulouse et de ses alentours. En particulier regardant la crise sanitaire actuelle et les mesures de déconfinement mises en place par le gouvernement à partir du 11 mai.");
+            contentValues.put(ANNONCE_COLUMN_DATE, getCurrentDateForInsert());
+            _database.insertOrThrow(ANNONCE_TABLE_NAME, "", contentValues);
+
+            contentValues = new ContentValues();
+            contentValues.put(ANNONCE_COLUMN_ID, 2);
+            contentValues.put(ANNONCE_COLUMN_TEXTE,
+                    "Contenu de l'annonce numéro 2, ce message est destiné aux particuliers et adresse les problèmes dans le secteur de Toulouse et de ses alentours. En particulier regardant la crise sanitaire actuelle et les mesures de déconfinement mises en place par le gouvernement à partir du 11 mai.");
+            contentValues.put(ANNONCE_COLUMN_DATE, getCurrentDateForInsert());
+            _database.insertOrThrow(ANNONCE_TABLE_NAME, "", contentValues);
             Log.d(LOG, "done");
         } catch (SQLException e) {
             Log.w(LOG, e.getMessage());
@@ -183,8 +222,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Supprime les anciennes tables
         try {
             _db.execSQL("DROP TABLE IF EXISTS " + CODE_ACTIVITE_TABLE_NAME);
-            _db.execSQL("DROP TABLE IF EXISTS " + UTILISATEUR_TABLE_NAME);
+            _db.execSQL("DROP TABLE IF EXISTS " + FIL_TABLE_NAME);
             _db.execSQL("DROP TABLE IF EXISTS " + MESSAGE_TABLE_NAME);
+            _db.execSQL("DROP TABLE IF EXISTS " + UTILISATEUR_TABLE_NAME);
+            _db.execSQL("DROP TABLE IF EXISTS " + ANNONCE_TABLE_NAME);
             _db.execSQL("DROP TABLE IF EXISTS " + COMMUNE_TABLE_NAME);
             _db.execSQL("DROP TABLE IF EXISTS " + GESTIONNAIRE_TABLE_NAME);
             _db.execSQL("DROP TABLE IF EXISTS " + CONSEIL_TABLE_NAME);
@@ -236,8 +277,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         try {
             mDb.execSQL("DELETE FROM " + CODE_ACTIVITE_TABLE_NAME);
-            mDb.execSQL("DELETE FROM " + UTILISATEUR_TABLE_NAME);
+            mDb.execSQL("DELETE FROM " + FIL_TABLE_NAME);
             mDb.execSQL("DELETE FROM " + MESSAGE_TABLE_NAME);
+            mDb.execSQL("DELETE FROM " + UTILISATEUR_TABLE_NAME);
+            mDb.execSQL("DELETE FROM " + ANNONCE_TABLE_NAME);
             mDb.execSQL("DELETE FROM " + COMMUNE_TABLE_NAME);
             mDb.execSQL("DELETE FROM " + GESTIONNAIRE_TABLE_NAME);
             mDb.execSQL("DELETE FROM " + CONSEIL_TABLE_NAME);
@@ -266,9 +309,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // La table Utilisateur est supprimée temporairement car Commune est utilisée dans cette table
             Utilisateur utilisateur = getUser();
 
-            mDb.execSQL("DELETE FROM " + UTILISATEUR_TABLE_NAME);
             mDb.execSQL("DELETE FROM " + CODE_ACTIVITE_TABLE_NAME);
-            mDb.execSQL("DELETE FROM " + COMMUNE_TABLE_NAME);
+            mDb.execSQL("DELETE FROM " + FIL_TABLE_NAME);
+            mDb.execSQL("DELETE FROM " + MESSAGE_TABLE_NAME);
+            mDb.execSQL("DELETE FROM " + UTILISATEUR_TABLE_NAME);
+            mDb.execSQL("DELETE FROM " + ANNONCE_TABLE_NAME);
             mDb.execSQL("DELETE FROM " + CONSEIL_TABLE_NAME);
 
             saveUser(utilisateur);
@@ -300,8 +345,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             String[] projection = {CODE_ACTIVITE_COLUMN_CODE, CODE_ACTIVITE_COLUMN_ACTIVITE};
             cursor = mDb.query(CODE_ACTIVITE_TABLE_NAME, projection, CODE_ACTIVITE_COLUMN_CODE + " = ?",
-                    new String[]{code_act},
-                    null, null, null);
+                    new String[]{code_act}, null, null, null);
 
             if (cursor != null && cursor.moveToFirst()) { // Il y a bien une activité avec ce code
                 codeActivite = new CodeActivite();
@@ -541,6 +585,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         if (extractConseils(dbFile))
                             deleteFile(dbFile);
                         break;
+                    case "message.csv":
+                        if (extractAnnonces(dbFile))
+                            deleteFile(dbFile);
+                        break;
                 }
             }
 
@@ -657,6 +705,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     /**
+     * Permet de récupérer le fil de discussion par son id
+     *
+     * @param _idFil l'id du fil de discussion
+     * @return le fil de discussion
+     */
+    public FilDeDiscussion getFilById(int _idFil) {
+        if (mDb == null)
+            open();
+
+        FilDeDiscussion fil = null;
+        String[] columns = new String[]{
+                FIL_COLUMN_ID,
+                FIL_COLUMN_ID_USER
+        };
+        try (Cursor cursor = mDb.query(FIL_TABLE_NAME,
+                columns, FIL_COLUMN_ID + " = ?", new String[]{String.valueOf(_idFil)}, null, null, null)) {
+
+            if (cursor.moveToNext()) {
+                fil = new FilDeDiscussion();
+
+                fil.setId(cursor.getInt(0));
+                fil.setUtilisateur(getUser());
+            }
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return fil;
+    }
+
+
+    /**
      * Permet d'insérer une commune dans la base de données
      */
     public boolean insertCommune(Commune _commune) {
@@ -718,4 +799,272 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    /**
+     * Permet d'insérer une Annonce dans la base de données
+     */
+    public boolean insertAnnonce(Annonce _annonce) {
+        if (mDb == null)
+            open();
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put(ANNONCE_COLUMN_ID, _annonce.getId());
+            values.put(ANNONCE_COLUMN_TEXTE, _annonce.getTexte());
+            values.put(ANNONCE_COLUMN_DATE, getDateForInsert(_annonce.getDate()));
+            return mDb.insertOrThrow(ANNONCE_TABLE_NAME, "", values) != -1;
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return false;
+    }
+
+    /**
+     * Permet de récupérer la liste des anciennes annonces
+     *
+     * @return la liste des anciennes annonces
+     */
+    public List<Annonce> getOldAnnouncements() {
+        if (mDb == null)
+            open();
+
+        List<Annonce> annonces = new ArrayList<>();
+        String[] columns = new String[]{
+                ANNONCE_COLUMN_ID,
+                ANNONCE_COLUMN_TEXTE,
+                ANNONCE_COLUMN_DATE
+        };
+        try (Cursor cursor = mDb.query(ANNONCE_TABLE_NAME,
+                columns, ANNONCE_COLUMN_SEEN + " = ?", new String[]{"1"}, null, null, null)) {
+
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    Annonce annonce = new Annonce();
+
+                    annonce.setId(cursor.getInt(0));
+                    annonce.setTexte(cursor.getString(1));
+
+                    annonce.setDate(Tools.getDateFromDatabase(cursor.getString(2)));
+                    annonce.setVue(true);
+
+                    annonces.add(annonce);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return annonces;
+    }
+
+    /**
+     * Permet de récupérer la liste des nouvelles annonces
+     *
+     * @return la liste des nouvelles annonces
+     */
+    public List<Annonce> getNewAnnouncements() {
+        if (mDb == null)
+            open();
+
+        List<Annonce> annonces = new ArrayList<>();
+        String[] columns = new String[]{
+                ANNONCE_COLUMN_ID,
+                ANNONCE_COLUMN_TEXTE,
+                ANNONCE_COLUMN_DATE
+        };
+        try (Cursor cursor = mDb.query(ANNONCE_TABLE_NAME,
+                columns, ANNONCE_COLUMN_SEEN + " = ?", new String[]{"0"}, null, null, null)) {
+
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    Annonce annonce = new Annonce();
+
+                    annonce.setId(cursor.getInt(0));
+                    annonce.setTexte(cursor.getString(1));
+
+                    annonce.setDate(Tools.getDateFromDatabase(cursor.getString(2)));
+                    annonce.setVue(false);
+
+                    annonces.add(annonce);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return annonces;
+    }
+
+    /**
+     * Permet de mettre l'état d'un message à "Vu"
+     *
+     * @param _message le message
+     * @return true si la base de données a été mise à jour
+     */
+    public boolean markMessageAsSeen(@NonNull Message _message) {
+        if (mDb == null)
+            open();
+
+        boolean res = false;
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put(MESSAGE_COLUMN_SEEN, 1);
+
+            res = mDb.update(MESSAGE_TABLE_NAME, values, MESSAGE_COLUMN_ID + " = ?",
+                    new String[]{String.valueOf(_message.getId())}) == 1;
+
+            if (res)
+                _message.setVu(true);
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return res;
+    }
+
+    /**
+     * Permet de mettre l'état d'une annonce à "Vue"
+     *
+     * @param _annonce l'annonce
+     * @return true si la base de données a été mise à jour
+     */
+    public boolean markAnnouncementAsSeen(@NonNull Annonce _annonce) {
+        if (mDb == null)
+            open();
+
+        boolean res = false;
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put(ANNONCE_COLUMN_SEEN, 1);
+
+            res = mDb.update(ANNONCE_TABLE_NAME, values, ANNONCE_COLUMN_ID + " = ?",
+                    new String[]{String.valueOf(_annonce.getId())}) == 1;
+
+            if (res)
+                _annonce.setVue(true);
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return res;
+    }
+
+    /**
+     * Permet de récupérer tous les messages privés
+     *
+     * @return la liste des messages
+     */
+    public List<Message> getAllMessages() {
+        if (mDb == null)
+            open();
+
+        List<Message> messages = new ArrayList<>();
+        String[] columns = new String[]{
+                MESSAGE_COLUMN_ID,
+                MESSAGE_COLUMN_ID_FIL,
+                MESSAGE_COLUMN_TEXTE,
+                MESSAGE_COLUMN_DATE,
+                MESSAGE_COLUMN_SEEN
+        };
+        try (Cursor cursor = mDb.query(MESSAGE_TABLE_NAME, columns, "", new String[0], null, null, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    Message message = new Message();
+                    message.setId(cursor.getInt(0));
+                    message.setFil(getFilById(cursor.getInt(1)));
+                    message.setTexte(cursor.getString(2));
+                    message.setDate(Tools.getDateFromDatabase(cursor.getString(3)));
+                    message.setVu(cursor.getInt(4) == 1);
+
+                    messages.add(message);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return messages;
+    }
+
+    private String randomNonsense =
+            "orem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et condimentum nibh, a fringilla odio. Integer nec aliquam elit. Aliquam erat volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque leo augue, malesuada vel sem id, convallis bibendum ante. Aliquam et quam urna. Quisque cursus ullamcorper tristique. Suspendisse eu nibh in massa lacinia sodales. Suspendisse ac velit nisl.\n" +
+                    "\n" +
+                    "In dictum interdum sapien, eu imperdiet lorem venenatis varius. Duis volutpat facilisis magna, ut porttitor tortor consectetur sit amet. Sed sit amet sapien sed elit cursus viverra at at dui. Proin convallis condimentum quam sit amet molestie. Donec sit amet semper ligula. Integer et libero placerat, porta ipsum quis, elementum tellus. In eget dignissim nisl. In dignissim, arcu id blandit elementum, mi lectus bibendum ex, ac finibus elit diam ut mauris. Pellentesque mauris nisl, pulvinar et lectus sed, pulvinar vulputate urna.\n" +
+                    "\n" +
+                    "Morbi ligula nisl, euismod ut viverra vitae, tristique eget felis. Praesent volutpat, erat in sollicitudin finibus, urna turpis hendrerit lectus, eu laoreet nunc nunc venenatis mi. Phasellus suscipit mollis nulla, mattis feugiat ex consectetur id. Sed scelerisque turpis ex, sed tempor sem varius sit amet. Proin ac pulvinar nisl, eu mollis ipsum. Nunc ac eleifend dui. Curabitur auctor pellentesque interdum. Quisque ut mi erat.\n" +
+                    "\n" +
+                    "Maecenas sed ex sapien. Nam placerat urna nec euismod tempor. Nunc eget nisl scelerisque, congue mi vel, molestie mauris. Nulla mollis fringilla ligula quis rutrum. Mauris a lorem arcu. Vivamus sit amet commodo arcu. Mauris nec condimentum ante, eget varius urna. Donec pharetra tortor dictum libero varius, sed fermentum nisi vestibulum. Praesent mi nisl, varius ut bibendum id, viverra ac odio. Aenean eget justo at dui interdum aliquam id sit amet ipsum.\n" +
+                    "\n" +
+                    "Etiam fermentum hendrerit tristique. Vivamus a velit urna. Mauris eget enim lorem. Phasellus justo erat, interdum sed sodales vel, scelerisque at velit. Quisque maximus ornare viverra. Morbi eu pellentesque quam. Quisque felis eros, consectetur eget blandit nec, dignissim ut mi. Mauris urna purus, feugiat ut quam nec, pharetra pharetra dolor. Vivamus nec ornare neque, ac venenatis enim. Ut urna ipsum, sagittis at tristique nec, malesuada eu quam.\n" +
+                    "\n" +
+                    "Cras finibus facilisis mauris, interdum placerat lectus sagittis non. Ut consequat ipsum elementum felis mollis malesuada. Suspendisse vestibulum tempor mauris quis rhoncus. Duis ligula tortor, tincidunt nec eleifend id, finibus sed metus. Vestibulum non lectus in sapien faucibus porta. Pellentesque pretium, mi faucibus finibus interdum, neque orci consectetur mi, ut rhoncus elit risus sed eros. Pellentesque tempus enim vitae laoreet varius. Cras dignissim euismod congue. Duis sed est nisl. Ut fermentum et nunc ac pretium. Phasellus ligula neque, cursus sed ligula vel, tincidunt facilisis diam. Duis tincidunt venenatis ullamcorper. Sed mollis quam ornare urna fermentum, in vulputate ante finibus. Proin maximus dictum urna eget porta.\n" +
+                    "\n" +
+                    "Integer quis lobortis ex. Sed nec enim est. Vestibulum ut aliquet nisi. Sed finibus faucibus felis, quis pellentesque quam tincidunt at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus ut sem et vehicula. In est purus, scelerisque non auctor sed, ornare a diam. Orci varius.";
+
+    //TODO TEMP à remplacer par un vrai insert
+    public boolean insertRandomMessage() {
+        if (mDb == null)
+            open();
+
+        try {
+            Random random = new Random();
+            int fil = random.nextInt();
+            ContentValues values = new ContentValues();
+            values.put(FIL_COLUMN_ID, fil);
+            values.put(FIL_COLUMN_ID_USER, Objects.requireNonNull(getUser()).getId());
+            mDb.insertOrThrow(FIL_TABLE_NAME, "", values);
+
+            values = new ContentValues();
+            values.put(MESSAGE_COLUMN_ID, random.nextInt());
+            values.put(MESSAGE_COLUMN_TEXTE, randomNonsense.substring(0, random.nextInt(randomNonsense.length() - 1)));
+            values.put(MESSAGE_COLUMN_DATE, getCurrentDateForInsert());
+            values.put(MESSAGE_COLUMN_ID_FIL, fil);
+            return mDb.insertOrThrow(MESSAGE_TABLE_NAME, "", values) != -1;
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return false;
+    }
+
+    /**
+     * Permet de récupérer tous les fils de discussion
+     *
+     * @return la liste des fils de discussion
+     */
+    public List<FilDeDiscussion> getAllFilDeDiscussions() {
+        if (mDb == null)
+            open();
+
+        List<FilDeDiscussion> filsDeDiscussions = new ArrayList<>();
+        String[] columns = new String[]{
+                FIL_COLUMN_ID,
+                FIL_COLUMN_ID_USER
+        };
+        try (Cursor cursor = mDb.query(FIL_TABLE_NAME, columns, "", new String[0], null, null, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    FilDeDiscussion filDeDiscussion = new FilDeDiscussion();
+                    filDeDiscussion.setId(cursor.getInt(0));
+                    filDeDiscussion.setUtilisateur(getUser());
+                    //TODO vérifier utilisateur = récepteur
+                    filsDeDiscussions.add(filDeDiscussion);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return filsDeDiscussions;
+    }
 }

@@ -12,21 +12,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
-import fr.gendarmerienationale.reseauprevention31.struct.Annonce;
+import fr.gendarmerienationale.reseauprevention31.struct.Message;
 import java.util.List;
 
 
-public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.ViewHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
-    private final List<Annonce> mAnnonces;
+    private final List<Message> mMessages;
 
-    public AnnonceAdapter(List<Annonce> mAnnonces) {
-        this.mAnnonces = mAnnonces;
+    public MessageAdapter(List<Message> mMessages) {
+        this.mMessages = mMessages;
     }
 
     @Override
     public int getItemCount() {
-        return mAnnonces.size();
+        return mMessages.size();
     }
 
     @Override
@@ -39,12 +39,13 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int pos) {
-        final Annonce annonce = mAnnonces.get(pos);
-        holder.display(annonce);
+        final Message message = mMessages.get(pos);
+        holder.display(message);
 
         // Event de click sur un message pour le sélectionner
-        holder.itemView.setOnClickListener(view -> {
-            MainActivity.sDatabaseHelper.markAnnouncementAsSeen(annonce);
+        holder.itemView.setOnLongClickListener(view -> {
+            Log.d(LOG, "Long click on msg");
+            return MainActivity.sDatabaseHelper.markMessageAsSeen(message);
         });
     }
 
@@ -62,14 +63,14 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.ViewHold
             contenu = v.findViewById(R.id.contenuMessage);
         }
 
-        void display(Annonce _annonce) {
+        void display(Message _message) {
             // Affiche les valeurs
-            date.setText(getStringDate(_annonce.getDate()));
-            String texte = _annonce.getTexte();
+            date.setText(getStringDate(_message.getDate()));
+            String texte = _message.getTexte();
             titre.setText(texte.substring(0, texte.length() < 50 ? texte.length() : 50));
             contenu.setText(texte);
 
-            Log.d(LOG, "Displaying : " + _annonce.toString());
+            Log.d(LOG, "Displaying : " + _message.toString());
         }
     }
 }

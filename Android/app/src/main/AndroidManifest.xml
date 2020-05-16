@@ -43,6 +43,11 @@
       android:launchMode="singleTop"
       android:name=".activity.CreationCompteActivity"
       android:screenOrientation="portrait"/>
+    <activity
+      android:label="@string/app_name"
+      android:launchMode="singleTop"
+      android:name=".activity.messages.MessagesActivity"
+      android:screenOrientation="portrait"/>
   </application>
 
 </manifest>

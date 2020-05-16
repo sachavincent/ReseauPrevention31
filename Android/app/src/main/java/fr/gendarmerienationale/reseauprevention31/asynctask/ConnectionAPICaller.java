@@ -35,7 +35,7 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
 
     private String mKeyID, mStrRep;
 
-    private final static String URL = "http://192.168.43.174:80/connexion.php";
+    private final static String URL = "http://192.168.42.26:80/connexion.php";
 
     private final WeakReference<ConnectionDialog> mDialog;
     private final WeakReference<MainActivity>     mMainActivity;

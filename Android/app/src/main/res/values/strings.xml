@@ -16,14 +16,14 @@
   <string name="cle_identification">Clé d\'identification</string>
   <string name="connexion_envoyer_message">Connectez\nvous</string>
   <string name="connexion_consulter_messages">Connectez\nvous</string>
-  <string name="envoyer_un_message">Envoyer\nun message</string>
+  <string name="envoyer_un_message">Envoyer\nun annonce</string>
   <string name="localiser_une_brigade">Localiser une\nbrigade</string>
-  <string name="consulter_les_messages">Consulter\nles messages</string>
+  <string name="consulter_les_messages">Consulter\nles annonces</string>
   <string name="conseils_protection">Conseils\nprotections\net liens utiles</string>
   <string name="texte_bandeau">Réseau Prévention 31</string>
   <string name="num_siret_incorrect">Numéro Siret incorrect</string>
   <string name="joindre_une_photo">Joindre une photo</string>
-  <string name="ecrivez_votre_message">Ecrivez votre message</string>
+  <string name="ecrivez_votre_message">Ecrivez votre annonce</string>
 
   <!-- communication avec le serveur HTTP -->
   <string name="http_success">success</string>
@@ -75,4 +75,9 @@
   <string name="num_telephone_incorrect">Numéro de téléphone incorrect</string>
   <string name="envoi_cle">Une clé d\'identification va vous être envoyée par mail à l\'adresse %1$s</string>
   <string name="accueil_anonyme">Accueil — Anonyme</string>
+  <string name="nouvelles_annonces">Nouvelles annonces</string>
+  <string name="anciennes_annonces">Anciennes annonces</string>
+  <string name="all_messages">Tous les messages</string>
+  <string name="marked_as_seen">Annonce marquée comme \"Vue\"</string>
+  <string name="delete_announcement">Êtes-vous sûrs de vouloir supprimer cette annonce ?</string>
 </resources>

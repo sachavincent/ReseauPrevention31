@@ -1,7 +1,10 @@
 package fr.gendarmerienationale.reseauprevention31.activity;
 
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -12,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.gendarmerienationale.reseauprevention31.R;
+import fr.gendarmerienationale.reseauprevention31.activity.messages.MessagesActivity;
 
 public class AccueilActivity extends AppCompatActivity {
 
@@ -21,38 +25,37 @@ public class AccueilActivity extends AppCompatActivity {
 
     private ActionBar mActionBar;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        mConnected = MainActivity.sDatabaseHelper.isUserConnected();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mConnected = MainActivity.sDatabaseHelper.isUserConnected();
 //        Button buttonEnvoyerMessage;
-//        Button buttonConsulterMessage;
-//        Button buttonLocaliserBrigade;
+        Button buttonConsulterMessage;
+        Button buttonLocaliserBrigade;
 //        Button buttonConseilsProtection;
 
         if (this.mConnected) {
+            Log.d(LOG, "connected");
             setContentView(R.layout.activity_accueil_connecte);
 
 //            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
-//            buttonConsulterMessage = findViewById(R.id.buttonConsulterMessage);
-//            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
+            buttonConsulterMessage = findViewById(R.id.buttonConsulterMessageConnecte);
+            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
 //            buttonConseilsProtection = findViewById(R.id.buttonConseilsProtection);
 
-//            buttonConsulterMessage.setOnClickListener(
-//                    v -> startActivity(new Intent(AccueilActivity.this, ConsulterMessagesActivity.class)));
+            buttonConsulterMessage.setOnClickListener(
+                    v -> startActivity(new Intent(AccueilActivity.this, MessagesActivity.class)));
 //            buttonConseilsProtection.setOnClickListener(
 //                    v -> startActivity(new Intent(AccueilActivity.this, ConseilsProctectionActivity.class)));
 //            buttonLocaliserBrigade.setOnClickListener(
 //                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
+            buttonLocaliserBrigade.setOnClickListener(
+                    v -> MainActivity.sDatabaseHelper.insertRandomMessage());
 
         } else {
+            Log.d(LOG, "not connected");
             setContentView(R.layout.activity_accueil_connecte);
 //
 //            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);

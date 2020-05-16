@@ -11,41 +11,39 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import fr.gendarmerienationale.reseauprevention31.R;
-import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
-import fr.gendarmerienationale.reseauprevention31.struct.Message;
+import fr.gendarmerienationale.reseauprevention31.struct.FilDeDiscussion;
 import java.util.List;
 
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+public class FilDeDiscussionAdapter extends RecyclerView.Adapter<FilDeDiscussionAdapter.ViewHolder> {
 
-    private final List<Message> mMessages;
+    private final List<FilDeDiscussion> mFils;
 
-    public MessageAdapter(List<Message> mMessages) {
-        this.mMessages = mMessages;
+    public FilDeDiscussionAdapter(List<FilDeDiscussion> mFils) {
+        this.mFils = mFils;
     }
 
     @Override
     public int getItemCount() {
-        return mMessages.size();
+        return mFils.size();
     }
 
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.item_message, parent, false);
+        View v = inflater.inflate(R.layout.item_fil, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int pos) {
-        final Message message = mMessages.get(pos);
-        holder.display(message);
+        final FilDeDiscussion fil = mFils.get(pos);
+        holder.display(fil);
 
-        // Event de click sur un message pour le sélectionner
-        holder.itemView.setOnLongClickListener(view -> {
-            Log.d(LOG, "Long click on msg");
-            return MainActivity.sDatabaseHelper.markMessageAsSeen(message);
+        // Event de click sur un fil pour le sélectionner
+        holder.itemView.setOnClickListener(view -> {
+            Log.d(LOG, "Opening fil");
         });
     }
 
@@ -63,14 +61,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             contenu = v.findViewById(R.id.contenuMessage);
         }
 
-        void display(Message _message) {
+        void display(FilDeDiscussion _fil) {
             // Affiche les valeurs
-            date.setText(getStringDate(_message.getDate()));
-            String texte = _message.getTexte();
+            date.setText(getStringDate(_fil.get));
+            String texte = _fil.getTexte();
             titre.setText(texte.substring(0, texte.length() < 50 ? texte.length() : 50));
             contenu.setText(texte);
 
-            Log.d(LOG, "Displaying : " + _message.toString());
+            Log.d(LOG, "Displaying : " + _fil.toString());
         }
     }
 }

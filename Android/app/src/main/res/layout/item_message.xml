@@ -1,60 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:background="@drawable/selector_row"
-	android:clickable="true"
-	android:focusable="true"
-	android:paddingTop="4dp"
-	android:paddingBottom="4dp">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_marginStart="10dp"
+  android:layout_marginEnd="10dp"
+  android:paddingStart="10dp"
+  android:paddingEnd="10dp"
+  android:background="@android:color/white">
 
-	<TextView
-		android:id="@+id/typeText"
-		android:layout_width="0dp"
-		android:layout_height="40dp"
-		android:gravity="center"
-		android:textSize="16sp"
-		android:textStyle="bold"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toStartOf="@+id/dateText"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintWidth_percent=".13" />
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/titreMessage"
+    android:textStyle="bold"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:ellipsize="end"
+    android:gravity="start"
+    android:lines="1"
+    android:text="titre Message"
+    android:textAllCaps="true"
+    android:textColor="@android:color/black"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toTopOf="@id/auteurMessage"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintWidth_percent=".8"/>
 
-	<TextView
-		android:id="@+id/dateText"
-		android:layout_width="0dp"
-		android:layout_height="40dp"
-		android:gravity="center"
-		android:textSize="16sp"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toStartOf="@+id/numInvText"
-		app:layout_constraintStart_toEndOf="@id/typeText"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintWidth_percent=".29" />
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/auteurMessage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Gendarmerie"
+    android:textSize="16sp"
+    app:layout_constraintBottom_toBottomOf="@id/dateMessage"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/titreMessage"/>
 
-	<TextView
-		android:id="@+id/numInvText"
-		android:layout_width="0dp"
-		android:layout_height="40dp"
-		android:gravity="center"
-		android:textSize="16sp"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toStartOf="@+id/numDisText"
-		app:layout_constraintStart_toEndOf="@+id/dateText"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintWidth_percent=".29" />
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/dateMessage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="01/01/1970"
+    android:textSize="16sp"
+    app:layout_constraintBottom_toBottomOf="@id/auteurMessage"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@id/auteurMessage"/>
 
-	<TextView
-		android:id="@+id/numDisText"
-		android:layout_width="0dp"
-		android:layout_height="40dp"
-		android:gravity="center"
-		android:textSize="16sp"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toEndOf="@+id/numInvText"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintWidth_percent=".29" />
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/contenuMessage"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:paddingBottom="10dp"
+    android:text="Contenu du annonce..."
+    android:textColor="@android:color/black"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/auteurMessage"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

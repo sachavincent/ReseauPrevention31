@@ -123,6 +123,24 @@ public class Utilisateur {
         this.cle = cle;
     }
 
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id=" + id +
+                ", cle='" + cle + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", numeroSiret='" + numeroSiret + '\'' +
+                ", codeActivite=" + codeActivite +
+                ", secteur=" + secteur +
+                ", numeroTelephone='" + numeroTelephone + '\'' +
+                ", nomSociete='" + nomSociete + '\'' +
+                ", mail='" + mail + '\'' +
+                ", commune=" + commune +
+                ", chambre=" + chambre +
+                '}';
+    }
+
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
     }

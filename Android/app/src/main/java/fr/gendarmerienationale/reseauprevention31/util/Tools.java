@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
+import fr.gendarmerienationale.reseauprevention31.struct.Annonce;
 import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
 import fr.gendarmerienationale.reseauprevention31.struct.Commune;
 import fr.gendarmerienationale.reseauprevention31.struct.Conseil;
@@ -39,6 +40,8 @@ public class Tools {
     private static final String TRACE_FILE      = "ReseauPrevention31.txt";
 
     private final static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
+    private final static char DELIMITER = '\0';
 
     private static int width;
 
@@ -600,7 +603,7 @@ public class Tools {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
-                String[] values = line.split(";");
+                String[] values = line.split(String.valueOf(DELIMITER));
 
                 CodeActivite codeActivite = new CodeActivite();
                 codeActivite.setCode(Integer.parseInt(values[0]));
@@ -650,7 +653,7 @@ public class Tools {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
-                String[] values = line.split(";");
+                String[] values = line.split(String.valueOf(DELIMITER));
 
                 Commune commune = new Commune();
                 commune.setId(Integer.parseInt(values[0]));
@@ -703,7 +706,7 @@ public class Tools {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
-                String[] values = line.split(";");
+                String[] values = line.split(String.valueOf(DELIMITER));
 
                 Conseil conseil = new Conseil();
                 conseil.setId(Integer.parseInt(values[0]));
@@ -714,6 +717,57 @@ public class Tools {
                     res = false;
 
                     Log.w(LOG, "Insertion went wrong for Conseil: " + conseil.toString());
+                }
+            }
+
+        } catch (IOException | NumberFormatException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+
+            res = false;
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                Log.w(LOG, e.getMessage());
+                writeTraceException(e);
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Permet d'extraire les annonces du fichier donné et de les insérer dans la base de données
+     *
+     * @param _dbFile le fichier donné contenant les données des annonces
+     */
+    public static boolean extractAnnonces(File _dbFile) {
+        FileReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        boolean res = true;
+        try {
+            reader = new FileReader(_dbFile);
+            bufferedReader = new BufferedReader(reader);
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] values = line.split(String.valueOf(DELIMITER));
+
+                Annonce annonce = new Annonce();
+                annonce.setId(Integer.parseInt(values[0]));
+                annonce.setDate(getDateFromDatabase(values[1]));
+                annonce.setTexte(values[2]);
+
+                boolean done = MainActivity.sDatabaseHelper.insertAnnonce(annonce);
+                if (!done) {
+                    res = false;
+
+                    Log.w(LOG, "Insertion went wrong for Annonce: " + annonce.toString());
                 }
             }
 

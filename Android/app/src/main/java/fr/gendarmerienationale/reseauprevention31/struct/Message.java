@@ -1,13 +1,30 @@
 package fr.gendarmerienationale.reseauprevention31.struct;
 
-import androidx.annotation.NonNull;
 import java.util.Date;
 
-public class Annonce {
+public class Message {
 
-    private int    id;
-    private Date   date;
-    private String texte;
+    private int             id;
+    private Date            date;
+    private String          texte;
+    private FilDeDiscussion fil;
+    private boolean         vu;
+
+    public boolean isVu() {
+        return this.vu;
+    }
+
+    public void setVu(boolean vu) {
+        this.vu = vu;
+    }
+
+    public FilDeDiscussion getFil() {
+        return this.fil;
+    }
+
+    public void setFil(FilDeDiscussion fil) {
+        this.fil = fil;
+    }
 
     public int getId() {
         return this.id;
@@ -31,11 +48,5 @@ public class Annonce {
 
     public void setTexte(String texte) {
         this.texte = texte;
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "Annonce (id=" + id + ", date=" + date.toString() + ", texte=" + texte;
     }
 }
