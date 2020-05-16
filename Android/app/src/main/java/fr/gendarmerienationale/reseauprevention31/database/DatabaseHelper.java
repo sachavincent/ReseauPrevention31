@@ -667,6 +667,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return utilisateur;
     }
 
+
+
     /**
      * Permet de récupérer la commune par son id
      *
@@ -798,6 +800,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return false;
     }
+
+    /**
+     * Permet de récupérer les conseils
+     *
+     * @return les conseils
+     */
+    public String getConseils() {
+        if (mDb == null)
+            open();
+        String conseils  = null;
+        String[] columns = new String[]{
+                CONSEIL_COLUMN_TEXTE
+        };
+        try (Cursor cursor = mDb.query(CONSEIL_TABLE_NAME,
+                columns, null, new String[0], null, null, null)) {
+
+            if (cursor.moveToNext()) {
+                conseils = new String();
+
+                conseils = cursor.getString(0);
+            }
+        } catch (SQLiteException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+        }
+
+        return conseils;
+    }
+
 
     /**
      * Permet d'insérer une Annonce dans la base de données
