@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  jeu. 14 mai 2020 à 13:37
+-- Généré le :  jeu. 14 mai 2020 à 21:27
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -13,6 +13,21 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `prevention31`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Annonce`
+--
+
+CREATE TABLE `Annonce` (
+  `idAnnonce` int(255) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `objet` varchar(255) NOT NULL,
+  `texte` text NOT NULL,
+  `corbeille` tinyint(1) NOT NULL DEFAULT '0',
+  `dateCorbeille` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -768,19 +783,22 @@ INSERT INTO `Commune` (`idCommune`, `codePostal`, `commune`, `secteur`, `created
 
 CREATE TABLE `Conseil` (
   `idConseil` int(11) NOT NULL,
+  `objet` varchar(255) NOT NULL,
   `texte` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `corbeille` tinyint(1) NOT NULL DEFAULT '0',
+  `dateCorbeille` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `DestinationMessage`
+-- Structure de la table `DestinationAnnonce`
 --
 
-CREATE TABLE `DestinationMessage` (
-  `idMessage` int(255) UNSIGNED NOT NULL,
+CREATE TABLE `DestinationAnnonce` (
+  `idAnnonce` int(255) UNSIGNED NOT NULL,
   `idUtilisateur` int(255) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -832,18 +850,6 @@ CREATE TABLE `Gestionnaire` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Message`
---
-
-CREATE TABLE `Message` (
-  `idMessage` int(255) UNSIGNED NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `texte` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `MessagePrive`
 --
 
@@ -853,6 +859,14 @@ CREATE TABLE `MessagePrive` (
   `text` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déclencheurs `MessagePrive`
+--
+DELIMITER $$
+CREATE TRIGGER `last_message_trigger` AFTER INSERT ON `MessagePrive` FOR EACH ROW UPDATE fildediscussion f SET f.idDernierMessage = NEW.idMessagePrive WHERE f.idFilDeDiscussion = NEW.idFilDeDiscussion
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -883,6 +897,12 @@ CREATE TABLE `Utilisateur` (
 --
 
 --
+-- Index pour la table `Annonce`
+--
+ALTER TABLE `Annonce`
+  ADD PRIMARY KEY (`idAnnonce`);
+
+--
 -- Index pour la table `CodeActivite`
 --
 ALTER TABLE `CodeActivite`
@@ -901,10 +921,10 @@ ALTER TABLE `Conseil`
   ADD PRIMARY KEY (`idConseil`);
 
 --
--- Index pour la table `DestinationMessage`
+-- Index pour la table `DestinationAnnonce`
 --
-ALTER TABLE `DestinationMessage`
-  ADD PRIMARY KEY (`idMessage`,`idUtilisateur`),
+ALTER TABLE `DestinationAnnonce`
+  ADD PRIMARY KEY (`idAnnonce`,`idUtilisateur`),
   ADD KEY `fk_idUtilisateurDest` (`idUtilisateur`);
 
 --
@@ -928,12 +948,6 @@ ALTER TABLE `Gestionnaire`
   ADD PRIMARY KEY (`idGestionnaire`);
 
 --
--- Index pour la table `Message`
---
-ALTER TABLE `Message`
-  ADD PRIMARY KEY (`idMessage`);
-
---
 -- Index pour la table `MessagePrive`
 --
 ALTER TABLE `MessagePrive`
@@ -951,6 +965,12 @@ ALTER TABLE `Utilisateur`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `Annonce`
+--
+ALTER TABLE `Annonce`
+  MODIFY `idAnnonce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `Commune`
@@ -977,12 +997,6 @@ ALTER TABLE `ForceDeLOrdre`
   MODIFY `idForce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `Message`
---
-ALTER TABLE `Message`
-  MODIFY `idMessage` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `MessagePrive`
 --
 ALTER TABLE `MessagePrive`
@@ -999,10 +1013,10 @@ ALTER TABLE `Utilisateur`
 --
 
 --
--- Contraintes pour la table `DestinationMessage`
+-- Contraintes pour la table `DestinationAnnonce`
 --
-ALTER TABLE `DestinationMessage`
-  ADD CONSTRAINT `fk_idMessage` FOREIGN KEY (`idMessage`) REFERENCES `Message` (`idMessage`),
+ALTER TABLE `DestinationAnnonce`
+  ADD CONSTRAINT `fk_idMessage` FOREIGN KEY (`idAnnonce`) REFERENCES `annonce` (`idAnnonce`),
   ADD CONSTRAINT `fk_idUtilisateurDest` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`);
 
 --

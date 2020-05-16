@@ -9,11 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.messages.MessagesActivity;
 
@@ -31,7 +29,7 @@ public class AccueilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mConnected = MainActivity.sDatabaseHelper.isUserConnected();
-//        Button buttonEnvoyerMessage;
+        Button buttonEnvoyerMessage;
         Button buttonConsulterMessage;
         Button buttonLocaliserBrigade;
 //        Button buttonConseilsProtection;
@@ -42,7 +40,7 @@ public class AccueilActivity extends AppCompatActivity {
 
 //            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
             buttonConsulterMessage = findViewById(R.id.buttonConsulterMessageConnecte);
-            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
+            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigadeConnecte);
 //            buttonConseilsProtection = findViewById(R.id.buttonConseilsProtection);
 
             buttonConsulterMessage.setOnClickListener(
@@ -56,9 +54,9 @@ public class AccueilActivity extends AppCompatActivity {
 
         } else {
             Log.d(LOG, "not connected");
-            setContentView(R.layout.activity_accueil_connecte);
+            setContentView(R.layout.activity_accueil_non_connecte);
 //
-//            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
+            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
 //            buttonConsulterMessage = findViewById(R.id.buttonConsulterMessage);
 //            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
 //            buttonConseilsProtection = findViewById(R.id.ButtonConseilsProtection);
@@ -67,6 +65,9 @@ public class AccueilActivity extends AppCompatActivity {
 //                    v -> startActivity(new Intent(AccueilActivity.this, ConseilsProctectionActivity.class)));
 //            buttonLocaliserBrigade.setOnClickListener(
 //                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
+
+            buttonEnvoyerMessage
+                    .setOnClickListener(v -> startActivity(new Intent(AccueilActivity.this, MainActivity.class)));
 //
         }
         mActionBar = getSupportActionBar();

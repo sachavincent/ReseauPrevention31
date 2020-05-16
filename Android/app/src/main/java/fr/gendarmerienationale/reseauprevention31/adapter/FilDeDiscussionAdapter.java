@@ -63,10 +63,10 @@ public class FilDeDiscussionAdapter extends RecyclerView.Adapter<FilDeDiscussion
 
         void display(FilDeDiscussion _fil) {
             // Affiche les valeurs
-            date.setText(getStringDate(_fil.get));
-            String texte = _fil.getTexte();
-            titre.setText(texte.substring(0, texte.length() < 50 ? texte.length() : 50));
-            contenu.setText(texte);
+//            date.setText(getStringDate(_fil.get));
+//            String texte = _fil.getTexte();
+//            titre.setText(texte.substring(0, texte.length() < 50 ? texte.length() : 50));
+//            contenu.setText(texte);
 
             Log.d(LOG, "Displaying : " + _fil.toString());
         }

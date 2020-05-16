@@ -12,26 +12,24 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-      android:id="@+id/carre_blanc"
+      android:id="@+id/carre_blancConnecte"
       android:layout_width="match_parent"
       android:layout_height="250dp"
       android:background="@android:color/white"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:layout_editor_absoluteX="0dp"
-      tools:layout_editor_absoluteY="85dp">
+      app:layout_constraintTop_toTopOf="parent">
 
       <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/ecrivez_votre_message"
+        android:id="@+id/ecrivez_votre_messageConnecte"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
         android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
         android:gravity="bottom|center_horizontal"
         android:hint="@string/ecrivez_votre_message"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -39,80 +37,89 @@
       android:id="@+id/grid_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginEnd="20dp"
+      android:layout_marginStart="17dp"
+      android:layout_marginEnd="17dp"
       android:columnCount="2"
       android:rowCount="2"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toBottomOf="@id/carre_blanc">
 
       <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonLocaliserBrigade"
-        android:layout_margin="10dp"
+        android:id="@+id/buttonLocaliserBrigadeConnecte"
         android:layout_gravity="fill"
-        android:padding="30dp"
+        android:layout_margin="10dp"
         android:background="@color/colorLocaliser"
+        android:padding="30dp"
         android:text="@string/localiser_une_brigade"
         android:textAllCaps="true"
         android:textSize="15sp"
         app:layout_column="0"
-        app:layout_row="0"/>
+        app:layout_row="0" />
 
       <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonConseilsProtection"
-        android:layout_margin="10dp"
+        android:id="@+id/buttonConseilsProtectionConnecte"
         android:layout_gravity="fill"
-        android:padding="25dp"
+        android:layout_margin="10dp"
         android:background="@color/colorConseils"
+        android:padding="25dp"
         android:text="@string/conseils_protection"
         android:textAllCaps="true"
         android:textSize="15sp"
         app:layout_column="1"
-        app:layout_row="0"/>
+        app:layout_row="0" />
 
       <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonConsulterMessageConnecte"
-        android:layout_margin="10dp"
         android:layout_gravity="fill"
-        android:padding="30dp"
+        android:layout_margin="10dp"
         android:background="@color/colorMessages"
+        android:padding="30dp"
         android:text="@string/consulter_les_messages"
         android:textAllCaps="true"
         android:textSize="15sp"
         app:layout_column="0"
-        app:layout_row="1"/>
+        app:layout_row="1" />
 
       <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonEnvoyerMessage"
-        android:layout_margin="10dp"
+        android:id="@+id/buttonEnvoyerMessageConnecte"
         android:layout_gravity="fill"
-        android:padding="30dp"
+        android:layout_margin="10dp"
         android:background="@android:color/white"
+        android:padding="30dp"
         android:text="@string/envoyer_un_message"
         android:textAllCaps="true"
         android:textSize="15sp"
         app:layout_column="1"
-        app:layout_row="1"/>
+        app:layout_row="1" />
+    </GridLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/grid_layout">
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_action_button_photoConnecte"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/camera"
+        app:fabCustomSize="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
       <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/joindrePhotoConnecte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/joindre_une_photo"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-    </GridLayout>
+        app:layout_constraintRight_toLeftOf="@id/float_action_button_photoConnecte"
+        app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
-
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/float_action_button_photo"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="end|bottom"
-    android:scaleType="center"
-    android:src="@drawable/camera"
-    app:fabCustomSize="64dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
