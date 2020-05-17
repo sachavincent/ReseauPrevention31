@@ -1,8 +1,5 @@
 <?php
 session_start();
-
-$_SESSION['modifie'] = false;
-
 ?>
 
 <!DOCTYPE html>
@@ -14,18 +11,17 @@ $_SESSION['modifie'] = false;
 
     <body>
         <!-- header -->
-        <?php include("../page/headerForce.php"); ?>
+        <?php include("page/headerForce.php"); ?>
 
         <!-- barre d'actions -->
         <div id="barre_actions"><input type="button" class="new_msg" value="Nouveau message" 
-            onclick=window.location.href='../force/envoi-msg-fo.html';>
+            onclick=window.location.href='// TODO';>
         </div>
 
         <!-- navigation gauche -->
-        <?php include("../page/navForce.php"); ?>
+        <?php include("page/navForce.php"); ?>
 
         <!-- ============================================== -->
-
         <!-- page du profil -->
         <section id="pan_profil">
             <aside>
@@ -41,38 +37,41 @@ $_SESSION['modifie'] = false;
         <!-- ============================================== -->
 
         <!-- conteneur avec les infos modifiables -->
-        <form action="profil-fo.php" method="post">
+        <form action="../script/modifier_profil.php?return=none" method="post">
         <section id="pan_infos_user">
-            
             <!-- nom -->
-            <p class="infos_user">Nom <input class="input_infos" name="nom" 
-                value=<?php echo $_SESSION['nom'] ?> /></p>
-
+            <p class="infos_user">Nom <input class="input_infos" name="nom"
+                value=<?php echo $_SESSION['nom']; ?> /></p>
             <!-- prenom -->
-            <p class="infos_user">Prénom <input class="input_infos" name="prenom" 
-                value=<?php echo $_SESSION['prenom'] ?> /></p>
-
+            <p class="infos_user">Prénom <input class="input_infos" name="prenom"
+                value=<?php echo $_SESSION['prenom']; ?> /></p>
             <!-- mail -->
-            <p class="infos_user">Adresse Mail <input class="input_infos" name="mail" type="email" 
-                value=<?php echo $_SESSION['mail'] ?> /></p>
-
+            <p class="infos_user">Adresse Mail <input class="input_infos" name="mail" type="email"
+                value=<?php echo $_SESSION['mail']; ?> /></p>
             <!-- mdp actuel -->
             <p class="infos_user">Mot de passe actuel <input class="input_infos" name="mdp" type="password" required/></p>
-
             <!-- nouveau mdp -->
-            <p class="infos_user">Nouveau mot de passe <input class="input_infos" name="new_mdp" type="password"/></p>
-
+            <p class="infos_user">Nouveau mot de passe <input class="input_infos" name="nouveauMdp" type="password"/></p>
             <!-- confirmation mdp -->
-            <p class="infos_user">Confirmation <input class="input_infos" name="confirm_mdp" type="password"/></p>
-
+            <p class="infos_user">Confirmation <input class="input_infos" name="confirmationMdp" type="password"/></p>
             <!-- bouton valider -->
-            <p class="infos_user"><input class="valider_infos" type="submit" value="valider"
-                onclick="modifier_profil.php" /></p>
-
+            <p class="infos_user"><input class="valider_infos" type="submit" value="valider" /></p>
             <!-- ligne d'erreur si la modification échoue -->
-            <?php if (!$_SESSION['modifie']) { echo '<p id="erreur">Erreur lors de la modification du profil.</p>'; }?>
-
+            <?php 
+                /* recuperation de l'URL pour les modifications de profil */
+                switch ($_GET['return']) {
+                    case 'none' :
+                        default;
+                    break;
+                    case 'success' :
+                        echo '<p id="success">Modifications effectuées.</p>';
+                    break;
+                    case 'error' :
+                        echo '<p id="erreur">Erreur lors de la modification du profil.</p>';
+                    break;
+                }
+            ?>
+            
         </section>
-
     </body>
 </html>

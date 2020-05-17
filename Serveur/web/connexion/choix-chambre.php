@@ -1,6 +1,6 @@
 <?php 
+unset($_SESSION);
 session_start();
-
 $_SESSION['connexion'] = false;
 
 ?>

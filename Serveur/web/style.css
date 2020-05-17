@@ -41,7 +41,6 @@ h2
     margin-top: 30px;
 }
 
-
 /* =============== HEADER =============== */
 
 /* bouton profil */
@@ -49,11 +48,9 @@ h2
 {
     float: right;
     height: 28px;
-    width: 100px;
     font-weight: bold;
     font-size: 16px;
     color: white;
-    margin-right: 60px;
     margin-top: 20px;
     cursor: pointer;
 }
@@ -68,11 +65,10 @@ h2
 {
     float: right;
     color: white;
-    text-align: right;
-    margin-right: -135px;
+    margin-left: 15px;
+    margin-right: 15px;
     cursor: pointer;
 }
-
 
 /* =============== BARRE ACTIONS =============== */
 
@@ -142,9 +138,9 @@ h2
     background-color: #101010;
 }
 
-/* boutons d'actions (sauf premiers à gauche)
-chambre : |  refuser  | supprimer |
-forces  : | supprimer |
+/* boutons d'actions
+chambre : | accepter  | refuser   | supprimer |
+forces  : |  envoyer  | supprimer | 
 */
 .actions
 {
@@ -160,44 +156,6 @@ forces  : | supprimer |
 }
 
 .actions:hover
-{
-    background-color: #C7E0F4;
-}
-
-/* bouton accepter (le premier bouton à gauche - chambre) */
-.accepter
-{
-    width: 100px;
-    height: 34px;
-    background-color: white;
-    color: #0073CC;
-    border: 1px solid #E1E1E1;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-
-    margin-left: 50px;
-}
-
-.accepter:hover
-{
-    background-color: #C7E0F4;
-}
-
-/* bouton répondre (le premier bouton à gauche - forces) */
-.repondre
-{
-    width: 100px;
-    height: 34px;
-    background-color: white;
-    color: #0073CC;
-    border: 1px solid #E1E1E1;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-
-    margin-left: 50px;
-}
-
-.repondre:hover
 {
     background-color: #C7E0F4;
 }
@@ -281,11 +239,6 @@ forces  : | supprimer |
 
 }
 
-#logo_ca::selection, #logo_cma::selection, #logo_cci::selection, #logo_police::selection, #logo_gendarmerie::selection
-{
-    background-color: #E1E1E1;
-}
-
 
 /* =============== IDENTIFICATION =============== */
 
@@ -366,9 +319,9 @@ chambre :
 |  Corbeille           |
 
 forces :
-|  Boite de reception  |
-|  Envoyés             |
-|  Brouillons          |
+|  Messages privés     |
+|  Annonces            |
+|  Conseils            |
 |  Corbeille           |
 */
 #nav_gauche
@@ -603,7 +556,7 @@ forces :
 }
 
 /* onglet d'un msg */
-.onglet_msg, .onglet_msg_selected
+.onglet_msg, .onglet_msg_selected, .onglet_non_lu
 {
     width: auto;
     height: 15px;
@@ -612,14 +565,14 @@ forces :
 
     font-size: 13px;
     padding: 20px;
-    padding-left: 20px;
+    padding-left: 25px;
     padding-bottom: 35px;
     cursor: pointer;
 }
 
 .onglet_msg:hover
 {
-    background-color: #C7E0F4;
+    background-color: #E1E1E1;
 }
 
 .onglet_msg_selected
@@ -628,11 +581,36 @@ forces :
     background-color: #0073CC;
 }
 
+.onglet_non_lu
+{
+    background-color: #C7E0F4;
+    border-bottom: 1px solid white;
+}
+
+.onglet_non_lu:hover
+{
+    background-color: #E1E1E1;
+}
+
 #date_reception
 {
     float: right;
     font-size: 11px;
 
+}
+
+/* objet non selectionné */
+h9
+{
+    color: #0073CC;
+    font-weight: bold;
+}
+
+/* objet selectionné */
+h10
+{
+    color: white;
+    font-weight: bold;
 }
 
 /* conteneur d'un msg lors de son ouverture */
@@ -669,6 +647,14 @@ forces :
     font-size: 14px;
     margin-left: 25px;
     padding-top: 15px;
+}
+
+#cle
+{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 50px;
+    margin-left: 240px;
 }
 
 

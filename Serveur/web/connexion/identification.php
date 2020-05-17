@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 
 /* récupération de l'URL pour obtenir le choix de l'user */
@@ -49,7 +48,7 @@ switch ($_GET['chambre']){
             <section id="panel_identification">
                 <h2>IDENTIFICATION</h2>
 
-                <form action="../chambre/script/verifierConnexion.php" method="post">
+                <form action=<?php echo "verifierConnexion.php?chambre=" . $_SESSION['chambre'];?>  method="post">
                 <!-- affichage des elements de connexion -->
                 <div id="logo_choisi"><img src=<?php echo $_SESSION['logoChambre'];?> width="170px" height="170px"></div>
                 

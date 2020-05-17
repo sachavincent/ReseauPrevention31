@@ -39,7 +39,7 @@ session_start();
         <!-- ============================================== -->
 
         <!-- conteneur avec les infos modifiables -->
-        <form action="script/modifier_profil.php?return=none" method="post">
+        <form action="../script/modifier_profil.php?return=none" method="post">
         <section id="pan_infos_user">
             <!-- nom -->
             <p class="infos_user">Nom <input class="input_infos" name="nom"

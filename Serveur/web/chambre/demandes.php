@@ -25,7 +25,6 @@ session_start();
             case 'refuse' :
                 include("refuse.php");
             break;
-            // a rajouter corbeille ou pas
         }
         ?>
 
