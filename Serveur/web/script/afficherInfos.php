@@ -14,10 +14,6 @@ switch ($_GET['e']) {
         $onglet = "CONSEIL";
         $lien = 'conseil';
     break;
-    case 'corbeille':
-        $onglet = "CORBEILLE";
-        $lien = 'corbeille';
-    break;
     // chambres
     case 'attente':
         $onglet = "EN_COURS";
@@ -85,217 +81,198 @@ function refuseNonLu($i) {
 
 ?>
 
-    <!-- pan liste msg -->
-    <section id="pan_content">
-        <nav id="pan_reception">
-        <?php   
-            /* ======================== LISTE ONGLETS FORCES ========================== */
-
-            if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
-                // affichage des demandes
-                if (!empty($_SESSION[$onglet])) {
-
-                    $nb = 0;
-                    if (isset($_SESSION[$onglet])) $nb = count($_SESSION[$onglet]);
-                    for ($i=0; $i < $nb; $i++) {
-                        
-                        $affiche = $_SESSION[$onglet][$i];
-                        $msgOuvert = $_SESSION[$onglet][$i]['ouvert'];
-
-                        // date dans les onglets
-                        $dateSQL = substr($affiche['created_at'], 0, 10);
-                        $reverseDate = implode('/',array_reverse  (explode('-',$dateSQL)));
-                        $date = "<time id='date_reception'>".$reverseDate."</time>";
-
-                        $onglet_affiche = $date.'<h9>'.trunc($affiche['objet'], 17).'</h9>'.'<td>'.'<br/>'.trunc($affiche['texte'], 20);
-                        $onglet_affiche_objet = $date.'<h10>'.trunc($affiche['objet'], 17).'</h10>'.'<td>'.'<br/>'.trunc($affiche['texte'], 20);
-
-                        // si selection d'un onglet
-                        if ($_GET['m'] != 'none') {
-
-                            // changement msg lu
-                            switch ($_GET['e']) {
-                                case 'prive':
-                                    priveNonLu($_GET['m']);
-                                break;
-                                case 'annonce': 
-                                    annonceNonLu($_GET['m']);
-                                break;
-                                case 'conseil':
-                                    conseilnonLu($_GET['m']);
-                                break;
-                            }
-
-                            // si le message n'a jamais été ouvert
-                            if ($msgOuvert == 0) {
-                                if ($i == $_GET['m']) {
-                                    echo " <div class='onglet_msg_selected' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche_objet</div> ";
-                                } else {
-                                    echo " <div class='onglet_non_lu' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche</div> ";
-                                }
+<!-- pan liste msg -->
+<section id="pan-content">
+    <nav id="pan-reception">
+    <?php   
+        /* ======================== LISTE ONGLETS FORCES ========================== */
+        if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
+            // affichage des demandes
+            if (!empty($_SESSION[$onglet])) {
+                $nb = 0;
+                if (isset($_SESSION[$onglet])) $nb = count($_SESSION[$onglet]);
+                for ($i=0; $i < $nb; $i++) {
+                    
+                    $affiche = $_SESSION[$onglet][$i];
+                    $msgOuvert = $_SESSION[$onglet][$i]['ouvert'];
+                    // date dans les onglets
+                    $dateSQL = substr($affiche['created_at'], 0, 10);
+                    $reverseDate = implode('/',array_reverse  (explode('-',$dateSQL)));
+                    $date = "<time id='date-reception'>".$reverseDate."</time>";
+                    $onglet_affiche = $date.'<h9>'.trunc($affiche['objet'], 17).'</h9>'.'<td>'.'<br/>'.trunc($affiche['texte'], 20);
+                    $onglet_affiche_objet = $date.'<h10>'.trunc($affiche['objet'], 17).'</h10>'.'<td>'.'<br/>'.trunc($affiche['texte'], 20);
+                    // si selection d'un onglet
+                    if ($_GET['m'] != 'none') {
+                        // changement msg lu
+                        switch ($_GET['e']) {
+                            case 'prive':
+                                priveNonLu($_GET['m']);
+                            break;
+                            case 'annonce': 
+                                annonceNonLu($_GET['m']);
+                            break;
+                            case 'conseil':
+                                conseilNonLu($_GET['m']);
+                            break;
+                        }
+                        // si le message n'a jamais été ouvert
+                        if ($msgOuvert == 0) {
+                            if ($i == $_GET['m']) {
+                                echo " <div class='onglet-msg-selected' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche_objet</div> ";
                             } else {
-                                if ($i == $_GET['m']) {
-                                    echo " <div class='onglet_msg_selected' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche_objet</div> ";
-                                } else {
-                                    echo " <div class='onglet_msg' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche</div> ";
-                                }
+                                echo " <div class='onglet-non-lu' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche</div> ";
                             }
-                        // si pas de selection d'un onglet
                         } else {
-                            if ($msgOuvert == 0) {
-                                echo " <div class='onglet_non_lu' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche</div> ";
+                            if ($i == $_GET['m']) {
+                                echo " <div class='onglet-msg-selected' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche_objet</div> ";
                             } else {
-                                echo " <div class='onglet_msg' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                echo " <div class='onglet-msg' onclick=window.location.href='demandes.php?e=".$lien."&m="
                                 .$i."'".">$onglet_affiche</div> ";
                             }
                         }
-                    }
-                }
-            }
-
-            /* ======================== LISTE ONGLETS CHAMBRES ========================== */
-
-            else {
-                    // affichage des demandes
-                if (!empty($_SESSION[$onglet])) {
-                    $nb = 0;
-                    if (isset($_SESSION[$onglet])) $nb = count($_SESSION[$onglet]);
-                    for ($i=0; $i < $nb; $i++) {
-
-                        $affiche = $_SESSION[$onglet][$i];
-                        $msgOuvert = $_SESSION[$onglet][$i]['ouvert'];
-
-                        // date dans les onglets
-                        $dateSQL = substr($affiche['created_at'], 0, 10);
-                        $reverseDate = implode('/',array_reverse  (explode('-',$dateSQL)));
-                        $date = "<time id='date_reception'>".$reverseDate."</time>";
-
-                        // affichage de l'onglet demande
-                        $nomPrenom = $affiche['nomUtilisateur'].' '.$affiche['prenomUtilisateur'];
-                        $onglet_affiche = $date.'<h9>'.trunc($nomPrenom, 17).'</h9>'.'<td>'.'<br/>'.trunc($affiche['nomSociete'],19).', '.'secteur '.$affiche['secteur'];
-                        $onglet_affiche_objet = $date.'<h10>'.trunc($nomPrenom, 17).'</h10>'.'<td>'.'<br/>'.trunc($affiche['nomSociete'],19).', '.'secteur '.$affiche['secteur'];
-
-                        // si selection d'un onglet
-                        if ($_GET['m'] != 'none') {
-
-                            // changement msg lu
-                            switch ($_GET['e']) {
-                                case 'attente':
-                                    attenteNonLu($_GET['m']);
-                                break;
-                                case 'accepte': 
-                                    valideNonLu($_GET['m']);
-                                break;
-                                case 'refuse':
-                                    refuseNonLu($_GET['m']);
-                                break;
-                            }
-
-                            // si le message n'a jamais été ouvert
-                            if ($msgOuvert == 0) {
-                                if ($i == $_GET['m']) {
-                                    echo " <div class='onglet_msg_selected' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche_objet</div> ";
-                                } else {
-                                    echo " <div class='onglet_non_lu' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche</div> ";
-                                }
-                            } else {
-                                if ($i == $_GET['m']) {
-                                    echo " <div class='onglet_msg_selected' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche_objet</div> ";
-                                } else {
-                                    echo " <div class='onglet_msg' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche</div> ";
-                                }
-                            }
-                        // si pas de selection d'un onglet
-                        } else {
-                            if ($msgOuvert == 0) {
-                                echo " <div class='onglet_non_lu' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                    .$i."'".">$onglet_affiche</div> ";
-                            } else {
-                                echo " <div class='onglet_msg' onclick=window.location.href='demandes.php?e=".$lien."&m="
-                                .$i."'".">$onglet_affiche</div> ";
-                            }
-                        }
-                    }
-                }
-            }
-            ?>
-        </nav>
-            <?php
-                /* ===================== ZONE OUVERTURE DU MESSAGE FORCES ============+============= */
-
-                if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
-                    echo ('
-                        <!-- zone de la demande ouverte -->
-                        <!-- <div id="zone_msg"> -->
-                            <!-- informations du message -->
-                            <!-- <time id="date_msg" datetime="18 avr. 2020 10:39">18 avr. 2020 10:39</time>
-                            <div id="objet">Objet du message</div>
-                            <div id="infos1">DUDURU Catherine  <Adra31@gmail.com>, <Grida31@outlook.com> - 06 12 45 78 89 / 06 25 14 36 98</div>
-                            <div id="infos2"><b>Zone 2</b> - Muret 31600 - Société : Batplus</div> -->
-                        <!-- </div> -->
-                        ');
-                }
-                
-                /* ===================== ZONE OUVERTURE DU MESSAGE CHAMBRE ========================= */
-
-                else {
-
-                    if ($_GET['m'] == 'none') {
-                        echo '';
+                    // si pas de selection d'un onglet
                     } else {
-                        // chargement des informations sur la demande
-                        $infosUser = $_SESSION[$onglet][$_GET['m']];
-        
-                        // commune
-                        $requete = $bdd->prepare("SELECT codePostal, commune FROM Commune WHERE idCommune = ?");
-                        $requete->execute(array($infosUser["idCommune"]));
-                        $resultatRequet = $requete->fetch();
-                        $infosUser["codePostal"] = $resultatRequet["codePostal"];
-                        $infosUser["commune"] = $resultatRequet["commune"];
-        
-                        //type d'activite
-                        $activite = $bdd->prepare("SELECT activite FROM codeactivite WHERE code = ?");
-                        $activite->execute(array($infosUser["codeAct"]));
-                        $infosUser["activite"] = ($activite->fetch()["activite"]);
-        
-                        $_SESSION[$onglet][$_GET['m']]['codePostal'] = $infosUser["codePostal"];
-        
-                        //Creation de la cé de l'utilisateur
-                        $_SESSION[$onglet][$_GET['m']]['cle'] = $infosUser['codeAct'] .
-                            $infosUser['codePostal'] .
-                            $infosUser['secteur'] .
-                            sprintf("%04d", $infosUser['idUtilisateur']);
-        
-                        // affichage
-                        echo "
-                            <div id='zone_demande'>
-                            <time id='date_demande'>".$infosUser['created_at']."</time>
-                            <p><b>Nom : </b><label>".$infosUser['nomUtilisateur']."<br><p>
-                            <p><b>Prénom : </b><label>".$infosUser['prenomUtilisateur']."</label><br></p>
-                            <p><b>Nom Société : </b><label>".$infosUser['nomSociete']."</label><br></p>
-                            <p><b>Type d'activité : </b><label>".$infosUser['activite']."</label><br></p>
-                            <p><b>Numéro Siret : </b><label>".$infosUser['siret']."</label><br></p>
-                            <p><b>Localisaiton : </b><label>".$infosUser['commune']." ".$infosUser['codePostal']."</label><br></p>
-                            <p><b>Téléphone : </b><label>".$infosUser['telephone']."</label><br></p>
-                            <p><b>Adresse mail : </b><label>".$infosUser['mail']."</label><br></p>
-                            </div>
-                        " ;
-        
-                        // affichage de la clé d'identification
-                        if ($_GET['e'] != 'refuse') {
-                            echo "<div id='cle'> Clé d'identification :  " . $_SESSION[$onglet][$_GET['m']]['cle'] . "<div>";
+                        if ($msgOuvert == 0) {
+                            echo " <div class='onglet-non-lu' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche</div> ";
+                        } else {
+                            echo " <div class='onglet-msg' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                            .$i."'".">$onglet_affiche</div> ";
                         }
                     }
                 }
-            ?>
-
-    </section>
+            }
+        }
+        /* ======================== LISTE ONGLETS CHAMBRES ========================== */
+        else {
+            // affichage des demandes
+            if (!empty($_SESSION[$onglet])) {
+                $nb = 0;
+                if (isset($_SESSION[$onglet])) $nb = count($_SESSION[$onglet]);
+                for ($i=0; $i < $nb; $i++) {
+                    $affiche = $_SESSION[$onglet][$i];
+                    $msgOuvert = $_SESSION[$onglet][$i]['ouvert'];
+                    // date dans les onglets
+                    $dateSQL = substr($affiche['created_at'], 0, 10);
+                    $reverseDate = implode('/',array_reverse  (explode('-',$dateSQL)));
+                    $date = "<time id='date-reception'>".$reverseDate."</time>";
+                    // affichage de l'onglet demande
+                    $nomPrenom = $affiche['nomUtilisateur'].' '.$affiche['prenomUtilisateur'];
+                    $onglet_affiche = $date.'<h9>'.trunc($nomPrenom, 17).'</h9>'.'<td>'.'<br/>'.trunc($affiche['nomSociete'],19).', '.'secteur '.$affiche['secteur'];
+                    $onglet_affiche_objet = $date.'<h10>'.trunc($nomPrenom, 17).'</h10>'.'<td>'.'<br/>'.trunc($affiche['nomSociete'],19).', '.'secteur '.$affiche['secteur'];
+                    // si selection d'un onglet
+                    if ($_GET['m'] != 'none') {
+                        // changement msg lu
+                        switch ($_GET['e']) {
+                            case 'attente':
+                                attenteNonLu($_GET['m']);
+                            break;
+                            case 'accepte': 
+                                valideNonLu($_GET['m']);
+                            break;
+                            case 'refuse':
+                                refuseNonLu($_GET['m']);
+                            break;
+                        }
+                        // si le message n'a jamais été ouvert
+                        if ($msgOuvert == 0) {
+                            if ($i == $_GET['m']) {
+                                echo " <div class='onglet-msg-selected' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche_objet</div> ";
+                            } else {
+                                echo " <div class='onglet-non-lu' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche</div> ";
+                            }
+                        } else {
+                            if ($i == $_GET['m']) {
+                                echo " <div class='onglet-msg-selected' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche_objet</div> ";
+                            } else {
+                                echo " <div class='onglet-msg' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche</div> ";
+                            }
+                        }
+                    // si pas de selection d'un onglet
+                    } else {
+                        if ($msgOuvert == 0) {
+                            echo " <div class='onglet-non-lu' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                                .$i."'".">$onglet_affiche</div> ";
+                        } else {
+                            echo " <div class='onglet-msg' onclick=window.location.href='demandes.php?e=".$lien."&m="
+                            .$i."'".">$onglet_affiche</div> ";
+                        }
+                    }
+                }
+            }
+        }
+        ?>
+    </nav>
+        <?php
+            /* ===================== ZONE OUVERTURE DU MESSAGE FORCES ============+============= */
+            if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
+                echo ('
+                    <!-- zone de la demande ouverte -->
+                    <!-- <div id="zone-msg"> -->
+                        <!-- informations du message -->
+                        <!-- <time id="date-msg" datetime="18 avr. 2020 10:39">18 avr. 2020 10:39</time>
+                        <div id="objet">Objet du message</div>
+                        <div id="infos1">DUDURU Catherine  <Adra31@gmail.com>, <Grida31@outlook.com> - 06 12 45 78 89 / 06 25 14 36 98</div>
+                        <div id="infos2"><b>Zone 2</b> - Muret 31600 - Société : Batplus</div> -->
+                    <!-- </div> -->
+                    ');
+            }
+            
+            /* ===================== ZONE OUVERTURE DU MESSAGE CHAMBRE ========================= */
+            else {
+                if ($_GET['m'] == 'none') {
+                    echo '';
+                } else {
+                    // chargement des informations sur la demande
+                    $infosUser = $_SESSION[$onglet][$_GET['m']];
+    
+                    // commune
+                    $requete = $bdd->prepare("SELECT codePostal, commune FROM Commune WHERE idCommune = ?");
+                    $requete->execute(array($infosUser["idCommune"]));
+                    $resultatRequet = $requete->fetch();
+                    $infosUser["codePostal"] = $resultatRequet["codePostal"];
+                    $infosUser["commune"] = $resultatRequet["commune"];
+    
+                    //type d'activite
+                    $activite = $bdd->prepare("SELECT activite FROM codeactivite WHERE code = ?");
+                    $activite->execute(array($infosUser["codeAct"]));
+                    $infosUser["activite"] = ($activite->fetch()["activite"]);
+    
+                    $_SESSION[$onglet][$_GET['m']]['codePostal'] = $infosUser["codePostal"];
+    
+                    //Creation de la cé de l'utilisateur
+                    $_SESSION[$onglet][$_GET['m']]['cle'] = $infosUser['codeAct'] .
+                        $infosUser['codePostal'] .
+                        $infosUser['secteur'] .
+                        sprintf("%04d", $infosUser['idUtilisateur']);
+    
+                    // affichage
+                    echo "
+                        <div id='zone-demande'>
+                        <time id='date-demande'>".$infosUser['created_at']."</time>
+                        <p><b>Nom : </b><label>".$infosUser['nomUtilisateur']."<br><p>
+                        <p><b>Prénom : </b><label>".$infosUser['prenomUtilisateur']."</label><br></p>
+                        <p><b>Nom Société : </b><label>".$infosUser['nomSociete']."</label><br></p>
+                        <p><b>Type d'activité : </b><label>".$infosUser['activite']."</label><br></p>
+                        <p><b>Numéro Siret : </b><label>".$infosUser['siret']."</label><br></p>
+                        <p><b>Localisaiton : </b><label>".$infosUser['commune']." ".$infosUser['codePostal']."</label><br></p>
+                        <p><b>Téléphone : </b><label>".$infosUser['telephone']."</label><br></p>
+                        <p><b>Adresse mail : </b><label>".$infosUser['mail']."</label><br></p>
+                        </div>
+                    " ;
+    
+                    // affichage de la clé d'identification
+                    if ($_GET['e'] != 'refuse') {
+                        echo "<div id='cle'> Clé d'identification :  " . $_SESSION[$onglet][$_GET['m']]['cle'] . "<div>";
+                    }
+                }
+            }
+        ?>
+</section>

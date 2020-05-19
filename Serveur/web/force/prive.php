@@ -4,18 +4,17 @@
 <!-- ============================================== -->
 
 <!-- barre d'actions -->
-<div id="barre_actions">
-    <input type="button" class="new_msg" value="Nouveau message" onclick=window.location.href='demandes.php?e=new_msg&m=none'>
-
-    <!-- actions rapides -->
-    <img class="refresh_rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=prive&m=none'"/>
-
-    <!-- actions de la demande ouverte -->
-    <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=prive&m=<?php echo $_GET['m'] ?>&b=supprimer'"/> 
+<div id="barre-actions">
+  <input type="button" class="new-annonce" value="+ Annonce" onclick=window.location.href='demandes.php?e=new_annonce'>
+  <input type="button" class="new-conseil" value="+ Conseil" onclick=window.location.href='demandes.php?e=new_conseil'>
+  <!-- actions rapides -->
+  <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=prive&m=none'"/>
+  <!-- actions de la demande ouverte -->
+  <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=prive&m=<?php echo $_GET['m'] ?>&b=supprimer'"/> 
 </div>
 
 <!-- barre grise a droite (decoratif) -->
-<div id="deco_droite"></div>
+<div id="deco-droite"></div>
 
 <!-- ============================================== -->
 

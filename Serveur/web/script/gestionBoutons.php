@@ -68,19 +68,19 @@ else {
 
     function supprimerAnnonce($infoAnnonce){
         include("connexionBDD.php");
-        $requeteSupprAnnonce = $bdd->prepare('UPDATE `annonce` SET `corbeille` = 1 WHERE `annonce`.`idAnnonce` = ?');
+        $requeteSupprAnnonce = $bdd->prepare('DELETE FROM `annonce` WHERE `annonce`.`idAnnonce` = ?');
         $requeteSupprAnnonce->execute(array($infoAnnonce['idAnnonce']));
     }
 
     function supprimerConseil($infoConseil){
         include("connexionBDD.php");
-        $requeteSupprConseil = $bdd->prepare('UPDATE `conseil` SET `corbeille` = 1 WHERE `conseil`.`idConseil` = ?');
+        $requeteSupprConseil = $bdd->prepare('DELETE FROM `conseil` WHERE `conseil`.`idConseil` = ?');
         $requeteSupprConseil->execute(array($infoConseil['idConseil']));
     }
 
     function supprimerPrive($infoMsg){
         include("connexionBDD.php");
-        $requeteSupprMsg = $bdd->prepare('UPDATE `messageprive` SET `corbeille` = 1 WHERE `messageprive`.`idMessagePrive` = ?');
+        $requeteSupprMsg = $bdd->prepare('DELETE FROM `messageprive` WHERE `messageprive`.`idMessagePrive` = ?');
         $requeteSupprMsg->execute(array($infoMsg['idMessagePrive']));
     }
 

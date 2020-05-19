@@ -24,12 +24,10 @@ else {
         if (!isset($info_ForceeDansBDD['idForce'])){
             $retour['success'] = false;
             $retour['message'] = 'Utilisateur inconnu';   
-        }
-        elseif ($_POST['mdp'] != $info_ForceeDansBDD['mdpForce']){
+        } elseif ($_POST['mdp'] != $info_ForceeDansBDD['mdpForce']){
             $retour['success'] = false;
             $retour['message'] = 'Mdp incorrect';    
-        }
-        elseif ($_SESSION['chambre'] != $info_ForceeDansBDD['force']){
+        } elseif ($_SESSION['chambre'] != $info_ForceeDansBDD['force']){
             $retour['success'] = false;
             $retour['message'] = 'Pas de droit d\'acces pour cette force';
         }
@@ -70,12 +68,10 @@ else {
         if (!isset($info_gestionnaireDansBDD['idGestionnaire'])){
             $retour['success'] = false;
             $retour['message'] = 'Utilisateur inconnu';   
-        }
-        elseif ($_POST['mdp'] != $info_gestionnaireDansBDD['mdpGestionnaire']){
+        } elseif ($_POST['mdp'] != $info_gestionnaireDansBDD['mdpGestionnaire']){
             $retour['success'] = false;
             $retour['message'] = 'Mdp incorrect';    
-        }
-        elseif ($_SESSION['chambre'] != $info_gestionnaireDansBDD['chambre']){
+        } elseif ($_SESSION['chambre'] != $info_gestionnaireDansBDD['chambre']){
             $retour['success'] = false;
             $retour['message'] = 'Pas de droit d\'acces pour cette chambre';
         }

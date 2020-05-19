@@ -22,13 +22,13 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
         $_SESSION[$cat] = null;
         switch($cat){
             case 'MESSAGE_PRIVE':
-                $requete = $bdd->query('SELECT * FROM MessagePrive WHERE corbeille = 0 ORDER BY created_at DESC');
+                $requete = $bdd->query('SELECT * FROM MessagePrive ORDER BY created_at DESC');
             break;
             case 'ANNONCE':
-                $requete = $bdd->query('SELECT * FROM `Annonce` WHERE corbeille = 0 ORDER BY created_at DESC');
+                $requete = $bdd->query('SELECT * FROM `Annonce` ORDER BY created_at DESC');
             break;
             case 'CONSEIL':
-                $requete = $bdd->query('SELECT * FROM Conseil WHERE corbeille = 0 ORDER BY created_at DESC');
+                $requete = $bdd->query('SELECT * FROM Conseil ORDER BY created_at DESC');
             break;
             case 'FIL_DE_DISCUSSION':
                 $requete = $bdd->query('SELECT * FROM FilDeDiscussion ORDER BY created_at DESC');
@@ -37,15 +37,6 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
         while ($resultat = $requete->fetch()) {
             $_SESSION[$cat][] = $resultat;
         }
-    }
-    //Chargement de la corbeille 
-    $requete=$bdd->query('SELECT * FROM  `Annonce` WHERE corbeille = 1 ORDER BY dateCorbeille DESC');
-    while ($resultat = $requete->fetch()) {
-        $_SESSION['CORBEILLE'][] = $resultat;
-    }
-    $requete=$bdd->query('SELECT * FROM  `Conseil` WHERE corbeille = 1 ORDER BY dateCorbeille DESC');
-    while ($resultat = $requete->fetch()) {
-        $_SESSION['CORBEILLE'][] = $resultat;
     }
 }
 ?>
