@@ -32,7 +32,7 @@ public class AccueilActivity extends AppCompatActivity {
         Button buttonEnvoyerMessage;
         Button buttonConsulterMessage;
         Button buttonLocaliserBrigade;
-//        Button buttonConseilsProtection;
+        Button buttonConseilsProtection;
 
         if (this.mConnected) {
             Log.d(LOG, "connected");
@@ -41,12 +41,12 @@ public class AccueilActivity extends AppCompatActivity {
 //            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
             buttonConsulterMessage = findViewById(R.id.buttonConsulterMessageConnecte);
             buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigadeConnecte);
-//            buttonConseilsProtection = findViewById(R.id.buttonConseilsProtection);
+            buttonConseilsProtection = findViewById(R.id.buttonConseilsProtection);
 
             buttonConsulterMessage.setOnClickListener(
                     v -> startActivity(new Intent(AccueilActivity.this, MessagesActivity.class)));
-//            buttonConseilsProtection.setOnClickListener(
-//                    v -> startActivity(new Intent(AccueilActivity.this, ConseilsProctectionActivity.class)));
+            buttonConseilsProtection.setOnClickListener(
+                    v -> startActivity(new Intent(AccueilActivity.this, ConseilsActivity.class)));
 //            buttonLocaliserBrigade.setOnClickListener(
 //                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
             buttonLocaliserBrigade.setOnClickListener(
@@ -57,7 +57,7 @@ public class AccueilActivity extends AppCompatActivity {
             setContentView(R.layout.activity_accueil_non_connecte);
 //
             buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
-//            buttonConsulterMessage = findViewById(R.id.buttonConsulterMessage);
+            buttonConsulterMessage = findViewById(R.id.buttonConsulterMessage);
 //            buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigade);
 //            buttonConseilsProtection = findViewById(R.id.ButtonConseilsProtection);
 //
@@ -68,7 +68,9 @@ public class AccueilActivity extends AppCompatActivity {
 
             buttonEnvoyerMessage
                     .setOnClickListener(v -> startActivity(new Intent(AccueilActivity.this, MainActivity.class)));
-//
+            buttonConsulterMessage
+                    .setOnClickListener(v -> startActivity(new Intent(AccueilActivity.this, MainActivity.class)));
+
         }
         mActionBar = getSupportActionBar();
         if (mActionBar != null) {

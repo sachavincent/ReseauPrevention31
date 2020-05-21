@@ -3,7 +3,8 @@
     font-family: Arial;
 }
 
-html, body { 
+html, body 
+{ 
     min-width: 1200px;
     min-height: 100vh;
 	margin:0; 
@@ -11,7 +12,8 @@ html, body {
     background-color: white;
 }
 
-header{
+header 
+{
     height: 42px;
     padding-top: 2px;
     padding-bottom: 15px;
@@ -20,7 +22,7 @@ header{
     text-align:right;/*texte centré*/
 }
 
-body
+body 
 {
     background-color: white; /* couleur background */
     color: #151515; /* couleur texte */
@@ -28,56 +30,51 @@ body
 }
 
 /* mon profil */
-h1
+h1 
 {
     margin-left: 10px;
     color: #0073CC;
 }
 
 /* identification */
-h2
+h2 
 {
     font-size: 26px;
     margin-top: 30px;
 }
 
-
 /* =============== HEADER =============== */
 
 /* bouton profil */
-.profil
+.profil 
 {
     float: right;
     height: 28px;
-    width: 100px;
     font-weight: bold;
     font-size: 16px;
     color: white;
-    margin-right: 60px;
     margin-top: 20px;
     cursor: pointer;
 }
 
-.profil:hover
+.profil:hover 
 {
-    color: #EDEBE9;
+    color: #E1E1E1;
 }
 
 /* bouton deconnexion */
-.disconnect
-{
+.disconnect {
     float: right;
     color: white;
-    text-align: right;
-    margin-right: -135px;
+    margin-left: 15px;
+    margin-right: 15px;
     cursor: pointer;
 }
-
 
 /* =============== BARRE ACTIONS =============== */
 
 /* barre grise contenant plusieurs actions */
-#barre_actions
+#barre-actions 
 {
     width: auto;
     height: 40px;
@@ -86,8 +83,7 @@ h2
     padding: 3px;
 }
 
-/* bouton nouveau msg */
-.new_msg
+.demandes
 {
     font-size: 13px;
     font-weight: bold;
@@ -98,55 +94,58 @@ h2
     border: 0px;
     border-radius: 2px 2px 2px;
     cursor: pointer;
-
     margin-top: 3px;
     margin-bottom: 0px;
     margin-left: 37px;
 }
 
-.new_msg:hover
+/* boutons nouveau msg */
+.new-annonce, .new-conseil 
+{
+    font-size: 13px;
+    font-weight: bold;
+    width: 85px;
+    height: 35px;
+    color: white;
+    background-color: #0073CC;
+    border: 0px;
+    border-radius: 2px 2px 2px;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+.new-conseil 
+{
+    margin-right: -23px;
+}
+
+.new-annonce:hover, .new-conseil:hover, .demandes:hover 
 {
     background-color: #005A9E;
 }
 
-/* case "tout sélectionner" */
-.checkbox
-{
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-
-    margin-left: 50px;
-    margin-top: 0px;
-}
-
 /* bouton rafraichir */
-.refresh_rapide
+.refresh-rapide 
 {
     width: 15px;
     height: 15px;
     cursor: pointer;
-
     margin-left: 80px;
     margin-right: 175px;
 }
 
-.refresh_rapide:hover
+.refresh-rapide:hover 
 {
     background-color: #C7E0F4;
 }
 
-.vide
-{
-    width: 180px;
-    background-color: #101010;
-}
-
-/* boutons d'actions (sauf premiers à gauche)
-chambre : |  refuser  | supprimer |
-forces  : | supprimer |
+/* boutons d'actions
+chambre : | accepter  | refuser   | supprimer |
+forces  : |  envoyer  | supprimer | 
 */
-.actions
+.actions 
 {
     width: 100px;
     height: 34px;
@@ -155,55 +154,16 @@ forces  : | supprimer |
     border: 1px solid #E1E1E1;
     border-radius: 2px 2px 2px;
     cursor: pointer;
-
     margin-left: 50px;
 }
 
-.actions:hover
-{
-    background-color: #C7E0F4;
-}
-
-/* bouton accepter (le premier bouton à gauche - chambre) */
-.accepter
-{
-    width: 100px;
-    height: 34px;
-    background-color: white;
-    color: #0073CC;
-    border: 1px solid #E1E1E1;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-
-    margin-left: 50px;
-}
-
-.accepter:hover
-{
-    background-color: #C7E0F4;
-}
-
-/* bouton répondre (le premier bouton à gauche - forces) */
-.repondre
-{
-    width: 100px;
-    height: 34px;
-    background-color: white;
-    color: #0073CC;
-    border: 1px solid #E1E1E1;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-
-    margin-left: 50px;
-}
-
-.repondre:hover
+.actions:hover 
 {
     background-color: #C7E0F4;
 }
 
 /* barre grise droite (décoration) */
-#deco_droite
+#deco-droite 
 {
     float: right;
     width: 25px;
@@ -215,17 +175,16 @@ forces  : | supprimer |
     margin-top: -1px;
 }
 
-/* =============== CHOIX CHAMBRE / FORCES =============== */
+/* =============== IDENTIFICATION =============== */
 
-/* page d'identification */
-#page_identification
+#page-identification 
 {
     width: auto;
     min-height: 700px;
 }
 
 /* panel choix logo */
-#panel_choix
+#panel-choix 
 {   
     margin: auto;
     width: 700px;
@@ -237,7 +196,7 @@ forces  : | supprimer |
     margin-top: 5%;
 }
 
-#logo_ca
+#logo-ca 
 {
     float: left;
     margin-left: 25px;
@@ -245,7 +204,7 @@ forces  : | supprimer |
     cursor: pointer;
 }
 
-#logo_cma
+#logo-cma 
 {
     float: left;
     margin-left: 55px;
@@ -253,7 +212,7 @@ forces  : | supprimer |
     cursor: pointer;
 }
 
-#logo_cci
+#logo-cci 
 {
     float: right;
     margin-top: 15px;
@@ -261,36 +220,31 @@ forces  : | supprimer |
     cursor: pointer;
 }
 
-#logo_gendarmerie
+#logo-gendarmerie 
 {
     float: left;
     margin-left: 150px;
     cursor: pointer;
 }
 
-#logo_police
+#logo-police 
 {
     float: right;
     margin-right: 150px;
     cursor: pointer;
 }
 
-#logo_ca:hover, #logo_cma:hover, #logo_cci:hover, #logo_police:hover, #logo_gendarmerie:hover
+#logo-ca:hover, #logo-cma:hover, #logo-cci:hover, #logo-police:hover, #logo-gendarmerie:hover 
 {
     background-color: #E1E1E1;
 
-}
-
-#logo_ca::selection, #logo_cma::selection, #logo_cci::selection, #logo_police::selection, #logo_gendarmerie::selection
-{
-    background-color: #E1E1E1;
 }
 
 
 /* =============== IDENTIFICATION =============== */
 
 /* panel identification */
-#panel_identification
+#panel-identification 
 {   
     margin: auto;
     width: 400px;
@@ -303,20 +257,20 @@ forces  : | supprimer |
 }
 
 /* affichage logo sélectionné */
-#logo_choisi
+#logo-choisi 
 {
     margin-top: 5px;
 }
 
 /* labels "nom d'utilisateur" et "mot de passe" */
-.identifiants
+.identifiants 
 {
     margin: auto;
     margin-top: 5px;
 }
 
 /* zones de saisies */
-#login_username, #login_password
+#login-username, #login-password 
 {
     font-size: 15px;
     width: 250px;
@@ -328,7 +282,7 @@ forces  : | supprimer |
 }
 
 /* boutons retour | valider (identification) */
-.bouton_id
+.bouton-id 
 {
     height: 35px;
     width: 100px;
@@ -338,18 +292,17 @@ forces  : | supprimer |
     border: 0px;
     border-radius: 2px 2px 2px;
     cursor: pointer;
-
     margin-top: 5px;
     margin-right: 10px;
     margin-left: 10px;
 }
 
-.bouton_id:hover
+.bouton-id:hover 
 {
     background-color: #005A9E;
 }
 
-#login_failed
+#login-failed 
 {
     font-size: 13px;
     color: red;
@@ -359,19 +312,19 @@ forces  : | supprimer |
 /* =============== NAV GAUCHE =============== */
 
 /* panel gauche
+
 chambre :
 |  En attente          |
 |  Acceptées           |
 |  Refusées            |
-|  Corbeille           |
 
 forces :
-|  Boite de reception  |
-|  Envoyés             |
-|  Brouillons          |
-|  Corbeille           |
+|  Messages privés     |
+|  Annonces            |
+|  Conseils            |
+
 */
-#nav_gauche
+#nav-gauche 
 {
     float: left;
     width: 215px;    
@@ -383,18 +336,17 @@ forces :
 }
 
 /* icones des categories */
-.img_nav
+.img-nav
 {
     width: 17px;
     height: 17px;
-
     margin-bottom: -3px;
     margin-left: -35px;
     margin-right: 15px;
 }
 
 /* onglet d'une catégorie */
-.onglets, .ongletSelected
+.onglets, .onglet-selected
 {
     font-size: 15px;
     width: auto;
@@ -402,26 +354,25 @@ forces :
     color: #151515;
     background-color: #F3F2F1;
     cursor: pointer;
-
     padding-left: 55px;
     padding-top: 10px;
 
 }
 
-.onglets:hover
+.onglets:hover 
 {
     background-color: #C7E0F4;
     color: #151515;
 }
 
-.ongletSelected
+.onglet-selected 
 {
     color: white;
     background-color: #0073CC;
 }
 
 /* affichage du nombre de msgs dans une catégorie */
-.number_msg
+.number-msg 
 {
     font-size: 14px;
     float: right;
@@ -430,7 +381,7 @@ forces :
 }
 
 /* logo de la page en bas des onglets */
-.logo
+.logo 
 {
     margin-left: 35px;
     margin-top: 65vh;
@@ -440,12 +391,11 @@ forces :
 /* =============== PAGE PROFIL =============== */
 
 /* Titre "mon profil" */
-#pan_profil
+#pan-profil 
 {
     width: auto;
     min-width: 600px;
     min-height: 783px;
-
     margin-bottom: -25px;
     margin-left: 200px;
     padding-top: 4px;
@@ -453,7 +403,7 @@ forces :
 }
 
 /* conteneur image de profil + nom, prenom */
-#pan_nom_prenom
+#pan-nom-prenom 
 {
     width: auto;
     height: 250px;
@@ -462,26 +412,25 @@ forces :
     color: #101010;
     border-radius: 3px 3px 3px 3px;
     border: 1px solid #E1E1E1;
-
     padding-top: 25px;
     margin-right: 60px;
     margin-top: 15px;
 }
 
-.img_profil
+.img-profil
 {
     float: left;
     margin-left: 50px;
     margin-right: 50px;
 }
 
-.affichage_nom
+.affichage-nom 
 {
     font-weight: bold;
     font-size: 35px;
 }
 
-.affichage_prenom
+.affichage-prenom 
 {
     font-weight: bold;
     font-size: 25px;
@@ -489,7 +438,7 @@ forces :
 }
 
 /* conteneur des infos de l'user */
-#pan_infos_user
+#pan-infos-user 
 {
     width: auto;
     height: 375px;
@@ -498,7 +447,6 @@ forces :
     background-color: #EDEBE9;
     border: 1px solid #E1E1E1;
     border-radius: 3px 3px 3px 3px;
-
     padding-top: 15px;
     padding-left: 50px;
     margin-right: 60px;
@@ -513,7 +461,7 @@ forces :
 |  Nouveau mot de passe  |
 |  Confirmation          |
 */
-.infos_user
+.infos-user 
 {
     width: 560px;
     font-size: 15px;
@@ -522,7 +470,7 @@ forces :
 }
 
 /* zone de saisies des infos (si l'user veut modifier) */
-.input_infos
+.input-infos 
 {
     font-size: 15px;
     float: right;
@@ -533,7 +481,7 @@ forces :
 }
 
 /* bouton valider les modifications  */
-.valider_infos
+.valider-infos 
 {
     float: right;
     height: 40px;
@@ -550,12 +498,13 @@ forces :
     margin-right: 134px;
 }
 
-.valider_infos:hover
+.valider-infos:hover 
 {
     background-color: #005A9E;
 }
 
-#erreur
+/* message d'erreur en cas d'erreur */
+#erreur 
 {
     margin-top: 85px;
     margin-left: 280px;
@@ -563,7 +512,8 @@ forces :
     color: red;
 }
 
-#success
+/* message de confirmation en cas de changement valide */
+#success 
 {
     margin-top: 85px;
     margin-left: 320px;
@@ -572,21 +522,22 @@ forces :
 }
 
 
-/* =============== PAGE RECEPTION =============== */
+/* =============== ONGLETS DEMANDES / MESSAGES =============== */
 
-/* conteneur de la page reception / new msg */
-#pan_content
+/* conteneur de la page reception demandes (chambres) ET
+   reception messages (forces) */
+#pan-content
 {
     width: auto;
     min-width: 600px;
     min-height: 785px;
-    margin-bottom: -25px;
-    margin-left: 199px;
-    padding-left: 60px;
+    margin-bottom: 0px;
+    margin-left: 217px;
+    padding-left: 0px;
 }
 
-/* listes des msgs / demandes reçu(e)s (gauche) */
-#pan_reception
+/* liste des demandes (chambres), messages reçus (forces) */
+#pan-reception
 {
     float: left;
     width: 250px;   
@@ -595,59 +546,77 @@ forces :
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
     border-right: 1px solid #E1E1E1;
-
     margin-top: 0px;
-    margin-left: -42px;
     margin-bottom: 0px;
     overflow: auto;
 }
 
-/* onglet d'un msg */
-.onglet_msg, .onglet_msg_selected
+/* onglet d'une demande (chambre), message (force) */
+.onglet-msg, .onglet-msg-selected, .onglet-non-lu
 {
     width: auto;
     height: 15px;
     background-color: white;
     border-bottom: 1px solid #E1E1E1;
-
     font-size: 13px;
     padding: 20px;
-    padding-left: 20px;
+    padding-left: 25px;
     padding-bottom: 35px;
     cursor: pointer;
 }
 
-.onglet_msg:hover
+.onglet-msg:hover, .onglet-non-lu:hover
 {
-    background-color: #C7E0F4;
+    background-color: #E1E1E1;
 }
 
-.onglet_msg_selected
+.onglet-msg-selected
 {
     color: white;
     background-color: #0073CC;
 }
 
-#date_reception
+.onglet-non-lu
+{
+    background-color: #C7E0F4;
+    border-bottom: 1px solid white;
+}
+
+/* affichage date reception dans l'onglet */
+#date-reception
 {
     float: right;
     font-size: 11px;
-
 }
 
+/* objet onglet (non selectionné) */
+h9
+{
+    color: #0073CC;
+    font-weight: bold;
+}
+
+/* objet onglet (sélectionné) */
+h10
+{
+    color: white;
+    font-weight: bold;
+}
+
+/* =============== RECEPTION FORCES (A L'OUVERTURE) =============== */
+
 /* conteneur d'un msg lors de son ouverture */
-#zone_msg
+#zone-msg
 {
     width: auto;
     height: 121px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
-    
     margin-top: 0px;
     margin-left: 95px;
 }
 
-#date_msg
+#date-msg
 {
     font-size: 13px;
     float: right;
@@ -671,23 +640,30 @@ forces :
     padding-top: 15px;
 }
 
+#cle
+{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 50px;
+    margin-left: 270px;
+}
 
-/* =============== RECEPTION CHAMBRE =============== */
+
+/* =============== RECEPTION CHAMBRE (A L'OUVERTURE) =============== */
 
 /* zone des informations de la demande */
-#zone_demande
+#zone-demande
 {
     width: auto;
     height: 300px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
-
-    margin-left: 210px;
+    margin-left: 250px;
     padding: 1px;
     padding-left: 25px;
 }
 
-#date_demande
+#date-demande
 {
     font-size: 13px;
     float: right;
@@ -696,94 +672,107 @@ forces :
     color: grey;
 }
 
-/* =============== NOUVEAU MSG =============== */
 
-/* zone de selection des parametres du message */
-#zone_saisie_infos
+/* =============== FORCES : NOUVEAU CONSEIL =============== */
+
+/* conteneur nouveau conseil */
+[name='input-objet-conseil']
+{
+    width: 300px;
+    height: 25px;
+}
+
+#objet-new-conseil
 {
     width: auto;
-    height: 290px;
+    height: 100px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
-    
-    padding-top: 1px;
-    margin-left: 182px;
+
+    padding: 20px;
+}
+
+
+/* =============== FORCES : NOUVELLE ANNONCE =============== */
+
+/* zone de selection des parametres du message */
+#zone-saisie-annonce
+{
+    width: auto;
+    height: 295px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+    padding: 5px;
+    padding-left: 30px;
 }
 
 /* correspond à une ligne des parametres */
-.selection_params
+.selection-params
 {
     font-size: 14px;
     font-weight: regular;
-    padding: 0px;
-    padding-left: 25px;
 }
 
 /* parametre d'alignement */
-.alignement_msg
+.alignement-msg
 {
-    width: 530px;
+    width: 700px;
 }
 
 /* ligne de selection des activites, communes, zones */
-.select_activites, .select_commune, .select_zone
+.select-activites, .select-commune, .select-zone
 {
     float: right;
-    margin-left: 50px;
-    height: 20px;
-    width: 100px;
+    margin-left: 25px;
+    height: 25px;
+    width: 165px;
 }
 
 /* checkbox toutes les activites */
-#toutes_activites
+#toutes-activites
 {
     height: 16px;
     width: 16px;
-    margin-left: 25px;
+    margin-left: 22px;
 }
 
 /* checkbox toutes les communes */
-#toutes_communes
+#toutes-communes
 {
     height: 16px;
     width: 16px;
 }
 
 /* checkbox toutes les zones */
-#toutes_zones
+#toutes-zones
 {
     height: 16px;
     width: 16px;
     margin-left: 35px;
 }
 
-/* checkbox envoi par mail */
-#envoi_mail, #envoi_notif
+/* checkbox envoi par mail, notifs */
+#envoi-mail, #envoi-notif
 {
-    height: 15px;
-    width: 15px;
-    margin-left: 47px;
+    height: 16px;
+    width: 16px;
+    margin-left: 46px;
 }
 
-/* #envoi_sms
-{
-    margin-left: 15px;
-} */
-
 /* affichage destinataires concernés */
-#total_destinataires
+#total-destinataires
 {
     font-size: 15px;
     font-weight: bold;
-    padding-left: 25px;
+    color: #005A9E;
 }
 
-#write_msg
+#write-msg
 {
-    min-width: 75%;
-    /* max-width: 78%; */
-    min-height: 460px;
+    font-size: 15px;
+    min-width: 92%;
+    min-height: 430px;
     resize: none;
     border: 0px;
-    margin: 10px;
+    margin: 20px;
 }
