@@ -1,14 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.3
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le :  jeu. 14 mai 2020 à 21:27
--- Version du serveur :  5.7.26
--- Version de PHP :  7.4.2
+-- Hôte : 127.0.0.1:3308
+-- Généré le :  mar. 19 mai 2020 à 16:37
+-- Version du serveur :  8.0.18
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `prevention31`
@@ -17,865 +25,950 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Annonce`
+-- Structure de la table `annonce`
 --
 
-CREATE TABLE `Annonce` (
-  `idAnnonce` int(255) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `annonce`;
+CREATE TABLE IF NOT EXISTS `annonce` (
+  `idAnnonce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `objet` varchar(255) NOT NULL,
   `texte` text NOT NULL,
-  `corbeille` tinyint(1) NOT NULL DEFAULT '0',
-  `dateCorbeille` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ouvert` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idAnnonce`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `annonce`
+--
+
+INSERT INTO `annonce` (`idAnnonce`, `created_at`, `objet`, `texte`, `ouvert`) VALUES
+(1, '2020-05-14 22:35:53', 'Alerte H1N1 dans Toulouse', 'Saraceni tamen nec amici nobis umquam nec hostes optandi, ultro citroque discursantes quicquid inveniri poterat momento temporis parvi vastabant milvorum rapacium similes, qui si praedam dispexerint celsius, volatu rapiunt celeri, aut nisi impetraverint, non inmorantur.', 0),
+(3, '2020-05-14 22:31:34', 'Alerte Coronavirus en Haute-Garonne', 'Apud has gentes, quarum exordiens initium ab Assyriis ad Nili cataractas porrigitur et confinia Blemmyarum, omnes pari sorte sunt bellatores seminudi coloratis sagulis pube tenus amicti, equorum adiumento pernicium graciliumque camelorum per diversa se raptantes, in tranquillis vel turbidis rebus: nec eorum quisquam aliquando stivam adprehendit vel arborem colit aut arva subigendo quaeritat victum, sed errant semper per spatia longe lateque distenta sine lare sine sedibus fixis aut legibus: nec idem perferunt diutius caelum aut tractus unius soli illis umquam placet.', 1),
+(4, '2020-05-14 22:31:33', 'Alerte Coronavirus sur le secteur 6', 'Apud has gentes, quarum exordiens initium ab Assyriis ad Nili cataractas porrigitur et confinia Blemmyarum, omnes pari sorte sunt bellatores seminudi coloratis sagulis pube tenus amicti, equorum adiumento pernicium graciliumque camelorum per diversa se raptantes, in tranquillis vel turbidis rebus: nec eorum quisquam aliquando stivam adprehendit vel arborem colit aut arva subigendo quaeritat victum, sed errant semper per spatia longe lateque distenta sine lare sine sedibus fixis aut legibus: nec idem perferunt diutius caelum aut tractus unius soli illis umquam placet.', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `CodeActivite`
+-- Structure de la table `codeactivite`
 --
 
-CREATE TABLE `CodeActivite` (
+DROP TABLE IF EXISTS `codeactivite`;
+CREATE TABLE IF NOT EXISTS `codeactivite` (
   `code` smallint(5) UNSIGNED NOT NULL,
   `activite` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `CodeActivite`
+-- Déchargement des données de la table `codeactivite`
 --
 
-INSERT INTO `CodeActivite` (`code`, `activite`, `created_at`, `updated_at`) VALUES
-(11, 'Culture', '2020-05-04 17:02:05', '2020-05-04 17:02:57'),
-(12, 'Elevage', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(20, 'Exploitation forestière', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(30, 'Pèche', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(50, 'Extraction', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(101, 'Fabrication à base de viande', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(102, 'Fabrication alimentaire', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(110, 'Fabrication de boisson', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(120, 'Fabrication de tabac', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(130, 'Fabrication à base de textiles', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(140, 'Industrie de l\'habillement fabrication', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(170, 'Fabrication à base de papier ou carton', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(180, 'Imprimerie entreprise de reproduction', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(190, ' Rafinage du pétrol', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(200, 'Fabrication à base de produit chimique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(210, 'Industrie pharmaceutique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(220, 'Fabrication à base de plastique ou caoutchouc', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(230, 'Fabrication de produit minéraux non métalique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(240, 'Métallurgie', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(250, 'Fabrication de produit métalliques', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(260, 'Fabrication de produits informatiques ou électronique et optique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(270, 'Fabrication d’équipement électrique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(280, 'Fabrication de machine', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(290, 'Fabrication d’automobile ou produits en lien avec l’automobile', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(300, 'Fabrication de véhicules hors automobile', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(310, 'Fabrication de meubles', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(320, 'Fabrications diverses – monnaie bijoux jeux articles de sport lunettes ...', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(330, 'Réparation', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(350, 'Production d’énergie', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(360, 'Captation et distribution de l’eau', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(370, 'Traitement des eaux usés', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(380, 'Collecte et traitement des déchets', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(410, 'Construction de bâtiments', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(420, 'Construction de génie civil', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(430, 'Travaux de construction', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(450, 'Commerce d’automobiles et moto', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(460, 'Commerce de gros', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(470, 'Commerce de détail hyper supermarché grandes surface', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(471, 'Commerce de détail boulangerie pâtisserie', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(472, 'Commerce de détail restaurant', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(473, 'Commerce de détail opticien', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(474, 'Commerce de détail tabac presse', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(475, 'Commerce de détail bar', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(476, 'Commerce de détail pharmacie', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(477, 'Commerce de détail fleuristes', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(478, 'Commerce de détail parfumerie', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(479, 'Commerce de détail viande', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(480, 'Commerce de détail fruits et légumes', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(481, 'Commerce de détail de carburant', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(482, 'Commerce de détail animalerie', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(490, 'Transport ferroviaire', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(491, 'Transport routier taxis', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(492, 'Transport routier camion', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(493, 'Transport routier déménageur', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(500, 'Transport par l’eau', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(510, 'Transport aérien', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(530, 'Activité liée à la poste', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(540, 'Hébergement Hôtel', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(541, 'Hébergement Camping', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(542, 'Hébergement Privé', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(560, 'Restauration traditionnelle à table', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(561, 'Restauration rapide à emporter', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(562, 'Restauration collectives', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(563, 'Traiteurs', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(580, 'Édition de livres ou journaux', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(581, 'Édition de logiciel outil développement ou applicatif', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(582, 'Édition de jeux', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(590, 'Production de films', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(600, 'Production et ou diffusion radio', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(610, 'Télécommunication', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(620, 'Conseils et maintenance en informatique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(630, 'Services d’information', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(640, 'Activités bancaire', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(650, 'Assurance', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(660, 'Activités auxiliaires finances ou assurances', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(680, 'Activité immobilière', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(690, 'Activité juridique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(700, 'Conseil en gestion', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(710, 'Activité architecture géomètre', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(720, 'Recherche et développement', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(730, 'Agence de publicités', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(740, 'Design photographe interprète', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(750, 'Vétérinaires', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(770, 'Location de camion', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(771, 'Location de voiture', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(772, 'Location d’engin agricole', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(780, 'Activité recherche d’emploi travail temporaire', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(790, 'Agence de voyage', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(800, 'Activité de sécurité privé', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(810, 'Activité de nettoyage', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(820, 'Activité de soutien aux entreprises', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(840, 'Administration publique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(850, 'Enseignement primaire et maternel', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(851, 'Enseignement secondaire', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(852, 'Enseignement supérieur', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(853, 'Enseignement conduite', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(860, 'Hôpital clinique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(861, 'Cabinet médical médecin', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(862, 'Dentiste', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(863, 'Ambulances', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(864, 'Radiologie', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(865, 'Laboratoires d’analyse médicales', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(866, 'Infirmier', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(870, 'Maison de retraite EHPAD', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(871, 'Hébergement social pour personnes handicapées', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(900, 'Activité artistique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(910, 'Musé site historique ou touristique', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(930, 'Club de sport', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(960, 'CoiffeuR', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(961, 'Salon de beauté', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(962, 'Pompes funèbres', '2020-05-04 17:02:05', '2020-05-04 17:02:05'),
-(970, 'Activités en lien avec le ménage', '2020-05-04 17:02:05', '2020-05-04 17:02:05');
+INSERT INTO `codeactivite` (`code`, `activite`, `created_at`) VALUES
+(11, 'Culture', '2020-05-04 17:02:05'),
+(12, 'Elevage', '2020-05-04 17:02:05'),
+(20, 'Exploitation forestière', '2020-05-04 17:02:05'),
+(30, 'Pèche', '2020-05-04 17:02:05'),
+(50, 'Extraction', '2020-05-04 17:02:05'),
+(101, 'Fabrication à base de viande', '2020-05-04 17:02:05'),
+(102, 'Fabrication alimentaire', '2020-05-04 17:02:05'),
+(110, 'Fabrication de boisson', '2020-05-04 17:02:05'),
+(120, 'Fabrication de tabac', '2020-05-04 17:02:05'),
+(130, 'Fabrication à base de textiles', '2020-05-04 17:02:05'),
+(140, 'Industrie de l\'habillement fabrication', '2020-05-04 17:02:05'),
+(170, 'Fabrication à base de papier ou carton', '2020-05-04 17:02:05'),
+(180, 'Imprimerie entreprise de reproduction', '2020-05-04 17:02:05'),
+(190, ' Rafinage du pétrol', '2020-05-04 17:02:05'),
+(200, 'Fabrication à base de produit chimique', '2020-05-04 17:02:05'),
+(210, 'Industrie pharmaceutique', '2020-05-04 17:02:05'),
+(220, 'Fabrication à base de plastique ou caoutchouc', '2020-05-04 17:02:05'),
+(230, 'Fabrication de produit minéraux non métalique', '2020-05-04 17:02:05'),
+(240, 'Métallurgie', '2020-05-04 17:02:05'),
+(250, 'Fabrication de produit métalliques', '2020-05-04 17:02:05'),
+(260, 'Fabrication de produits informatiques ou électronique et optique', '2020-05-04 17:02:05'),
+(270, 'Fabrication d’équipement électrique', '2020-05-04 17:02:05'),
+(280, 'Fabrication de machine', '2020-05-04 17:02:05'),
+(290, 'Fabrication d’automobile ou produits en lien avec l’automobile', '2020-05-04 17:02:05'),
+(300, 'Fabrication de véhicules hors automobile', '2020-05-04 17:02:05'),
+(310, 'Fabrication de meubles', '2020-05-04 17:02:05'),
+(320, 'Fabrications diverses – monnaie bijoux jeux articles de sport lunettes ...', '2020-05-04 17:02:05'),
+(330, 'Réparation', '2020-05-04 17:02:05'),
+(350, 'Production d’énergie', '2020-05-04 17:02:05'),
+(360, 'Captation et distribution de l’eau', '2020-05-04 17:02:05'),
+(370, 'Traitement des eaux usés', '2020-05-04 17:02:05'),
+(380, 'Collecte et traitement des déchets', '2020-05-04 17:02:05'),
+(410, 'Construction de bâtiments', '2020-05-04 17:02:05'),
+(420, 'Construction de génie civil', '2020-05-04 17:02:05'),
+(430, 'Travaux de construction', '2020-05-04 17:02:05'),
+(450, 'Commerce d’automobiles et moto', '2020-05-04 17:02:05'),
+(460, 'Commerce de gros', '2020-05-04 17:02:05'),
+(470, 'Commerce de détail hyper supermarché grandes surface', '2020-05-04 17:02:05'),
+(471, 'Commerce de détail boulangerie pâtisserie', '2020-05-04 17:02:05'),
+(472, 'Commerce de détail restaurant', '2020-05-04 17:02:05'),
+(473, 'Commerce de détail opticien', '2020-05-04 17:02:05'),
+(474, 'Commerce de détail tabac presse', '2020-05-04 17:02:05'),
+(475, 'Commerce de détail bar', '2020-05-04 17:02:05'),
+(476, 'Commerce de détail pharmacie', '2020-05-04 17:02:05'),
+(477, 'Commerce de détail fleuristes', '2020-05-04 17:02:05'),
+(478, 'Commerce de détail parfumerie', '2020-05-04 17:02:05'),
+(479, 'Commerce de détail viande', '2020-05-04 17:02:05'),
+(480, 'Commerce de détail fruits et légumes', '2020-05-04 17:02:05'),
+(481, 'Commerce de détail de carburant', '2020-05-04 17:02:05'),
+(482, 'Commerce de détail animalerie', '2020-05-04 17:02:05'),
+(490, 'Transport ferroviaire', '2020-05-04 17:02:05'),
+(491, 'Transport routier taxis', '2020-05-04 17:02:05'),
+(492, 'Transport routier camion', '2020-05-04 17:02:05'),
+(493, 'Transport routier déménageur', '2020-05-04 17:02:05'),
+(500, 'Transport par l’eau', '2020-05-04 17:02:05'),
+(510, 'Transport aérien', '2020-05-04 17:02:05'),
+(530, 'Activité liée à la poste', '2020-05-04 17:02:05'),
+(540, 'Hébergement Hôtel', '2020-05-04 17:02:05'),
+(541, 'Hébergement Camping', '2020-05-04 17:02:05'),
+(542, 'Hébergement Privé', '2020-05-04 17:02:05'),
+(560, 'Restauration traditionnelle à table', '2020-05-04 17:02:05'),
+(561, 'Restauration rapide à emporter', '2020-05-04 17:02:05'),
+(562, 'Restauration collectives', '2020-05-04 17:02:05'),
+(563, 'Traiteurs', '2020-05-04 17:02:05'),
+(580, 'Édition de livres ou journaux', '2020-05-04 17:02:05'),
+(581, 'Édition de logiciel outil développement ou applicatif', '2020-05-04 17:02:05'),
+(582, 'Édition de jeux', '2020-05-04 17:02:05'),
+(590, 'Production de films', '2020-05-04 17:02:05'),
+(600, 'Production et ou diffusion radio', '2020-05-04 17:02:05'),
+(610, 'Télécommunication', '2020-05-04 17:02:05'),
+(620, 'Conseils et maintenance en informatique', '2020-05-04 17:02:05'),
+(630, 'Services d’information', '2020-05-04 17:02:05'),
+(640, 'Activités bancaire', '2020-05-04 17:02:05'),
+(650, 'Assurance', '2020-05-04 17:02:05'),
+(660, 'Activités auxiliaires finances ou assurances', '2020-05-04 17:02:05'),
+(680, 'Activité immobilière', '2020-05-04 17:02:05'),
+(690, 'Activité juridique', '2020-05-04 17:02:05'),
+(700, 'Conseil en gestion', '2020-05-04 17:02:05'),
+(710, 'Activité architecture géomètre', '2020-05-04 17:02:05'),
+(720, 'Recherche et développement', '2020-05-04 17:02:05'),
+(730, 'Agence de publicités', '2020-05-04 17:02:05'),
+(740, 'Design photographe interprète', '2020-05-04 17:02:05'),
+(750, 'Vétérinaires', '2020-05-04 17:02:05'),
+(770, 'Location de camion', '2020-05-04 17:02:05'),
+(771, 'Location de voiture', '2020-05-04 17:02:05'),
+(772, 'Location d’engin agricole', '2020-05-04 17:02:05'),
+(780, 'Activité recherche d’emploi travail temporaire', '2020-05-04 17:02:05'),
+(790, 'Agence de voyage', '2020-05-04 17:02:05'),
+(800, 'Activité de sécurité privé', '2020-05-04 17:02:05'),
+(810, 'Activité de nettoyage', '2020-05-04 17:02:05'),
+(820, 'Activité de soutien aux entreprises', '2020-05-04 17:02:05'),
+(840, 'Administration publique', '2020-05-04 17:02:05'),
+(850, 'Enseignement primaire et maternel', '2020-05-04 17:02:05'),
+(851, 'Enseignement secondaire', '2020-05-04 17:02:05'),
+(852, 'Enseignement supérieur', '2020-05-04 17:02:05'),
+(853, 'Enseignement conduite', '2020-05-04 17:02:05'),
+(860, 'Hôpital clinique', '2020-05-04 17:02:05'),
+(861, 'Cabinet médical médecin', '2020-05-04 17:02:05'),
+(862, 'Dentiste', '2020-05-04 17:02:05'),
+(863, 'Ambulances', '2020-05-04 17:02:05'),
+(864, 'Radiologie', '2020-05-04 17:02:05'),
+(865, 'Laboratoires d’analyse médicales', '2020-05-04 17:02:05'),
+(866, 'Infirmier', '2020-05-04 17:02:05'),
+(870, 'Maison de retraite EHPAD', '2020-05-04 17:02:05'),
+(871, 'Hébergement social pour personnes handicapées', '2020-05-04 17:02:05'),
+(900, 'Activité artistique', '2020-05-04 17:02:05'),
+(910, 'Musé site historique ou touristique', '2020-05-04 17:02:05'),
+(930, 'Club de sport', '2020-05-04 17:02:05'),
+(960, 'Coiffeur', '2020-05-04 17:02:05'),
+(961, 'Salon de beauté', '2020-05-04 17:02:05'),
+(962, 'Pompes funèbres', '2020-05-04 17:02:05'),
+(970, 'Activités en lien avec le ménage', '2020-05-04 17:02:05');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Commune`
+-- Structure de la table `commune`
 --
 
-CREATE TABLE `Commune` (
-  `idCommune` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `commune`;
+CREATE TABLE IF NOT EXISTS `commune` (
+  `idCommune` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `codePostal` int(5) UNSIGNED NOT NULL,
   `commune` varchar(27) DEFAULT NULL,
   `secteur` int(1) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idCommune`)
+) ENGINE=InnoDB AUTO_INCREMENT=595 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `Commune`
+-- Déchargement des données de la table `commune`
 --
 
-INSERT INTO `Commune` (`idCommune`, `codePostal`, `commune`, `secteur`, `created_at`, `updated_at`) VALUES
-(1, 31000, 'TOULOUSE', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(2, 31100, 'TOULOUSE', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(3, 31200, 'TOULOUSE', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(4, 31300, 'TOULOUSE', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(5, 31400, 'TOULOUSE', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(6, 31500, 'TOULOUSE', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(7, 31110, 'ANTIGNAC', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(8, 31110, 'ARTIGUE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(9, 31110, 'BAGNERES-DE-LUCHON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(10, 31110, 'BENQUE-DESSOUS-ET-DESSUS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(11, 31110, 'BILLIERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(12, 31110, 'BOURG-D\'OUEIL', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(13, 31110, 'CASTILLON-DE-LARBOUST', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(14, 31110, 'CATHERVIELLE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(15, 31110, 'CAUBOUS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(16, 31110, 'CAZARIL-LASPENES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(17, 31110, 'CAZEAUX-DE-LARBOUST', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(18, 31110, 'CIER-DE-LUCHON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(19, 31110, 'CIRES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(20, 31110, 'GARIN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(21, 31110, 'GOUAUX-DE-LARBOUST', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(22, 31110, 'GOUAUX-DE-LUCHON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(23, 31110, 'JURVIELLE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(24, 31110, 'JUZET-DE-LUCHON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(25, 31110, 'MAYREGNE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(26, 31110, 'MONTAUBAN-DE-LUCHON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(27, 31110, 'MOUSTAJON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(28, 31110, 'OO', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(29, 31110, 'PORTET-DE-LUCHON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(30, 31110, 'POUBEAU', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(31, 31110, 'SACCOURVIELLE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(32, 31110, 'SAINT-AVENTIN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(33, 31110, 'SAINT-MAMET', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(34, 31110, 'SAINT-PAUL-D\'OUEIL', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(35, 31110, 'SALLES-ET-PRATVIEL', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(36, 31110, 'SODE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(37, 31110, 'TREBONS-DE-LUCHON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(38, 31120, 'GOYRANS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(39, 31120, 'LACROIX-FALGARDE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(40, 31120, 'PINSAGUEL', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(41, 31120, 'PORTET-SUR-GARONNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(42, 31120, 'ROQUES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(43, 31120, 'ROQUETTES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(44, 31130, 'BALMA', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(45, 31130, 'FLOURENS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(46, 31130, 'PIN-BALMA', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(47, 31130, 'QUINT-FONSEGRIVES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(48, 31140, 'AUCAMVILLE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(49, 31140, 'FONBEAUZARD', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(50, 31140, 'LAUNAGUET', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(51, 31140, 'MONTBERON', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(52, 31140, 'PECHBONNIEU', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(53, 31140, 'SAINT-ALBAN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(54, 31140, 'SAINT-LOUP-CAMMAS', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(55, 31150, 'BRUGUIERES', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(56, 31150, 'FENOUILLET', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(57, 31150, 'GAGNAC-SUR-GARONNE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(58, 31150, 'GRATENTOUR', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(59, 31150, 'LESPINASSE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(60, 31160, 'ARBAS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(61, 31160, 'ARBON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(62, 31160, 'ARGUENOS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(63, 31160, 'ASPET', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(64, 31160, 'CABANAC-CAZAUX', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(65, 31160, 'CASTELBIAGUE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(66, 31160, 'CAZAUNOUS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(67, 31160, 'CHEIN-DESSUS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(68, 31160, 'COURET', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(69, 31160, 'ENCAUSSE-LES-THERMES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(70, 31160, 'ESTADENS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(71, 31160, 'FOUGARON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(72, 31160, 'GANTIES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(73, 31160, 'HERRAN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(74, 31160, 'IZAUT-DE-L\'HOTEL', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(75, 31160, 'JUZET-D\'IZAUT', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(76, 31160, 'LESPITEAU', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(77, 31160, 'MILHAS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(78, 31160, 'MONCAUP', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(79, 31160, 'MONTASTRUC-DE-SALIES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(80, 31160, 'PORTET-D\'ASPET', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(81, 31160, 'RAZECUEILLE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(82, 31160, 'ROUEDE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(83, 31160, 'SENGOUAGNET', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(84, 31160, 'SOUEICH', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(85, 31170, 'TOURNEFEUILLE', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(86, 31180, 'CASTELMAUROU', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(87, 31180, 'LAPEYROUSE-FOSSAT', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(88, 31180, 'ROUFFIAC-TOLOSAN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(89, 31180, 'SAINT-GENIES-BELLEVUE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(90, 31190, 'AURAGNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(91, 31190, 'AURIBAIL', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(92, 31190, 'AUTERIVE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(93, 31190, 'CAUJAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(94, 31190, 'ESPERCE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(95, 31190, 'GRAZAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(96, 31190, 'GREPIAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(97, 31190, 'LABRUYERE-DORSA', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(98, 31190, 'LAGRACE-DIEU', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(99, 31190, 'MAURESSAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(100, 31190, 'MAUVAISIN', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(101, 31190, 'MIREMONT', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(102, 31190, 'PUYDANIEL', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(103, 31210, 'ARDIEGE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(104, 31210, 'AUSSON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(105, 31210, 'BORDES-DE-RIVIERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(106, 31210, 'CLARAC', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(107, 31210, 'CUGURON', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(108, 31210, 'LE CUING', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(109, 31210, 'FRANQUEVIELLE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(110, 31210, 'GOURDAN-POLIGNAN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(111, 31210, 'HUOS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(112, 31210, 'MARTRES-DE-RIVIERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(113, 31210, 'MONTREJEAU', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(114, 31210, 'POINTIS-DE-RIVIERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(115, 31210, 'PONLAT-TAILLEBOURG', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(116, 31210, 'LES TOURREILLES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(117, 31220, 'CAZERES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(118, 31220, 'COULADERE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(119, 31220, 'LAVELANET-DE-COMMINGES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(120, 31220, 'LESCUNS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(121, 31220, 'MARIGNAC-LASPEYRES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(122, 31220, 'MARTRES-TOLOSANE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(123, 31220, 'MAURAN', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(124, 31220, 'MONDAVEZAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(125, 31220, 'MONTBERAUD', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(126, 31220, 'MONTCLAR-DE-COMMINGES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(127, 31220, 'PALAMINY', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(128, 31220, 'PLAGNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(129, 31220, 'LE PLAN', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(130, 31220, 'SAINT-JULIEN-SUR-GARONNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(131, 31220, 'SAINT-MICHEL', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(132, 31220, 'SANA', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(133, 31230, 'AGASSAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(134, 31230, 'AMBAX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(135, 31230, 'ANAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(136, 31230, 'BOISSEDE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(137, 31230, 'CASTELGAILLARD', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(138, 31230, 'COUEILLES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(139, 31230, 'FABAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(140, 31230, 'FRONTIGNAN-SAVES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(141, 31230, 'GOUDEX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(142, 31230, 'L\'ISLE-EN-DODON', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(143, 31230, 'LABASTIDE-PAUMES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(144, 31230, 'LILHAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(145, 31230, 'MARTISSERRE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(146, 31230, 'MAUVEZIN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(147, 31230, 'MIRAMBEAU', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(148, 31230, 'MOLAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(149, 31230, 'MONTBERNARD', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(150, 31230, 'MONTESQUIEU-GUITTAUT', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(151, 31230, 'PUYMAURIN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(152, 31230, 'RIOLAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(153, 31230, 'SAINT-FRAJOU', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(154, 31230, 'SAINT-LAURENT', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(155, 31230, 'SALERM', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(156, 31230, 'CAZAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(157, 31240, 'SAINT-JEAN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(158, 31240, 'L\'UNION', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(159, 31250, 'REVEL', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(160, 31250, 'VAUDREUILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(161, 31260, 'AUSSEING', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(162, 31260, 'BELBEZE-EN-COMMINGES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(163, 31260, 'CASSAGNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(164, 31260, 'CASTAGNEDE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(165, 31260, 'FIGAROL', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(166, 31260, 'FRANCAZAL', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(167, 31260, 'HIS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(168, 31260, 'MANE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(169, 31260, 'MARSOULAS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(170, 31260, 'MAZERES-SUR-SALAT', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(171, 31260, 'MONTESPAN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(172, 31260, 'MONTGAILLARD-DE-SALIES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(173, 31260, 'MONTSAUNES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(174, 31260, 'SALEICH', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(175, 31260, 'SALIES-DU-SALAT', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(176, 31260, 'TOUILLE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(177, 31260, 'URAU', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(178, 31260, 'ESCOULIS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(179, 31270, 'CUGNAUX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(180, 31270, 'FROUZINS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(181, 31270, 'VILLENEUVE-TOLOSANE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(182, 31280, 'AIGREFEUILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(183, 31280, 'DREMIL-LAFAGE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(184, 31280, 'MONS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(185, 31290, 'AVIGNONET-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(186, 31290, 'BEAUTEVILLE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(187, 31290, 'CESSALES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(188, 31290, 'FOLCARDE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(189, 31290, 'GARDOUCH', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(190, 31290, 'LAGARDE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(191, 31290, 'LUX', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(192, 31290, 'MAUREMONT', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(193, 31290, 'MONTCLAR-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(194, 31290, 'MONTGAILLARD-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(195, 31290, 'RENNEVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(196, 31290, 'RIEUMAJOU', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(197, 31290, 'SAINT-GERMIER', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(198, 31290, 'SAINT-ROME', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(199, 31290, 'SAINT-VINCENT', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(200, 31290, 'TREBONS-SUR-LA-GRASSE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(201, 31290, 'VALLEGUE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(202, 31290, 'VIEILLEVIGNE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(203, 31290, 'VILLEFRANCHE-DE-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(204, 31290, 'VILLENOUVELLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(205, 31310, 'BAX', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(206, 31310, 'CANENS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(207, 31310, 'CASTAGNAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(208, 31310, 'GENSAC-SUR-GARONNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(209, 31310, 'GOUTEVERNISSE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(210, 31310, 'GOUZENS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(211, 31310, 'LAHITERE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(212, 31310, 'LAPEYRERE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(213, 31310, 'LATOUR', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(214, 31310, 'LATRAPE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(215, 31310, 'MAILHOLAS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(216, 31310, 'MASSABRAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(217, 31310, 'MONTBRUN-BOCAGE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(218, 31310, 'MONTESQUIEU-VOLVESTRE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(219, 31310, 'RIEUX-VOLVESTRE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(220, 31310, 'SAINT-CHRISTAUD', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(221, 31320, 'AUREVILLE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(222, 31320, 'AUZEVILLE-TOLOSANE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(223, 31320, 'CASTANET-TOLOSAN', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(224, 31320, 'MERVILLA', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(225, 31320, 'PECHABOU', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(226, 31320, 'PECHBUSQUE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(227, 31320, 'REBIGUE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(228, 31320, 'VIEILLE-TOULOUSE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(229, 31320, 'VIGOULET-AUZIL', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(230, 31330, 'LE BURGAUD', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(231, 31330, 'GRENADE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(232, 31330, 'LAUNAC', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(233, 31330, 'MERVILLE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(234, 31330, 'ONDES', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(235, 31330, 'SAINT-CEZERT', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(236, 31330, 'LARRA', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(237, 31340, 'BONDIGOUX', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(238, 31340, 'LE BORN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(239, 31340, 'LAYRAC-SUR-TARN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(240, 31340, 'LA MAGDELAINE-SUR-TARN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(241, 31340, 'MIREPOIX-SUR-TARN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(242, 31340, 'VACQUIERS', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(243, 31340, 'VILLEMATIER', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(244, 31340, 'VILLEMUR-SUR-TARN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(245, 31350, 'BLAJAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(246, 31350, 'BOULOGNE-SUR-GESSE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(247, 31350, 'CARDEILHAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(248, 31350, 'CASTERA-VIGNOLES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(249, 31350, 'CHARLAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(250, 31350, 'CIADOUX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(251, 31350, 'ESCANECRABE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(252, 31350, 'GENSAC-DE-BOULOGNE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(253, 31350, 'LESPUGUE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(254, 31350, 'LUNAX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(255, 31350, 'MONDILHAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(256, 31350, 'MONTGAILLARD-SUR-SAVE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(257, 31350, 'MONTMAURIN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(258, 31350, 'NENIGAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(259, 31350, 'NIZAN-GESSE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(260, 31350, 'PEGUILHAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(261, 31350, 'SAINT-FERREOL-DE-COMMINGES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(262, 31350, 'SAINT-LARY-BOUJEAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(263, 31350, 'SAINT-LOUP-EN-COMMINGES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(264, 31350, 'SAINT-PE-DELBOSC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(265, 31350, 'SAMAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(266, 31350, 'SARRECAVE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(267, 31350, 'SARREMEZAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(268, 31360, 'ARNAUD-GUILHEM', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(269, 31360, 'AUZAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(270, 31360, 'BEAUCHALOT', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(271, 31360, 'BOUSSENS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(272, 31360, 'CASTILLON-DE-SAINT-MARTORY', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(273, 31360, 'LE FRECHET', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(274, 31360, 'LAFFITE-TOUPIERE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(275, 31360, 'LESTELLE-DE-SAINT-MARTORY', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(276, 31360, 'MANCIOUX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(277, 31360, 'PROUPIARY', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(278, 31360, 'ROQUEFORT-SUR-GARONNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(279, 31360, 'SAINT-MARTORY', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(280, 31360, 'SAINT-MEDARD', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(281, 31360, 'SEPX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(282, 31370, 'BEAUFORT', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(283, 31370, 'BERAT', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(284, 31370, 'FORGUES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(285, 31370, 'LABASTIDE-CLERMONT', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(286, 31370, 'LAHAGE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(287, 31370, 'LAUTIGNAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(288, 31370, 'MONES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(289, 31370, 'MONTASTRUC-SAVES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(290, 31370, 'MONTGRAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(291, 31370, 'LE PIN-MURELET', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(292, 31370, 'PLAGNOLE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(293, 31370, 'POUCHARRAMET', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(294, 31370, 'RIEUMES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(295, 31370, 'SABONNERES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(296, 31370, 'SAJAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(297, 31370, 'SAVERES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(298, 31380, 'AZAS', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(299, 31380, 'BAZUS', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(300, 31380, 'GARIDECH', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(301, 31380, 'GEMIL', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(302, 31380, 'GRAGNAGUE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(303, 31380, 'MONTASTRUC-LA-CONSEILLERE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(304, 31380, 'MONTJOIRE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(305, 31380, 'MONTPITOL', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(306, 31380, 'PAULHAC', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(307, 31380, 'ROQUESERIERE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(308, 31380, 'SAINT-JEAN-LHERM', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(309, 31380, 'VILLARIES', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(310, 31390, 'BOIS-DE-LA-PIERRE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(311, 31390, 'CARBONNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(312, 31390, 'LACAUGNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(313, 31390, 'LAFITTE-VIGORDANE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(314, 31390, 'MARQUEFAVE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(315, 31390, 'PEYSSIES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(316, 31390, 'SALLES-SUR-GARONNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(317, 31410, 'CAPENS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(318, 31410, 'LE FAUGA', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(319, 31410, 'LAVERNOSE-LACASSE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(320, 31410, 'LONGAGES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(321, 31410, 'MAUZAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(322, 31410, 'MONTAUT', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(323, 31410, 'MONTGAZIN', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(324, 31410, 'NOE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(325, 31410, 'SAINT-HILAIRE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(326, 31410, 'SAINT-SULPICE-SUR-LEZE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(327, 31420, 'ALAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(328, 31420, 'AULON', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(329, 31420, 'AURIGNAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(330, 31420, 'BACHAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(331, 31420, 'BENQUE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(332, 31420, 'BOUSSAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(333, 31420, 'BOUZIN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(334, 31420, 'CASSAGNABERE-TOURNAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(335, 31420, 'CAZENEUVE-MONTAUT', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(336, 31420, 'EOUX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(337, 31420, 'ESPARRON', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(338, 31420, 'FRANCON', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(339, 31420, 'MONTOULIEU-SAINT-BERNARD', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(340, 31420, 'PEYRISSAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(341, 31420, 'PEYROUZET', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(342, 31420, 'SAINT-ANDRE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(343, 31420, 'SAINT-ELIX-SEGLAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(344, 31420, 'SAMOUILLAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(345, 31420, 'TERREBASSE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(346, 31430, 'CASTELNAU-PICAMPEAU', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(347, 31430, 'CASTIES-LABRANDE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(348, 31430, 'LE FOUSSERET', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(349, 31430, 'FUSTIGNAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(350, 31430, 'GRATENS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(351, 31430, 'LUSSAN-ADEILHAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(352, 31430, 'MARIGNAC-LASCLARES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(353, 31430, 'MONTEGUT-BOURJAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(354, 31430, 'MONTOUSSIN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(355, 31430, 'POLASTRON', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(356, 31430, 'POUY-DE-TOUGES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(357, 31430, 'SAINT-ARAILLE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(358, 31430, 'SAINT-ELIX-LE-CHATEAU', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(359, 31430, 'SENARENS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(360, 31440, 'ARGUT-DESSOUS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(361, 31440, 'ARLOS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(362, 31440, 'BACHOS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(363, 31440, 'BAREN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(364, 31440, 'BEZINS-GARRAUX', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(365, 31440, 'BOUTX', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(366, 31440, 'BURGALAYS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(367, 31440, 'CAZAUX-LAYRISSE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(368, 31440, 'CHAUM', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(369, 31440, 'CIERP-GAUD', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(370, 31440, 'ESTENOS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(371, 31440, 'EUP', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(372, 31440, 'FOS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(373, 31440, 'FRONSAC', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(374, 31440, 'GURAN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(375, 31440, 'LEGE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(376, 31440, 'LEZ', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(377, 31440, 'MARIGNAC', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(378, 31440, 'MELLES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(379, 31440, 'SAINT-BEAT', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(380, 31440, 'SIGNAC', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(381, 31440, 'BINOS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(382, 31450, 'AYGUESVIVES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(383, 31450, 'BAZIEGE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(384, 31450, 'BELBERAUD', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(385, 31450, 'BELBEZE-DE-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(386, 31450, 'CORRONSAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(387, 31450, 'DEYME', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(388, 31450, 'DONNEVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(389, 31450, 'ESPANES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(390, 31450, 'FOURQUEVAUX', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(391, 31450, 'ISSUS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(392, 31450, 'LABASTIDE-BEAUVOIR', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(393, 31450, 'MONTBRUN-LAURAGAIS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(394, 31450, 'MONTESQUIEU-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(395, 31450, 'MONTGISCARD', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(396, 31450, 'MONTLAUR', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(397, 31450, 'NOUEILLES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(398, 31450, 'ODARS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(399, 31450, 'POMPERTUZAT', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(400, 31450, 'POUZE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(401, 31450, 'VARENNES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(402, 31460, 'ALBIAC', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(403, 31460, 'AURIAC-SUR-VENDINELLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(404, 31460, 'BEAUVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(405, 31460, 'LE CABANIAL', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(406, 31460, 'CAMBIAC', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(407, 31460, 'CARAGOUDES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(408, 31460, 'CARAMAN', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(409, 31460, 'LE FAGET', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(410, 31460, 'FRANCARVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(411, 31460, 'LOUBENS-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(412, 31460, 'MASCARVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(413, 31460, 'MAUREVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(414, 31460, 'MOURVILLES-BASSES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(415, 31460, 'PRUNET', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(416, 31460, 'LA SALVETAT-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(417, 31460, 'SAUSSENS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(418, 31460, 'SEGREVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(419, 31460, 'TOUTENS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(420, 31460, 'VENDINE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(421, 31470, 'BONREPOS-SUR-AUSSONNELLE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(422, 31470, 'BRAGAYRAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(423, 31470, 'CAMBERNARD', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(424, 31470, 'EMPEAUX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(425, 31470, 'FONSORBES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(426, 31470, 'FONTENILLES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(427, 31470, 'SAIGUEDE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(428, 31470, 'SAINTE-FOY-DE-PEYROLIERES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(429, 31470, 'SAINT-LYS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(430, 31470, 'SAINT-THOMAS', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(431, 31480, 'BELLESSERRE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(432, 31480, 'BRIGNEMONT', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(433, 31480, 'CABANAC-SEGUENVILLE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(434, 31480, 'CADOURS', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(435, 31480, 'CAUBIAC', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(436, 31480, 'COX', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(437, 31480, 'DRUDAS', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(438, 31480, 'GARAC', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(439, 31480, 'LE GRES', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(440, 31480, 'LAGRAULET-SAINT-NICOLAS', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(441, 31480, 'LAREOLE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(442, 31480, 'PELLEPORT', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(443, 31480, 'PUYSSEGUR', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(444, 31480, 'VIGNAUX', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(445, 31490, 'BRAX', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(446, 31490, 'LEGUEVIN', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(447, 31510, 'ANTICHAN-DE-FRONTIGNES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(448, 31510, 'BAGIRY', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(449, 31510, 'BARBAZAN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(450, 31510, 'CIER-DE-RIVIERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(451, 31510, 'FRONTIGNAN-DE-COMMINGES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(452, 31510, 'GALIE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(453, 31510, 'GENOS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(454, 31510, 'LABROQUERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(455, 31510, 'LOURDE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(456, 31510, 'LUSCAN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(457, 31510, 'MALVEZIE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(458, 31510, 'MONT-DE-GALIE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(459, 31510, 'ORE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(460, 31510, 'PAYSSOUS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(461, 31510, 'SAINT-BERTRAND-DE-COMMINGES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(462, 31510, 'SAINT-PE-D\'ARDET', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(463, 31510, 'SAUVETERRE-DE-COMMINGES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(464, 31510, 'SEILHAN', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(465, 31510, 'VALCABRERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(466, 31520, 'RAMONVILLE-SAINT-AGNE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(467, 31530, 'BELLEGARDE-SAINTE-MARIE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(468, 31530, 'BRETX', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(469, 31530, 'LE CASTERA', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(470, 31530, 'LASSERRE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(471, 31530, 'LEVIGNAC', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(472, 31530, 'MENVILLE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(473, 31530, 'MERENVIELLE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(474, 31530, 'MONTAIGUT-SUR-SAVE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(475, 31530, 'PRADERE-LES-BOURGUETS', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(476, 31530, 'SAINTE-LIVRADE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(477, 31530, 'SAINT-PAUL-SUR-SAVE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(478, 31530, 'THIL', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(479, 31540, 'BELESTA-EN-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(480, 31540, 'FALGA', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(481, 31540, 'JUZES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(482, 31540, 'MAURENS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(483, 31540, 'MONTEGUT-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(484, 31540, 'MOURVILLES-HAUTES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(485, 31540, 'NOGARET', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(486, 31540, 'ROUMENS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(487, 31540, 'SAINT-FELIX-LAURAGAIS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(488, 31540, 'SAINT-JULIA', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(489, 31540, 'VAUX', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(490, 31550, 'AIGNES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(491, 31550, 'CINTEGABELLE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(492, 31550, 'GAILLAC-TOULZA', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(493, 31550, 'MARLIAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(494, 31560, 'CAIGNAC', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(495, 31560, 'CALMONT', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(496, 31560, 'GIBEL', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(497, 31560, 'MONESTROL', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(498, 31560, 'MONTGEARD', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(499, 31560, 'NAILLOUX', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(500, 31560, 'SAINT-LEON', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(501, 31560, 'SEYRE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(502, 31570, 'AURIN', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(503, 31570, 'BOURG-SAINT-BERNARD', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(504, 31570, 'LANTA', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(505, 31570, 'PRESERVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(506, 31570, 'SAINTE-FOY-D\'AIGREFEUILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(507, 31570, 'SAINT-PIERRE-DE-LAGES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(508, 31570, 'TARABEL', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(509, 31570, 'VALLESVILLES', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(510, 31580, 'BALESTA', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(511, 31580, 'BOUDRAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(512, 31580, 'CAZARIL-TAMBOURES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(513, 31580, 'LARROQUE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(514, 31580, 'LECUSSAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(515, 31580, 'LOUDET', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(516, 31580, 'SAINT-PLANCARD', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(517, 31580, 'SEDEILHAC', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(518, 31580, 'VILLENEUVE-LECUSSAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(519, 31590, 'BONREPOS-RIQUET', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(520, 31590, 'GAURE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(521, 31590, 'LAVALETTE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(522, 31590, 'SAINT-MARCEL-PAULEL', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(523, 31590, 'SAINT-PIERRE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(524, 31590, 'VERFEIL', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(525, 31600, 'EAUNES', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(526, 31600, 'LABASTIDETTE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(527, 31600, 'LAMASQUERE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(528, 31600, 'LHERM', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(529, 31600, 'MURET', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(530, 31600, 'SAINT-CLAR-DE-RIVIERE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(531, 31600, 'SAUBENS', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(532, 31600, 'SEYSSES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(533, 31620, 'BOULOC', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(534, 31620, 'CASTELNAU-D\'ESTRETEFONDS', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(535, 31620, 'CEPET', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(536, 31620, 'FRONTON', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(537, 31620, 'GARGAS', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(538, 31620, 'LABASTIDE-SAINT-SERNIN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(539, 31620, 'SAINT-RUSTICE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(540, 31620, 'VILLAUDRIC', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(541, 31620, 'VILLENEUVE-LES-BOULOC', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(542, 31650, 'AUZIELLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(543, 31650, 'LAUZERVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(544, 31650, 'SAINT-ORENS-DE-GAMEVILLE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(545, 31660, 'BESSIERES', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(546, 31660, 'BUZET-SUR-TARN', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(547, 31670, 'LABEGE', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(548, 31700, 'BEAUZELLE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(549, 31700, 'BLAGNAC', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(550, 31700, 'CORNEBARRIEU', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(551, 31700, 'DAUX', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(552, 31700, 'MONDONVILLE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(553, 31750, 'ESCALQUENS', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(554, 31770, 'COLOMIERS', 7, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(555, 31780, 'CASTELGINEST', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(556, 31790, 'SAINT-JORY', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(557, 31790, 'SAINT-SAUVEUR', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(558, 31800, 'ASPRET-SARRAT', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(559, 31800, 'ESTANCARBON', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(560, 31800, 'LABARTHE-INARD', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(561, 31800, 'LABARTHE-RIVIERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(562, 31800, 'LALOURET-LAFFITEAU', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(563, 31800, 'LANDORTHE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(564, 31800, 'LARCAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(565, 31800, 'LATOUE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(566, 31800, 'LIEOUX', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(567, 31800, 'LODES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(568, 31800, 'MIRAMONT-DE-COMMINGES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(569, 31800, 'POINTIS-INARD', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(570, 31800, 'REGADES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(571, 31800, 'RIEUCAZE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(572, 31800, 'SAINT-GAUDENS', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(573, 31800, 'SAINT-IGNAN', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(574, 31800, 'SAINT-MARCET', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(575, 31800, 'SAUX-ET-POMAREDE', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(576, 31800, 'SAVARTHES', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(577, 31800, 'VALENTINE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(578, 31800, 'VILLENEUVE-DE-RIVIERE', 6, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(579, 31810, 'CLERMONT-LE-FORT', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(580, 31810, 'VENERQUE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(581, 31810, 'VERNET', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(582, 31820, 'PIBRAC', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(583, 31830, 'PLAISANCE-DU-TOUCH', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(584, 31840, 'AUSSONNE', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(585, 31840, 'SEILH', 1, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(586, 31850, 'BEAUPUY', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(587, 31850, 'MONDOUZIL', 4, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(588, 31850, 'MONTRABE', 2, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(589, 31860, 'LABARTHE-SUR-LEZE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(590, 31860, 'PINS-JUSTARET', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(591, 31860, 'VILLATE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(592, 31870, 'BEAUMONT-SUR-LEZE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(593, 31870, 'LAGARDELLE-SUR-LEZE', 5, '2020-05-05 11:01:57', '2020-05-05 11:01:57'),
-(594, 31880, 'LA SALVETAT-SAINT-GILLES', 3, '2020-05-05 11:01:57', '2020-05-05 11:01:57');
+INSERT INTO `commune` (`idCommune`, `codePostal`, `commune`, `secteur`, `created_at`) VALUES
+(1, 31000, 'TOULOUSE', 7, '2020-05-05 11:01:57'),
+(2, 31100, 'TOULOUSE', 7, '2020-05-05 11:01:57'),
+(3, 31200, 'TOULOUSE', 7, '2020-05-05 11:01:57'),
+(4, 31300, 'TOULOUSE', 7, '2020-05-05 11:01:57'),
+(5, 31400, 'TOULOUSE', 7, '2020-05-05 11:01:57'),
+(6, 31500, 'TOULOUSE', 7, '2020-05-05 11:01:57'),
+(7, 31110, 'ANTIGNAC', 6, '2020-05-05 11:01:57'),
+(8, 31110, 'ARTIGUE', 6, '2020-05-05 11:01:57'),
+(9, 31110, 'BAGNERES-DE-LUCHON', 6, '2020-05-05 11:01:57'),
+(10, 31110, 'BENQUE-DESSOUS-ET-DESSUS', 6, '2020-05-05 11:01:57'),
+(11, 31110, 'BILLIERE', 6, '2020-05-05 11:01:57'),
+(12, 31110, 'BOURG-D\'OUEIL', 6, '2020-05-05 11:01:57'),
+(13, 31110, 'CASTILLON-DE-LARBOUST', 6, '2020-05-05 11:01:57'),
+(14, 31110, 'CATHERVIELLE', 6, '2020-05-05 11:01:57'),
+(15, 31110, 'CAUBOUS', 6, '2020-05-05 11:01:57'),
+(16, 31110, 'CAZARIL-LASPENES', 6, '2020-05-05 11:01:57'),
+(17, 31110, 'CAZEAUX-DE-LARBOUST', 6, '2020-05-05 11:01:57'),
+(18, 31110, 'CIER-DE-LUCHON', 6, '2020-05-05 11:01:57'),
+(19, 31110, 'CIRES', 6, '2020-05-05 11:01:57'),
+(20, 31110, 'GARIN', 6, '2020-05-05 11:01:57'),
+(21, 31110, 'GOUAUX-DE-LARBOUST', 6, '2020-05-05 11:01:57'),
+(22, 31110, 'GOUAUX-DE-LUCHON', 6, '2020-05-05 11:01:57'),
+(23, 31110, 'JURVIELLE', 6, '2020-05-05 11:01:57'),
+(24, 31110, 'JUZET-DE-LUCHON', 6, '2020-05-05 11:01:57'),
+(25, 31110, 'MAYREGNE', 6, '2020-05-05 11:01:57'),
+(26, 31110, 'MONTAUBAN-DE-LUCHON', 6, '2020-05-05 11:01:57'),
+(27, 31110, 'MOUSTAJON', 6, '2020-05-05 11:01:57'),
+(28, 31110, 'OO', 6, '2020-05-05 11:01:57'),
+(29, 31110, 'PORTET-DE-LUCHON', 6, '2020-05-05 11:01:57'),
+(30, 31110, 'POUBEAU', 6, '2020-05-05 11:01:57'),
+(31, 31110, 'SACCOURVIELLE', 6, '2020-05-05 11:01:57'),
+(32, 31110, 'SAINT-AVENTIN', 6, '2020-05-05 11:01:57'),
+(33, 31110, 'SAINT-MAMET', 6, '2020-05-05 11:01:57'),
+(34, 31110, 'SAINT-PAUL-D\'OUEIL', 6, '2020-05-05 11:01:57'),
+(35, 31110, 'SALLES-ET-PRATVIEL', 6, '2020-05-05 11:01:57'),
+(36, 31110, 'SODE', 6, '2020-05-05 11:01:57'),
+(37, 31110, 'TREBONS-DE-LUCHON', 6, '2020-05-05 11:01:57'),
+(38, 31120, 'GOYRANS', 5, '2020-05-05 11:01:57'),
+(39, 31120, 'LACROIX-FALGARDE', 5, '2020-05-05 11:01:57'),
+(40, 31120, 'PINSAGUEL', 5, '2020-05-05 11:01:57'),
+(41, 31120, 'PORTET-SUR-GARONNE', 5, '2020-05-05 11:01:57'),
+(42, 31120, 'ROQUES', 5, '2020-05-05 11:01:57'),
+(43, 31120, 'ROQUETTES', 5, '2020-05-05 11:01:57'),
+(44, 31130, 'BALMA', 4, '2020-05-05 11:01:57'),
+(45, 31130, 'FLOURENS', 4, '2020-05-05 11:01:57'),
+(46, 31130, 'PIN-BALMA', 4, '2020-05-05 11:01:57'),
+(47, 31130, 'QUINT-FONSEGRIVES', 4, '2020-05-05 11:01:57'),
+(48, 31140, 'AUCAMVILLE', 2, '2020-05-05 11:01:57'),
+(49, 31140, 'FONBEAUZARD', 2, '2020-05-05 11:01:57'),
+(50, 31140, 'LAUNAGUET', 2, '2020-05-05 11:01:57'),
+(51, 31140, 'MONTBERON', 2, '2020-05-05 11:01:57'),
+(52, 31140, 'PECHBONNIEU', 2, '2020-05-05 11:01:57'),
+(53, 31140, 'SAINT-ALBAN', 2, '2020-05-05 11:01:57'),
+(54, 31140, 'SAINT-LOUP-CAMMAS', 2, '2020-05-05 11:01:57'),
+(55, 31150, 'BRUGUIERES', 2, '2020-05-05 11:01:57'),
+(56, 31150, 'FENOUILLET', 2, '2020-05-05 11:01:57'),
+(57, 31150, 'GAGNAC-SUR-GARONNE', 2, '2020-05-05 11:01:57'),
+(58, 31150, 'GRATENTOUR', 2, '2020-05-05 11:01:57'),
+(59, 31150, 'LESPINASSE', 2, '2020-05-05 11:01:57'),
+(60, 31160, 'ARBAS', 6, '2020-05-05 11:01:57'),
+(61, 31160, 'ARBON', 6, '2020-05-05 11:01:57'),
+(62, 31160, 'ARGUENOS', 6, '2020-05-05 11:01:57'),
+(63, 31160, 'ASPET', 6, '2020-05-05 11:01:57'),
+(64, 31160, 'CABANAC-CAZAUX', 6, '2020-05-05 11:01:57'),
+(65, 31160, 'CASTELBIAGUE', 6, '2020-05-05 11:01:57'),
+(66, 31160, 'CAZAUNOUS', 6, '2020-05-05 11:01:57'),
+(67, 31160, 'CHEIN-DESSUS', 6, '2020-05-05 11:01:57'),
+(68, 31160, 'COURET', 6, '2020-05-05 11:01:57'),
+(69, 31160, 'ENCAUSSE-LES-THERMES', 6, '2020-05-05 11:01:57'),
+(70, 31160, 'ESTADENS', 6, '2020-05-05 11:01:57'),
+(71, 31160, 'FOUGARON', 6, '2020-05-05 11:01:57'),
+(72, 31160, 'GANTIES', 6, '2020-05-05 11:01:57'),
+(73, 31160, 'HERRAN', 6, '2020-05-05 11:01:57'),
+(74, 31160, 'IZAUT-DE-L\'HOTEL', 6, '2020-05-05 11:01:57'),
+(75, 31160, 'JUZET-D\'IZAUT', 6, '2020-05-05 11:01:57'),
+(76, 31160, 'LESPITEAU', 6, '2020-05-05 11:01:57'),
+(77, 31160, 'MILHAS', 6, '2020-05-05 11:01:57'),
+(78, 31160, 'MONCAUP', 6, '2020-05-05 11:01:57'),
+(79, 31160, 'MONTASTRUC-DE-SALIES', 6, '2020-05-05 11:01:57'),
+(80, 31160, 'PORTET-D\'ASPET', 6, '2020-05-05 11:01:57'),
+(81, 31160, 'RAZECUEILLE', 6, '2020-05-05 11:01:57'),
+(82, 31160, 'ROUEDE', 6, '2020-05-05 11:01:57'),
+(83, 31160, 'SENGOUAGNET', 6, '2020-05-05 11:01:57'),
+(84, 31160, 'SOUEICH', 6, '2020-05-05 11:01:57'),
+(85, 31170, 'TOURNEFEUILLE', 7, '2020-05-05 11:01:57'),
+(86, 31180, 'CASTELMAUROU', 2, '2020-05-05 11:01:57'),
+(87, 31180, 'LAPEYROUSE-FOSSAT', 2, '2020-05-05 11:01:57'),
+(88, 31180, 'ROUFFIAC-TOLOSAN', 2, '2020-05-05 11:01:57'),
+(89, 31180, 'SAINT-GENIES-BELLEVUE', 2, '2020-05-05 11:01:57'),
+(90, 31190, 'AURAGNE', 5, '2020-05-05 11:01:57'),
+(91, 31190, 'AURIBAIL', 5, '2020-05-05 11:01:57'),
+(92, 31190, 'AUTERIVE', 5, '2020-05-05 11:01:57'),
+(93, 31190, 'CAUJAC', 5, '2020-05-05 11:01:57'),
+(94, 31190, 'ESPERCE', 5, '2020-05-05 11:01:57'),
+(95, 31190, 'GRAZAC', 5, '2020-05-05 11:01:57'),
+(96, 31190, 'GREPIAC', 5, '2020-05-05 11:01:57'),
+(97, 31190, 'LABRUYERE-DORSA', 5, '2020-05-05 11:01:57'),
+(98, 31190, 'LAGRACE-DIEU', 5, '2020-05-05 11:01:57'),
+(99, 31190, 'MAURESSAC', 5, '2020-05-05 11:01:57'),
+(100, 31190, 'MAUVAISIN', 5, '2020-05-05 11:01:57'),
+(101, 31190, 'MIREMONT', 5, '2020-05-05 11:01:57'),
+(102, 31190, 'PUYDANIEL', 5, '2020-05-05 11:01:57'),
+(103, 31210, 'ARDIEGE', 6, '2020-05-05 11:01:57'),
+(104, 31210, 'AUSSON', 6, '2020-05-05 11:01:57'),
+(105, 31210, 'BORDES-DE-RIVIERE', 6, '2020-05-05 11:01:57'),
+(106, 31210, 'CLARAC', 6, '2020-05-05 11:01:57'),
+(107, 31210, 'CUGURON', 3, '2020-05-05 11:01:57'),
+(108, 31210, 'LE CUING', 3, '2020-05-05 11:01:57'),
+(109, 31210, 'FRANQUEVIELLE', 3, '2020-05-05 11:01:57'),
+(110, 31210, 'GOURDAN-POLIGNAN', 6, '2020-05-05 11:01:57'),
+(111, 31210, 'HUOS', 6, '2020-05-05 11:01:57'),
+(112, 31210, 'MARTRES-DE-RIVIERE', 6, '2020-05-05 11:01:57'),
+(113, 31210, 'MONTREJEAU', 6, '2020-05-05 11:01:57'),
+(114, 31210, 'POINTIS-DE-RIVIERE', 6, '2020-05-05 11:01:57'),
+(115, 31210, 'PONLAT-TAILLEBOURG', 6, '2020-05-05 11:01:57'),
+(116, 31210, 'LES TOURREILLES', 3, '2020-05-05 11:01:57'),
+(117, 31220, 'CAZERES', 5, '2020-05-05 11:01:57'),
+(118, 31220, 'COULADERE', 5, '2020-05-05 11:01:57'),
+(119, 31220, 'LAVELANET-DE-COMMINGES', 5, '2020-05-05 11:01:57'),
+(120, 31220, 'LESCUNS', 3, '2020-05-05 11:01:57'),
+(121, 31220, 'MARIGNAC-LASPEYRES', 3, '2020-05-05 11:01:57'),
+(122, 31220, 'MARTRES-TOLOSANE', 5, '2020-05-05 11:01:57'),
+(123, 31220, 'MAURAN', 5, '2020-05-05 11:01:57'),
+(124, 31220, 'MONDAVEZAN', 3, '2020-05-05 11:01:57'),
+(125, 31220, 'MONTBERAUD', 5, '2020-05-05 11:01:57'),
+(126, 31220, 'MONTCLAR-DE-COMMINGES', 5, '2020-05-05 11:01:57'),
+(127, 31220, 'PALAMINY', 5, '2020-05-05 11:01:57'),
+(128, 31220, 'PLAGNE', 5, '2020-05-05 11:01:57'),
+(129, 31220, 'LE PLAN', 5, '2020-05-05 11:01:57'),
+(130, 31220, 'SAINT-JULIEN-SUR-GARONNE', 5, '2020-05-05 11:01:57'),
+(131, 31220, 'SAINT-MICHEL', 5, '2020-05-05 11:01:57'),
+(132, 31220, 'SANA', 3, '2020-05-05 11:01:57'),
+(133, 31230, 'AGASSAC', 3, '2020-05-05 11:01:57'),
+(134, 31230, 'AMBAX', 3, '2020-05-05 11:01:57'),
+(135, 31230, 'ANAN', 3, '2020-05-05 11:01:57'),
+(136, 31230, 'BOISSEDE', 3, '2020-05-05 11:01:57'),
+(137, 31230, 'CASTELGAILLARD', 3, '2020-05-05 11:01:57'),
+(138, 31230, 'COUEILLES', 3, '2020-05-05 11:01:57'),
+(139, 31230, 'FABAS', 3, '2020-05-05 11:01:57'),
+(140, 31230, 'FRONTIGNAN-SAVES', 3, '2020-05-05 11:01:57'),
+(141, 31230, 'GOUDEX', 3, '2020-05-05 11:01:57'),
+(142, 31230, 'L\'ISLE-EN-DODON', 3, '2020-05-05 11:01:57'),
+(143, 31230, 'LABASTIDE-PAUMES', 3, '2020-05-05 11:01:57'),
+(144, 31230, 'LILHAC', 3, '2020-05-05 11:01:57'),
+(145, 31230, 'MARTISSERRE', 3, '2020-05-05 11:01:57'),
+(146, 31230, 'MAUVEZIN', 3, '2020-05-05 11:01:57'),
+(147, 31230, 'MIRAMBEAU', 3, '2020-05-05 11:01:57'),
+(148, 31230, 'MOLAS', 3, '2020-05-05 11:01:57'),
+(149, 31230, 'MONTBERNARD', 3, '2020-05-05 11:01:57'),
+(150, 31230, 'MONTESQUIEU-GUITTAUT', 3, '2020-05-05 11:01:57'),
+(151, 31230, 'PUYMAURIN', 3, '2020-05-05 11:01:57'),
+(152, 31230, 'RIOLAS', 3, '2020-05-05 11:01:57'),
+(153, 31230, 'SAINT-FRAJOU', 3, '2020-05-05 11:01:57'),
+(154, 31230, 'SAINT-LAURENT', 3, '2020-05-05 11:01:57'),
+(155, 31230, 'SALERM', 3, '2020-05-05 11:01:57'),
+(156, 31230, 'CAZAC', 3, '2020-05-05 11:01:57'),
+(157, 31240, 'SAINT-JEAN', 2, '2020-05-05 11:01:57'),
+(158, 31240, 'L\'UNION', 2, '2020-05-05 11:01:57'),
+(159, 31250, 'REVEL', 4, '2020-05-05 11:01:57'),
+(160, 31250, 'VAUDREUILLE', 4, '2020-05-05 11:01:57'),
+(161, 31260, 'AUSSEING', 5, '2020-05-05 11:01:57'),
+(162, 31260, 'BELBEZE-EN-COMMINGES', 5, '2020-05-05 11:01:57'),
+(163, 31260, 'CASSAGNE', 5, '2020-05-05 11:01:57'),
+(164, 31260, 'CASTAGNEDE', 6, '2020-05-05 11:01:57'),
+(165, 31260, 'FIGAROL', 5, '2020-05-05 11:01:57'),
+(166, 31260, 'FRANCAZAL', 6, '2020-05-05 11:01:57'),
+(167, 31260, 'HIS', 6, '2020-05-05 11:01:57'),
+(168, 31260, 'MANE', 6, '2020-05-05 11:01:57'),
+(169, 31260, 'MARSOULAS', 5, '2020-05-05 11:01:57'),
+(170, 31260, 'MAZERES-SUR-SALAT', 5, '2020-05-05 11:01:57'),
+(171, 31260, 'MONTESPAN', 6, '2020-05-05 11:01:57'),
+(172, 31260, 'MONTGAILLARD-DE-SALIES', 6, '2020-05-05 11:01:57'),
+(173, 31260, 'MONTSAUNES', 5, '2020-05-05 11:01:57'),
+(174, 31260, 'SALEICH', 6, '2020-05-05 11:01:57'),
+(175, 31260, 'SALIES-DU-SALAT', 5, '2020-05-05 11:01:57'),
+(176, 31260, 'TOUILLE', 5, '2020-05-05 11:01:57'),
+(177, 31260, 'URAU', 6, '2020-05-05 11:01:57'),
+(178, 31260, 'ESCOULIS', 5, '2020-05-05 11:01:57'),
+(179, 31270, 'CUGNAUX', 3, '2020-05-05 11:01:57'),
+(180, 31270, 'FROUZINS', 3, '2020-05-05 11:01:57'),
+(181, 31270, 'VILLENEUVE-TOLOSANE', 3, '2020-05-05 11:01:57'),
+(182, 31280, 'AIGREFEUILLE', 4, '2020-05-05 11:01:57'),
+(183, 31280, 'DREMIL-LAFAGE', 4, '2020-05-05 11:01:57'),
+(184, 31280, 'MONS', 4, '2020-05-05 11:01:57'),
+(185, 31290, 'AVIGNONET-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(186, 31290, 'BEAUTEVILLE', 5, '2020-05-05 11:01:57'),
+(187, 31290, 'CESSALES', 4, '2020-05-05 11:01:57'),
+(188, 31290, 'FOLCARDE', 4, '2020-05-05 11:01:57'),
+(189, 31290, 'GARDOUCH', 2, '2020-05-05 11:01:57'),
+(190, 31290, 'LAGARDE', 5, '2020-05-05 11:01:57'),
+(191, 31290, 'LUX', 4, '2020-05-05 11:01:57'),
+(192, 31290, 'MAUREMONT', 4, '2020-05-05 11:01:57'),
+(193, 31290, 'MONTCLAR-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(194, 31290, 'MONTGAILLARD-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(195, 31290, 'RENNEVILLE', 4, '2020-05-05 11:01:57'),
+(196, 31290, 'RIEUMAJOU', 4, '2020-05-05 11:01:57'),
+(197, 31290, 'SAINT-GERMIER', 4, '2020-05-05 11:01:57'),
+(198, 31290, 'SAINT-ROME', 4, '2020-05-05 11:01:57'),
+(199, 31290, 'SAINT-VINCENT', 4, '2020-05-05 11:01:57'),
+(200, 31290, 'TREBONS-SUR-LA-GRASSE', 4, '2020-05-05 11:01:57'),
+(201, 31290, 'VALLEGUE', 4, '2020-05-05 11:01:57'),
+(202, 31290, 'VIEILLEVIGNE', 4, '2020-05-05 11:01:57'),
+(203, 31290, 'VILLEFRANCHE-DE-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(204, 31290, 'VILLENOUVELLE', 4, '2020-05-05 11:01:57'),
+(205, 31310, 'BAX', 5, '2020-05-05 11:01:57'),
+(206, 31310, 'CANENS', 5, '2020-05-05 11:01:57'),
+(207, 31310, 'CASTAGNAC', 5, '2020-05-05 11:01:57'),
+(208, 31310, 'GENSAC-SUR-GARONNE', 5, '2020-05-05 11:01:57'),
+(209, 31310, 'GOUTEVERNISSE', 5, '2020-05-05 11:01:57'),
+(210, 31310, 'GOUZENS', 5, '2020-05-05 11:01:57'),
+(211, 31310, 'LAHITERE', 5, '2020-05-05 11:01:57'),
+(212, 31310, 'LAPEYRERE', 5, '2020-05-05 11:01:57'),
+(213, 31310, 'LATOUR', 5, '2020-05-05 11:01:57'),
+(214, 31310, 'LATRAPE', 5, '2020-05-05 11:01:57'),
+(215, 31310, 'MAILHOLAS', 5, '2020-05-05 11:01:57'),
+(216, 31310, 'MASSABRAC', 5, '2020-05-05 11:01:57'),
+(217, 31310, 'MONTBRUN-BOCAGE', 5, '2020-05-05 11:01:57'),
+(218, 31310, 'MONTESQUIEU-VOLVESTRE', 5, '2020-05-05 11:01:57'),
+(219, 31310, 'RIEUX-VOLVESTRE', 5, '2020-05-05 11:01:57'),
+(220, 31310, 'SAINT-CHRISTAUD', 5, '2020-05-05 11:01:57'),
+(221, 31320, 'AUREVILLE', 5, '2020-05-05 11:01:57'),
+(222, 31320, 'AUZEVILLE-TOLOSANE', 4, '2020-05-05 11:01:57'),
+(223, 31320, 'CASTANET-TOLOSAN', 5, '2020-05-05 11:01:57'),
+(224, 31320, 'MERVILLA', 5, '2020-05-05 11:01:57'),
+(225, 31320, 'PECHABOU', 5, '2020-05-05 11:01:57'),
+(226, 31320, 'PECHBUSQUE', 5, '2020-05-05 11:01:57'),
+(227, 31320, 'REBIGUE', 5, '2020-05-05 11:01:57'),
+(228, 31320, 'VIEILLE-TOULOUSE', 5, '2020-05-05 11:01:57'),
+(229, 31320, 'VIGOULET-AUZIL', 5, '2020-05-05 11:01:57'),
+(230, 31330, 'LE BURGAUD', 1, '2020-05-05 11:01:57'),
+(231, 31330, 'GRENADE', 1, '2020-05-05 11:01:57'),
+(232, 31330, 'LAUNAC', 1, '2020-05-05 11:01:57'),
+(233, 31330, 'MERVILLE', 1, '2020-05-05 11:01:57'),
+(234, 31330, 'ONDES', 1, '2020-05-05 11:01:57'),
+(235, 31330, 'SAINT-CEZERT', 1, '2020-05-05 11:01:57'),
+(236, 31330, 'LARRA', 1, '2020-05-05 11:01:57'),
+(237, 31340, 'BONDIGOUX', 2, '2020-05-05 11:01:57'),
+(238, 31340, 'LE BORN', 2, '2020-05-05 11:01:57'),
+(239, 31340, 'LAYRAC-SUR-TARN', 2, '2020-05-05 11:01:57'),
+(240, 31340, 'LA MAGDELAINE-SUR-TARN', 2, '2020-05-05 11:01:57'),
+(241, 31340, 'MIREPOIX-SUR-TARN', 2, '2020-05-05 11:01:57'),
+(242, 31340, 'VACQUIERS', 2, '2020-05-05 11:01:57'),
+(243, 31340, 'VILLEMATIER', 2, '2020-05-05 11:01:57'),
+(244, 31340, 'VILLEMUR-SUR-TARN', 2, '2020-05-05 11:01:57'),
+(245, 31350, 'BLAJAN', 3, '2020-05-05 11:01:57'),
+(246, 31350, 'BOULOGNE-SUR-GESSE', 3, '2020-05-05 11:01:57'),
+(247, 31350, 'CARDEILHAC', 3, '2020-05-05 11:01:57'),
+(248, 31350, 'CASTERA-VIGNOLES', 3, '2020-05-05 11:01:57'),
+(249, 31350, 'CHARLAS', 3, '2020-05-05 11:01:57'),
+(250, 31350, 'CIADOUX', 3, '2020-05-05 11:01:57'),
+(251, 31350, 'ESCANECRABE', 3, '2020-05-05 11:01:57'),
+(252, 31350, 'GENSAC-DE-BOULOGNE', 3, '2020-05-05 11:01:57'),
+(253, 31350, 'LESPUGUE', 3, '2020-05-05 11:01:57'),
+(254, 31350, 'LUNAX', 3, '2020-05-05 11:01:57'),
+(255, 31350, 'MONDILHAN', 3, '2020-05-05 11:01:57'),
+(256, 31350, 'MONTGAILLARD-SUR-SAVE', 3, '2020-05-05 11:01:57'),
+(257, 31350, 'MONTMAURIN', 3, '2020-05-05 11:01:57'),
+(258, 31350, 'NENIGAN', 3, '2020-05-05 11:01:57'),
+(259, 31350, 'NIZAN-GESSE', 3, '2020-05-05 11:01:57'),
+(260, 31350, 'PEGUILHAN', 3, '2020-05-05 11:01:57'),
+(261, 31350, 'SAINT-FERREOL-DE-COMMINGES', 3, '2020-05-05 11:01:57'),
+(262, 31350, 'SAINT-LARY-BOUJEAN', 3, '2020-05-05 11:01:57'),
+(263, 31350, 'SAINT-LOUP-EN-COMMINGES', 3, '2020-05-05 11:01:57'),
+(264, 31350, 'SAINT-PE-DELBOSC', 3, '2020-05-05 11:01:57'),
+(265, 31350, 'SAMAN', 3, '2020-05-05 11:01:57'),
+(266, 31350, 'SARRECAVE', 3, '2020-05-05 11:01:57'),
+(267, 31350, 'SARREMEZAN', 3, '2020-05-05 11:01:57'),
+(268, 31360, 'ARNAUD-GUILHEM', 3, '2020-05-05 11:01:57'),
+(269, 31360, 'AUZAS', 3, '2020-05-05 11:01:57'),
+(270, 31360, 'BEAUCHALOT', 6, '2020-05-05 11:01:57'),
+(271, 31360, 'BOUSSENS', 3, '2020-05-05 11:01:57'),
+(272, 31360, 'CASTILLON-DE-SAINT-MARTORY', 3, '2020-05-05 11:01:57'),
+(273, 31360, 'LE FRECHET', 3, '2020-05-05 11:01:57'),
+(274, 31360, 'LAFFITE-TOUPIERE', 3, '2020-05-05 11:01:57'),
+(275, 31360, 'LESTELLE-DE-SAINT-MARTORY', 3, '2020-05-05 11:01:57'),
+(276, 31360, 'MANCIOUX', 3, '2020-05-05 11:01:57'),
+(277, 31360, 'PROUPIARY', 3, '2020-05-05 11:01:57'),
+(278, 31360, 'ROQUEFORT-SUR-GARONNE', 5, '2020-05-05 11:01:57'),
+(279, 31360, 'SAINT-MARTORY', 3, '2020-05-05 11:01:57'),
+(280, 31360, 'SAINT-MEDARD', 6, '2020-05-05 11:01:57'),
+(281, 31360, 'SEPX', 3, '2020-05-05 11:01:57'),
+(282, 31370, 'BEAUFORT', 3, '2020-05-05 11:01:57'),
+(283, 31370, 'BERAT', 3, '2020-05-05 11:01:57'),
+(284, 31370, 'FORGUES', 3, '2020-05-05 11:01:57'),
+(285, 31370, 'LABASTIDE-CLERMONT', 3, '2020-05-05 11:01:57'),
+(286, 31370, 'LAHAGE', 3, '2020-05-05 11:01:57'),
+(287, 31370, 'LAUTIGNAC', 3, '2020-05-05 11:01:57'),
+(288, 31370, 'MONES', 3, '2020-05-05 11:01:57'),
+(289, 31370, 'MONTASTRUC-SAVES', 3, '2020-05-05 11:01:57'),
+(290, 31370, 'MONTGRAS', 3, '2020-05-05 11:01:57'),
+(291, 31370, 'LE PIN-MURELET', 3, '2020-05-05 11:01:57'),
+(292, 31370, 'PLAGNOLE', 3, '2020-05-05 11:01:57'),
+(293, 31370, 'POUCHARRAMET', 3, '2020-05-05 11:01:57'),
+(294, 31370, 'RIEUMES', 3, '2020-05-05 11:01:57'),
+(295, 31370, 'SABONNERES', 3, '2020-05-05 11:01:57'),
+(296, 31370, 'SAJAS', 3, '2020-05-05 11:01:57'),
+(297, 31370, 'SAVERES', 3, '2020-05-05 11:01:57'),
+(298, 31380, 'AZAS', 2, '2020-05-05 11:01:57'),
+(299, 31380, 'BAZUS', 2, '2020-05-05 11:01:57'),
+(300, 31380, 'GARIDECH', 2, '2020-05-05 11:01:57'),
+(301, 31380, 'GEMIL', 2, '2020-05-05 11:01:57'),
+(302, 31380, 'GRAGNAGUE', 2, '2020-05-05 11:01:57'),
+(303, 31380, 'MONTASTRUC-LA-CONSEILLERE', 2, '2020-05-05 11:01:57'),
+(304, 31380, 'MONTJOIRE', 2, '2020-05-05 11:01:57'),
+(305, 31380, 'MONTPITOL', 2, '2020-05-05 11:01:57'),
+(306, 31380, 'PAULHAC', 2, '2020-05-05 11:01:57'),
+(307, 31380, 'ROQUESERIERE', 2, '2020-05-05 11:01:57'),
+(308, 31380, 'SAINT-JEAN-LHERM', 2, '2020-05-05 11:01:57'),
+(309, 31380, 'VILLARIES', 2, '2020-05-05 11:01:57'),
+(310, 31390, 'BOIS-DE-LA-PIERRE', 3, '2020-05-05 11:01:57'),
+(311, 31390, 'CARBONNE', 5, '2020-05-05 11:01:57'),
+(312, 31390, 'LACAUGNE', 5, '2020-05-05 11:01:57'),
+(313, 31390, 'LAFITTE-VIGORDANE', 3, '2020-05-05 11:01:57'),
+(314, 31390, 'MARQUEFAVE', 5, '2020-05-05 11:01:57'),
+(315, 31390, 'PEYSSIES', 3, '2020-05-05 11:01:57'),
+(316, 31390, 'SALLES-SUR-GARONNE', 5, '2020-05-05 11:01:57'),
+(317, 31410, 'CAPENS', 5, '2020-05-05 11:01:57'),
+(318, 31410, 'LE FAUGA', 5, '2020-05-05 11:01:57'),
+(319, 31410, 'LAVERNOSE-LACASSE', 3, '2020-05-05 11:01:57'),
+(320, 31410, 'LONGAGES', 3, '2020-05-05 11:01:57'),
+(321, 31410, 'MAUZAC', 5, '2020-05-05 11:01:57'),
+(322, 31410, 'MONTAUT', 5, '2020-05-05 11:01:57'),
+(323, 31410, 'MONTGAZIN', 5, '2020-05-05 11:01:57'),
+(324, 31410, 'NOE', 5, '2020-05-05 11:01:57'),
+(325, 31410, 'SAINT-HILAIRE', 3, '2020-05-05 11:01:57'),
+(326, 31410, 'SAINT-SULPICE-SUR-LEZE', 5, '2020-05-05 11:01:57'),
+(327, 31420, 'ALAN', 3, '2020-05-05 11:01:57'),
+(328, 31420, 'AULON', 3, '2020-05-05 11:01:57'),
+(329, 31420, 'AURIGNAC', 3, '2020-05-05 11:01:57'),
+(330, 31420, 'BACHAS', 3, '2020-05-05 11:01:57'),
+(331, 31420, 'BENQUE', 3, '2020-05-05 11:01:57'),
+(332, 31420, 'BOUSSAN', 3, '2020-05-05 11:01:57'),
+(333, 31420, 'BOUZIN', 3, '2020-05-05 11:01:57'),
+(334, 31420, 'CASSAGNABERE-TOURNAS', 3, '2020-05-05 11:01:57'),
+(335, 31420, 'CAZENEUVE-MONTAUT', 3, '2020-05-05 11:01:57'),
+(336, 31420, 'EOUX', 3, '2020-05-05 11:01:57'),
+(337, 31420, 'ESPARRON', 3, '2020-05-05 11:01:57'),
+(338, 31420, 'FRANCON', 3, '2020-05-05 11:01:57'),
+(339, 31420, 'MONTOULIEU-SAINT-BERNARD', 3, '2020-05-05 11:01:57'),
+(340, 31420, 'PEYRISSAS', 3, '2020-05-05 11:01:57'),
+(341, 31420, 'PEYROUZET', 3, '2020-05-05 11:01:57'),
+(342, 31420, 'SAINT-ANDRE', 3, '2020-05-05 11:01:57'),
+(343, 31420, 'SAINT-ELIX-SEGLAN', 3, '2020-05-05 11:01:57'),
+(344, 31420, 'SAMOUILLAN', 3, '2020-05-05 11:01:57'),
+(345, 31420, 'TERREBASSE', 3, '2020-05-05 11:01:57'),
+(346, 31430, 'CASTELNAU-PICAMPEAU', 3, '2020-05-05 11:01:57'),
+(347, 31430, 'CASTIES-LABRANDE', 3, '2020-05-05 11:01:57'),
+(348, 31430, 'LE FOUSSERET', 3, '2020-05-05 11:01:57'),
+(349, 31430, 'FUSTIGNAC', 3, '2020-05-05 11:01:57'),
+(350, 31430, 'GRATENS', 3, '2020-05-05 11:01:57'),
+(351, 31430, 'LUSSAN-ADEILHAC', 3, '2020-05-05 11:01:57'),
+(352, 31430, 'MARIGNAC-LASCLARES', 3, '2020-05-05 11:01:57'),
+(353, 31430, 'MONTEGUT-BOURJAC', 3, '2020-05-05 11:01:57'),
+(354, 31430, 'MONTOUSSIN', 3, '2020-05-05 11:01:57'),
+(355, 31430, 'POLASTRON', 3, '2020-05-05 11:01:57'),
+(356, 31430, 'POUY-DE-TOUGES', 3, '2020-05-05 11:01:57'),
+(357, 31430, 'SAINT-ARAILLE', 3, '2020-05-05 11:01:57'),
+(358, 31430, 'SAINT-ELIX-LE-CHATEAU', 3, '2020-05-05 11:01:57'),
+(359, 31430, 'SENARENS', 3, '2020-05-05 11:01:57'),
+(360, 31440, 'ARGUT-DESSOUS', 6, '2020-05-05 11:01:57'),
+(361, 31440, 'ARLOS', 6, '2020-05-05 11:01:57'),
+(362, 31440, 'BACHOS', 6, '2020-05-05 11:01:57'),
+(363, 31440, 'BAREN', 6, '2020-05-05 11:01:57'),
+(364, 31440, 'BEZINS-GARRAUX', 6, '2020-05-05 11:01:57'),
+(365, 31440, 'BOUTX', 6, '2020-05-05 11:01:57'),
+(366, 31440, 'BURGALAYS', 6, '2020-05-05 11:01:57'),
+(367, 31440, 'CAZAUX-LAYRISSE', 6, '2020-05-05 11:01:57'),
+(368, 31440, 'CHAUM', 6, '2020-05-05 11:01:57'),
+(369, 31440, 'CIERP-GAUD', 6, '2020-05-05 11:01:57'),
+(370, 31440, 'ESTENOS', 6, '2020-05-05 11:01:57'),
+(371, 31440, 'EUP', 6, '2020-05-05 11:01:57'),
+(372, 31440, 'FOS', 6, '2020-05-05 11:01:57'),
+(373, 31440, 'FRONSAC', 6, '2020-05-05 11:01:57'),
+(374, 31440, 'GURAN', 6, '2020-05-05 11:01:57'),
+(375, 31440, 'LEGE', 6, '2020-05-05 11:01:57'),
+(376, 31440, 'LEZ', 6, '2020-05-05 11:01:57'),
+(377, 31440, 'MARIGNAC', 6, '2020-05-05 11:01:57'),
+(378, 31440, 'MELLES', 6, '2020-05-05 11:01:57'),
+(379, 31440, 'SAINT-BEAT', 6, '2020-05-05 11:01:57'),
+(380, 31440, 'SIGNAC', 6, '2020-05-05 11:01:57'),
+(381, 31440, 'BINOS', 6, '2020-05-05 11:01:57'),
+(382, 31450, 'AYGUESVIVES', 4, '2020-05-05 11:01:57'),
+(383, 31450, 'BAZIEGE', 4, '2020-05-05 11:01:57'),
+(384, 31450, 'BELBERAUD', 4, '2020-05-05 11:01:57'),
+(385, 31450, 'BELBEZE-DE-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(386, 31450, 'CORRONSAC', 5, '2020-05-05 11:01:57'),
+(387, 31450, 'DEYME', 5, '2020-05-05 11:01:57'),
+(388, 31450, 'DONNEVILLE', 4, '2020-05-05 11:01:57'),
+(389, 31450, 'ESPANES', 5, '2020-05-05 11:01:57'),
+(390, 31450, 'FOURQUEVAUX', 4, '2020-05-05 11:01:57'),
+(391, 31450, 'ISSUS', 5, '2020-05-05 11:01:57'),
+(392, 31450, 'LABASTIDE-BEAUVOIR', 4, '2020-05-05 11:01:57'),
+(393, 31450, 'MONTBRUN-LAURAGAIS', 5, '2020-05-05 11:01:57'),
+(394, 31450, 'MONTESQUIEU-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(395, 31450, 'MONTGISCARD', 5, '2020-05-05 11:01:57'),
+(396, 31450, 'MONTLAUR', 4, '2020-05-05 11:01:57'),
+(397, 31450, 'NOUEILLES', 5, '2020-05-05 11:01:57'),
+(398, 31450, 'ODARS', 4, '2020-05-05 11:01:57'),
+(399, 31450, 'POMPERTUZAT', 5, '2020-05-05 11:01:57'),
+(400, 31450, 'POUZE', 5, '2020-05-05 11:01:57'),
+(401, 31450, 'VARENNES', 4, '2020-05-05 11:01:57'),
+(402, 31460, 'ALBIAC', 4, '2020-05-05 11:01:57'),
+(403, 31460, 'AURIAC-SUR-VENDINELLE', 4, '2020-05-05 11:01:57'),
+(404, 31460, 'BEAUVILLE', 4, '2020-05-05 11:01:57'),
+(405, 31460, 'LE CABANIAL', 4, '2020-05-05 11:01:57'),
+(406, 31460, 'CAMBIAC', 4, '2020-05-05 11:01:57'),
+(407, 31460, 'CARAGOUDES', 4, '2020-05-05 11:01:57'),
+(408, 31460, 'CARAMAN', 4, '2020-05-05 11:01:57'),
+(409, 31460, 'LE FAGET', 4, '2020-05-05 11:01:57'),
+(410, 31460, 'FRANCARVILLE', 4, '2020-05-05 11:01:57'),
+(411, 31460, 'LOUBENS-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(412, 31460, 'MASCARVILLE', 4, '2020-05-05 11:01:57'),
+(413, 31460, 'MAUREVILLE', 4, '2020-05-05 11:01:57'),
+(414, 31460, 'MOURVILLES-BASSES', 4, '2020-05-05 11:01:57'),
+(415, 31460, 'PRUNET', 4, '2020-05-05 11:01:57'),
+(416, 31460, 'LA SALVETAT-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(417, 31460, 'SAUSSENS', 4, '2020-05-05 11:01:57'),
+(418, 31460, 'SEGREVILLE', 4, '2020-05-05 11:01:57'),
+(419, 31460, 'TOUTENS', 4, '2020-05-05 11:01:57'),
+(420, 31460, 'VENDINE', 4, '2020-05-05 11:01:57'),
+(421, 31470, 'BONREPOS-SUR-AUSSONNELLE', 3, '2020-05-05 11:01:57'),
+(422, 31470, 'BRAGAYRAC', 3, '2020-05-05 11:01:57'),
+(423, 31470, 'CAMBERNARD', 3, '2020-05-05 11:01:57'),
+(424, 31470, 'EMPEAUX', 3, '2020-05-05 11:01:57'),
+(425, 31470, 'FONSORBES', 3, '2020-05-05 11:01:57'),
+(426, 31470, 'FONTENILLES', 3, '2020-05-05 11:01:57'),
+(427, 31470, 'SAIGUEDE', 3, '2020-05-05 11:01:57'),
+(428, 31470, 'SAINTE-FOY-DE-PEYROLIERES', 3, '2020-05-05 11:01:57'),
+(429, 31470, 'SAINT-LYS', 3, '2020-05-05 11:01:57'),
+(430, 31470, 'SAINT-THOMAS', 3, '2020-05-05 11:01:57'),
+(431, 31480, 'BELLESSERRE', 1, '2020-05-05 11:01:57'),
+(432, 31480, 'BRIGNEMONT', 1, '2020-05-05 11:01:57'),
+(433, 31480, 'CABANAC-SEGUENVILLE', 1, '2020-05-05 11:01:57'),
+(434, 31480, 'CADOURS', 1, '2020-05-05 11:01:57'),
+(435, 31480, 'CAUBIAC', 1, '2020-05-05 11:01:57'),
+(436, 31480, 'COX', 1, '2020-05-05 11:01:57'),
+(437, 31480, 'DRUDAS', 1, '2020-05-05 11:01:57'),
+(438, 31480, 'GARAC', 1, '2020-05-05 11:01:57'),
+(439, 31480, 'LE GRES', 1, '2020-05-05 11:01:57'),
+(440, 31480, 'LAGRAULET-SAINT-NICOLAS', 1, '2020-05-05 11:01:57'),
+(441, 31480, 'LAREOLE', 1, '2020-05-05 11:01:57'),
+(442, 31480, 'PELLEPORT', 1, '2020-05-05 11:01:57'),
+(443, 31480, 'PUYSSEGUR', 1, '2020-05-05 11:01:57'),
+(444, 31480, 'VIGNAUX', 1, '2020-05-05 11:01:57'),
+(445, 31490, 'BRAX', 1, '2020-05-05 11:01:57'),
+(446, 31490, 'LEGUEVIN', 1, '2020-05-05 11:01:57'),
+(447, 31510, 'ANTICHAN-DE-FRONTIGNES', 6, '2020-05-05 11:01:57'),
+(448, 31510, 'BAGIRY', 6, '2020-05-05 11:01:57'),
+(449, 31510, 'BARBAZAN', 6, '2020-05-05 11:01:57'),
+(450, 31510, 'CIER-DE-RIVIERE', 6, '2020-05-05 11:01:57'),
+(451, 31510, 'FRONTIGNAN-DE-COMMINGES', 6, '2020-05-05 11:01:57'),
+(452, 31510, 'GALIE', 6, '2020-05-05 11:01:57'),
+(453, 31510, 'GENOS', 6, '2020-05-05 11:01:57'),
+(454, 31510, 'LABROQUERE', 6, '2020-05-05 11:01:57'),
+(455, 31510, 'LOURDE', 6, '2020-05-05 11:01:57'),
+(456, 31510, 'LUSCAN', 6, '2020-05-05 11:01:57'),
+(457, 31510, 'MALVEZIE', 6, '2020-05-05 11:01:57'),
+(458, 31510, 'MONT-DE-GALIE', 6, '2020-05-05 11:01:57'),
+(459, 31510, 'ORE', 6, '2020-05-05 11:01:57'),
+(460, 31510, 'PAYSSOUS', 6, '2020-05-05 11:01:57'),
+(461, 31510, 'SAINT-BERTRAND-DE-COMMINGES', 6, '2020-05-05 11:01:57'),
+(462, 31510, 'SAINT-PE-D\'ARDET', 6, '2020-05-05 11:01:57'),
+(463, 31510, 'SAUVETERRE-DE-COMMINGES', 6, '2020-05-05 11:01:57'),
+(464, 31510, 'SEILHAN', 6, '2020-05-05 11:01:57'),
+(465, 31510, 'VALCABRERE', 6, '2020-05-05 11:01:57'),
+(466, 31520, 'RAMONVILLE-SAINT-AGNE', 5, '2020-05-05 11:01:57'),
+(467, 31530, 'BELLEGARDE-SAINTE-MARIE', 1, '2020-05-05 11:01:57'),
+(468, 31530, 'BRETX', 1, '2020-05-05 11:01:57'),
+(469, 31530, 'LE CASTERA', 1, '2020-05-05 11:01:57'),
+(470, 31530, 'LASSERRE', 1, '2020-05-05 11:01:57'),
+(471, 31530, 'LEVIGNAC', 1, '2020-05-05 11:01:57'),
+(472, 31530, 'MENVILLE', 1, '2020-05-05 11:01:57'),
+(473, 31530, 'MERENVIELLE', 1, '2020-05-05 11:01:57'),
+(474, 31530, 'MONTAIGUT-SUR-SAVE', 1, '2020-05-05 11:01:57'),
+(475, 31530, 'PRADERE-LES-BOURGUETS', 1, '2020-05-05 11:01:57'),
+(476, 31530, 'SAINTE-LIVRADE', 1, '2020-05-05 11:01:57'),
+(477, 31530, 'SAINT-PAUL-SUR-SAVE', 1, '2020-05-05 11:01:57'),
+(478, 31530, 'THIL', 1, '2020-05-05 11:01:57'),
+(479, 31540, 'BELESTA-EN-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(480, 31540, 'FALGA', 4, '2020-05-05 11:01:57'),
+(481, 31540, 'JUZES', 4, '2020-05-05 11:01:57'),
+(482, 31540, 'MAURENS', 4, '2020-05-05 11:01:57'),
+(483, 31540, 'MONTEGUT-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(484, 31540, 'MOURVILLES-HAUTES', 4, '2020-05-05 11:01:57'),
+(485, 31540, 'NOGARET', 4, '2020-05-05 11:01:57'),
+(486, 31540, 'ROUMENS', 4, '2020-05-05 11:01:57'),
+(487, 31540, 'SAINT-FELIX-LAURAGAIS', 4, '2020-05-05 11:01:57'),
+(488, 31540, 'SAINT-JULIA', 4, '2020-05-05 11:01:57'),
+(489, 31540, 'VAUX', 4, '2020-05-05 11:01:57'),
+(490, 31550, 'AIGNES', 5, '2020-05-05 11:01:57'),
+(491, 31550, 'CINTEGABELLE', 5, '2020-05-05 11:01:57'),
+(492, 31550, 'GAILLAC-TOULZA', 5, '2020-05-05 11:01:57'),
+(493, 31550, 'MARLIAC', 5, '2020-05-05 11:01:57'),
+(494, 31560, 'CAIGNAC', 5, '2020-05-05 11:01:57'),
+(495, 31560, 'CALMONT', 5, '2020-05-05 11:01:57'),
+(496, 31560, 'GIBEL', 5, '2020-05-05 11:01:57'),
+(497, 31560, 'MONESTROL', 5, '2020-05-05 11:01:57'),
+(498, 31560, 'MONTGEARD', 5, '2020-05-05 11:01:57'),
+(499, 31560, 'NAILLOUX', 5, '2020-05-05 11:01:57'),
+(500, 31560, 'SAINT-LEON', 5, '2020-05-05 11:01:57'),
+(501, 31560, 'SEYRE', 5, '2020-05-05 11:01:57'),
+(502, 31570, 'AURIN', 4, '2020-05-05 11:01:57'),
+(503, 31570, 'BOURG-SAINT-BERNARD', 4, '2020-05-05 11:01:57'),
+(504, 31570, 'LANTA', 4, '2020-05-05 11:01:57'),
+(505, 31570, 'PRESERVILLE', 4, '2020-05-05 11:01:57'),
+(506, 31570, 'SAINTE-FOY-D\'AIGREFEUILLE', 4, '2020-05-05 11:01:57'),
+(507, 31570, 'SAINT-PIERRE-DE-LAGES', 4, '2020-05-05 11:01:57'),
+(508, 31570, 'TARABEL', 4, '2020-05-05 11:01:57'),
+(509, 31570, 'VALLESVILLES', 4, '2020-05-05 11:01:57'),
+(510, 31580, 'BALESTA', 3, '2020-05-05 11:01:57'),
+(511, 31580, 'BOUDRAC', 3, '2020-05-05 11:01:57'),
+(512, 31580, 'CAZARIL-TAMBOURES', 3, '2020-05-05 11:01:57'),
+(513, 31580, 'LARROQUE', 3, '2020-05-05 11:01:57'),
+(514, 31580, 'LECUSSAN', 3, '2020-05-05 11:01:57'),
+(515, 31580, 'LOUDET', 3, '2020-05-05 11:01:57'),
+(516, 31580, 'SAINT-PLANCARD', 3, '2020-05-05 11:01:57'),
+(517, 31580, 'SEDEILHAC', 3, '2020-05-05 11:01:57'),
+(518, 31580, 'VILLENEUVE-LECUSSAN', 3, '2020-05-05 11:01:57'),
+(519, 31590, 'BONREPOS-RIQUET', 4, '2020-05-05 11:01:57'),
+(520, 31590, 'GAURE', 4, '2020-05-05 11:01:57'),
+(521, 31590, 'LAVALETTE', 4, '2020-05-05 11:01:57'),
+(522, 31590, 'SAINT-MARCEL-PAULEL', 4, '2020-05-05 11:01:57'),
+(523, 31590, 'SAINT-PIERRE', 4, '2020-05-05 11:01:57'),
+(524, 31590, 'VERFEIL', 2, '2020-05-05 11:01:57'),
+(525, 31600, 'EAUNES', 5, '2020-05-05 11:01:57'),
+(526, 31600, 'LABASTIDETTE', 3, '2020-05-05 11:01:57'),
+(527, 31600, 'LAMASQUERE', 3, '2020-05-05 11:01:57'),
+(528, 31600, 'LHERM', 3, '2020-05-05 11:01:57'),
+(529, 31600, 'MURET', 5, '2020-05-05 11:01:57'),
+(530, 31600, 'SAINT-CLAR-DE-RIVIERE', 3, '2020-05-05 11:01:57'),
+(531, 31600, 'SAUBENS', 5, '2020-05-05 11:01:57'),
+(532, 31600, 'SEYSSES', 3, '2020-05-05 11:01:57'),
+(533, 31620, 'BOULOC', 2, '2020-05-05 11:01:57'),
+(534, 31620, 'CASTELNAU-D\'ESTRETEFONDS', 2, '2020-05-05 11:01:57'),
+(535, 31620, 'CEPET', 2, '2020-05-05 11:01:57'),
+(536, 31620, 'FRONTON', 2, '2020-05-05 11:01:57'),
+(537, 31620, 'GARGAS', 2, '2020-05-05 11:01:57'),
+(538, 31620, 'LABASTIDE-SAINT-SERNIN', 2, '2020-05-05 11:01:57'),
+(539, 31620, 'SAINT-RUSTICE', 2, '2020-05-05 11:01:57'),
+(540, 31620, 'VILLAUDRIC', 2, '2020-05-05 11:01:57'),
+(541, 31620, 'VILLENEUVE-LES-BOULOC', 2, '2020-05-05 11:01:57'),
+(542, 31650, 'AUZIELLE', 4, '2020-05-05 11:01:57'),
+(543, 31650, 'LAUZERVILLE', 4, '2020-05-05 11:01:57'),
+(544, 31650, 'SAINT-ORENS-DE-GAMEVILLE', 4, '2020-05-05 11:01:57'),
+(545, 31660, 'BESSIERES', 1, '2020-05-05 11:01:57'),
+(546, 31660, 'BUZET-SUR-TARN', 2, '2020-05-05 11:01:57'),
+(547, 31670, 'LABEGE', 4, '2020-05-05 11:01:57'),
+(548, 31700, 'BEAUZELLE', 1, '2020-05-05 11:01:57'),
+(549, 31700, 'BLAGNAC', 7, '2020-05-05 11:01:57'),
+(550, 31700, 'CORNEBARRIEU', 1, '2020-05-05 11:01:57'),
+(551, 31700, 'DAUX', 1, '2020-05-05 11:01:57'),
+(552, 31700, 'MONDONVILLE', 1, '2020-05-05 11:01:57'),
+(553, 31750, 'ESCALQUENS', 4, '2020-05-05 11:01:57'),
+(554, 31770, 'COLOMIERS', 7, '2020-05-05 11:01:57'),
+(555, 31780, 'CASTELGINEST', 2, '2020-05-05 11:01:57'),
+(556, 31790, 'SAINT-JORY', 2, '2020-05-05 11:01:57'),
+(557, 31790, 'SAINT-SAUVEUR', 2, '2020-05-05 11:01:57'),
+(558, 31800, 'ASPRET-SARRAT', 6, '2020-05-05 11:01:57'),
+(559, 31800, 'ESTANCARBON', 6, '2020-05-05 11:01:57'),
+(560, 31800, 'LABARTHE-INARD', 6, '2020-05-05 11:01:57'),
+(561, 31800, 'LABARTHE-RIVIERE', 6, '2020-05-05 11:01:57'),
+(562, 31800, 'LALOURET-LAFFITEAU', 3, '2020-05-05 11:01:57'),
+(563, 31800, 'LANDORTHE', 3, '2020-05-05 11:01:57'),
+(564, 31800, 'LARCAN', 3, '2020-05-05 11:01:57'),
+(565, 31800, 'LATOUE', 3, '2020-05-05 11:01:57'),
+(566, 31800, 'LIEOUX', 3, '2020-05-05 11:01:57'),
+(567, 31800, 'LODES', 3, '2020-05-05 11:01:57'),
+(568, 31800, 'MIRAMONT-DE-COMMINGES', 6, '2020-05-05 11:01:57'),
+(569, 31800, 'POINTIS-INARD', 6, '2020-05-05 11:01:57'),
+(570, 31800, 'REGADES', 6, '2020-05-05 11:01:57'),
+(571, 31800, 'RIEUCAZE', 6, '2020-05-05 11:01:57'),
+(572, 31800, 'SAINT-GAUDENS', 6, '2020-05-05 11:01:57'),
+(573, 31800, 'SAINT-IGNAN', 3, '2020-05-05 11:01:57'),
+(574, 31800, 'SAINT-MARCET', 3, '2020-05-05 11:01:57'),
+(575, 31800, 'SAUX-ET-POMAREDE', 3, '2020-05-05 11:01:57'),
+(576, 31800, 'SAVARTHES', 6, '2020-05-05 11:01:57'),
+(577, 31800, 'VALENTINE', 6, '2020-05-05 11:01:57'),
+(578, 31800, 'VILLENEUVE-DE-RIVIERE', 6, '2020-05-05 11:01:57'),
+(579, 31810, 'CLERMONT-LE-FORT', 5, '2020-05-05 11:01:57'),
+(580, 31810, 'VENERQUE', 5, '2020-05-05 11:01:57'),
+(581, 31810, 'VERNET', 5, '2020-05-05 11:01:57'),
+(582, 31820, 'PIBRAC', 1, '2020-05-05 11:01:57'),
+(583, 31830, 'PLAISANCE-DU-TOUCH', 3, '2020-05-05 11:01:57'),
+(584, 31840, 'AUSSONNE', 1, '2020-05-05 11:01:57'),
+(585, 31840, 'SEILH', 1, '2020-05-05 11:01:57'),
+(586, 31850, 'BEAUPUY', 2, '2020-05-05 11:01:57'),
+(587, 31850, 'MONDOUZIL', 4, '2020-05-05 11:01:57'),
+(588, 31850, 'MONTRABE', 2, '2020-05-05 11:01:57'),
+(589, 31860, 'LABARTHE-SUR-LEZE', 5, '2020-05-05 11:01:57'),
+(590, 31860, 'PINS-JUSTARET', 5, '2020-05-05 11:01:57'),
+(591, 31860, 'VILLATE', 5, '2020-05-05 11:01:57'),
+(592, 31870, 'BEAUMONT-SUR-LEZE', 5, '2020-05-05 11:01:57'),
+(593, 31870, 'LAGARDELLE-SUR-LEZE', 5, '2020-05-05 11:01:57'),
+(594, 31880, 'LA SALVETAT-SAINT-GILLES', 3, '2020-05-05 11:01:57');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Conseil`
+-- Structure de la table `conseil`
 --
 
-CREATE TABLE `Conseil` (
-  `idConseil` int(11) NOT NULL,
+DROP TABLE IF EXISTS `conseil`;
+CREATE TABLE IF NOT EXISTS `conseil` (
+  `idConseil` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
   `objet` varchar(255) NOT NULL,
   `texte` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `corbeille` tinyint(1) NOT NULL DEFAULT '0',
-  `dateCorbeille` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ouvert` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idConseil`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `conseil`
+--
+
+INSERT INTO `conseil` (`idConseil`, `objet`, `texte`, `created_at`, `ouvert`) VALUES
+(1, 'Conseil pour se protéger du Coronavirus', 'Nec sane haec sola pernicies orientem diversis cladibus adfligebat. Namque et Isauri, quibus est usitatum saepe pacari saepeque inopinis excursibus cuncta miscere, ex latrociniis occultis et raris, alente inpunitate adulescentem in peius audaciam ad bella gravia proruperunt, diu quidem perduelles spiritus inrequietis motibus erigentes', '2020-05-09 17:21:57', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `DestinationAnnonce`
+-- Structure de la table `destinationannonce`
 --
 
-CREATE TABLE `DestinationAnnonce` (
+DROP TABLE IF EXISTS `destinationannonce`;
+CREATE TABLE IF NOT EXISTS `destinationannonce` (
   `idAnnonce` int(255) UNSIGNED NOT NULL,
-  `idUtilisateur` int(255) UNSIGNED NOT NULL
+  `idUtilisateur` int(255) UNSIGNED NOT NULL,
+  PRIMARY KEY (`idAnnonce`,`idUtilisateur`),
+  KEY `fk_idUtilisateurDest` (`idUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `FilDeDiscussion`
+-- Structure de la table `fildediscussion`
 --
 
-CREATE TABLE `FilDeDiscussion` (
-  `idFilDeDiscussion` int(255) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `fildediscussion`;
+CREATE TABLE IF NOT EXISTS `fildediscussion` (
+  `idFilDeDiscussion` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
   `idUtilisateur` int(255) UNSIGNED NOT NULL,
   `idDernierMessage` int(255) UNSIGNED DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idFilDeDiscussion`) USING BTREE,
+  KEY `fk_idUtilisateurFil` (`idUtilisateur`),
+  KEY `fk_idDernierMessage` (`idDernierMessage`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `fildediscussion`
+--
+
+INSERT INTO `fildediscussion` (`idFilDeDiscussion`, `idUtilisateur`, `idDernierMessage`, `created_at`) VALUES
+(1, 16, 11, '2020-05-09 15:20:22'),
+(2, 14, 13, '2020-05-09 15:20:34'),
+(3, 16, NULL, '2020-05-09 15:20:34'),
+(4, 14, NULL, '2020-05-09 15:20:35'),
+(5, 16, NULL, '2020-05-09 15:20:35');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ForceDeLOrdre`
+-- Structure de la table `forcedelordre`
 --
 
-CREATE TABLE `ForceDeLOrdre` (
-  `idForce` int(255) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `forcedelordre`;
+CREATE TABLE IF NOT EXISTS `forcedelordre` (
+  `idForce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
   `mdpForce` varchar(255) NOT NULL,
   `nomForce` varchar(255) NOT NULL,
   `prenomForce` varchar(255) NOT NULL,
   `force` enum('P','G') NOT NULL,
   `mail` varchar(255) NOT NULL,
-  `nbConnexion` int(255) UNSIGNED NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `nbConnexion` int(255) UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idForce`)
+) ENGINE=InnoDB AUTO_INCREMENT=12347 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `forcedelordre`
+--
+
+INSERT INTO `forcedelordre` (`idForce`, `mdpForce`, `nomForce`, `prenomForce`, `force`, `mail`, `nbConnexion`) VALUES
+(12345, 'root', 'Appriou', 'Thomas', 'G', 'thomas@gouv.fr', 47),
+(12346, 'mdp', 'Demougeot', 'MaxouLeGendarmeDuBled', 'P', 'maxou@demougeot.fr', 2);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Gestionnaire`
+-- Structure de la table `gestionnaire`
 --
 
-CREATE TABLE `Gestionnaire` (
+DROP TABLE IF EXISTS `gestionnaire`;
+CREATE TABLE IF NOT EXISTS `gestionnaire` (
   `idGestionnaire` int(255) UNSIGNED NOT NULL,
   `mdpGestionnaire` varchar(255) NOT NULL,
   `nomGestionnaire` varchar(255) NOT NULL,
   `prenomGestionnaire` varchar(255) NOT NULL,
   `chambre` enum('CMA','CA','CCI') NOT NULL,
-  `mail` varchar(255) NOT NULL
+  `mail` varchar(255) NOT NULL,
+  PRIMARY KEY (`idGestionnaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `gestionnaire`
+--
+
+INSERT INTO `gestionnaire` (`idGestionnaire`, `mdpGestionnaire`, `nomGestionnaire`, `prenomGestionnaire`, `chambre`, `mail`) VALUES
+(12345, 'root', 'Appriou', 'ThomaTou', 'CMA', 'thomas@gouv.fr'),
+(12346, 'mdp', 'Nguyen', 'Thanh', 'CCI', 'thanh@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `MessagePrive`
+-- Structure de la table `messageprive`
 --
 
-CREATE TABLE `MessagePrive` (
-  `idMessagePrive` int(255) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `messageprive`;
+CREATE TABLE IF NOT EXISTS `messageprive` (
+  `objet` text,
+  `idMessagePrive` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
   `idFilDeDiscussion` int(255) UNSIGNED NOT NULL,
-  `text` text NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `texte` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ouvert` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idMessagePrive`),
+  KEY `fk_fil` (`idFilDeDiscussion`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
--- Déclencheurs `MessagePrive`
+-- Déchargement des données de la table `messageprive`
 --
+
+INSERT INTO `messageprive` (`objet`, `idMessagePrive`, `idFilDeDiscussion`, `texte`, `created_at`, `ouvert`) VALUES
+('Objet du message privé 1 ', 1, 1, 'arborem colit aut arva subigendo quaeritat victum, sed errant semper per spatia longe lateque distenta sine lare sine sedibus fixis aut legibus: nec idem perferunt diutius caelum aut tractus unius soli illis umquam placet.', '2020-05-09 15:30:06', 1),
+('Objet du message privé 2', 2, 1, 'Blemmyarum, omnes pari sorte sunt bellatores seminudi coloratis sagulis pube tenus amicti, equorum adiumento pernicium graciliumque camelo', '2020-05-09 15:30:06', 1),
+('Objet du message privé 3', 3, 2, 'm saepe pacari saepeque inopinis excursibus cuncta miscere, ex latrociniis occultis et raris, alente inpunitate adulescentem in peius audaciam ad bella gra', '2020-05-09 15:30:17', 1),
+('Objet du message privé 4', 4, 2, 'equietis motibus erigentes, hac tamen indignitate perciti vehementer, ut iactitabant, quod eorum capiti quidam consortes apud Iconium Pisidiae oppidum in a', '2020-05-09 15:30:17', 1),
+('Objet du message privé 5', 5, 3, 'pari sorte sunt bellatores seminudi coloratis sagulis pube tenus amicti, equorum adiumento pernicium graciliumque camelorum per diversa se raptantes, in tranquillis vel turbidis rebus: nec eorum quisquam aliquando stivam adprehendit vel arborem colit aut arva subigendo quaeritat victum, sed e', '2020-05-09 15:30:31', 1),
+('Objet du message privé 6', 6, 3, 's quicquid inveniri poterat momento temporis parvi vastabant milvorum rapacium s', '2020-05-09 15:30:31', 1),
+('Objet du message privé 7', 7, 4, 'atis sagulis pube tenus amicti, equorum adiumento pernicium graciliumque camelorum per diversa se raptantes, in tranquillis vel turbidis rebus: nec eorum quisquam aliquando stivam adprehendit vel arborem colit aut arva sub', '2020-05-09 15:30:45', 1),
+('Objet du message privé 8', 8, 4, 'tes, hac tamen indignitate perciti vehementer, ut iactitabant, quod eorum capiti quidam consortes apud Iconium Pisidiae oppidum in amphitheatrali sp', '2020-05-09 15:30:45', 1),
+('Objet du message privé 9', 9, 5, 'lemmyarum, omnes pari sorte sunt bellatores seminudi coloratis sagulis pube tenus amicti, equorum adiumento pernicium graciliumque came', '2020-05-09 15:30:59', 1),
+('Objet du message privé 10', 10, 5, 'iri poterat momento temporis parvi vastabant milvorum rapacium similes, qu', '2020-05-09 15:30:59', 1),
+('Objet du message privé 11', 11, 1, 'COUCOU TU VEUX VOIR MA BITE ? ', '2020-05-14 18:12:48', 1),
+('Objet du message privé 13', 13, 2, 'arborem colit aut arva subigendo quaeritat victum, sed errant semper per spatia longe lateque distenta sine lare sine sedibus fixis aut legibus: nec idem perferunt diutius caelum aut tractus unius soli illis umquam placet.', '2020-05-15 00:46:02', 1);
+
+--
+-- Déclencheurs `messageprive`
+--
+DROP TRIGGER IF EXISTS `last_message_trigger`;
 DELIMITER $$
-CREATE TRIGGER `last_message_trigger` AFTER INSERT ON `MessagePrive` FOR EACH ROW UPDATE fildediscussion f SET f.idDernierMessage = NEW.idMessagePrive WHERE f.idFilDeDiscussion = NEW.idFilDeDiscussion
+CREATE TRIGGER `last_message_trigger` AFTER INSERT ON `messageprive` FOR EACH ROW UPDATE fildediscussion f SET f.idDernierMessage = NEW.idMessagePrive WHERE f.idFilDeDiscussion = NEW.idFilDeDiscussion
 $$
 DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Utilisateur`
+-- Structure de la table `utilisateur`
 --
 
-CREATE TABLE `Utilisateur` (
-  `idUtilisateur` int(255) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `utilisateur`;
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `idUtilisateur` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nomUtilisateur` varchar(255) NOT NULL,
   `prenomUtilisateur` varchar(255) NOT NULL,
   `cle` varchar(255) DEFAULT NULL,
@@ -888,156 +981,60 @@ CREATE TABLE `Utilisateur` (
   `chambre` enum('CMA','CA','CCI','') NOT NULL,
   `nomSociete` varchar(255) NOT NULL,
   `demande` enum('EN_COURS','VALIDE','REFUSE','SUPPRIME') NOT NULL DEFAULT 'EN_COURS',
+  `ouvert` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idUtilisateur`),
+  KEY `fk_codeAct` (`codeAct`) USING BTREE,
+  KEY `fk_idCommuneUtilisateur` (`idCommune`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
--- Index pour les tables déchargées
+-- Déchargement des données de la table `utilisateur`
 --
 
---
--- Index pour la table `Annonce`
---
-ALTER TABLE `Annonce`
-  ADD PRIMARY KEY (`idAnnonce`);
-
---
--- Index pour la table `CodeActivite`
---
-ALTER TABLE `CodeActivite`
-  ADD PRIMARY KEY (`code`);
-
---
--- Index pour la table `Commune`
---
-ALTER TABLE `Commune`
-  ADD PRIMARY KEY (`idCommune`);
-
---
--- Index pour la table `Conseil`
---
-ALTER TABLE `Conseil`
-  ADD PRIMARY KEY (`idConseil`);
-
---
--- Index pour la table `DestinationAnnonce`
---
-ALTER TABLE `DestinationAnnonce`
-  ADD PRIMARY KEY (`idAnnonce`,`idUtilisateur`),
-  ADD KEY `fk_idUtilisateurDest` (`idUtilisateur`);
-
---
--- Index pour la table `FilDeDiscussion`
---
-ALTER TABLE `FilDeDiscussion`
-  ADD PRIMARY KEY (`idFilDeDiscussion`) USING BTREE,
-  ADD KEY `fk_idUtilisateurFil` (`idUtilisateur`),
-  ADD KEY `fk_idDernierMessage` (`idDernierMessage`);
-
---
--- Index pour la table `ForceDeLOrdre`
---
-ALTER TABLE `ForceDeLOrdre`
-  ADD PRIMARY KEY (`idForce`);
-
---
--- Index pour la table `Gestionnaire`
---
-ALTER TABLE `Gestionnaire`
-  ADD PRIMARY KEY (`idGestionnaire`);
-
---
--- Index pour la table `MessagePrive`
---
-ALTER TABLE `MessagePrive`
-  ADD PRIMARY KEY (`idMessagePrive`),
-  ADD KEY `fk_fil` (`idFilDeDiscussion`);
-
---
--- Index pour la table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  ADD PRIMARY KEY (`idUtilisateur`),
-  ADD KEY `fk_codeAct` (`codeAct`) USING BTREE,
-  ADD KEY `fk_idCommuneUtilisateur` (`idCommune`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `Annonce`
---
-ALTER TABLE `Annonce`
-  MODIFY `idAnnonce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Commune`
---
-ALTER TABLE `Commune`
-  MODIFY `idCommune` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=595;
-
---
--- AUTO_INCREMENT pour la table `Conseil`
---
-ALTER TABLE `Conseil`
-  MODIFY `idConseil` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `FilDeDiscussion`
---
-ALTER TABLE `FilDeDiscussion`
-  MODIFY `idFilDeDiscussion` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `ForceDeLOrdre`
---
-ALTER TABLE `ForceDeLOrdre`
-  MODIFY `idForce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `MessagePrive`
---
-ALTER TABLE `MessagePrive`
-  MODIFY `idMessagePrive` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  MODIFY `idUtilisateur` int(255) UNSIGNED NOT NULL AUTO_INCREMENT;
+INSERT INTO `utilisateur` (`idUtilisateur`, `nomUtilisateur`, `prenomUtilisateur`, `cle`, `siret`, `codeAct`, `idCommune`, `secteur`, `telephone`, `mail`, `chambre`, `nomSociete`, `demande`, `ouvert`, `created_at`) VALUES
+(14, 'Appriou Tisseo Michel', 'Thomas Ecarlatte Empalot', '113150040014', 245678765434, 11, 6, 4, '0606060606', 'thomas@gmail.com', 'CMA', 'BatPlus Compagnie Corporation International', 'EN_COURS', 1, '2020-05-06 18:02:18'),
+(16, 'Nguyen', 'Thanh', NULL, 245678765434, 11, 6, 4, '0606060606', 'nmthanh99@gmail.com', 'CMA', 'BatPlus', 'REFUSE', 0, '2020-05-07 19:04:21'),
+(17, 'Appriou', 'Thomas', '113150040017', 245678765434, 11, 6, 4, '0606060606', 'thOmas@gmail.com', 'CMA', 'BatPlus', 'REFUSE', 1, '2020-05-07 19:04:31'),
+(18, 'Appriou', 'Thomas', '113150040018', 245678765434, 11, 6, 4, '0606060606', 'thomas.appriou81@gmail.com', 'CMA', 'BatPlus', 'VALIDE', 1, '2020-05-07 19:20:20'),
+(19, 'Appriou Narbonne', 'Rochange Christine', NULL, 245678765434, 11, 6, 4, '0606060606', 'thomas@gmail.com', 'CMA', 'Pokémon Corporation International', 'REFUSE', 1, '2020-05-06 18:02:18'),
+(20, 'Totami Ankama', 'Dofus Retro', NULL, 245678765434, 11, 6, 4, '0606060606', 'nmthanh99@gmail.com', 'CMA', 'International CORP Japan', 'EN_COURS', 1, '2020-05-07 19:04:21'),
+(21, 'Appriounete Léa toto', 'Christine Mobilion', '113150040017', 245678765434, 11, 6, 4, '0606060606', 'thOmas@gmail.com', 'CMA', 'Pokémon Compagnie Australia', 'EN_COURS', 1, '2020-05-07 19:04:31'),
+(22, 'Appriou', 'Thomas', '113150040018', 245678765434, 11, 6, 4, '0606060606', 'thomas.appriou81@gmail.com', 'CMA', 'BatPlus', 'VALIDE', 1, '2020-05-07 19:20:20');
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `DestinationAnnonce`
+-- Contraintes pour la table `destinationannonce`
 --
-ALTER TABLE `DestinationAnnonce`
+ALTER TABLE `destinationannonce`
   ADD CONSTRAINT `fk_idMessage` FOREIGN KEY (`idAnnonce`) REFERENCES `annonce` (`idAnnonce`),
-  ADD CONSTRAINT `fk_idUtilisateurDest` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`);
+  ADD CONSTRAINT `fk_idUtilisateurDest` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
 
 --
--- Contraintes pour la table `FilDeDiscussion`
+-- Contraintes pour la table `fildediscussion`
 --
-ALTER TABLE `FilDeDiscussion`
-  ADD CONSTRAINT `fk_idDernierMessage` FOREIGN KEY (`idDernierMessage`) REFERENCES `MessagePrive` (`idMessagePrive`),
-  ADD CONSTRAINT `fk_idUtilisateurFil` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`);
+ALTER TABLE `fildediscussion`
+  ADD CONSTRAINT `fk_idDernierMessage` FOREIGN KEY (`idDernierMessage`) REFERENCES `messageprive` (`idMessagePrive`),
+  ADD CONSTRAINT `fk_idUtilisateurFil` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
 
 --
--- Contraintes pour la table `MessagePrive`
+-- Contraintes pour la table `messageprive`
 --
-ALTER TABLE `MessagePrive`
-  ADD CONSTRAINT `fk_fil` FOREIGN KEY (`idFilDeDiscussion`) REFERENCES `FilDeDiscussion` (`idFilDeDiscussion`);
+ALTER TABLE `messageprive`
+  ADD CONSTRAINT `fk_fil` FOREIGN KEY (`idFilDeDiscussion`) REFERENCES `fildediscussion` (`idFilDeDiscussion`);
 
 --
--- Contraintes pour la table `Utilisateur`
+-- Contraintes pour la table `utilisateur`
 --
-ALTER TABLE `Utilisateur`
-  ADD CONSTRAINT `fk_codeAct` FOREIGN KEY (`codeAct`) REFERENCES `CodeActivite` (`code`),
-  ADD CONSTRAINT `fk_idCommuneUtilisateur` FOREIGN KEY (`idCommune`) REFERENCES `Commune` (`idCommune`);
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `fk_codeAct` FOREIGN KEY (`codeAct`) REFERENCES `codeactivite` (`code`),
+  ADD CONSTRAINT `fk_idCommuneUtilisateur` FOREIGN KEY (`idCommune`) REFERENCES `commune` (`idCommune`);
+COMMIT;
 
-CREATE TRIGGER last_message_trigger AFTER INSERT ON messageprive for EACH ROW
-UPDATE fildediscussion f SET f.idDernierMessage = NEW.idMessagePrive WHERE f.idFilDeDiscussion = NEW.idFilDeDiscussion;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
