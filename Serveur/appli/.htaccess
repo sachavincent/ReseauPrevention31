@@ -1,23 +1,4 @@
 RewriteEngine On
-#
-# RewriteBase indispensable sur webetu :
-
-#RewriteBase /www/username0/quizzbox
-
-
-#
-# Pour interdire l'accès aux répertoires contenant du code
-RewriteRule ^sql(/.*|)$ - [NC,F]
-
-# Autorisation de Ajax
-RewriteCond %{HTTP:X-Requested-With} !=XMLHttpRequest
-RewriteCond %{HTTP:X-REQUESTED-WITH} !^(XMLHttpRequest)$
-#RewriteRule ^src(/.*|)$ - [NC,F]
-RewriteRule ^vendor(/.*|)$ - [NC,F]
-
-
-#
-# réécriture pour slim
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
