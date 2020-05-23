@@ -5,8 +5,8 @@
 
 html, body 
 { 
-    min-width: 1200px;
-    min-height: 100vh;
+    min-width: 1348px;
+    min-height: 720px;
 	margin:0; 
     padding:0; 
     background-color: white;
@@ -167,7 +167,7 @@ forces  : |  envoyer  | supprimer |
 {
     float: right;
     width: 25px;
-    height: 100vh;
+    height: 835px;
     min-height: 784px;
     background-color: #F3F2F1;
     border: 1px solid #E1E1E1;
@@ -328,8 +328,8 @@ forces :
 {
     float: left;
     width: 215px;    
-    height: 100vh;
-    min-height: 784px;
+    height: 835px;
+    /* min-height: 784px; */
     background-color: #F3F2F1;
     border: 1px solid #E1E1E1;
     margin-top: -1px;
@@ -384,7 +384,7 @@ forces :
 .logo 
 {
     margin-left: 35px;
-    margin-top: 65vh;
+    margin-top: 500px;
 }
 
 
@@ -529,7 +529,7 @@ forces :
 #pan-content
 {
     width: auto;
-    min-width: 600px;
+    min-width: 857px;
     min-height: 785px;
     margin-bottom: 0px;
     margin-left: 217px;
@@ -541,7 +541,7 @@ forces :
 {
     float: left;
     width: 250px;   
-    height: 100vh;
+    height: 835px;
     min-height: 784px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
@@ -605,47 +605,140 @@ h10
 
 /* =============== RECEPTION FORCES (A L'OUVERTURE) =============== */
 
-/* conteneur d'un msg lors de son ouverture */
+/* conteneur d'un msg privé lors de son ouverture */
 #zone-msg
 {
     width: auto;
-    height: 121px;
+    min-width: 857px;
+    height: 225px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
     margin-top: 0px;
-    margin-left: 95px;
+    margin-left: 250px;
+}
+
+#zone-annonce-conseil
+{
+    width: auto;
+    height: 85px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+    margin-top: 0px;
+    margin-left: 250px;
 }
 
 #date-msg
 {
     font-size: 13px;
     float: right;
-    margin-top: 10px;
-    margin-right: 10px;
+    margin-top: 15px;
+    margin-right: 20px;
     color: grey;
 }
 
-#objet
+#secteur-annonce
 {
+    color: grey;
+    font-size: 13px;
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+#objet-msg
+{
+    color: #005A9E;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 25px;
     padding-top: 18px;
 }
 
-#infos1, #infos2
+#infos-msg
 {
     font-size: 14px;
     margin-left: 25px;
-    padding-top: 15px;
 }
 
-#cle
+#affichage-texte
 {
-    font-size: 25px;
-    font-weight: bold;
-    margin: 50px;
+    font-size: 14px;
+    width: 810px;
+    margin: 20px;
     margin-left: 270px;
+}
+
+/* messages prives */
+#zone-discussion
+{
+    width: auto;
+    height: 218%;
+    margin-top: 25px;
+    padding: 25px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.msg-force, .msg-user
+{
+    font-size: 14px;
+    width: 250px;
+    height: auto;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 2px 2px 2px;
+}
+
+.msg-force
+{
+    margin-left: 65%;
+    background-color: #E1E1E1;
+}
+
+.msg-user
+{
+    background-color: #C7E0F4;
+}
+
+#zone-reponse
+{
+    width: auto;
+    height: 57px;
+    background-color: #FAF9F8;
+    border: 1px solid #E1E1E1;
+    padding: 5px;   
+}
+
+#reponse-msg
+{
+    float: left;
+    font-size: 14px;
+    height: 45px;
+    width: 82%;
+    resize: none;
+    border-radius: 2px 2px 2px;
+    border: 1px solid #E1E1E1;
+    margin-left: 15px;
+    padding: 5px;
+    outline: none;
+}
+
+[name='envoyer-msg']
+{
+    float: right;
+    width: 10%;
+    height: 50px;
+    background-color: white;
+    color: #0073CC;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px 2px 2px;
+    margin-top: 2.5px;
+    margin-right: 15px;
+}
+
+[name='envoyer-msg']:hover
+{
+    background-color: #C7E0F4;
+    cursor: pointer;
 }
 
 
@@ -654,8 +747,9 @@ h10
 /* zone des informations de la demande */
 #zone-demande
 {
+    font-size: 15px;
     width: auto;
-    height: 300px;
+    height: 310px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
     margin-left: 250px;
@@ -667,29 +761,91 @@ h10
 {
     font-size: 13px;
     float: right;
-    margin-top: 10px;
-    margin-right: 10px;
+    margin-top: 15px;
+    margin-right: 20px;
     color: grey;
+}
+
+#titre-info-demande
+{
+    color: #005A9E;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#cle
+{
+    height: 110px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #005A9E;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+    padding-top: 10px;
+    padding-left: 25px;
+    margin-left: 250px;
+}
+
+#cle-generee
+{
+    color: #005A9E;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 
 /* =============== FORCES : NOUVEAU CONSEIL =============== */
 
-/* conteneur nouveau conseil */
-[name='input-objet-conseil']
+.envoyer
 {
-    width: 300px;
-    height: 25px;
+    width: 100px;
+    height: 34px;
+    background-color: white;
+    color: #0073CC;
+    border: 1px solid #E1E1E1;
+    border-radius: 2px 2px 2px;
+    cursor: pointer;
+    margin-left: 100px;
 }
 
+.envoyer:hover 
+{
+    background-color: #C7E0F4;
+}
+
+/* conteneur nouveau conseil */
 #objet-new-conseil
 {
     width: auto;
-    height: 100px;
+    height: 60px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
-
     padding: 20px;
+}
+
+/* zone saisie de l'objet */
+[name='input-objet-conseil']
+{
+    font-size: 16px;
+    width: 90%;
+    height: 25px;
+    border: 1px solid #E1E1E1; 
+    padding: 5px;
+    margin-left: 5px;
+    outline: none;
+}
+
+#write-conseil
+{
+    font-size: 14px;
+    min-width: 93%;
+    min-height: 690px;
+    resize: none;
+    border: 0px;
+    margin: 15px;
+    padding: 5px;
+    outline: none;
 }
 
 
@@ -699,11 +855,11 @@ h10
 #zone-saisie-annonce
 {
     width: auto;
-    height: 295px;
+    height: 250px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
     padding: 5px;
-    padding-left: 30px;
+    padding-left: 25px;
 }
 
 /* correspond à une ligne des parametres */
@@ -726,6 +882,7 @@ h10
     margin-left: 25px;
     height: 25px;
     width: 165px;
+    cursor: pointer;
 }
 
 /* checkbox toutes les activites */
@@ -734,6 +891,7 @@ h10
     height: 16px;
     width: 16px;
     margin-left: 22px;
+    cursor: pointer;
 }
 
 /* checkbox toutes les communes */
@@ -741,6 +899,7 @@ h10
 {
     height: 16px;
     width: 16px;
+    cursor: pointer;
 }
 
 /* checkbox toutes les zones */
@@ -749,30 +908,55 @@ h10
     height: 16px;
     width: 16px;
     margin-left: 35px;
+    cursor: pointer;
 }
 
-/* checkbox envoi par mail, notifs */
-#envoi-mail, #envoi-notif
+/* conteneur de l'objet nouvelle annonce */
+#objet-new-annonce
 {
-    height: 16px;
-    width: 16px;
-    margin-left: 46px;
+    width: auto;
+    height: 60px;
+    background-color: #FAF9F8;
+    border-bottom: 1px solid #E1E1E1;
+    padding: 20px;
+    padding-left: 25px;
 }
 
 /* affichage destinataires concernés */
 #total-destinataires
 {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     color: #005A9E;
+    margin-top: 15px;
 }
 
-#write-msg
+/* zone saisie de l'objet */
+[name='input-objet-annonce']
 {
-    font-size: 15px;
+    font-size: 16px;
+    width: 90%;
+    height: 25px;
+    border: 1px solid #E1E1E1; 
+    padding: 5px;
+    margin-left: 5px;
+    outline: none;
+}
+
+[name='destinataires']
+{
+    cursor: pointer;
+}
+
+#write-annonce
+{
+    font-size: 14px;
     min-width: 92%;
     min-height: 430px;
     resize: none;
     border: 0px;
-    margin: 20px;
+    margin: 15px;
+    margin-left: 20px;
+    padding: 5px;
+    outline: none;
 }

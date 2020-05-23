@@ -44,7 +44,7 @@ else {
             $_SESSION['mail'] = $info_ForceeDansBDD['mail'];
             $_SESSION['mdp'] = $info_ForceeDansBDD['mdpForce'];
             include("../force/script/chargerInfos.php");
-            header('Location: ../force/demandes.php?e=annonce&m=none');
+            header('Location: ../force/demandes.php?e=prive&m=none');
             exit();
         } else {
             // <!-- Si connexion failed = affichage msg -->

@@ -68,6 +68,9 @@ else {
 
     function supprimerAnnonce($infoAnnonce){
         include("connexionBDD.php");
+        $requeteSupprDestinationAnnonce = $bdd->prepare('DELETE FROM `destinationannonce` WHERE idAnnonce = ?');
+        $requeteSupprDestinationAnnonce->execute(array($infoAnnonce['idAnnonce']));
+
         $requeteSupprAnnonce = $bdd->prepare('DELETE FROM `annonce` WHERE `annonce`.`idAnnonce` = ?');
         $requeteSupprAnnonce->execute(array($infoAnnonce['idAnnonce']));
     }
@@ -80,13 +83,20 @@ else {
 
     function supprimerPrive($infoMsg){
         include("connexionBDD.php");
-        $requeteSupprMsg = $bdd->prepare('DELETE FROM `messageprive` WHERE `messageprive`.`idMessagePrive` = ?');
-        $requeteSupprMsg->execute(array($infoMsg['idMessagePrive']));
+
+        $requeteSupprDernierMessage=$bdd->prepare('UPDATE `fildediscussion` SET `idDernierMessage` = NULL WHERE `idFilDeDiscussion` = ?');
+        $requeteSupprDernierMessage->execute(array($infoMsg['idFilDeDiscussion']));
+
+        $requeteSupprMessagePrive = $bdd->prepare('DELETE FROM `messageprive` WHERE idFilDeDiscussion = ?');
+        $requeteSupprMessagePrive->execute(array($infoMsg['idFilDeDiscussion']));
+
+        $requeteSupprMsg = $bdd->prepare('DELETE FROM `fildediscussion` WHERE idFilDeDiscussion = ?');
+        $requeteSupprMsg->execute(array($infoMsg['idFilDeDiscussion'])); 
     }
 
     switch ($_GET['e']) {
         case 'prive':   if ($_GET['b'] == 'supprimer') {
-                            supprimerPrive($_SESSION["MESSAGE_PRIVE"][$_GET['m']]);
+                            supprimerPrive($_SESSION["FIL_DE_DISCUSSION"][$_GET['m']]);
                         }
                         header('Location: ../force/demandes.php?e=prive&m=none');
                         exit();
@@ -102,9 +112,6 @@ else {
                         }
                         header('Location: ../force/demandes.php?e=conseil&m=none');
                         exit();
-        break;
-        case 'corbeille': 
-            echo '';
         break;
     }
 

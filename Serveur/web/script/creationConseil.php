@@ -1,11 +1,12 @@
 <?php
-include 'connexionBdd.php';
-if (!(isset($_POST['objet']) AND isset($_POST['texte']))){
+include 'connexionBDD.php';
+if (!(isset($_POST['input-objet-conseil']) AND isset($_POST['texte']))){
     $success = false;
 } else {
     $success = true;
     $request = $bdd->prepare('INSERT INTO `Conseil`(`objet`, `texte`) VALUES (?,?)');
-    $request->execute(array($_POST['objet'], $_POST['texte']));
+    $request->execute(array($_POST['input-objet-conseil'], $_POST['texte']));
 }
-//header(...);
+header('Location: ../force/demandes.php?e=prive&m=none');
+exit();
 ?>

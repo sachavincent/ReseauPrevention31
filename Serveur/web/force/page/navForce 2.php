@@ -35,21 +35,16 @@ switch ($_GET['e']) {
 
 function nbNewMessage() {
     include("../script/connexionBDD.php");
-    $nbNewMsg = 0;
-    $reqNewMsg = $bdd->query('SELECT idDernierMessage FROM fildediscussion');
-    while ($fil = $reqNewMsg->fetch()) {
-        $reqNew = $bdd->prepare('SELECT idMessagePrive FROM messageprive WHERE ouvert = 0 AND idMessagePrive = ?');
-        $reqNew->execute(array($fil['idDernierMessage']));
-        $res = $reqNew->fetch();
-        if (!empty($res['idMessagePrive'])) {
-            $nbNewMsg++;
-        }
-    }
+    $reqNewMsg = $bdd->query('SELECT idMessagePrive FROM MessagePrive WHERE ouvert = 0');
+    $reqNewMsg = $reqNewMsg->fetchAll();
 
-    if ($nbNewMsg != 0) {
-        echo $nbNewMsg;
-    } else {
-        echo '';
+    if (isset($reqNewMsg)) {
+        $nbNewMsg = count($reqNewMsg);
+        if ($nbNewMsg != 0) {
+            echo $nbNewMsg;
+        } else {
+            echo '';
+        }
     }
 }
 
