@@ -8,33 +8,29 @@ require __DIR__ . '/vendor/autoload.php';
 $app = AppFactory::create();
 
 $app->post('/inscription', function (Request $request, Response $response) {
-    include './appli/script/connexionBdd.php';
-    include './appli/script/inscription.php';
+    include 'connexionBdd.php';
+    include 'inscription.php';
     return $response;
 });
 
 $app->post('/connexion', function (Request $request, Response $response) {
-    include './appli/script/connexionBdd.php';
-    include './appli/script/connexionUtilisateur.php';
+    include 'connexionBdd.php';
+    include 'connexionUtilisateur.php';
     return $response;
 });
 
 $app->post('/updatebdd', function (Request $request, Response $response) {
-    include './appli/script/connexionBdd.php';
-    include './appli/script/updateBdd.php';
+    include 'connexionBdd.php';
+    include 'updateBdd.php';
     return $response;
 });
 
 $app->post('/test', function (Request $request, Response $response) {
-    include './appli/script/connexionBdd.php';
-    include './appli/script/test.php';
+    include 'connexionBdd.php';
+    include 'test.php';
     return $response;
 });
 
-$app->post('/', function (Request $request, Response $response) {
-    include './web/connexion/choix-chambre.php';
-    return $response;
-});
 
 $app->run();
 

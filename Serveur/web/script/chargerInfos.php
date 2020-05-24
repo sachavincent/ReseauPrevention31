@@ -26,7 +26,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
         $_SESSION['FIL_DE_DISCUSSION'][$i]['Utilisateur'] = $res;
     
         //Ajout des messages
-        $requeteMessage = $bdd->prepare('SELECT * FROM MessagePrive WHERE idFilDeDiscussion = ? ORDER BY created_at DESC');
+        $requeteMessage = $bdd->prepare('SELECT * FROM MessagePrive WHERE idFilDeDiscussion = ? ORDER BY created_at ASC');
         $requeteMessage->execute(array($fil['idFilDeDiscussion']));
         while ($message = $requeteMessage->fetch()){
             $_SESSION['FIL_DE_DISCUSSION'][$i]['message'][] = $message;

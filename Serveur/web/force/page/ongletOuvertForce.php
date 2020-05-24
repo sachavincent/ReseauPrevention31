@@ -22,41 +22,45 @@ if ($_GET['m'] != 'none') {
 
     // affichage du contenu de l'onglet selectionné
     switch ($_GET['e']) {
-        case 'prive'   :  echo ('
-                            <section id="zone-msg"> 
-                                <div id="objet-msg"><U>'.$objet.'</U></div><br>
+        case 'prive'   :?>  <section id="zone-msg"> 
+                                <div id="objet-msg"><U><?=$objet?></U></div><br>
                                 <div id="infos-msg">
-                                    <b>Utilisateur :</b> '.$nom.', '.$prenom.'<br><br>
-                                    <b>Adresse Mail :</b> '. $mail.'<br><br>
-                                    <b>Téléphone : </b>'.$telephone.'<br><br>
-                                    <b>Localisation :</b> secteur '.$secteur.'<br><br>
-                                    <b>Société :</b> '.$societe.
-                                '</div>
+                                    <b>Utilisateur :</b><?=$nom?> <?=$prenom?><br><br>
+                                    <b>Adresse Mail :</b><?=$mail?><br><br>
+                                    <b>Téléphone : </b><?=$telephone?><br><br>
+                                    <b>Localisation :</b> secteur <?=$secteur?><br><br>
+                                    <b>Société :</b><?=$societe?>
+                                </div>
                                 <section id="zone-discussion">
-                                    <div class="msg-force">Salut</div>
-                                    <div class="msg-user">Bonjour</div>
-                                    <div class="msg-user">Comment allez vous ?</div>
-                                    <div class="msg-force">Wesh la famille</div>
-                                    <div class="msg-force">Salut</div>
-                                    <div class="msg-user">Bonjour</div>
-                                    <div class="msg-user">Comment allez vous ?</div>
-                                    <div class="msg-force">Wesh la famille</div>
-                                    <div class="msg-force">Salut</div>
-                                    <div class="msg-user">Bonjour</div>
-                                    <div class="msg-user">Comment allez vous ? espece de negre des forets, jesper tu meurs fdp de noir de merde de maxou australopitèque</div>
-                                    <div class="msg-force">Wesh la famille</div>
+                                    <?php // traitement msg forces / user
+                                        $infoFil = $_SESSION['FIL_DE_DISCUSSION'][$_GET['m']];
+                                        foreach ($infoFil['message'] as $msg) {
+                                        switch ($msg['emetteur']) {
+                                            case 'FORCE' :
+                                                $emetteur = 'msg-force';
+                                            break;
+                                            case 'UTILISATEUR' :
+                                                $emetteur = 'msg-user';
+                                            break;
+                                        }
+                                        echo '<div class='.$emetteur.'>'.$msg['texte'].'</div>';
+                                    }
+                                    ?>
                                 </section>
                                 <!-- Bas de page par defaut des messages -->
                                 <script>
                                     var x = document.getElementById("zone-discussion");
                                     x.scrollTop = x.scrollHeight;
                                 </script>
+
+                                <form action="../script/nouveauMessagePrive.php?m=<?=$_GET['m']."&idFil=".$infoFil['idFilDeDiscussion']?>" method="POST">
                                 <section id="zone-reponse">
-                                    <textarea id="reponse-msg"></textarea>
+                                    <textarea id="reponse-msg" name="reponse-msg"></textarea>
                                     <input type="submit" name="envoyer-msg" value="envoyer">
                                 </section>
+                                </form>
                             </section>
-                            ');
+<?php 
         break;
         case 'annonce' :  echo ('
                             <section id="zone-annonce-conseil"> 
@@ -78,5 +82,4 @@ if ($_GET['m'] != 'none') {
         break;
     }
 }
-
 ?>

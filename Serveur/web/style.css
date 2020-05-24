@@ -915,20 +915,11 @@ h10
 #objet-new-annonce
 {
     width: auto;
-    height: 60px;
+    height: 40px;
     background-color: #FAF9F8;
     border-bottom: 1px solid #E1E1E1;
     padding: 20px;
     padding-left: 25px;
-}
-
-/* affichage destinataires concernés */
-#total-destinataires
-{
-    font-size: 14px;
-    font-weight: bold;
-    color: #005A9E;
-    margin-top: 15px;
 }
 
 /* zone saisie de l'objet */
@@ -943,10 +934,6 @@ h10
     outline: none;
 }
 
-[name='destinataires']
-{
-    cursor: pointer;
-}
 
 #write-annonce
 {
