@@ -7,7 +7,7 @@
 <div id="barre-actions">
   <input type="button" class="demandes" value="Demandes" onclick=window.location.href='demandes.php?e=attente&m=none'>
   <!-- actions rapides -->
-  <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=corbeille&m=none'"/>
+  <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=accepte&m=none'"/>
   <!-- actions de la demande ouverte -->
   <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=accepte&m=<?php echo $_GET['m'] ?>&b=refuser'"/>
 </div>

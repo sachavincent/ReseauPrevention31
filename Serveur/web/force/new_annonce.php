@@ -158,7 +158,13 @@ if (!isset($commune)){
     <div class="selection-params">Sélectionner toutes les zones :
       <input id="toutes-zones" name="toutes-zones" type="checkbox"/>
     </div><br>
+
+    <!-- checkbox envoi mail -->
+    <div class="selection-params">Envoyer l'annonce par mail :
+        <input id="mail" name="mail" type="checkbox"/>
+      </div><br>
   </div>
+
   
   <div id="objet-new-annonce">
     <b><U>Objet :</U></b>
