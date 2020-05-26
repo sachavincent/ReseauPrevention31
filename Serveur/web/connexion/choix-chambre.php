@@ -3,7 +3,6 @@ session_start();
 session_destroy();
 session_start();
 $_SESSION['connexion'] = false;
-echo phpversion();
 ?>
 
 <!DOCTYPE html>
