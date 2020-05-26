@@ -1,6 +1,6 @@
 <?php
 
-include 'connexionBdd.php';
+include 'connexionBDD.php';
 
 if (!(isset($_POST['input-objet-annonce']) AND isset($_POST['texte'])) OR empty($_POST['input-objet-annonce']) OR empty($_POST['texte'])){
     $success = false;
