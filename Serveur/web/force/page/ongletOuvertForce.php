@@ -66,7 +66,7 @@ if ($_GET['m'] != 'none') {
                             <section id="zone-annonce-conseil"> 
                                 <time id="date-msg">'.$dateMsg.'</time>
                                 <div id="objet-msg"><U>'.$infosUser['objet'].'</U></div>
-                                <div id="secteur-annonce">secteurs concernés : 1 - 2 - 6</div>
+                                <div id="secteur-annonce"> Utilisateurs concernés : ' . $_SESSION['ANNONCE'][$_GET['m']]['nbDestinataire'] . '</div>
                             </section>
                             <div id="affichage-texte">'.$infosUser['texte'].'</div>
                             ');
