@@ -9,7 +9,7 @@ if (!(isset($_POST['input-objet-annonce']) AND isset($_POST['texte'])) OR empty(
     $success = true;
 
     //Creation de l'annonce
-    $requeteCreationAnnonce = $bdd->prepare('INSERT INTO `annonce`(`objet`, `texte`) VALUES (?,?)');
+    $requeteCreationAnnonce = $bdd->prepare('INSERT INTO `Annonce`(`objet`, `texte`) VALUES (?,?)');
     $requeteCreationAnnonce->execute(array($_POST['input-objet-annonce'], $_POST['texte']));
 
     //Recuperationde l'id de l'annonce
@@ -65,7 +65,7 @@ if (!(isset($_POST['input-objet-annonce']) AND isset($_POST['texte'])) OR empty(
    //Creation des lignes de destinationMessage
     $nbDest = 0;
     while ($resultat = $requeteListeDestinataire->fetch()){
-        $requeteAjoutDest = $bdd->prepare('INSERT INTO `destinationannonce`(`idAnnonce`, `idUtilisateur`) VALUES (?,?)');
+        $requeteAjoutDest = $bdd->prepare('INSERT INTO `DestinationAnnonce`(`idAnnonce`, `idUtilisateur`) VALUES (?,?)');
         $requeteAjoutDest->execute(array($idAnnonce, $resultat['idUtilisateur']));
         $nbDest++;
     }

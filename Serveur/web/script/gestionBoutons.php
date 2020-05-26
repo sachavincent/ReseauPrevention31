@@ -19,7 +19,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
         $requeteUpdateUtilisateur->execute(array('REFUSE', $infoUtilisateur['idUtilisateur']));
 
         // si on refuse la demande apres l'avoir accepté (cas d'erreur)
-        $requeteSupprCle = $bdd->prepare('UPDATE `Utilisateur` SET `cle` = NULL WHERE `utilisateur`.`idUtilisateur` = ?');
+        $requeteSupprCle = $bdd->prepare('UPDATE `Utilisateur` SET `cle` = NULL WHERE `Utilisateur`.`idUtilisateur` = ?');
         $requeteSupprCle->execute(array($infoUtilisateur['idUtilisateur']));
     }
 
@@ -68,29 +68,29 @@ else {
 
     function supprimerAnnonce($infoAnnonce){
         include("connexionBDD.php");
-        $requeteSupprDestinationAnnonce = $bdd->prepare('DELETE FROM `destinationannonce` WHERE idAnnonce = ?');
+        $requeteSupprDestinationAnnonce = $bdd->prepare('DELETE FROM `DestinationAnnonce` WHERE idAnnonce = ?');
         $requeteSupprDestinationAnnonce->execute(array($infoAnnonce['idAnnonce']));
 
-        $requeteSupprAnnonce = $bdd->prepare('DELETE FROM `annonce` WHERE `annonce`.`idAnnonce` = ?');
+        $requeteSupprAnnonce = $bdd->prepare('DELETE FROM `Annonce` WHERE `Annonce`.`idAnnonce` = ?');
         $requeteSupprAnnonce->execute(array($infoAnnonce['idAnnonce']));
     }
 
     function supprimerConseil($infoConseil){
         include("connexionBDD.php");
-        $requeteSupprConseil = $bdd->prepare('DELETE FROM `conseil` WHERE `conseil`.`idConseil` = ?');
+        $requeteSupprConseil = $bdd->prepare('DELETE FROM `Conseil` WHERE `Conseil`.`idConseil` = ?');
         $requeteSupprConseil->execute(array($infoConseil['idConseil']));
     }
 
     function supprimerPrive($infoMsg){
         include("connexionBDD.php");
 
-        $requeteSupprDernierMessage=$bdd->prepare('UPDATE `fildediscussion` SET `idDernierMessage` = NULL WHERE `idFilDeDiscussion` = ?');
+        $requeteSupprDernierMessage=$bdd->prepare('UPDATE `FilDeDiscussion` SET `idDernierMessage` = NULL WHERE `idFilDeDiscussion` = ?');
         $requeteSupprDernierMessage->execute(array($infoMsg['idFilDeDiscussion']));
 
-        $requeteSupprMessagePrive = $bdd->prepare('DELETE FROM `messageprive` WHERE idFilDeDiscussion = ?');
+        $requeteSupprMessagePrive = $bdd->prepare('DELETE FROM `MessagePrive` WHERE idFilDeDiscussion = ?');
         $requeteSupprMessagePrive->execute(array($infoMsg['idFilDeDiscussion']));
 
-        $requeteSupprMsg = $bdd->prepare('DELETE FROM `fildediscussion` WHERE idFilDeDiscussion = ?');
+        $requeteSupprMsg = $bdd->prepare('DELETE FROM `FilDeDiscussion` WHERE idFilDeDiscussion = ?');
         $requeteSupprMsg->execute(array($infoMsg['idFilDeDiscussion'])); 
     }
 

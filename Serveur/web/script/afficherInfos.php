@@ -41,21 +41,21 @@ function trunc($chaine, $nbChar) {
 // forces 
 function priveNonLu($i) {
     include("connexionBDD.php");
-    $reqPrive = $bdd->prepare('UPDATE `messageprive` SET `ouvert` = 1 WHERE `messageprive`.`idMessagePrive` = ?');
+    $reqPrive = $bdd->prepare('UPDATE `MessagePrive` SET `ouvert` = 1 WHERE `MessagePrive`.`idMessagePrive` = ?');
     $reqPrive->execute(array($_SESSION['FIL_DE_DISCUSSION'][$i]['idDernierMessage']));
     include("chargerInfos.php");
 }
 
 function annonceNonLu($i) {
     include("connexionBDD.php");
-    $reqAnnonce = $bdd->prepare('UPDATE `annonce` SET `ouvert` = 1 WHERE `annonce`.`idAnnonce` = ?');
+    $reqAnnonce = $bdd->prepare('UPDATE `Annonce` SET `ouvert` = 1 WHERE `Annonce`.`idAnnonce` = ?');
     $reqAnnonce->execute(array($_SESSION['ANNONCE'][$i]['idAnnonce']));
     include("chargerInfos.php");
 }
 
 function conseilNonLu($i) {
     include("connexionBDD.php");
-    $reqConseil = $bdd->prepare('UPDATE `conseil` SET `ouvert` = 1 WHERE `conseil`.`idConseil` = ?');
+    $reqConseil = $bdd->prepare('UPDATE `Conseil` SET `ouvert` = 1 WHERE `Conseil`.`idConseil` = ?');
     $reqConseil->execute(array($_SESSION['CONSEIL'][$i]['idConseil']));
     include("chargerInfos.php");
 }
@@ -63,21 +63,21 @@ function conseilNonLu($i) {
 // chambres
 function attenteNonLu($i) {
     include("connexionBDD.php");
-    $reqAttente = $bdd->prepare('UPDATE `utilisateur` SET `ouvert` = 1 WHERE `utilisateur`.`idUtilisateur` = ?');
+    $reqAttente = $bdd->prepare('UPDATE `Utilisateur` SET `ouvert` = 1 WHERE `Utilisateur`.`idUtilisateur` = ?');
     $reqAttente->execute(array($_SESSION['EN_COURS'][$i]['idUtilisateur']));
     include("chargerInfos.php");
 }
 
 function valideNonLu($i) {
     include("connexionBDD.php");
-    $reqValide = $bdd->prepare('UPDATE `utilisateur` SET `ouvert` = 1 WHERE `utilisateur`.`idUtilisateur` = ?');
+    $reqValide = $bdd->prepare('UPDATE `Utilisateur` SET `ouvert` = 1 WHERE `Utilisateur`.`idUtilisateur` = ?');
     $reqValide->execute(array($_SESSION['VALIDE'][$i]['idUtilisateur']));
     include("chargerInfos.php");
 }
 
 function refuseNonLu($i) {
     include("connexionBDD.php");
-    $reqAttente = $bdd->prepare('UPDATE `utilisateur` SET `ouvert` = 1 WHERE `utilisateur`.`idUtilisateur` = ?');
+    $reqAttente = $bdd->prepare('UPDATE `Utilisateur` SET `ouvert` = 1 WHERE `Utilisateur`.`idUtilisateur` = ?');
     $reqAttente->execute(array($_SESSION['REFUSE'][$i]['idUtilisateur']));
     include("chargerInfos.php");
 }

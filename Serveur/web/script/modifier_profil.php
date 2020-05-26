@@ -85,7 +85,7 @@ else {
         $retour['message'] = 'Il manque des infos';
     } else {
         // Test du mdp
-        $requeteMdp = $bdd->prepare('SELECT mdpForce FROM Forcedelordre WHERE idForce = ?');
+        $requeteMdp = $bdd->prepare('SELECT mdpForce FROM ForceDeLOrdre WHERE idForce = ?');
         $requeteMdp->execute(array($_SESSION['id']));
         $mdpA = $requeteMdp->fetch();
         $mdp = $mdpA['mdpForce'];
@@ -103,10 +103,10 @@ else {
                 if (!empty($_POST[$info]) && ($_POST[$info] != $_SESSION[$info])){
                     switch ($info) {
                         case 'nom' :
-                            $requeteModifierInfo = $bdd->prepare('UPDATE `Forcedelordre` SET nomForce = ? WHERE idForce = ?');
+                            $requeteModifierInfo = $bdd->prepare('UPDATE `ForceDeLOrdre` SET nomForce = ? WHERE idForce = ?');
                         break;
                         case 'prenom' :
-                            $requeteModifierInfo = $bdd->prepare('UPDATE `Forcedelordre` SET prenomForce = ? WHERE idForce = ?');
+                            $requeteModifierInfo = $bdd->prepare('UPDATE `ForceDeLOrdre` SET prenomForce = ? WHERE idForce = ?');
                         break;
                         case 'mail' :
                             $requeteModifierInfo = $bdd->prepare('UPDATE `Forcedelordre` SET mail = ? WHERE idForce = ?');
@@ -121,7 +121,7 @@ else {
                     $retour['success'] = false;
                     $retour['message'] = 'Les mdp ne correspondent pas';
                 } else {
-                    $requeteModifierMdp = $bdd->prepare('UPDATE `Forcedelordre` SET mdpForce = ? WHERE idForce = ?');
+                    $requeteModifierMdp = $bdd->prepare('UPDATE `ForceDeLOrdre` SET mdpForce = ? WHERE idForce = ?');
                     $requeteModifierMdp->execute(array($_POST['nouveauMdp'], $_SESSION['id']));
                 }
             }
@@ -129,7 +129,7 @@ else {
     }
 
     if ($retour['success']) {
-        $requeteInfo = $bdd->prepare('SELECT nomForce, prenomForce, mail FROM Forcedelordre WHERE idForce = ?');
+        $requeteInfo = $bdd->prepare('SELECT nomForce, prenomForce, mail FROM ForceDeLOrdre WHERE idForce = ?');
         $requeteInfo->execute(array($_SESSION['id']));
         $info_gestionnaireDansBDD = $requeteInfo->fetch();
         // maj des infos de session

@@ -3,18 +3,19 @@
 // affichage des demandes
 if (!empty($_SESSION[$onglet])) {
     $nb = 0;
-    // arcours des elements de la variable $_SESSION[$onglet]
+    // Parcours des elements de la variable $_SESSION[$onglet]
     if (isset($_SESSION[$onglet])) $nb = count($_SESSION[$onglet]);
     for ($i=0; $i < $nb; $i++) {
         
         $affiche = $_SESSION[$onglet][$i];
         if ($onglet == 'FIL_DE_DISCUSSION') {
+            $dernierMsg = count($affiche['message'])-1;
             // recuperation du dernier msg
-            $msgOuvert = $affiche['message'][0]['ouvert'];
-            $affiche['created_at'] = $affiche['message'][0]['created_at'];
+            $msgOuvert = $affiche['message'][$dernierMsg]['ouvert'];
+            $affiche['created_at'] = $affiche['message'][$dernierMsg]['created_at'];
             // elements de l'onglet
             $objet = trunc($affiche['objet'], 17);
-            $texte = trunc($affiche['message'][0]['texte'], 17);
+            $texte = trunc($affiche['message'][$dernierMsg]['texte'], 17);
         } else {
             $msgOuvert = $affiche['ouvert'];
             // elements de l'onglet

@@ -164,7 +164,7 @@ function listeFilAnnonce($cle, $bdd){
     }
 
     //Recuperation des annonces
-    $requestSQL = $bdd->prepare('SELECT idAnnonce FROM destinationAnnonce WHERE idUtilisateur = ?');
+    $requestSQL = $bdd->prepare('SELECT idAnnonce FROM DestinationAnnonce WHERE idUtilisateur = ?');
     $requestSQL->execute(array($idUtilisateur));
 
     while ($idAnnonce = $requestSQL->fetch()){

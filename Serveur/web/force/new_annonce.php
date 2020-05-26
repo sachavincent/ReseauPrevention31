@@ -3,13 +3,13 @@
 include("../script/chargerInfos.php");
 
 if (!isset($activite)){
-    $requete = $bdd->query('SELECT code, activite FROM codeactivite');
+    $requete = $bdd->query('SELECT code, activite FROM CodeActivite');
     while($res = $requete->fetch()){
         $activite[] = $res;
     }
 }
 if (!isset($commune)){
-    $requete = $bdd->query('SELECT idCommune, codePostal, commune, secteur FROM commune ORDER BY commune');
+    $requete = $bdd->query('SELECT idCommune, codePostal, commune, secteur FROM Commune ORDER BY commune');
     while($res = $requete->fetch()){
         $commune[] = $res;
     }

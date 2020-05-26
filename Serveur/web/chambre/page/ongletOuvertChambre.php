@@ -1,5 +1,4 @@
 <?php 
-
 if ($_GET['m'] != 'none') {
     // chargement des informations sur la demande
     $infosUser = $_SESSION[$onglet][$_GET['m']];
@@ -14,7 +13,7 @@ if ($_GET['m'] != 'none') {
     $infosUser = infoCommune($infosUser);
 
     //type d'activite
-    $activite = $bdd->prepare("SELECT activite FROM codeactivite WHERE code = ?");
+    $activite = $bdd->prepare("SELECT activite FROM CodeActivite WHERE code = ?");
     $activite->execute(array($infosUser["codeAct"]));
     $infosUser["activite"] = ($activite->fetch()["activite"]);
 
