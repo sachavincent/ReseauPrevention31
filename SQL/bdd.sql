@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  mer. 27 mai 2020 à 19:54
+-- Généré le :  mer. 27 mai 2020 à 20:04
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -993,7 +993,7 @@ CREATE TABLE `ForceDeLOrdre` (
 --
 
 INSERT INTO `ForceDeLOrdre` (`idForce`, `mdpForce`, `nomForce`, `prenomForce`, `force`, `mail`, `nbConnexion`) VALUES
-(12345, 'root', 'Appriou', 'Thomas', 'G', 'thomas@gouv.fr', 73),
+(12345, 'root', 'Appriou', 'Thomas', 'G', 'thomas@gouv.fr', 74),
 (12346, 'mdp', 'Demougeot', 'MaxouLeGendarmeDuBled', 'P', 'maxou@demougeot.fr', 2);
 
 -- --------------------------------------------------------
@@ -1031,7 +1031,7 @@ CREATE TABLE `MessagePrive` (
   `texte` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ouvert` tinyint(1) NOT NULL DEFAULT '0',
-  `emetteur` tinyint(1) UNSIGNED NOT NULL COMMENT '0 : FORCE, 1 : UTILISATEUR'
+  `emetteur` enum('FORCE','UTILISATEUR') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1039,11 +1039,11 @@ CREATE TABLE `MessagePrive` (
 --
 
 INSERT INTO `MessagePrive` (`idMessagePrive`, `idFilDeDiscussion`, `texte`, `created_at`, `ouvert`, `emetteur`) VALUES
-(21, 7, 'Bonjour bienvenue', '2020-05-23 23:47:31', 1, 1),
-(22, 7, 'Bonjour c\'est quoi ton soucis??', '2020-05-24 18:13:52', 0, 0),
-(23, 7, 'bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu ', '2020-05-24 18:14:24', 1, 1),
-(24, 7, 'BIJOUUUR', '2020-05-26 16:06:48', 1, 0),
-(25, 7, 'coucou\r\n', '2020-05-27 16:10:28', 1, 0);
+(21, 7, 'Bonjour bienvenue', '2020-05-23 23:47:31', 1, 'UTILISATEUR'),
+(22, 7, 'Bonjour c\'est quoi ton soucis??', '2020-05-24 18:13:52', 0, 'FORCE'),
+(23, 7, 'bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu ', '2020-05-24 18:14:24', 1, 'UTILISATEUR'),
+(24, 7, 'BIJOUUUR', '2020-05-26 16:06:48', 1, 'FORCE'),
+(25, 7, 'coucou\r\n', '2020-05-27 16:10:28', 1, 'FORCE');
 
 --
 -- Déclencheurs `MessagePrive`
