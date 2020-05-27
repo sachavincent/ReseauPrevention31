@@ -10,7 +10,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
 
         $requeteUpdateUtilisateur->execute(array($infoUtilisateur['cle'], 'VALIDE', $infoUtilisateur['idUtilisateur']));
 
-        // include '../../script/envoiMail.php';
+        include '../../script/envoiMail.php';
     }
 
     function refuserDemande($infoUtilisateur){
@@ -61,7 +61,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
     }
 }
 
-/* ============================================================================ */ 
+/* ============================================================================ */
 
 // traitement forces de l'ordre
 else {
@@ -91,7 +91,7 @@ else {
         $requeteSupprMessagePrive->execute(array($infoMsg['idFilDeDiscussion']));
 
         $requeteSupprMsg = $bdd->prepare('DELETE FROM `FilDeDiscussion` WHERE idFilDeDiscussion = ?');
-        $requeteSupprMsg->execute(array($infoMsg['idFilDeDiscussion'])); 
+        $requeteSupprMsg->execute(array($infoMsg['idFilDeDiscussion']));
     }
 
     switch ($_GET['e']) {
