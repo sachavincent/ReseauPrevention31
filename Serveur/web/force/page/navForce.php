@@ -110,6 +110,8 @@ function nbNewConseil() {
 
   <!-- logo -->
   <img src=<?php echo $_SESSION['logoChambre']; ?> class="logo" width="150px" height="150px"/>
+  <p style='font-size:10px; text-align : center'>Nombre de connexions : <?= $_SESSION['nbConnexion']?></p>
+
 </nav>
 
 <!-- ============================================== -->

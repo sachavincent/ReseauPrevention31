@@ -43,6 +43,7 @@ else {
             $_SESSION['prenom'] = $info_ForceeDansBDD['prenomForce'];
             $_SESSION['mail'] = $info_ForceeDansBDD['mail'];
             $_SESSION['mdp'] = $info_ForceeDansBDD['mdpForce'];
+            $_SESSION['nbConnexion'] = $info_ForceeDansBDD['nbConnexion'] + 1;
             include("../force/script/chargerInfos.php");
             header('Location: ../force/demandes.php?e=prive&m=none');
             exit();

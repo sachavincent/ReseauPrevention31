@@ -33,6 +33,7 @@ session_start();
       <!-- affichage nom / prenom -->
       <p class="img-profil"><img src="../images/user.png"></p><p class="affichage-nom"> <?php echo $_SESSION['nom'] ?> </p>
       <p class="affichage-prenom"> <?php echo $_SESSION['prenom'] ?> </p>
+      <p classe="info-user">Vous vous êtes connecté <?= $_SESSION['nbConnexion']?> fois</p>
     </section>
 
     <!-- ============================================== -->

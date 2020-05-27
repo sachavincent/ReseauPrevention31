@@ -36,10 +36,10 @@ if ($_GET['m'] != 'none') {
                                         $infoFil = $_SESSION['FIL_DE_DISCUSSION'][$_GET['m']];
                                         foreach ($infoFil['message'] as $msg) {
                                         switch ($msg['emetteur']) {
-                                            case 'FORCE' :
+                                            case 0 :
                                                 $emetteur = 'msg-force';
                                             break;
-                                            case 'UTILISATEUR' :
+                                            case 1 :
                                                 $emetteur = 'msg-user';
                                             break;
                                         }

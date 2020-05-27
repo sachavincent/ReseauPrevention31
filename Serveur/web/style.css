@@ -1,316 +1,279 @@
-*
-{
-    font-family: Arial;
+@charset "UTF-8";
+* {
+  font-family: Arial;
 }
 
-html, body 
-{ 
-    min-width: 1348px;
-    min-height: 720px;
-	margin:0; 
-    padding:0; 
-    background-color: white;
+html, body {
+  min-width: 1348px;
+  min-height: 720px;
+  margin: 0;
+  padding: 0;
+  background-color: white;
 }
 
-header 
-{
-    height: 42px;
-    padding-top: 2px;
-    padding-bottom: 15px;
-    margin-top: -5px;
-    background-color: #0073CC;
-    text-align:right;/*texte centré*/
+header {
+  height: 42px;
+  padding-top: 2px;
+  padding-bottom: 15px;
+  margin-top: -5px;
+  background-color: #0073CC;
+  text-align: right;
+  /*texte centré*/
 }
 
-body 
-{
-    background-color: white; /* couleur background */
-    color: #151515; /* couleur texte */
-    overflow: auto;
+body {
+  background-color: white;
+  /* couleur background */
+  color: #151515;
+  /* couleur texte */
+  overflow: auto;
 }
 
 /* mon profil */
-h1 
-{
-    margin-left: 10px;
-    color: #0073CC;
+h1 {
+  margin-left: 10px;
+  color: #0073CC;
 }
 
 /* identification */
-h2 
-{
-    font-size: 26px;
-    margin-top: 30px;
+h2 {
+  font-size: 26px;
+  margin-top: 30px;
 }
 
 /* =============== HEADER =============== */
-
 /* bouton profil */
-.profil 
-{
-    float: right;
-    height: 28px;
-    font-weight: bold;
-    font-size: 16px;
-    color: white;
-    margin-top: 20px;
-    cursor: pointer;
+.profil {
+  float: right;
+  height: 28px;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
-.profil:hover 
-{
-    color: #E1E1E1;
+.profil:hover {
+  color: #E1E1E1;
 }
 
 /* bouton deconnexion */
 .disconnect {
-    float: right;
-    color: white;
-    margin-left: 15px;
-    margin-right: 15px;
-    cursor: pointer;
+  float: right;
+  color: white;
+  margin-left: 15px;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 /* =============== BARRE ACTIONS =============== */
-
 /* barre grise contenant plusieurs actions */
-#barre-actions 
-{
-    width: auto;
-    height: 40px;
-    background-color: #F3F2F1;
-    border-bottom: 1px solid #E1E1E1;
-    padding: 3px;
+#barre-actions {
+  width: auto;
+  height: 40px;
+  background-color: #F3F2F1;
+  border-bottom: 1px solid #E1E1E1;
+  padding: 3px;
 }
 
-.demandes
-{
-    font-size: 13px;
-    font-weight: bold;
-    width: 135px;
-    height: 35px;
-    color: white;
-    background-color: #0073CC;
-    border: 0px;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-    margin-top: 3px;
-    margin-bottom: 0px;
-    margin-left: 37px;
+.demandes {
+  font-size: 13px;
+  font-weight: bold;
+  width: 135px;
+  height: 35px;
+  color: white;
+  background-color: #0073CC;
+  border: 0px;
+  border-radius: 2px 2px 2px;
+  cursor: pointer;
+  margin-top: 3px;
+  margin-bottom: 0px;
+  margin-left: 37px;
 }
 
 /* boutons nouveau msg */
-.new-annonce, .new-conseil 
-{
-    font-size: 13px;
-    font-weight: bold;
-    width: 85px;
-    height: 35px;
-    color: white;
-    background-color: #0073CC;
-    border: 0px;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-    margin-top: 3px;
-    margin-bottom: 0px;
-    margin-left: 10px;
+.new-annonce, .new-conseil {
+  font-size: 13px;
+  font-weight: bold;
+  width: 85px;
+  height: 35px;
+  color: white;
+  background-color: #0073CC;
+  border: 0px;
+  border-radius: 2px 2px 2px;
+  cursor: pointer;
+  margin-top: 3px;
+  margin-bottom: 0px;
+  margin-left: 10px;
 }
 
-.new-conseil 
-{
-    margin-right: -23px;
+.new-conseil {
+  margin-right: -23px;
 }
 
-.new-annonce:hover, .new-conseil:hover, .demandes:hover 
-{
-    background-color: #005A9E;
+.new-annonce:hover, .new-conseil:hover, .demandes:hover {
+  background-color: #005A9E;
 }
 
 /* bouton rafraichir */
-.refresh-rapide 
-{
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    margin-left: 80px;
-    margin-right: 175px;
+.refresh-rapide {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin-left: 80px;
+  margin-right: 175px;
 }
 
-.refresh-rapide:hover 
-{
-    background-color: #C7E0F4;
+.refresh-rapide:hover {
+  background-color: #C7E0F4;
 }
 
 /* boutons d'actions
 chambre : | accepter  | refuser   | supprimer |
 forces  : |  envoyer  | supprimer | 
 */
-.actions 
-{
-    width: 100px;
-    height: 34px;
-    background-color: white;
-    color: #0073CC;
-    border: 1px solid #E1E1E1;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-    margin-left: 50px;
+.actions {
+  width: 100px;
+  height: 34px;
+  background-color: white;
+  color: #0073CC;
+  border: 1px solid #E1E1E1;
+  border-radius: 2px 2px 2px;
+  cursor: pointer;
+  margin-left: 50px;
 }
 
-.actions:hover 
-{
-    background-color: #C7E0F4;
+.actions:hover {
+  background-color: #C7E0F4;
 }
 
 /* barre grise droite (décoration) */
-#deco-droite 
-{
-    float: right;
-    width: 25px;
-    height: 835px;
-    min-height: 784px;
-    background-color: #F3F2F1;
-    border: 1px solid #E1E1E1;
-    border-right: 0px;
-    margin-top: -1px;
+#deco-droite {
+  float: right;
+  width: 25px;
+  height: 835px;
+  min-height: 784px;
+  background-color: #F3F2F1;
+  border: 1px solid #E1E1E1;
+  border-right: 0px;
+  margin-top: -1px;
 }
 
 /* =============== IDENTIFICATION =============== */
-
-#page-identification 
-{
-    width: auto;
-    min-height: 700px;
+#page-identification {
+  width: auto;
+  min-height: 700px;
 }
 
 /* panel choix logo */
-#panel-choix 
-{   
-    margin: auto;
-    width: 700px;
-    height: 500px;
-    background-color: #F3F2F1;
-    border: 1px solid #E1E1E1;
-    border-radius: 3px 3px 3px;
-    text-align: center;
-    margin-top: 5%;
+#panel-choix {
+  margin: auto;
+  width: 700px;
+  height: 500px;
+  background-color: #F3F2F1;
+  border: 1px solid #E1E1E1;
+  border-radius: 3px 3px 3px;
+  text-align: center;
+  margin-top: 5%;
 }
 
-#logo-ca 
-{
-    float: left;
-    margin-left: 25px;
-    margin-top: 15px;
-    cursor: pointer;
+#logo-ca {
+  float: left;
+  margin-left: 25px;
+  margin-top: 15px;
+  cursor: pointer;
 }
 
-#logo-cma 
-{
-    float: left;
-    margin-left: 55px;
-    margin-top: 15px;
-    cursor: pointer;
+#logo-cma {
+  float: left;
+  margin-left: 55px;
+  margin-top: 15px;
+  cursor: pointer;
 }
 
-#logo-cci 
-{
-    float: right;
-    margin-top: 15px;
-    margin-right: 25px;
-    cursor: pointer;
+#logo-cci {
+  float: right;
+  margin-top: 15px;
+  margin-right: 25px;
+  cursor: pointer;
 }
 
-#logo-gendarmerie 
-{
-    float: left;
-    margin-left: 150px;
-    cursor: pointer;
+#logo-gendarmerie {
+  float: left;
+  margin-left: 150px;
+  cursor: pointer;
 }
 
-#logo-police 
-{
-    float: right;
-    margin-right: 150px;
-    cursor: pointer;
+#logo-police {
+  float: right;
+  margin-right: 150px;
+  cursor: pointer;
 }
 
-#logo-ca:hover, #logo-cma:hover, #logo-cci:hover, #logo-police:hover, #logo-gendarmerie:hover 
-{
-    background-color: #E1E1E1;
-
+#logo-ca:hover, #logo-cma:hover, #logo-cci:hover, #logo-police:hover, #logo-gendarmerie:hover {
+  background-color: #E1E1E1;
 }
-
 
 /* =============== IDENTIFICATION =============== */
-
 /* panel identification */
-#panel-identification 
-{   
-    margin: auto;
-    width: 400px;
-    height: 510px;
-    background-color: #F3F2F1;
-    border: 1px solid #E1E1E1;
-    border-radius: 3px 3px 3px;
-    text-align: center;
-    margin-top: 5%;
+#panel-identification {
+  margin: auto;
+  width: 400px;
+  height: 510px;
+  background-color: #F3F2F1;
+  border: 1px solid #E1E1E1;
+  border-radius: 3px 3px 3px;
+  text-align: center;
+  margin-top: 5%;
 }
 
 /* affichage logo sélectionné */
-#logo-choisi 
-{
-    margin-top: 5px;
+#logo-choisi {
+  margin-top: 5px;
 }
 
 /* labels "nom d'utilisateur" et "mot de passe" */
-.identifiants 
-{
-    margin: auto;
-    margin-top: 5px;
+.identifiants {
+  margin: auto;
+  margin-top: 5px;
 }
 
 /* zones de saisies */
-#login-username, #login-password 
-{
-    font-size: 15px;
-    width: 250px;
-    height: 28px;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+#login-username, #login-password {
+  font-size: 15px;
+  width: 250px;
+  height: 28px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
 }
 
 /* boutons retour | valider (identification) */
-.bouton-id 
-{
-    height: 35px;
-    width: 100px;
-    font-size: 16px;
-    color: white;
-    background-color: #0073CC;
-    border: 0px;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-    margin-top: 5px;
-    margin-right: 10px;
-    margin-left: 10px;
+.bouton-id {
+  height: 35px;
+  width: 100px;
+  font-size: 16px;
+  color: white;
+  background-color: #0073CC;
+  border: 0px;
+  border-radius: 2px 2px 2px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
-.bouton-id:hover 
-{
-    background-color: #005A9E;
+.bouton-id:hover {
+  background-color: #005A9E;
 }
 
-#login-failed 
-{
-    font-size: 13px;
-    color: red;
+#login-failed {
+  font-size: 13px;
+  color: red;
 }
-
 
 /* =============== NAV GAUCHE =============== */
-
 /* panel gauche
 
 chambre :
@@ -324,133 +287,117 @@ forces :
 |  Conseils            |
 
 */
-#nav-gauche 
-{
-    float: left;
-    width: 215px;    
-    height: 835px;
-    /* min-height: 784px; */
-    background-color: #F3F2F1;
-    border: 1px solid #E1E1E1;
-    margin-top: -1px;
+#nav-gauche {
+  float: left;
+  width: 215px;
+  height: 835px;
+  /* min-height: 784px; */
+  background-color: #F3F2F1;
+  border: 1px solid #E1E1E1;
+  margin-top: -1px;
 }
 
 /* icones des categories */
-.img-nav
-{
-    width: 17px;
-    height: 17px;
-    margin-bottom: -3px;
-    margin-left: -35px;
-    margin-right: 15px;
+.img-nav {
+  width: 17px;
+  height: 17px;
+  margin-bottom: -3px;
+  margin-left: -35px;
+  margin-right: 15px;
 }
 
 /* onglet d'une catégorie */
-.onglets, .onglet-selected
-{
-    font-size: 15px;
-    width: auto;
-    height: 30px;
-    color: #151515;
-    background-color: #F3F2F1;
-    cursor: pointer;
-    padding-left: 55px;
-    padding-top: 10px;
-
+.onglets, .onglet-selected {
+  font-size: 15px;
+  width: auto;
+  height: 30px;
+  color: #151515;
+  background-color: #F3F2F1;
+  cursor: pointer;
+  padding-left: 55px;
+  padding-top: 10px;
 }
 
-.onglets:hover 
-{
-    background-color: #C7E0F4;
-    color: #151515;
+.onglets:hover {
+  background-color: #C7E0F4;
+  color: #151515;
 }
 
-.onglet-selected 
-{
-    color: white;
-    background-color: #0073CC;
+.onglet-selected {
+  color: white;
+  background-color: #0073CC;
 }
 
 /* affichage du nombre de msgs dans une catégorie */
-.number-msg 
-{
-    font-size: 14px;
-    float: right;
-    margin: 0px;
-    padding-right: 20px;
+.number-msg {
+  font-size: 14px;
+  float: right;
+  margin: 0px;
+  padding-right: 20px;
 }
 
 /* logo de la page en bas des onglets */
-.logo 
-{
-    margin-left: 35px;
-    margin-top: 500px;
+.logo {
+  margin-left: 35px;
+  margin-top: 450px;
 }
 
-
 /* =============== PAGE PROFIL =============== */
-
 /* Titre "mon profil" */
-#pan-profil 
-{
-    width: auto;
-    min-width: 600px;
-    min-height: 783px;
-    margin-bottom: -25px;
-    margin-left: 200px;
-    padding-top: 4px;
-    padding-left: 60px;    
+#pan-profil {
+  width: auto;
+  min-width: 600px;
+  min-height: 783px;
+  margin-bottom: -25px;
+  margin-left: 200px;
+  padding-top: 4px;
+  padding-left: 60px;
 }
 
 /* conteneur image de profil + nom, prenom */
-#pan-nom-prenom 
-{
-    width: auto;
-    height: 250px;
-    min-width: 500px;
-    background-color: #EDEBE9;
-    color: #101010;
-    border-radius: 3px 3px 3px 3px;
-    border: 1px solid #E1E1E1;
-    padding-top: 25px;
-    margin-right: 60px;
-    margin-top: 15px;
+#pan-nom-prenom {
+  width: auto;
+  height: 250px;
+  min-width: 500px;
+  background-color: #EDEBE9;
+  color: #101010;
+  border-radius: 3px 3px 3px 3px;
+  border: 1px solid #E1E1E1;
+  padding-top: 25px;
+  margin-right: 60px;
+  margin-top: 15px;
 }
 
-.img-profil
-{
-    float: left;
-    margin-left: 50px;
-    margin-right: 50px;
+.img-profil {
+  float: left;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
-.affichage-nom 
-{
-    font-weight: bold;
-    font-size: 35px;
+.affichage-nom {
+  font-weight: bold;
+  font-size: 35px;
 }
 
-.affichage-prenom 
-{
-    font-weight: bold;
-    font-size: 25px;
-    margin-top: -20px;
+.affichage-prenom {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: -20px;
 }
 
 /* conteneur des infos de l'user */
-#pan-infos-user 
-{
-    width: auto;
-    height: 375px;
-    min-width: 500px;
-    color: #101010;
-    background-color: #EDEBE9;
-    border: 1px solid #E1E1E1;
-    border-radius: 3px 3px 3px 3px;
-    padding-top: 15px;
-    padding-left: 50px;
-    margin-right: 60px;
-    margin-top: 20px;
+#pan-infos-user {
+  width: auto;
+  height: 375px;
+  min-width: 500px;
+  color: #101010;
+  background-color: #EDEBE9;
+  border: 1px solid #E1E1E1;
+  border-radius: 3px 3px 3px 3px;
+  padding-top: 15px;
+  padding-left: 50px;
+  margin-right: 60px;
+  margin-top: 20px;
 }
 
 /* labels infos :
@@ -461,489 +408,428 @@ forces :
 |  Nouveau mot de passe  |
 |  Confirmation          |
 */
-.infos-user 
-{
-    width: 560px;
-    font-size: 15px;
-    margin-top: 25px;
-    margin-left: 15px;
+.infos-user {
+  width: 560px;
+  font-size: 15px;
+  margin-top: 25px;
+  margin-left: 15px;
 }
 
 /* zone de saisies des infos (si l'user veut modifier) */
-.input-infos 
-{
-    font-size: 15px;
-    float: right;
-    width: 250px;
-    height: 28px;
-    margin-left: 50px;
-    margin-top: -5px;
+.input-infos {
+  font-size: 15px;
+  float: right;
+  width: 250px;
+  height: 28px;
+  margin-left: 50px;
+  margin-top: -5px;
 }
 
 /* bouton valider les modifications  */
-.valider-infos 
-{
-    float: right;
-    height: 40px;
-    width: 120px;
-    font-size: 16px;
-    font-weight: regular;
-    color: white;
-    background-color: #0073CC;
-    border: 0px;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-
-    margin-top: 5px;
-    margin-right: 134px;
+.valider-infos {
+  float: right;
+  height: 40px;
+  width: 120px;
+  font-size: 16px;
+  font-weight: regular;
+  color: white;
+  background-color: #0073CC;
+  border: 0px;
+  border-radius: 2px 2px 2px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 134px;
 }
 
-.valider-infos:hover 
-{
-    background-color: #005A9E;
+.valider-infos:hover {
+  background-color: #005A9E;
 }
 
 /* message d'erreur en cas d'erreur */
-#erreur 
-{
-    margin-top: 85px;
-    margin-left: 280px;
-    font-size: 13px;
-    color: red;
+#erreur {
+  margin-top: 85px;
+  margin-left: 280px;
+  font-size: 13px;
+  color: red;
 }
 
 /* message de confirmation en cas de changement valide */
-#success 
-{
-    margin-top: 85px;
-    margin-left: 320px;
-    font-size: 13px;
-    color: green;
+#success {
+  margin-top: 85px;
+  margin-left: 320px;
+  font-size: 13px;
+  color: green;
 }
 
-
 /* =============== ONGLETS DEMANDES / MESSAGES =============== */
-
 /* conteneur de la page reception demandes (chambres) ET
    reception messages (forces) */
-#pan-content
-{
-    width: auto;
-    min-width: 857px;
-    min-height: 785px;
-    margin-bottom: 0px;
-    margin-left: 217px;
-    padding-left: 0px;
+#pan-content {
+  width: auto;
+  min-width: 857px;
+  min-height: 785px;
+  margin-bottom: 0px;
+  margin-left: 217px;
+  padding-left: 0px;
 }
 
 /* liste des demandes (chambres), messages reçus (forces) */
-#pan-reception
-{
-    float: left;
-    width: 250px;   
-    height: 835px;
-    min-height: 784px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    border-right: 1px solid #E1E1E1;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    overflow: auto;
+#pan-reception {
+  float: left;
+  width: 250px;
+  height: 835px;
+  min-height: 784px;
+  background-color: #FAF9F8;
+  border-bottom: 1px solid #E1E1E1;
+  border-right: 1px solid #E1E1E1;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  overflow: auto;
 }
 
 /* onglet d'une demande (chambre), message (force) */
-.onglet-msg, .onglet-msg-selected, .onglet-non-lu
-{
-    width: auto;
-    height: 15px;
-    background-color: white;
-    border-bottom: 1px solid #E1E1E1;
-    font-size: 13px;
-    padding: 20px;
-    padding-left: 25px;
-    padding-bottom: 35px;
-    cursor: pointer;
+.onglet-msg, .onglet-msg-selected, .onglet-non-lu {
+  width: auto;
+  height: 15px;
+  background-color: white;
+  border-bottom: 1px solid #E1E1E1;
+  font-size: 13px;
+  padding: 20px;
+  padding-left: 25px;
+  padding-bottom: 35px;
+  cursor: pointer;
 }
 
-.onglet-msg:hover, .onglet-non-lu:hover
-{
-    background-color: #E1E1E1;
+.onglet-msg:hover, .onglet-non-lu:hover {
+  background-color: #E1E1E1;
 }
 
-.onglet-msg-selected
-{
-    color: white;
-    background-color: #0073CC;
+.onglet-msg-selected {
+  color: white;
+  background-color: #0073CC;
 }
 
-.onglet-non-lu
-{
-    background-color: #C7E0F4;
-    border-bottom: 1px solid white;
+.onglet-non-lu {
+  background-color: #C7E0F4;
+  border-bottom: 1px solid white;
 }
 
 /* affichage date reception dans l'onglet */
-#date-reception
-{
-    float: right;
-    font-size: 11px;
+#date-reception {
+  float: right;
+  font-size: 11px;
 }
 
 /* objet onglet (non selectionné) */
-h9
-{
-    color: #0073CC;
-    font-weight: bold;
+h9 {
+  color: #0073CC;
+  font-weight: bold;
 }
 
 /* objet onglet (sélectionné) */
-h10
-{
-    color: white;
-    font-weight: bold;
+h10 {
+  color: white;
+  font-weight: bold;
 }
 
 /* =============== RECEPTION FORCES (A L'OUVERTURE) =============== */
-
 /* conteneur d'un msg privé lors de son ouverture */
-#zone-msg
-{
-    width: auto;
-    min-width: 857px;
-    height: 225px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    margin-top: 0px;
-    margin-left: 250px;
+#zone-msg {
+  width: auto;
+  min-width: 857px;
+  height: 225px;
+  background-color: #FAF9F8;
+  border-bottom: 1px solid #E1E1E1;
+  margin-top: 0px;
+  margin-left: 250px;
 }
 
-#zone-annonce-conseil
-{
-    width: auto;
-    height: 85px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    margin-top: 0px;
-    margin-left: 250px;
+#zone-annonce-conseil {
+  width: auto;
+  height: 85px;
+  background-color: #FAF9F8;
+  border-bottom: 1px solid #E1E1E1;
+  margin-top: 0px;
+  margin-left: 250px;
 }
 
-#date-msg
-{
-    font-size: 13px;
-    float: right;
-    margin-top: 15px;
-    margin-right: 20px;
-    color: grey;
+#date-msg {
+  font-size: 13px;
+  float: right;
+  margin-top: 15px;
+  margin-right: 20px;
+  color: grey;
 }
 
-#secteur-annonce
-{
-    color: grey;
-    font-size: 13px;
-    margin-left: 25px;
-    margin-top: 10px;
+#secteur-annonce {
+  color: grey;
+  font-size: 13px;
+  margin-left: 25px;
+  margin-top: 10px;
 }
 
-#objet-msg
-{
-    color: #005A9E;
-    font-weight: bold;
-    font-size: 18px;
-    margin-left: 25px;
-    padding-top: 18px;
+#objet-msg {
+  color: #005A9E;
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 25px;
+  padding-top: 18px;
 }
 
-#infos-msg
-{
-    font-size: 14px;
-    margin-left: 25px;
+#infos-msg {
+  font-size: 14px;
+  margin-left: 25px;
 }
 
-#affichage-texte
-{
-    font-size: 14px;
-    width: 810px;
-    margin: 20px;
-    margin-left: 270px;
+#affichage-texte {
+  font-size: 14px;
+  width: 810px;
+  margin: 20px;
+  margin-left: 270px;
 }
 
 /* messages prives */
-#zone-discussion
-{
-    width: auto;
-    height: 218%;
-    margin-top: 25px;
-    padding: 25px;
-    overflow: auto;
-    overflow-x: hidden;
+#zone-discussion {
+  width: auto;
+  height: 218%;
+  margin-top: 25px;
+  padding: 25px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
-.msg-force, .msg-user
-{
-    font-size: 14px;
-    width: 250px;
-    height: auto;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 2px 2px 2px;
+.msg-force, .msg-user {
+  font-size: 14px;
+  width: 250px;
+  height: auto;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 2px 2px 2px;
 }
 
-.msg-force
-{
-    margin-left: 65%;
-    background-color: #E1E1E1;
+.msg-force {
+  margin-left: 65%;
+  background-color: #E1E1E1;
 }
 
-.msg-user
-{
-    background-color: #C7E0F4;
+.msg-user {
+  background-color: #C7E0F4;
 }
 
-#zone-reponse
-{
-    width: auto;
-    height: 57px;
-    background-color: #FAF9F8;
-    border: 1px solid #E1E1E1;
-    padding: 5px;   
+#zone-reponse {
+  width: auto;
+  height: 57px;
+  background-color: #FAF9F8;
+  border: 1px solid #E1E1E1;
+  padding: 5px;
 }
 
-#reponse-msg
-{
-    float: left;
-    font-size: 14px;
-    height: 45px;
-    width: 82%;
-    resize: none;
-    border-radius: 2px 2px 2px;
-    border: 1px solid #E1E1E1;
-    margin-left: 15px;
-    padding: 5px;
-    outline: none;
+#reponse-msg {
+  float: left;
+  font-size: 14px;
+  height: 45px;
+  width: 82%;
+  resize: none;
+  border-radius: 2px 2px 2px;
+  border: 1px solid #E1E1E1;
+  margin-left: 15px;
+  padding: 5px;
+  outline: none;
 }
 
-[name='envoyer-msg']
-{
-    float: right;
-    width: 10%;
-    height: 50px;
-    background-color: white;
-    color: #0073CC;
-    border: 1px solid #E1E1E1;
-    border-radius: 2px 2px 2px;
-    margin-top: 2.5px;
-    margin-right: 15px;
+[name=envoyer-msg] {
+  float: right;
+  width: 10%;
+  height: 50px;
+  background-color: white;
+  color: #0073CC;
+  border: 1px solid #E1E1E1;
+  border-radius: 2px 2px 2px;
+  margin-top: 2.5px;
+  margin-right: 15px;
 }
 
-[name='envoyer-msg']:hover
-{
-    background-color: #C7E0F4;
-    cursor: pointer;
+[name=envoyer-msg]:hover {
+  background-color: #C7E0F4;
+  cursor: pointer;
 }
-
 
 /* =============== RECEPTION CHAMBRE (A L'OUVERTURE) =============== */
-
 /* zone des informations de la demande */
-#zone-demande
-{
-    font-size: 15px;
-    width: auto;
-    height: 310px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    margin-left: 250px;
-    padding: 1px;
-    padding-left: 25px;
+#zone-demande {
+  font-size: 15px;
+  width: auto;
+  height: 310px;
+  background-color: #FAF9F8;
+  border-bottom: 1px solid #E1E1E1;
+  margin-left: 250px;
+  padding: 1px;
+  padding-left: 25px;
 }
 
-#date-demande
-{
-    font-size: 13px;
-    float: right;
-    margin-top: 15px;
-    margin-right: 20px;
-    color: grey;
+#date-demande {
+  font-size: 13px;
+  float: right;
+  margin-top: 15px;
+  margin-right: 20px;
+  color: grey;
 }
 
-#titre-info-demande
-{
-    color: #005A9E;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 15px;
+#titre-info-demande {
+  color: #005A9E;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 15px;
 }
 
-#cle
-{
-    height: 110px;
-    font-size: 25px;
-    font-weight: bold;
-    color: #005A9E;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    padding-top: 10px;
-    padding-left: 25px;
-    margin-left: 250px;
+#cle {
+  height: 110px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #005A9E;
+  background-color: #FAF9F8;
+  border-bottom: 1px solid #E1E1E1;
+  padding-top: 10px;
+  padding-left: 25px;
+  margin-left: 250px;
 }
 
-#cle-generee
-{
-    color: #005A9E;
-    font-size: 16px;
-    font-weight: bold;
+#cle-generee {
+  color: #005A9E;
+  font-size: 16px;
+  font-weight: bold;
 }
-
 
 /* =============== FORCES : NOUVEAU CONSEIL =============== */
-
-.envoyer
-{
-    width: 100px;
-    height: 34px;
-    background-color: white;
-    color: #0073CC;
-    border: 1px solid #E1E1E1;
-    border-radius: 2px 2px 2px;
-    cursor: pointer;
-    margin-left: 100px;
+.envoyer {
+  width: 100px;
+  height: 34px;
+  background-color: white;
+  color: #0073CC;
+  border: 1px solid #E1E1E1;
+  border-radius: 2px 2px 2px;
+  cursor: pointer;
+  margin-left: 100px;
 }
 
-.envoyer:hover 
-{
-    background-color: #C7E0F4;
+.envoyer:hover {
+  background-color: #C7E0F4;
 }
 
 /* conteneur nouveau conseil */
-#objet-new-conseil
-{
-    width: auto;
-    height: 60px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    padding: 20px;
+#objet-new-conseil {
+  width: auto;
+  height: 60px;
+  background-color: #FAF9F8;
+  border-bottom: 1px solid #E1E1E1;
+  padding: 20px;
 }
 
 /* zone saisie de l'objet */
-[name='input-objet-conseil']
-{
-    font-size: 16px;
-    width: 90%;
-    height: 25px;
-    border: 1px solid #E1E1E1; 
-    padding: 5px;
-    margin-left: 5px;
-    outline: none;
+[name=input-objet-conseil] {
+  font-size: 16px;
+  width: 90%;
+  height: 25px;
+  border: 1px solid #E1E1E1;
+  padding: 5px;
+  margin-left: 5px;
+  outline: none;
 }
 
-#write-conseil
-{
-    font-size: 14px;
-    min-width: 93%;
-    min-height: 690px;
-    resize: none;
-    border: 0px;
-    margin: 15px;
-    padding: 5px;
-    outline: none;
+#write-conseil {
+  font-size: 14px;
+  min-width: 93%;
+  min-height: 690px;
+  resize: none;
+  border: 0px;
+  margin: 15px;
+  padding: 5px;
+  outline: none;
 }
-
 
 /* =============== FORCES : NOUVELLE ANNONCE =============== */
-
 /* zone de selection des parametres du message */
-#zone-saisie-annonce
-{
-    width: auto;
-    height: 250px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    padding: 5px;
-    padding-left: 25px;
+#zone-saisie-annonce {
+  width: auto;
+  height: 250px;
+  background-color: #FAF9F8;
+  border-bottom: 1px solid #E1E1E1;
+  padding: 5px;
+  padding-left: 25px;
 }
 
 /* correspond à une ligne des parametres */
-.selection-params
-{
-    font-size: 14px;
-    font-weight: regular;
+.selection-params {
+  font-size: 14px;
+  font-weight: regular;
 }
 
 /* parametre d'alignement */
-.alignement-msg
-{
-    width: 700px;
+.alignement-msg {
+  width: 700px;
 }
 
 /* ligne de selection des activites, communes, zones */
-.select-activites, .select-commune, .select-zone
-{
-    float: right;
-    margin-left: 25px;
-    height: 25px;
-    width: 165px;
-    cursor: pointer;
+.select-activites, .select-commune, .select-zone {
+  float: right;
+  margin-left: 25px;
+  height: 25px;
+  width: 165px;
+  cursor: pointer;
 }
 
 /* checkbox toutes les activites */
-#toutes-activites
-{
-    height: 16px;
-    width: 16px;
-    margin-left: 22px;
-    cursor: pointer;
+#toutes-activites {
+  height: 16px;
+  width: 16px;
+  margin-left: 22px;
+  cursor: pointer;
 }
 
 /* checkbox toutes les communes */
-#toutes-communes
-{
-    height: 16px;
-    width: 16px;
-    cursor: pointer;
+#toutes-communes {
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
 }
 
 /* checkbox toutes les zones */
-#toutes-zones
-{
-    height: 16px;
-    width: 16px;
-    margin-left: 35px;
-    cursor: pointer;
+#toutes-zones {
+  height: 16px;
+  width: 16px;
+  margin-left: 35px;
+  cursor: pointer;
 }
 
 /* conteneur de l'objet nouvelle annonce */
-#objet-new-annonce
-{
-    width: auto;
-    height: 40px;
-    background-color: #FAF9F8;
-    border-bottom: 1px solid #E1E1E1;
-    padding: 20px;
-    padding-left: 25px;
+#objet-new-annonce {
+  width: auto;
+  height: 40px;
+  background-color: #FAF9F8;
+  border-bottom: 1px solid #E1E1E1;
+  padding: 20px;
+  padding-left: 25px;
 }
 
 /* zone saisie de l'objet */
-[name='input-objet-annonce']
-{
-    font-size: 16px;
-    width: 90%;
-    height: 25px;
-    border: 1px solid #E1E1E1; 
-    padding: 5px;
-    margin-left: 5px;
-    outline: none;
+[name=input-objet-annonce] {
+  font-size: 16px;
+  width: 90%;
+  height: 25px;
+  border: 1px solid #E1E1E1;
+  padding: 5px;
+  margin-left: 5px;
+  outline: none;
 }
 
-
-#write-annonce
-{
-    font-size: 14px;
-    min-width: 92%;
-    min-height: 430px;
-    resize: none;
-    border: 0px;
-    margin: 15px;
-    margin-left: 20px;
-    padding: 5px;
-    outline: none;
+#write-annonce {
+  font-size: 14px;
+  min-width: 92%;
+  min-height: 430px;
+  resize: none;
+  border: 0px;
+  margin: 15px;
+  margin-left: 20px;
+  padding: 5px;
+  outline: none;
 }
