@@ -2,7 +2,7 @@
 $cle = $infoUtilisateur['cle'];
 $requete = $bdd->prepare('SELECT nomUtilisateur, prenomUtilisateur, mail FROM Utilisateur WHERE cle = ?');
 $requete->execute(array($cle));
-$infoUtilisateur = $requete->fetch();
+$infoDestinataire = $requete->fetch();
 
 require '../../vendor/autoload.php';
 use \Mailjet\Resources;
@@ -16,8 +16,8 @@ $body = [
             ],
             'To' => [
                 [
-                    'Email' => $infoUtilisateur['mail'],
-                    'Name' => $infoUtilisateur['nomUtilisateur'] . $infoUtilisateur['prenomUtilisateur']
+                    'Email' => $infoDestinataire['mail'],
+                    'Name' => $infoDestinataire['nomUtilisateur'] . $infoDestinataire['prenomUtilisateur']
                 ]
             ],
             'Subject' => "Validation de votre inscription",
