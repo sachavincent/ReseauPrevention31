@@ -10,7 +10,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
 
         $requeteUpdateUtilisateur->execute(array($infoUtilisateur['cle'], 'VALIDE', $infoUtilisateur['idUtilisateur']));
 
-        include '../../script/envoiMail.php';
+        include './envoiMailCle.php';
     }
 
     function refuserDemande($infoUtilisateur){
