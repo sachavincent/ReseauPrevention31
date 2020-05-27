@@ -28,7 +28,9 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
             $infos = array('nom', 'prenom', 'mail');
 
             foreach($infos as $info) {
-                if (!empty($_POST[$info]) && ($_POST[$info] != $_SESSION[$info])){
+                // securisation faille XSS
+                $infosXSS = strip_tags($_POST[$info]);
+                if (!empty($infosXSS) && ($infosXSS != $_SESSION[$info])){
                     switch ($info) {
                         case 'nom' :
                             $requeteModifierInfo = $bdd->prepare('UPDATE `Gestionnaire` SET nomGestionnaire = ? WHERE idGestionnaire = ?');
@@ -40,7 +42,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
                             $requeteModifierInfo = $bdd->prepare('UPDATE `Gestionnaire` SET mail = ? WHERE idGestionnaire = ?');
                         break;
                     }
-                    $requeteModifierInfo->execute(array($_POST[$info], $_SESSION['id']));
+                    $requeteModifierInfo->execute(array($infosXSS, $_SESSION['id']));
                 }
             }
             // Cas changement mdp
@@ -61,9 +63,9 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
         $requeteInfo->execute(array($_SESSION['id']));
         $info_gestionnaireDansBDD = $requeteInfo->fetch();
         // maj des infos de session
-        $_SESSION['nom'] = $info_gestionnaireDansBDD['nomGestionnaire'];
+        $_SESSION['nom']    = $info_gestionnaireDansBDD['nomGestionnaire'];
         $_SESSION['prenom'] = $info_gestionnaireDansBDD['prenomGestionnaire'];
-        $_SESSION['mail'] = $info_gestionnaireDansBDD['mail'];
+        $_SESSION['mail']   = $info_gestionnaireDansBDD['mail'];
         // refresh la fenetre
         header('Location: ../chambre/profil-ch.php?return=success&e=profil');
         exit();
@@ -88,7 +90,7 @@ else {
         $requeteMdp = $bdd->prepare('SELECT mdpForce FROM ForceDeLOrdre WHERE idForce = ?');
         $requeteMdp->execute(array($_SESSION['id']));
         $mdpA = $requeteMdp->fetch();
-        $mdp = $mdpA['mdpForce'];
+        $mdp  = $mdpA['mdpForce'];
 
         // mdp incorrect
         if ($mdp != $_POST['mdp'] AND !empty($_POST['mdp'])){
@@ -100,7 +102,8 @@ else {
             $infos = array('nom', 'prenom', 'mail');
 
             foreach($infos as $info) {
-                if (!empty($_POST[$info]) && ($_POST[$info] != $_SESSION[$info])){
+                $infosXSS = strip_tags($_POST[$info]);
+                if (!empty($infosXSS) && ($infosXSS != $_SESSION[$info])){
                     switch ($info) {
                         case 'nom' :
                             $requeteModifierInfo = $bdd->prepare('UPDATE `ForceDeLOrdre` SET nomForce = ? WHERE idForce = ?');
@@ -112,14 +115,14 @@ else {
                             $requeteModifierInfo = $bdd->prepare('UPDATE `Forcedelordre` SET mail = ? WHERE idForce = ?');
                         break;
                     }
-                    $requeteModifierInfo->execute(array($_POST[$info], $_SESSION['id']));
+                    $requeteModifierInfo->execute(array($infosXSS, $_SESSION['id']));
                 }
             }
             // Cas changement mdp
             if (!empty($_POST['nouveauMdp'])){
                 if (empty($_POST['confirmationMdp']) OR $_POST['nouveauMdp'] != $_POST['confirmationMdp']){
-                    $retour['success'] = false;
-                    $retour['message'] = 'Les mdp ne correspondent pas';
+                    $retour['success']  = false;
+                    $retour['message']  = 'Les mdp ne correspondent pas';
                 } else {
                     $requeteModifierMdp = $bdd->prepare('UPDATE `ForceDeLOrdre` SET mdpForce = ? WHERE idForce = ?');
                     $requeteModifierMdp->execute(array($_POST['nouveauMdp'], $_SESSION['id']));
@@ -133,9 +136,9 @@ else {
         $requeteInfo->execute(array($_SESSION['id']));
         $info_gestionnaireDansBDD = $requeteInfo->fetch();
         // maj des infos de session
-        $_SESSION['nom'] = $info_gestionnaireDansBDD['nomForce'];
+        $_SESSION['nom']    = $info_gestionnaireDansBDD['nomForce'];
         $_SESSION['prenom'] = $info_gestionnaireDansBDD['prenomForce'];
-        $_SESSION['mail'] = $info_gestionnaireDansBDD['mail'];
+        $_SESSION['mail']   = $info_gestionnaireDansBDD['mail'];
         // refresh la fenetre
         header('Location: ../force/profil-fo.php?return=success&e=profil');
         exit();

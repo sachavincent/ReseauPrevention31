@@ -4,28 +4,28 @@ switch ($_GET['e']) {
     // forces de l'ordre
     case 'prive':
         $onglet = "FIL_DE_DISCUSSION";
-        $lien = 'prive';
+        $lien   = 'prive';
     break;
     case 'annonce':
         $onglet = "ANNONCE";
-        $lien = 'annonce';
+        $lien   = 'annonce';
     break;
     case 'conseil':
         $onglet = "CONSEIL";
-        $lien = 'conseil';
+        $lien   = 'conseil';
     break;
     // chambres
     case 'attente':
         $onglet = "EN_COURS";
-        $lien = 'attente';
+        $lien   = 'attente';
     break;
     case 'accepte':
         $onglet = "VALIDE";
-        $lien = 'accepte';
+        $lien   = 'accepte';
     break;
     case 'refuse':
         $onglet = "REFUSE";
-        $lien = 'refuse';
+        $lien   = 'refuse';
     break;
 }
 
@@ -87,37 +87,37 @@ function infoCommune($infosUser) {
     include("connexionBDD.php");  
     $requete = $bdd->prepare("SELECT codePostal, commune FROM Commune WHERE idCommune = ?");
     $requete->execute(array($infosUser['idCommune']));
-    $resultatRequete = $requete->fetch();
+    $resultatRequete         = $requete->fetch();
     $infosUser["codePostal"] = $resultatRequete["codePostal"];
-    $infosUser["commune"] = $resultatRequete["commune"];
+    $infosUser["commune"]    = $resultatRequete["commune"];
     return $infosUser;
 }
 ?>
 
 <!-- pan liste msg -->
 <section id="pan-content">
-    <nav id="pan-reception">
-      <?php   
-          /* ======================== LISTE ONGLETS FORCES ========================== */
-  
-          if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
-              include "../force/page/listeOngletsForce.php";
-          }
-          /* ======================== LISTE ONGLETS CHAMBRES ========================== */
-          else {
-              include "../chambre/page/listeOngletsChambre.php";
-          }
+  <nav id="pan-reception">
+    <?php   
+    /* ======================== LISTE ONGLETS FORCES ========================== */
+
+    if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
+        include "../force/page/listeOngletsForce.php";
+    }
+    /* ======================== LISTE ONGLETS CHAMBRES ========================== */
+    else {
+        include "../chambre/page/listeOngletsChambre.php";
+    }
     ?>
-    </nav>
-      <?php
-          /* ===================== ZONE OUVERTURE DU MESSAGE FORCES ============+============= */
-          
-          if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
-              include "../force/page/ongletOuvertForce.php";
-          }
-          /* ===================== ZONE OUVERTURE DEMANDE CHAMBRE ========================= */
-          else {
-              include "../chambre/page/ongletOuvertChambre.php";
-          }
-      ?>
+  </nav>
+  <?php
+    /* ===================== ZONE OUVERTURE DU MESSAGE FORCES ============+============= */
+    
+    if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
+        include "../force/page/ongletOuvertForce.php";
+    }
+    /* ===================== ZONE OUVERTURE DEMANDE CHAMBRE ========================= */
+    else {
+        include "../chambre/page/ongletOuvertChambre.php";
+    }
+  ?>
 </section>

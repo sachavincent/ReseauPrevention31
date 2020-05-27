@@ -1,7 +1,11 @@
 <?php
-require 'vendor/autoload.php';
+require '../../vendor/autoload.php';
 use \Mailjet\Resources;
 $mj = new \Mailjet\Client('0904172806ab77b1da0f835836cbadc3','6c72c75e671030418bdcdc09004fee86',true,['version' => 'v3.1']);
+
+$objet = strip_tags($_POST['input-objet-annonce']);
+$texte = strip_tags($_POST['texte']);
+
 foreach($listeDestinataire as $dest){
     $body = [
         'Messages' => [
@@ -16,9 +20,9 @@ foreach($listeDestinataire as $dest){
                         'Name' => $dest['nomUtilisateur'] . $dest['prenomUtilisateur']
                     ]
                 ],
-                'Subject' => $_POST['input-objet-annonce'],
-                'TextPart' => $_POST['texte'],
-                'HTMLPart' => $_POST['texte']
+                'Subject' => $objet,
+                'TextPart' => $texte,
+                'HTMLPart' => $texte
             ]
         ]
     ];

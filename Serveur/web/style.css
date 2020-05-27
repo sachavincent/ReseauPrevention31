@@ -425,6 +425,14 @@ forces :
   margin-top: -5px;
 }
 
+.required-input {
+    height: 16px;
+    width: 16px;
+    float: inline-end;
+    margin-left: 15px;
+}
+
+
 /* bouton valider les modifications  */
 .valider-infos {
   float: right;
@@ -561,7 +569,7 @@ h10 {
   color: grey;
 }
 
-#secteur-annonce {
+#user-concernes {
   color: grey;
   font-size: 13px;
   margin-left: 25px;
@@ -751,7 +759,7 @@ h10 {
 /* zone de selection des parametres du message */
 #zone-saisie-annonce {
   width: auto;
-  height: 250px;
+  height: 285px;
   background-color: #FAF9F8;
   border-bottom: 1px solid #E1E1E1;
   padding: 5px;
@@ -801,6 +809,13 @@ h10 {
   cursor: pointer;
 }
 
+#mail {
+  height: 16px;
+  width: 16px;
+  margin-left: 36px;
+  cursor: pointer;
+}
+
 /* conteneur de l'objet nouvelle annonce */
 #objet-new-annonce {
   width: auto;
@@ -825,7 +840,7 @@ h10 {
 #write-annonce {
   font-size: 14px;
   min-width: 92%;
-  min-height: 430px;
+  min-height: 410px;
   resize: none;
   border: 0px;
   margin: 15px;

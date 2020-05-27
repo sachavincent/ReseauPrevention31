@@ -14,16 +14,15 @@ session_start();
     <?php include("page/headerChambre.php"); ?>  
     <!-- ouverture du contenu | En attente | Acceptees | Refusees | -->
     <?php switch ($_GET['e']) {
-        case 'attente' :
-            include("attente.php");
+        case 'attente':
+            include ("attente.php");
         break;
-        case 'accepte' :
-            include("accepte.php");
+        case 'accepte':
+            include ("accepte.php");
         break;
-        case 'refuse' :
-            include("refuse.php");
+        case 'refuse':
+            include ("refuse.php");
         break;
-    }
-    ?>
+    } ?>
   </body>
 </html>

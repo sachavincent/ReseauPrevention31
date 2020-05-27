@@ -5,12 +5,12 @@
 
 <!-- barre d'actions -->
 <div id="barre-actions">
-  <input type="button" class="new-annonce" value="+ Annonce" onclick=window.location.href='demandes.php?e=new_annonce'>
-  <input type="button" class="new-conseil" value="+ Conseil" onclick=window.location.href='demandes.php?e=new_conseil'>
+  <input type="button" class="new-annonce" value="+ Annonce" onclick="window.location.href='demandes.php?e=new_annonce'" />
+  <input type="button" class="new-conseil" value="+ Conseil" onclick="window.location.href='demandes.php?e=new_conseil'" />
   <!-- actions rapides -->
-  <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=conseil&m=none'"/>
+  <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=conseil&m=none'" />
   <!-- actions de la demande ouverte -->
-  <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=conseil&m=<?php echo $_GET['m'] ?>&b=supprimer'"/> 
+  <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=conseil&m=<?php echo $_GET['m'] ?>&b=supprimer'" />
 </div>
 
 <!-- barre grise a droite (decoratif) -->

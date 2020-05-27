@@ -2,10 +2,8 @@
 $requete = $bdd->prepare('SELECT nomUtilisateur, prenomUtilisateur, mail FROM Utilisateur WHERE cle = ?');
 $requete->execute(array($cle));
 $infoUtilisateur = $requete->fetch();
-/*
-This call sends a message to one recipient.
-*/
-require 'vendor/autoload.php';
+
+require '../../vendor/autoload.php';
 use \Mailjet\Resources;
 $mj = new \Mailjet\Client('0904172806ab77b1da0f835836cbadc3','6c72c75e671030418bdcdc09004fee86',true,['version' => 'v3.1']);
 $body = [

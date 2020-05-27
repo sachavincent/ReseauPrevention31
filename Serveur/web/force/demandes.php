@@ -31,7 +31,6 @@ session_start();
         case 'new_conseil' :
             include("new_conseil.php");
         break;
-    }
-    ?>
+    } ?>
   </body>
 </html>

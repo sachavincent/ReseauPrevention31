@@ -1,29 +1,29 @@
-<?php 
+<?php
 session_start();
 /* récupération de l'URL pour obtenir le choix de l'user */
-switch ($_GET['chambre']){
-    case 'CCI': 
+switch ($_GET['chambre']) {
+    case 'CCI':
         $_SESSION['chambre'] = 'CCI';
         $_SESSION['logoChambre'] = '../images/cci.png';
     break;
-    case 'CA': 
+    case 'CA':
         $_SESSION['chambre'] = 'CA';
         $_SESSION['logoChambre'] = '../images/ca.png';
     break;
-    case 'CMA': 
+    case 'CMA':
         $_SESSION['chambre'] = 'CMA';
         $_SESSION['logoChambre'] = '../images/cma.png';
     break;
-    case 'G': 
+    case 'G':
         $_SESSION['chambre'] = 'G';
         $_SESSION['logoChambre'] = '../images/gendarmerie.png';
     break;
-    case 'P': 
+    case 'P':
         $_SESSION['chambre'] = 'P';
         $_SESSION['logoChambre'] = '../images/police.png';
     break;
     default:
-    die;
+        die;
 }
 ?>
 
@@ -46,9 +46,9 @@ switch ($_GET['chambre']){
       <section id="panel-identification">
         <h2>IDENTIFICATION</h2>
 
-        <form action=<?php echo "verifierConnexion.php?chambre=" . $_SESSION['chambre'];?>  method="post">
+        <form action=<?= "verifierConnexion.php?chambre=" . $_SESSION['chambre'];?>  method="post">
         <!-- affichage des elements de connexion -->
-        <div id="logo-choisi"><img src=<?php echo $_SESSION['logoChambre'];?> width="170px" height="170px"></div>
+        <div id="logo-choisi"><img src=<?= $_SESSION['logoChambre'];?> width="170px" height="170px"></div>
         
         <div class="identifiants"><b>Nom d'utilisateur</b></div>
         <!-- zone de saisie identifiant -->
@@ -60,7 +60,7 @@ switch ($_GET['chambre']){
 
         <br>
         <!-- boutons retour / valider -->
-        <input onclick=window.location.href='choix-chambre.php'; class="bouton-id" type="button" value="retour" >
+        <input onclick="window.location.href='choix-chambre.php'"; class="bouton-id" type="button" value="retour" >
         <input class="bouton-id" type="submit" value="valider" >
 
         <!-- ligne d'erreur si la connexion échoue -->
@@ -69,6 +69,5 @@ switch ($_GET['chambre']){
         </form>
       </section>
     </section>
-
   </body>
 </html>

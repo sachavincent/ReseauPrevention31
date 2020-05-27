@@ -5,7 +5,7 @@
 
 <!-- barre d'actions -->
 <div id="barre-actions">
-  <input type="button" class="demandes" value="Demandes" onclick=window.location.href='demandes.php?e=attente&m=none'>
+  <input type="button" class="demandes" value="Demandes" onclick="window.location.href='demandes.php?e=attente&m=none'">
   <!-- actions rapides -->
   <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=refuse&m=none'"/>  
   <!-- actions de la demande ouverte -->

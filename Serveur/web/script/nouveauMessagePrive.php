@@ -1,14 +1,18 @@
 <?php
 include 'connexionBDD.php';
 
-if (!(isset($_GET['idFil']) AND isset($_POST['reponse-msg'])) OR (empty($_POST['reponse-msg']))){
+// faille XSS
+$idFil = strip_tags($_GET['idFil']);
+$reponse = strip_tags($_POST['reponse-msg']);
+
+if (!(isset($idFil) AND isset($reponse)) OR (empty($reponse))){
     $success = false;
 } else {
-    $requete = $bdd->prepare('INSERT INTO `MessagePrive`(`idFilDeDiscussion`, `texte`, `emetteur`) VALUES (?,?,0)');
-    $requete->execute(array($_GET['idFil'], $_POST['reponse-msg']));
+    $requete = $bdd->prepare('INSERT INTO `MessagePrive`(`idFilDeDiscussion`, `texte`, `emetteur`) VALUES (?,?,"FORCE")');
+    $requete->execute(array($idFil, $reponse));
     $success = true;
 }
 
-header('Location: ../force/demandes.php?e=prive&m='.$_GET['m']);
+header('Location: ../force/demandes.php?e=prive&m='.$_GET['m']);//A completer
 exit();
 ?>

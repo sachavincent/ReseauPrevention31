@@ -3,13 +3,13 @@
 include("../script/chargerInfos.php");
 
 if (!isset($activite)){
-    $requete = $bdd->query('SELECT code, activite FROM CodeActivite');
+    $requete   = $bdd->query('SELECT code, activite FROM CodeActivite');
     while($res = $requete->fetch()){
         $activite[] = $res;
     }
 }
 if (!isset($commune)){
-    $requete = $bdd->query('SELECT idCommune, codePostal, commune, secteur FROM Commune ORDER BY commune');
+    $requete   = $bdd->query('SELECT idCommune, codePostal, commune, secteur FROM Commune ORDER BY commune');
     while($res = $requete->fetch()){
         $commune[] = $res;
     }
@@ -20,11 +20,11 @@ if (!isset($commune)){
 <form method="post" action="../script/creationAnnonce.php">
 <!-- barre d'actions -->
 <div id="barre-actions">
-  <input type="button" class="new-annonce" value="+ Annonce" onclick=window.location.href='demandes.php?e=new_annonce'>
-  <input type="button" class="new-conseil" value="+ Conseil" onclick=window.location.href='demandes.php?e=new_conseil'>
+  <input type="button" class="new-annonce" value="+ Annonce" onclick="window.location.href='demandes.php?e=new_annonce'" />
+  <input type="button" class="new-conseil" value="+ Conseil" onclick="window.location.href='demandes.php?e=new_conseil'" />
   <!-- actions de la demande ouverte -->
-  <input class="envoyer" type="submit" value="Envoyer"/>
-  <input class="actions" type="button" value="supprimer" onclick=window.location.href='demandes.php?e=prive&m=none' />
+  <input class="envoyer" type="submit" value="Envoyer" />
+  <input class="actions" type="button" value="supprimer" onclick="window.location.href='demandes.php?e=prive&m=none'" />
 </div>
 
 <!-- barre grise a droite (decoratif) -->
@@ -47,29 +47,23 @@ if (!isset($commune)){
         <!-- menu deroulant des activites -->
         <select name="activite1" class="select-activites" size="l">
           <option value="--">Choisir une activité</option>
-          <?php
-          foreach($activite as $act){
-            ?>      <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite']?></option>
-          <?php    }
-          ?>
+          <?php foreach($activite as $act) { ?>
+              <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite'] ?></option>
+          <?php } ?>
         </select>
 
         <select name="activite2" class="select-activites" size="l">
           <option value="--">Choisir une activité</option>
-          <?php
-          foreach($activite as $act){
-            ?>      <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite']?></option>
-          <?php    }
-          ?>
+          <?php foreach($activite as $act) { ?>
+              <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite'] ?></option>
+          <?php } ?>
         </select>
 
         <select name="activite3" class="select-activites" size="l">
           <option value="--">Choisir une activité</option>
-          <?php
-          foreach($activite as $act){
-            ?>      <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite']?></option>
-          <?php    }
-          ?>
+          <?php foreach($activite as $act) { ?>
+              <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite'] ?></option>
+          <?php } ?>
         </select>
       </p>
     </div>
@@ -84,29 +78,23 @@ if (!isset($commune)){
       <p class="alignement-msg"><b><U>Commune :</U></b>
         <select name ="commune1" class="select-commune" size="l">
           <option value="--">Choisir une commune</option>
-          <?php
-          foreach($commune as $com){
-            ?>      <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune']?></option>
-          <?php    }
-          ?>
+          <?php foreach($commune as $com) { ?>      
+              <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune'] ?></option>
+          <?php } ?>
         </select>
   
         <select name ="commune2" class="select-commune" size="l">
           <option value="--">Choisir une commune</option>
-          <?php
-          foreach($commune as $com){
-            ?>      <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune']?></option>
-          <?php    }
-          ?>
+          <?php foreach($commune as $com) { ?>      
+              <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune'] ?></option>
+          <?php } ?>
         </select>
   
         <select name ="commune3" class="select-commune" size="l">
           <option value="--">Choisir une commune</option>
-          <?php
-          foreach($commune as $com){
-            ?>      <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune']?></option>
-          <?php    }
-          ?>
+          <?php foreach($commune as $com) { ?>      
+              <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune'] ?></option>
+          <?php } ?>
         </select>
       </p>
     </div>
@@ -160,9 +148,9 @@ if (!isset($commune)){
     </div><br>
 
     <!-- checkbox envoi mail -->
-    <div class="selection-params">Envoyer l'annonce par mail :
+    <div class="selection-params"><b><U>Envoyer l'annonce par mail :</b></U>
         <input id="mail" name="mail" type="checkbox"/>
-      </div><br>
+    </div><br>
   </div>
 
   
