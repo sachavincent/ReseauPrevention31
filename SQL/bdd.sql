@@ -2,22 +2,22 @@
 -- version 4.9.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: May 26, 2020 at 05:27 PM
--- Server version: 5.7.26
--- PHP Version: 7.4.2
+-- Hôte : localhost:8889
+-- Généré le :  mer. 27 mai 2020 à 19:54
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `prevention31`
+-- Base de données :  `prevention31`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Annonce`
+-- Structure de la table `Annonce`
 --
 
 CREATE TABLE `Annonce` (
@@ -30,7 +30,7 @@ CREATE TABLE `Annonce` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Annonce`
+-- Déchargement des données de la table `Annonce`
 --
 
 INSERT INTO `Annonce` (`idAnnonce`, `created_at`, `objet`, `texte`, `ouvert`, `nbDestinataire`) VALUES
@@ -39,7 +39,7 @@ INSERT INTO `Annonce` (`idAnnonce`, `created_at`, `objet`, `texte`, `ouvert`, `n
 (25, '2020-05-26 15:35:15', 'TEST SERVEUR TEST SERVEUR TEST SERVEUR ', 'TEST SERVEUR TEST SERVEUR TEST SERVEUR ', 1, 0),
 (26, '2020-05-26 18:05:42', 'Test nbDest', 'nbDest', 1, 9),
 (27, '2020-05-26 18:50:05', 'bah', 'bah', 1, 9),
-(28, '2020-05-26 18:52:00', 'Test mail ', 'Bonjour\r\nje teste les mails', 0, 9),
+(28, '2020-05-26 18:52:00', 'Test mail ', 'Bonjour\r\nje teste les mails', 1, 9),
 (29, '2020-05-26 18:53:31', 'Test mail ', 'Bonjour\r\n\r\nJe test les mails\r\n', 1, 9),
 (30, '2020-05-26 18:56:42', 'Test mail ', 'Bonjour\r\nje teste les mails', 1, 9),
 (31, '2020-05-26 18:57:06', 'df', 'fg', 1, 9),
@@ -57,7 +57,7 @@ INSERT INTO `Annonce` (`idAnnonce`, `created_at`, `objet`, `texte`, `ouvert`, `n
 -- --------------------------------------------------------
 
 --
--- Table structure for table `CodeActivite`
+-- Structure de la table `CodeActivite`
 --
 
 CREATE TABLE `CodeActivite` (
@@ -68,7 +68,7 @@ CREATE TABLE `CodeActivite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `CodeActivite`
+-- Déchargement des données de la table `CodeActivite`
 --
 
 INSERT INTO `CodeActivite` (`code`, `activite`, `created_at`, `updated_at`) VALUES
@@ -188,7 +188,7 @@ INSERT INTO `CodeActivite` (`code`, `activite`, `created_at`, `updated_at`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Commune`
+-- Structure de la table `Commune`
 --
 
 CREATE TABLE `Commune` (
@@ -201,7 +201,7 @@ CREATE TABLE `Commune` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Commune`
+-- Déchargement des données de la table `Commune`
 --
 
 INSERT INTO `Commune` (`idCommune`, `codePostal`, `commune`, `secteur`, `created_at`, `updated_at`) VALUES
@@ -803,7 +803,7 @@ INSERT INTO `Commune` (`idCommune`, `codePostal`, `commune`, `secteur`, `created
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Conseil`
+-- Structure de la table `Conseil`
 --
 
 CREATE TABLE `Conseil` (
@@ -816,7 +816,7 @@ CREATE TABLE `Conseil` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Conseil`
+-- Déchargement des données de la table `Conseil`
 --
 
 INSERT INTO `Conseil` (`idConseil`, `objet`, `texte`, `created_at`, `updated_at`, `ouvert`) VALUES
@@ -826,7 +826,7 @@ INSERT INTO `Conseil` (`idConseil`, `objet`, `texte`, `created_at`, `updated_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `DestinationAnnonce`
+-- Structure de la table `DestinationAnnonce`
 --
 
 CREATE TABLE `DestinationAnnonce` (
@@ -835,7 +835,7 @@ CREATE TABLE `DestinationAnnonce` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `DestinationAnnonce`
+-- Déchargement des données de la table `DestinationAnnonce`
 --
 
 INSERT INTO `DestinationAnnonce` (`idAnnonce`, `idUtilisateur`) VALUES
@@ -953,7 +953,7 @@ INSERT INTO `DestinationAnnonce` (`idAnnonce`, `idUtilisateur`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `FilDeDiscussion`
+-- Structure de la table `FilDeDiscussion`
 --
 
 CREATE TABLE `FilDeDiscussion` (
@@ -966,16 +966,16 @@ CREATE TABLE `FilDeDiscussion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `FilDeDiscussion`
+-- Déchargement des données de la table `FilDeDiscussion`
 --
 
 INSERT INTO `FilDeDiscussion` (`idFilDeDiscussion`, `idUtilisateur`, `idDernierMessage`, `objet`, `created_at`, `updated_at`) VALUES
-(7, 17, 24, 'COVID', '2020-05-23 23:39:49', '2020-05-26 16:06:48');
+(7, 17, 25, 'COVID', '2020-05-23 23:39:49', '2020-05-27 16:10:28');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ForceDeLOrdre`
+-- Structure de la table `ForceDeLOrdre`
 --
 
 CREATE TABLE `ForceDeLOrdre` (
@@ -989,17 +989,17 @@ CREATE TABLE `ForceDeLOrdre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ForceDeLOrdre`
+-- Déchargement des données de la table `ForceDeLOrdre`
 --
 
 INSERT INTO `ForceDeLOrdre` (`idForce`, `mdpForce`, `nomForce`, `prenomForce`, `force`, `mail`, `nbConnexion`) VALUES
-(12345, 'root', 'Appriou', 'Thomas', 'G', 'thomas@gouv.fr', 63),
+(12345, 'root', 'Appriou', 'Thomas', 'G', 'thomas@gouv.fr', 73),
 (12346, 'mdp', 'Demougeot', 'MaxouLeGendarmeDuBled', 'P', 'maxou@demougeot.fr', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Gestionnaire`
+-- Structure de la table `Gestionnaire`
 --
 
 CREATE TABLE `Gestionnaire` (
@@ -1012,7 +1012,7 @@ CREATE TABLE `Gestionnaire` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Gestionnaire`
+-- Déchargement des données de la table `Gestionnaire`
 --
 
 INSERT INTO `Gestionnaire` (`idGestionnaire`, `mdpGestionnaire`, `nomGestionnaire`, `prenomGestionnaire`, `chambre`, `mail`) VALUES
@@ -1022,7 +1022,7 @@ INSERT INTO `Gestionnaire` (`idGestionnaire`, `mdpGestionnaire`, `nomGestionnair
 -- --------------------------------------------------------
 
 --
--- Table structure for table `MessagePrive`
+-- Structure de la table `MessagePrive`
 --
 
 CREATE TABLE `MessagePrive` (
@@ -1031,21 +1031,22 @@ CREATE TABLE `MessagePrive` (
   `texte` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ouvert` tinyint(1) NOT NULL DEFAULT '0',
-  `emetteur` enum('UTILISATEUR','FORCE') NOT NULL
+  `emetteur` tinyint(1) UNSIGNED NOT NULL COMMENT '0 : FORCE, 1 : UTILISATEUR'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `MessagePrive`
+-- Déchargement des données de la table `MessagePrive`
 --
 
 INSERT INTO `MessagePrive` (`idMessagePrive`, `idFilDeDiscussion`, `texte`, `created_at`, `ouvert`, `emetteur`) VALUES
-(21, 7, 'Bonjour bienvenue', '2020-05-23 23:47:31', 1, 'UTILISATEUR'),
-(22, 7, 'Bonjour c\'est quoi ton soucis??', '2020-05-24 18:13:52', 0, 'FORCE'),
-(23, 7, 'bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu ', '2020-05-24 18:14:24', 1, 'UTILISATEUR'),
-(24, 7, 'BIJOUUUR', '2020-05-26 16:06:48', 1, 'FORCE');
+(21, 7, 'Bonjour bienvenue', '2020-05-23 23:47:31', 1, 1),
+(22, 7, 'Bonjour c\'est quoi ton soucis??', '2020-05-24 18:13:52', 0, 0),
+(23, 7, 'bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu ', '2020-05-24 18:14:24', 1, 1),
+(24, 7, 'BIJOUUUR', '2020-05-26 16:06:48', 1, 0),
+(25, 7, 'coucou\r\n', '2020-05-27 16:10:28', 1, 0);
 
 --
--- Triggers `MessagePrive`
+-- Déclencheurs `MessagePrive`
 --
 DELIMITER $$
 CREATE TRIGGER `last_message_trigger` AFTER INSERT ON `MessagePrive` FOR EACH ROW UPDATE fildediscussion f SET f.idDernierMessage = NEW.idMessagePrive WHERE f.idFilDeDiscussion = NEW.idFilDeDiscussion
@@ -1055,7 +1056,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Utilisateur`
+-- Structure de la table `Utilisateur`
 --
 
 CREATE TABLE `Utilisateur` (
@@ -1078,7 +1079,7 @@ CREATE TABLE `Utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Utilisateur`
+-- Déchargement des données de la table `Utilisateur`
 --
 
 INSERT INTO `Utilisateur` (`idUtilisateur`, `nomUtilisateur`, `prenomUtilisateur`, `cle`, `siret`, `codeAct`, `idCommune`, `secteur`, `telephone`, `mail`, `chambre`, `nomSociete`, `demande`, `ouvert`, `created_at`, `updated_at`) VALUES
@@ -1093,42 +1094,42 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `nomUtilisateur`, `prenomUtilisateur
 (23, 'PFFF', 'jesaipa', '0113150040019', 234567, 190, 90, 3, '098765', 'thomas.appriou81@gmail.com', 'CCI', 'petroplus', 'VALIDE', 0, '2020-05-21 20:12:53', '2020-05-26 18:50:49');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `Annonce`
+-- Index pour la table `Annonce`
 --
 ALTER TABLE `Annonce`
   ADD PRIMARY KEY (`idAnnonce`);
 
 --
--- Indexes for table `CodeActivite`
+-- Index pour la table `CodeActivite`
 --
 ALTER TABLE `CodeActivite`
   ADD PRIMARY KEY (`code`);
 
 --
--- Indexes for table `Commune`
+-- Index pour la table `Commune`
 --
 ALTER TABLE `Commune`
   ADD PRIMARY KEY (`idCommune`);
 
 --
--- Indexes for table `Conseil`
+-- Index pour la table `Conseil`
 --
 ALTER TABLE `Conseil`
   ADD PRIMARY KEY (`idConseil`);
 
 --
--- Indexes for table `DestinationAnnonce`
+-- Index pour la table `DestinationAnnonce`
 --
 ALTER TABLE `DestinationAnnonce`
   ADD PRIMARY KEY (`idAnnonce`,`idUtilisateur`),
   ADD KEY `fk_idUtilisateurDest` (`idUtilisateur`);
 
 --
--- Indexes for table `FilDeDiscussion`
+-- Index pour la table `FilDeDiscussion`
 --
 ALTER TABLE `FilDeDiscussion`
   ADD PRIMARY KEY (`idFilDeDiscussion`) USING BTREE,
@@ -1136,26 +1137,26 @@ ALTER TABLE `FilDeDiscussion`
   ADD KEY `fk_idDernierMessage` (`idDernierMessage`);
 
 --
--- Indexes for table `ForceDeLOrdre`
+-- Index pour la table `ForceDeLOrdre`
 --
 ALTER TABLE `ForceDeLOrdre`
   ADD PRIMARY KEY (`idForce`);
 
 --
--- Indexes for table `Gestionnaire`
+-- Index pour la table `Gestionnaire`
 --
 ALTER TABLE `Gestionnaire`
   ADD PRIMARY KEY (`idGestionnaire`);
 
 --
--- Indexes for table `MessagePrive`
+-- Index pour la table `MessagePrive`
 --
 ALTER TABLE `MessagePrive`
   ADD PRIMARY KEY (`idMessagePrive`),
   ADD KEY `fk_fil` (`idFilDeDiscussion`);
 
 --
--- Indexes for table `Utilisateur`
+-- Index pour la table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
   ADD PRIMARY KEY (`idUtilisateur`),
@@ -1163,78 +1164,58 @@ ALTER TABLE `Utilisateur`
   ADD KEY `fk_idCommuneUtilisateur` (`idCommune`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `Annonce`
+-- AUTO_INCREMENT pour la table `Annonce`
 --
 ALTER TABLE `Annonce`
   MODIFY `idAnnonce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `Commune`
+-- AUTO_INCREMENT pour la table `Commune`
 --
 ALTER TABLE `Commune`
   MODIFY `idCommune` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=595;
 
 --
--- AUTO_INCREMENT for table `Conseil`
+-- AUTO_INCREMENT pour la table `Conseil`
 --
 ALTER TABLE `Conseil`
   MODIFY `idConseil` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `FilDeDiscussion`
+-- AUTO_INCREMENT pour la table `FilDeDiscussion`
 --
 ALTER TABLE `FilDeDiscussion`
   MODIFY `idFilDeDiscussion` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `ForceDeLOrdre`
+-- AUTO_INCREMENT pour la table `ForceDeLOrdre`
 --
 ALTER TABLE `ForceDeLOrdre`
   MODIFY `idForce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12347;
 
 --
--- AUTO_INCREMENT for table `MessagePrive`
+-- AUTO_INCREMENT pour la table `MessagePrive`
 --
 ALTER TABLE `MessagePrive`
-  MODIFY `idMessagePrive` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idMessagePrive` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `Utilisateur`
+-- AUTO_INCREMENT pour la table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
   MODIFY `idUtilisateur` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `DestinationAnnonce`
+-- Contraintes pour la table `DestinationAnnonce`
 --
 ALTER TABLE `DestinationAnnonce`
-  ADD CONSTRAINT `fk_idMessage` FOREIGN KEY (`idAnnonce`) REFERENCES `annonce` (`idAnnonce`),
-  ADD CONSTRAINT `fk_idUtilisateurDest` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
-
---
--- Constraints for table `FilDeDiscussion`
---
-ALTER TABLE `FilDeDiscussion`
-  ADD CONSTRAINT `fk_idDernierMessage` FOREIGN KEY (`idDernierMessage`) REFERENCES `messageprive` (`idMessagePrive`),
-  ADD CONSTRAINT `fk_idUtilisateurFil` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
-
---
--- Constraints for table `MessagePrive`
---
-ALTER TABLE `MessagePrive`
-  ADD CONSTRAINT `fk_fil` FOREIGN KEY (`idFilDeDiscussion`) REFERENCES `fildediscussion` (`idFilDeDiscussion`);
-
---
--- Constraints for table `Utilisateur`
---
-ALTER TABLE `Utilisateur`
-  ADD CONSTRAINT `fk_codeAct` FOREIGN KEY (`codeAct`) REFERENCES `codeactivite` (`code`),
-  ADD CONSTRAINT `fk_idCommuneUtilisateur` FOREIGN KEY (`idCommune`) REFERENCES `commune` (`idCommune`);
+  ADD CONSTRAINT `fk_idMessage` FOREIGN KEY (`idAnnonce`) REFERENCES `Annonce` (`idAnnonce`),
+  ADD CONSTRAINT `fk_idUtilisateurDest` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`);
