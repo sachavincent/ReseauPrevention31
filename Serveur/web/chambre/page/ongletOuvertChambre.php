@@ -21,6 +21,7 @@ if ($_GET['m'] != 'none') {
 
     //Creation de la cé de l'utilisateur
     $infosUser['cle'] = sprintf("%03d", $infosUser['codeAct']) . $infosUser['codePostal'] . $infosUser['secteur'] . sprintf("%04d", $infosUser['idUtilisateur']);
+    $_SESSION[$onglet][$_GET['m']]['cle'] = $infosUser['cle'];
 
     // affichage
     echo "

@@ -9,7 +9,6 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
         $requeteUpdateUtilisateur = $bdd->prepare('UPDATE `Utilisateur` SET cle = ?, demande = ? WHERE `Utilisateur`.`idUtilisateur` = ?');
 
         $requeteUpdateUtilisateur->execute(array($infoUtilisateur['cle'], 'VALIDE', $infoUtilisateur['idUtilisateur']));
-
         include './envoiMailCle.php';
     }
 
