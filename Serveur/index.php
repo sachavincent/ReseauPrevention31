@@ -8,19 +8,19 @@ require __DIR__ . '/vendor/autoload.php';
 $app = AppFactory::create();
 
 $app->post('/inscription', function (Request $request, Response $response) {
-    include './web/script/connexionBdd.php';
+    include './web/script/connexionBDD.php';
     include './appli/script/inscription.php';
     return $response;
 });
 
 $app->post('/connexion', function (Request $request, Response $response) {
-    include './web/script/connexionBdd.php';
+    include './web/script/connexionBDD.php';
     include './appli/script/connexionUtilisateur.php';
     return $response;
 });
 
 $app->post('/updatebdd', function (Request $request, Response $response) {
-    include './web/script/connexionBdd.php';
+    include './web/script/connexionBDD.php';
     include './appli/script/updateBdd.php';
     return $response;
 });
