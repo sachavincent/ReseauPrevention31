@@ -1,6 +1,7 @@
 <?php
-$requete = $bdd->prepare('SELECT cle, nomUtilisateur, prenomUtilisateur, mail FROM Utilisateur WHERE cle = ?');
-$requete->execute(array($infoUtilisateur['cle']));
+$cle = $infoUtilisateur['cle'];
+$requete = $bdd->prepare('SELECT nomUtilisateur, prenomUtilisateur, mail FROM Utilisateur WHERE cle = ?');
+$requete->execute(array($cle));
 $infoUtilisateur = $requete->fetch();
 
 require '../../vendor/autoload.php';
@@ -20,8 +21,8 @@ $body = [
                 ]
             ],
             'Subject' => "Validation de votre inscription",
-            'TextPart' => "Bonjour, suite à votre inscription sur l'application prevention31 voici votre de clé de connexion unique:" . $infoUtilisateur['cle'],
-            'HTMLPart' => "<p> Bonjour,<br><br> suite à votre inscription sur l'application prevention31 voici votre de clé de connexion unique: </p> <p><h2>" . $infoUtilisateur['cle'] ."</h2></p>" 
+            'TextPart' => "Bonjour, suite à votre inscription sur l'application prevention31 voici votre de clé de connexion unique:" . $cle,
+            'HTMLPart' => "<p> Bonjour,<br><br> suite à votre inscription sur l'application prevention31 voici votre de clé de connexion unique: </p> <p><h2>" . $cle ."</h2></p>"
         ]
     ]
 ];
