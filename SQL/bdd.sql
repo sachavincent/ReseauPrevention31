@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  mer. 27 mai 2020 à 20:04
+-- Généré le :  jeu. 28 mai 2020 à 08:56
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -970,7 +970,7 @@ CREATE TABLE `FilDeDiscussion` (
 --
 
 INSERT INTO `FilDeDiscussion` (`idFilDeDiscussion`, `idUtilisateur`, `idDernierMessage`, `objet`, `created_at`, `updated_at`) VALUES
-(7, 17, 25, 'COVID', '2020-05-23 23:39:49', '2020-05-27 16:10:28');
+(7, 17, 26, 'COVID', '2020-05-23 23:39:49', '2020-05-28 10:56:16');
 
 -- --------------------------------------------------------
 
@@ -1043,7 +1043,8 @@ INSERT INTO `MessagePrive` (`idMessagePrive`, `idFilDeDiscussion`, `texte`, `cre
 (22, 7, 'Bonjour c\'est quoi ton soucis??', '2020-05-24 18:13:52', 0, 'FORCE'),
 (23, 7, 'bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu ', '2020-05-24 18:14:24', 1, 'UTILISATEUR'),
 (24, 7, 'BIJOUUUR', '2020-05-26 16:06:48', 1, 'FORCE'),
-(25, 7, 'coucou\r\n', '2020-05-27 16:10:28', 1, 'FORCE');
+(25, 7, 'coucou\r\n', '2020-05-27 16:10:28', 1, 'FORCE'),
+(26, 7, 'BAAAAH', '2020-05-28 10:56:16', 0, 'FORCE');
 
 --
 -- Déclencheurs `MessagePrive`
@@ -1133,8 +1134,8 @@ ALTER TABLE `DestinationAnnonce`
 --
 ALTER TABLE `FilDeDiscussion`
   ADD PRIMARY KEY (`idFilDeDiscussion`) USING BTREE,
-  ADD KEY `fk_idUtilisateurFil` (`idUtilisateur`),
-  ADD KEY `fk_idDernierMessage` (`idDernierMessage`);
+  ADD KEY `fk_idDernierMessage` (`idDernierMessage`),
+  ADD KEY `fk_idUtilisateur` (`idUtilisateur`);
 
 --
 -- Index pour la table `ForceDeLOrdre`
@@ -1160,8 +1161,8 @@ ALTER TABLE `MessagePrive`
 --
 ALTER TABLE `Utilisateur`
   ADD PRIMARY KEY (`idUtilisateur`),
-  ADD KEY `fk_codeAct` (`codeAct`) USING BTREE,
-  ADD KEY `fk_idCommuneUtilisateur` (`idCommune`);
+  ADD KEY `fk_commune` (`idCommune`),
+  ADD KEY `fk_activite` (`codeAct`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -1201,7 +1202,7 @@ ALTER TABLE `ForceDeLOrdre`
 -- AUTO_INCREMENT pour la table `MessagePrive`
 --
 ALTER TABLE `MessagePrive`
-  MODIFY `idMessagePrive` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idMessagePrive` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pour la table `Utilisateur`
@@ -1219,3 +1220,23 @@ ALTER TABLE `Utilisateur`
 ALTER TABLE `DestinationAnnonce`
   ADD CONSTRAINT `fk_idMessage` FOREIGN KEY (`idAnnonce`) REFERENCES `Annonce` (`idAnnonce`),
   ADD CONSTRAINT `fk_idUtilisateurDest` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`);
+
+--
+-- Contraintes pour la table `FilDeDiscussion`
+--
+ALTER TABLE `FilDeDiscussion`
+  ADD CONSTRAINT `fk_idDernierMessage` FOREIGN KEY (`idDernierMessage`) REFERENCES `MessagePrive` (`idMessagePrive`),
+  ADD CONSTRAINT `fk_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`);
+
+--
+-- Contraintes pour la table `MessagePrive`
+--
+ALTER TABLE `MessagePrive`
+  ADD CONSTRAINT `fk_fil` FOREIGN KEY (`idFilDeDiscussion`) REFERENCES `FilDeDiscussion` (`idFilDeDiscussion`);
+
+--
+-- Contraintes pour la table `Utilisateur`
+--
+ALTER TABLE `Utilisateur`
+  ADD CONSTRAINT `fk_activite` FOREIGN KEY (`codeAct`) REFERENCES `CodeActivite` (`code`),
+  ADD CONSTRAINT `fk_commune` FOREIGN KEY (`idCommune`) REFERENCES `Commune` (`idCommune`);
