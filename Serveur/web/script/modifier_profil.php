@@ -112,7 +112,7 @@ else {
                             $requeteModifierInfo = $bdd->prepare('UPDATE `ForceDeLOrdre` SET prenomForce = ? WHERE idForce = ?');
                         break;
                         case 'mail' :
-                            $requeteModifierInfo = $bdd->prepare('UPDATE `Forcedelordre` SET mail = ? WHERE idForce = ?');
+                            $requeteModifierInfo = $bdd->prepare('UPDATE `ForceDeLOrdre` SET mail = ? WHERE idForce = ?');
                         break;
                     }
                     $requeteModifierInfo->execute(array($infosXSS, $_SESSION['id']));
