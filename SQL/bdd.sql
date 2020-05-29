@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  jeu. 28 mai 2020 à 08:56
+-- Généré le :  ven. 29 mai 2020 à 16:03
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -979,7 +979,7 @@ INSERT INTO `FilDeDiscussion` (`idFilDeDiscussion`, `idUtilisateur`, `idDernierM
 --
 
 CREATE TABLE `ForceDeLOrdre` (
-  `idForce` int(255) UNSIGNED NOT NULL,
+  `idForce` varchar(255) NOT NULL,
   `mdpForce` varchar(255) NOT NULL,
   `nomForce` varchar(255) NOT NULL,
   `prenomForce` varchar(255) NOT NULL,
@@ -993,8 +993,9 @@ CREATE TABLE `ForceDeLOrdre` (
 --
 
 INSERT INTO `ForceDeLOrdre` (`idForce`, `mdpForce`, `nomForce`, `prenomForce`, `force`, `mail`, `nbConnexion`) VALUES
-(12345, 'root', 'Appriou', 'Thomas', 'G', 'thomas@gouv.fr', 74),
-(12346, 'mdp', 'Demougeot', 'MaxouLeGendarmeDuBled', 'P', 'maxou@demougeot.fr', 2);
+('1234', '$2y$10$jmOToTTnEUIWBUItuT.wre4G3TeH3kaW7ZGAWdjYtZdVJ.bYKBQxO', 'Nguyen', 'Thanh', 'P', 'thanh@nguyen.fr', 0),
+('12345', '$2y$10$BJS8gzgD822RXPz5mJGzOebKVKpY3tJaOCXqnZ/cAfI3J4xhLI7DW', 'Appriou', 'Thomas', 'G', 'thomas@appriou.com', 0),
+('ngt234hvs', '$2y$10$fsq6z8EES0nWYSBSlCCHDO4cpKrGOqZbR4O8jrJUDIkMHRql1SgWS', 'Nguyen', 'Thanh', 'G', 'thanh@nguyen.pages', 1);
 
 -- --------------------------------------------------------
 
@@ -1003,7 +1004,7 @@ INSERT INTO `ForceDeLOrdre` (`idForce`, `mdpForce`, `nomForce`, `prenomForce`, `
 --
 
 CREATE TABLE `Gestionnaire` (
-  `idGestionnaire` int(255) UNSIGNED NOT NULL,
+  `idGestionnaire` varchar(255) NOT NULL,
   `mdpGestionnaire` varchar(255) NOT NULL,
   `nomGestionnaire` varchar(255) NOT NULL,
   `prenomGestionnaire` varchar(255) NOT NULL,
@@ -1016,8 +1017,8 @@ CREATE TABLE `Gestionnaire` (
 --
 
 INSERT INTO `Gestionnaire` (`idGestionnaire`, `mdpGestionnaire`, `nomGestionnaire`, `prenomGestionnaire`, `chambre`, `mail`) VALUES
-(12345, 'root', 'Appriou', 'Thomas', 'CMA', 'thomas@gouv.fr'),
-(12346, 'mdp', 'Nguyen', 'Thanh', 'CCI', 'thanh@gmail.com');
+('123', '$2y$10$mutYoFj6LjtktodsMJpSBukspZiD49l0PZoQ6TN8vHqzKCqL9EQMu', 'Moutahir', 'Adem', 'CCI', 'adem@moutahir.fr'),
+('12345', '$2y$10$84niymYeGFFxECCxlVJdeeslGCFuT4k34XE7vmMdMFJuokDPQZxua', 'Dupont', 'Michel', 'CMA', 'michel@dupont.com');
 
 -- --------------------------------------------------------
 
@@ -1044,7 +1045,7 @@ INSERT INTO `MessagePrive` (`idMessagePrive`, `idFilDeDiscussion`, `texte`, `cre
 (23, 7, 'bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu ', '2020-05-24 18:14:24', 1, 'UTILISATEUR'),
 (24, 7, 'BIJOUUUR', '2020-05-26 16:06:48', 1, 'FORCE'),
 (25, 7, 'coucou\r\n', '2020-05-27 16:10:28', 1, 'FORCE'),
-(26, 7, 'BAAAAH', '2020-05-28 10:56:16', 0, 'FORCE');
+(26, 7, 'BAAAAH', '2020-05-28 10:56:16', 1, 'FORCE');
 
 --
 -- Déclencheurs `MessagePrive`
@@ -1191,12 +1192,6 @@ ALTER TABLE `Conseil`
 --
 ALTER TABLE `FilDeDiscussion`
   MODIFY `idFilDeDiscussion` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT pour la table `ForceDeLOrdre`
---
-ALTER TABLE `ForceDeLOrdre`
-  MODIFY `idForce` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12347;
 
 --
 -- AUTO_INCREMENT pour la table `MessagePrive`
