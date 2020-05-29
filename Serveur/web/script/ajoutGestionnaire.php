@@ -57,7 +57,7 @@
                     <option value="CMA">CMA</option>
                     <option value="CCI">CCI</option>
                     <option value="CA">CA</option>
-                    <option value="G">Gendarme</option>
+                    <option value="G">Gendarmerie</option>
                     <option value="P">Police</option>
                 </select><br>
                 
