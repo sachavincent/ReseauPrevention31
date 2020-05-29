@@ -159,10 +159,11 @@ forces  : |  envoyer  | supprimer |
   margin-top: -1px;
 }
 
-/* =============== IDENTIFICATION =============== */
+/* =============== CHOIX CHAMBRE =============== */
 #page-identification {
   width: auto;
-  min-height: 700px;
+  min-height: 720px;
+  padding: 5%;
 }
 
 /* panel choix logo */
@@ -171,7 +172,7 @@ forces  : |  envoyer  | supprimer |
   width: 700px;
   height: 500px;
   background-color: #F3F2F1;
-  border: 1px solid #E1E1E1;
+  border: 1px solid lightgrey;
   border-radius: 3px 3px 3px;
   text-align: center;
   margin-top: 5%;
@@ -179,14 +180,14 @@ forces  : |  envoyer  | supprimer |
 
 #logo-ca {
   float: left;
-  margin-left: 25px;
+  margin-left: 45px;
   margin-top: 15px;
   cursor: pointer;
 }
 
 #logo-cma {
   float: left;
-  margin-left: 55px;
+  margin-left: 35px;
   margin-top: 15px;
   cursor: pointer;
 }
@@ -194,7 +195,7 @@ forces  : |  envoyer  | supprimer |
 #logo-cci {
   float: right;
   margin-top: 15px;
-  margin-right: 25px;
+  margin-right: 45px;
   cursor: pointer;
 }
 
@@ -211,7 +212,7 @@ forces  : |  envoyer  | supprimer |
 }
 
 #logo-ca:hover, #logo-cma:hover, #logo-cci:hover, #logo-police:hover, #logo-gendarmerie:hover {
-  background-color: #E1E1E1;
+  background-color: lightgray;
 }
 
 /* =============== IDENTIFICATION =============== */
@@ -221,10 +222,10 @@ forces  : |  envoyer  | supprimer |
   width: 400px;
   height: 510px;
   background-color: #F3F2F1;
-  border: 1px solid #E1E1E1;
+  border: 1px solid lightgray;
   border-radius: 3px 3px 3px;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 /* affichage logo sélectionné */
@@ -850,11 +851,9 @@ h10 {
 }
 
 /* =============== PAGE CREATION GESTIONNAIRE (admin) =============== */
-/* =============== PAGE CREATION GESTIONNAIRE (admin) =============== */
 #panel-new-gestionnaire {
   width: auto;
   min-height: 700px;
-  background-color: #F3F2F1;
   padding: 6%;
   text-align: center;
 }
@@ -863,7 +862,7 @@ h10 {
     margin: auto;
     width: 375px;
     height: 560px;
-    background-color: #EDEBE9;
+    background-color: #F3F2F1;
     border-radius: 5px 5px 5px;
     border: 1px solid lightgrey;
     padding: 30px;
