@@ -54,6 +54,7 @@ $_SESSION['connexion'] = false;
             <img src="../images/police.png" type="submit" name="force" width="180px" height="180px" />
           </a>
         </div>
+
       </section>
     </section>
   </body>

@@ -19,7 +19,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
         $mdp = $mdpA['mdpGestionnaire'];
 
         // mdp incorrect
-        if ($mdp != $_POST['mdp'] AND !empty($_POST['mdp'])){
+        if (!password_verify($_POST['mdp'],$mdp) AND !empty($_POST['mdp'])){
             $retour['success'] = false;
             $retour['message'] = 'mdp incorrect';
         } else {
@@ -52,7 +52,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
                     $retour['message'] = 'Les mdp ne correspondent pas';
                 } else {
                     $requeteModifierMdp = $bdd->prepare('UPDATE `Gestionnaire` SET mdpGestionnaire = ? WHERE idGestionnaire = ?');
-                    $requeteModifierMdp->execute(array($_POST['nouveauMdp'], $_SESSION['id']));
+                    $requeteModifierMdp->execute(array(password_hash($_POST['nouveauMdp'], PASSWORD_DEFAULT), $_SESSION['id']));
                 }
             }
         } 
@@ -93,7 +93,7 @@ else {
         $mdp  = $mdpA['mdpForce'];
 
         // mdp incorrect
-        if ($mdp != $_POST['mdp'] AND !empty($_POST['mdp'])){
+        if (!password_verify($_POST['mdp'],$mdp) AND !empty($_POST['mdp'])){
             $retour['success'] = false;
             $retour['message'] = 'mdp incorrect';
         } else {
@@ -125,7 +125,7 @@ else {
                     $retour['message']  = 'Les mdp ne correspondent pas';
                 } else {
                     $requeteModifierMdp = $bdd->prepare('UPDATE `ForceDeLOrdre` SET mdpForce = ? WHERE idForce = ?');
-                    $requeteModifierMdp->execute(array($_POST['nouveauMdp'], $_SESSION['id']));
+                    $requeteModifierMdp->execute(array(password_hash($_POST['nouveauMdp'], PASSWORD_DEFAULT), $_SESSION['id']));
                 }
             }
         } 

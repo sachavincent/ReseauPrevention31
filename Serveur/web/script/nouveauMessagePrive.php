@@ -12,7 +12,6 @@ if (!(isset($idFil) AND isset($reponse)) OR (empty($reponse))){
     $requete->execute(array($idFil, $reponse));
     $success = true;
 }
-
 header('Location: ../force/demandes.php?e=prive&m='.$_GET['m']);//A completer
 exit();
 ?>

@@ -28,7 +28,7 @@ else {
             $retour['success'] = false;
             $retour['message'] = 'Utilisateur inconnu';
         }
-        elseif ($pass != $info_ForceeDansBDD['mdpForce']) {
+        elseif (!password_verify($pass, $info_ForceeDansBDD['mdpForce'])) {
             $retour['success'] = false;
             $retour['message'] = 'Mdp incorrect';
         }
@@ -77,7 +77,7 @@ else {
             $retour['success'] = false;
             $retour['message'] = 'Utilisateur inconnu';
         }
-        elseif ($pass != $info_gestionnaireDansBDD['mdpGestionnaire']) {
+        elseif (!password_verify($pass, $info_gestionnaireDansBDD['mdpGestionnaire'])) {
             $retour['success'] = false;
             $retour['message'] = 'Mdp incorrect';
         }
