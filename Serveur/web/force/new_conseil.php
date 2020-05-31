@@ -27,15 +27,13 @@
   <div id="objet-new-conseil">
     <fieldset>
       <legend>Objet :</legend>
-      <input name='input-objet-conseil'>
+      <input name='input-objet-conseil' required>
       <p class="user-concernes">à destination des utilisateurs de l'application mobile.</p>
     </fieldset>
   </div>
 
-
-
   <!-- zone de redaction du message -->
-  <textarea name="texte" id="write-conseil"></textarea>
+  <textarea name="texte" id="write-conseil" required></textarea>
 </section>
 
 </form>

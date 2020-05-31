@@ -66,7 +66,7 @@ if ($_GET['m'] != 'none') {
               <section id="zone-reponse">
                 <fieldset>
                   <legend>Votre réponse</legend>
-                  <textarea id="reponse-msg" name="reponse-msg"></textarea>
+                  <textarea id="reponse-msg" name="reponse-msg" required></textarea>
                   <input type="submit" name="envoyer-msg" value="envoyer">
                 </fieldset>
               </section>

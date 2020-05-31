@@ -156,12 +156,12 @@ if (!isset($commune)){
 
     <fieldset>
       <legend>Objet :</legend>
-      <input name='input-objet-annonce'>
+      <input name='input-objet-annonce' required>
     </fieldset>
   </section>
 
   <!-- zone de redaction du message -->
-  <textarea name="texte" id="write-annonce"></textarea>
+  <textarea name="texte" id="write-annonce" required></textarea>
 
 </form>
 </section>
