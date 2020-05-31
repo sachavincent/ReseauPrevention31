@@ -24,17 +24,22 @@ if ($_GET['m'] != 'none') {
 
     // affichage du contenu de l'onglet selectionné
     switch ($_GET['e']) {
-        case 'prive': ?>  
-            <section id="zone-msg"> 
-              <div id="objet-msg"><U><?=$objet ?></U></div><br>
-              <div id="infos-msg">
-                  <b>Utilisateur :</b><?=$nom ?> <?=$prenom ?><br><br>
-                  <b>Adresse Mail :</b><?=$mail ?><br><br>
-                  <b>Téléphone : </b><?=$telephone ?><br><br>
-                  <b>Localisation :</b> secteur <?=$secteur ?><br><br>
-                  <b>Société :</b><?=$societe ?>
-              </div>
+        case 'prive': ?>
+            <!-- zone d'ouverture du msg prive -->
+            <section id="zone-msg">
+              <!-- champs infos msg prive -->
+              <section id="zone-infos-prive">
+                <fieldset>
+                  <legend><?=$objet ?></legend><br>
+                    <b>Utilisateur : </b><?=$nom ?> <?=$prenom ?><br><br>
+                    <b>Adresse Mail : </b><?=$mail ?><br><br>
+                    <b>Téléphone : </b><?=$telephone ?><br><br>
+                    <b>Localisation : </b>secteur <?=$secteur ?><br><br>
+                    <b>Société : </b><?=$societe ?><br><br>
+                </fieldset>
+              </section>
 
+              <!-- zone affichage des messages -->
               <section id="zone-discussion">
               <?php // traitement msg forces / user
                 $infoFil = $_SESSION['FIL_DE_DISCUSSION'][$_GET['m']];
@@ -55,11 +60,15 @@ if ($_GET['m'] != 'none') {
                 var x = document.getElementById("zone-discussion");
                 x.scrollTop = x.scrollHeight;
               </script>
-  
+
+              <!-- zone de saisie de réponse -->
               <form action="../script/nouveauMessagePrive.php?m=<?=$_GET['m'] . "&idFil=" . $infoFil['idFilDeDiscussion'] ?>" method="POST">
               <section id="zone-reponse">
-                <textarea id="reponse-msg" name="reponse-msg"></textarea>
-                <input type="submit" name="envoyer-msg" value="envoyer">
+                <fieldset>
+                  <legend>Votre réponse</legend>
+                  <textarea id="reponse-msg" name="reponse-msg"></textarea>
+                  <input type="submit" name="envoyer-msg" value="envoyer">
+                </fieldset>
               </section>
               </form>
             </section>
@@ -68,9 +77,11 @@ if ($_GET['m'] != 'none') {
         case 'annonce':
             echo ('
                     <section id="zone-annonce-conseil"> 
+                      <fieldset>
                         <time id="date-msg">' . $dateMsg . '</time>
-                        <div id="objet-msg"><U>' . $infosUser['objet'] . '</U></div>
-                        <div id="user-concernes"> Utilisateurs concernés : ' . $_SESSION['ANNONCE'][$_GET['m']]['nbDestinataire'] . '</div>
+                        <legend>' . $infosUser['objet'] . '</legend>
+                        <p class="user-concernes">Utilisateurs concernés : ' . $_SESSION['ANNONCE'][$_GET['m']]['nbDestinataire'] . '</p>
+                      </fieldset>
                     </section>
                     <div id="affichage-texte">' . $infosUser['texte'] . '</div>
                  ');
@@ -78,9 +89,11 @@ if ($_GET['m'] != 'none') {
         case 'conseil':
             echo ('
                     <section id="zone-annonce-conseil"> 
+                      <fieldset>
                         <time id="date-msg">' . $dateMsg . '</time>
-                        <div id="objet-msg"><U>' . $infosUser['objet'] . '</U></div>
-                        <div id="user-concernes">À destination des utilisateurs de l\'application mobile</div>
+                        <legend>' . $infosUser['objet'] . '</legend>
+                        <p class="user-concernes"></p>À destination des utilisateurs de l\'application mobile</p>
+                    </fieldset>
                     </section>
                     <div id="affichage-texte">' . $infosUser['texte'] . '</div>
                 ');

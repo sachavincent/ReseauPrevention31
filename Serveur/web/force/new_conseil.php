@@ -25,10 +25,14 @@
 <!-- pan liste msg -->
 <section id="pan-content">
   <div id="objet-new-conseil">
-    <b><u>Objet :</u></b>
-    <input name="input-objet-conseil" />
-    <p id="user-concernes">à destination des utilisateurs de l'application mobile.</p>
+    <fieldset>
+      <legend>Objet :</legend>
+      <input name='input-objet-conseil'>
+      <p class="user-concernes">à destination des utilisateurs de l'application mobile.</p>
+    </fieldset>
   </div>
+
+
 
   <!-- zone de redaction du message -->
   <textarea name="texte" id="write-conseil"></textarea>

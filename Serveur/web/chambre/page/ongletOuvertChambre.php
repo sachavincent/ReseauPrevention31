@@ -25,25 +25,31 @@ if ($_GET['m'] != 'none') {
 
     // affichage
     echo "
-        <section id='zone-demande'>
-          <time id='date-demande'>" . $dateMsg . "</time>
-          <p id='titre-info-demande'><U>INFORMATION DE LA DEMANDE :</U></p>
-          <p><b>Nom : </b><label>" . $infosUser['nomUtilisateur'] . "<br><p>
-          <p><b>Prénom : </b><label>" . $infosUser['prenomUtilisateur'] . "</label><br></p>
-          <p><b>Nom Société : </b><label>" . $infosUser['nomSociete'] . "</label><br></p>
-          <p><b>Type d'activité : </b><label>" . $infosUser['activite'] . "</label><br></p>
-          <p><b>Numéro Siret : </b><label>" . $infosUser['siret'] . "</label><br></p>
-          <p><b>Localisaiton : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br></p>
-          <p><b>Téléphone : </b><label>" . $infosUser['telephone'] . "</label><br></p>
-          <p><b>Adresse mail : </b><label>" . $infosUser['mail'] . "</label><br></p><br>
-        </section>
+        <section id='pan-demande'>
+          <fieldset>
+            <time id='date-demande'>" . $dateMsg . "</time>
+            <legend>INFORMATION DE LA DEMANDE</legend><br>
+            <b>Nom : </b><label>" . $infosUser['nomUtilisateur'] . "<br><p>
+            <b>Prénom : </b><label>" . $infosUser['prenomUtilisateur'] . "</label><br></p>
+            <b>Nom Société : </b><label>" . $infosUser['nomSociete'] . "</label><br></p>
+            <b>Type d'activité : </b><label>" . $infosUser['activite'] . "</label><br></p>
+            <b>Numéro Siret : </b><label>" . $infosUser['siret'] . "</label><br></p>
+            <b>Localisaiton : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br></p>
+            <b>Téléphone : </b><label>" . $infosUser['telephone'] . "</label><br></p>
+            <b>Adresse mail : </b><label>" . $infosUser['mail'] . "</label><br></p>
+          </fieldset>
     ";
 
     // affichage de la clé d'identification
     if ($_GET['e'] != 'refuse') {
-        echo "<div id='cle'>
-                <p id='cle-generee'><U>CLÉ D'IDENTIFICATION GÉNÉRÉE :</U></p>" . $infosUser['cle'] . "
-              <div>";
+        echo "
+            <fieldset>
+              <legend>CLÉ D'IDENTIFICATION GÉNÉRÉE :</legend><br>
+              <label id='cle'>". $infosUser['cle'] . "</label><br>
+            </fieldset>
+            </section>";
+    } else {
+        echo "</section>";
     }
 }
 
