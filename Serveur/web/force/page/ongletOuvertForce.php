@@ -92,7 +92,7 @@ if ($_GET['m'] != 'none') {
                       <fieldset>
                         <time id="date-msg">' . $dateMsg . '</time>
                         <legend>' . $infosUser['objet'] . '</legend>
-                        <p class="user-concernes"></p>À destination des utilisateurs de l\'application mobile</p>
+                        <p class="user-concernes">À destination des utilisateurs de l\'application mobile</p>
                     </fieldset>
                     </section>
                     <div id="affichage-texte">' . $infosUser['texte'] . '</div>
