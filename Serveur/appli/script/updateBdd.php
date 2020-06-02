@@ -15,22 +15,22 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
         case 'Utilisateur':
             $requestSQL = $bdd->prepare('SELECT * FROM Utilisateur WHERE cle = ?');
             $requestSQL->execute(array($cle));
-            $fp = fopen("../$device_id/utilisateur.csv", "w");
+            $fp = fopen("/home/$device_id/Utilisateur.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'CodeActivite':
             $requestSQL = $bdd->query('SELECT * FROM CodeActivite');
-            $fp = fopen("../$device_id/CodeActivite.csv", "w");
+            $fp = fopen("/home/$device_id/CodeActivite.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'Commune':
             $requestSQL = $bdd->query('SELECT * FROM Commune');
-            $fp = fopen("../$device_id/Commune.csv", "w");
+            $fp = fopen("/home/$device_id/Commune.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'Conseil':
             $requestSQL = $bdd->query('SELECT * FROM Conseil');
-            $fp = fopen("../$device_id/Conseil.csv", "w");
+            $fp = fopen("/home/$device_id/Conseil.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'FilDeDiscussion':
@@ -41,7 +41,7 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
                 $resultatRequete [] = $requestSQL->fetch();
             }
 
-            $fp = fopen("../$device_id/FilDeDiscussion.csv", "w");
+            $fp = fopen("/home/$device_id/FilDeDiscussion.csv", "w");
         break;
         case 'MessagePrive':
             $requestSQL = $bdd->prepare('SELECT * FROM MessagePrive WHERE idFilDeDiscussion = ?');
@@ -52,7 +52,7 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
                     $resultatRequete [] = $res;
                 }
             }
-            $fp = fopen("../$device_id/MessagePrive.csv", "w");
+            $fp = fopen("/home/$device_id/MessagePrive.csv", "w");
         break;
         case 'Annonce':
             $requestSQL = $bdd->prepare('SELECT * FROM Annonce WHERE idAnnonce = ?');
@@ -63,8 +63,10 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
                     $resultatRequete [] = $res;
                 }
             }
-            $fp = fopen("../$device_id/Annonce.csv", "w");
+            $fp = fopen("/home/$device_id/Annonce.csv", "w");
         break;
+        default:
+            return;
     }
 
 
@@ -81,6 +83,7 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
                 }
             }
         }
+
         if ($i == 0) fputcsv($fp, $headCSV); //Si première ligne ajout de l'entete
         fputcsv($fp, $tableauResultat[$i]);
     }
@@ -250,11 +253,12 @@ else {
     }
     if (empty($retour['error'])) {
         $retour['success'] = true;
-        $device_id =  $info['device_id'];
-        if (!file_exists('../$device_id')) mkdir("../$device_id");
+        $device_id = $info['device_id'];
+        mkdir('/home/' . $device_id, 0777);
+        exec("/var/www/html/ReseauPrevention31/Serveur/appli/script/createFTPUser.sh " . $device_id);
         foreach($tables as $table){
             if (besoinMaj($info['cle_identification'], $table, $dateDerniereMAJ, $bdd, $idFilAnnonce)){
-                creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
+		creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
                 $retour['success'] = false;
             }
         }
