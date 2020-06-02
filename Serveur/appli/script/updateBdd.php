@@ -153,13 +153,16 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
                     $requestSQL->execute(array($idFil, $derniereMAJ));
                 else
                     $requestSQL->execute(array($idFil));
-                $resultatRequete [] = $requestSQL->fetch();
+//                $resultatRequete [] = $requestSQL->fetch();
+		  $tempRes = $requestSQL->fetch();
+		  if ($tempRes != false)
+			$resultatRequete[] = $tempRes;
             }
-            $maj = false;
-            foreach($resultatRequete as $res){
-                $maj = $maj || $res;
-            }
-            if (!$maj) $resultatRequete = array();
+//            $maj = false;
+//            foreach($resultatRequete as $res){
+//                $maj = $maj || $res;
+//            }
+//            if (!$maj) $resultatRequete = array();
         break;
         case 'MessagePrive':
             $requestString = 'SELECT * FROM MessagePrive WHERE idFilDeDiscussion = ?';
@@ -186,19 +189,24 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
                 $requestString .= ' AND created_at > ?';
 
             $requestSQL = $bdd->prepare($requestString);
-            
-            foreach($idFilAnnonce['annonce'] as $idAnnonce){
+
+            foreach($idFilAnnonce['annonce'] as $idAnnonce) {
                 if ($derniereMAJ != NULL)
-                    $requestSQL->execute(array($idAnnonce, $derniereMAJ));
+                   $arr = array($idAnnonce, $derniereMAJ); 
                 else
-                    $requestSQL->execute(array($idAnnonce));
-                $resultatRequete [] = $requestSQL->fetch();
+		   $arr = array($idAnnonce);
+
+                $requestSQL->execute($arr);
+//              $resultatRequete [] = $requestSQL->fetch();
+		$tempRes = $requestSQL->fetch();
+		if ($tempRes != false)
+		    $resultatRequete[] = $tempRes;
             }
-            $maj = false;
-            foreach($resultatRequete as $res){
-                $maj = $maj || $res;
-            }
-            if (!$maj) $resultatRequete = array();
+//            $maj = false;
+//            foreach($resultatRequete as $res){
+//                $maj = $maj || $res;
+//            }
+//            if (!$maj) $resultatRequete = array();
 	break;
 
     }
@@ -284,7 +292,7 @@ else {
         foreach($tables as $table){
             if (besoinMaj($info['cle_identification'], $table, $dateDerniereMAJ, $bdd, $idFilAnnonce)){
                 creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
-                $retour['success'] = false;
+                $retour['success'] = "false";
             }
         }
     }
