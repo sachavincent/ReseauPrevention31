@@ -13,22 +13,30 @@ elseif(!preg_match("#^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$#", strtoupper($inf
     $retour['error'] = 103;
 } //Ajout de l'utilisateur a la bdd
 else {
-    $requeteSQL = $bdd->prepare(' INSERT INTO `Utilisateur` (`nomUtilisateur`, `prenomUtilisateur`, `siret`, `codeAct`, `idCommune`, `secteur`,  `telephone`, `mail`, `chambre`, `nomSociete`)
-                                VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    if (! empty($info['id_commune'])){
-        $requeteSQL->execute(array(
-            $info['nom'], $info['prenom'], $info['num_siret'],
-            $info['code_activite'], $info['id_commune'], $info['secteur'], $info['num_telephone'],
-            $info['mail'], $info['chambre'], $info['nom_societe']
-        ));
+
+    //Test si l'utilisateur a deja tenté de s'inscrire
+    $requeteSQL = $bdd->prepare('SELECT * FROM Utilisateur WHERE `nomUtilisateur` = ? AND `prenomUtilisateur` = ? AND `siret` = ?');
+    $requeteSQL->execute(array($info['nom'], $info['prenom'], $info['num_siret']));
+    if (count($requeteSQL->fetchAll())){
+        $retour['error'] = 104;
     } else {
-        $requeteSQL->execute(array(
-            $info['nom'], $info['prenom'], $info['num_siret'],
-            $info['code_activite'], NULL, $info['secteur'], $info['num_telephone'],
-            $info['mail'], $info['chambre'], $info['nom_societe']
-        ));
+        $requeteSQL = $bdd->prepare(' INSERT INTO `Utilisateur` (`nomUtilisateur`, `prenomUtilisateur`, `siret`, `codeAct`, `idCommune`, `secteur`,  `telephone`, `mail`, `chambre`, `nomSociete`)
+                                    VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        if (! empty($info['id_commune'])){
+            $requeteSQL->execute(array(
+                $info['nom'], $info['prenom'], $info['num_siret'],
+                $info['code_activite'], $info['id_commune'], $info['secteur'], $info['num_telephone'],
+                $info['mail'], $info['chambre'], $info['nom_societe']
+            ));
+        } else {
+            $requeteSQL->execute(array(
+                $info['nom'], $info['prenom'], $info['num_siret'],
+                $info['code_activite'], NULL, $info['secteur'], $info['num_telephone'],
+                $info['mail'], $info['chambre'], $info['nom_societe']
+            ));
+        }
+        $retour['success'] = true;
     }
-    $retour['success'] = true;
 }
 
 echo json_encode($retour);
