@@ -3,6 +3,8 @@ package fr.gendarmerienationale.reseauprevention31.adapter;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.getStringDate;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +13,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import fr.gendarmerienationale.reseauprevention31.R;
+import fr.gendarmerienationale.reseauprevention31.activity.messages.MessagePriveActivity;
 import fr.gendarmerienationale.reseauprevention31.struct.FilDeDiscussion;
+import fr.gendarmerienationale.reseauprevention31.struct.Message;
 import java.util.List;
 
 
 public class FilDeDiscussionAdapter extends RecyclerView.Adapter<FilDeDiscussionAdapter.ViewHolder> {
 
+    private final Activity mActivity;
+
     private final List<FilDeDiscussion> mFils;
 
-    public FilDeDiscussionAdapter(List<FilDeDiscussion> mFils) {
+    public FilDeDiscussionAdapter(List<FilDeDiscussion> mFils, Activity _activity) {
         this.mFils = mFils;
+        this.mActivity = _activity;
     }
 
     @Override
@@ -44,6 +51,13 @@ public class FilDeDiscussionAdapter extends RecyclerView.Adapter<FilDeDiscussion
         // Event de click sur un fil pour le sélectionner
         holder.itemView.setOnClickListener(view -> {
             Log.d(LOG, "Opening fil");
+            Log.d(LOG, fil.toString());
+            Intent intent = new Intent(holder.itemView.getContext(), MessagePriveActivity.class);
+            intent.putExtra("objet_msg", fil.getObjet());
+            intent.putExtra("id_fil", fil.getId());
+            holder.itemView.getContext().startActivity(intent);
+
+            mActivity.overridePendingTransition(R.anim.right_slide_in, R.anim.right_slide_out);
         });
     }
 
@@ -56,17 +70,20 @@ public class FilDeDiscussionAdapter extends RecyclerView.Adapter<FilDeDiscussion
         ViewHolder(final View v) {
             super(v);
 
-            titre = v.findViewById(R.id.titreMessage);
-            date = v.findViewById(R.id.dateMessage);
-            contenu = v.findViewById(R.id.contenuMessage);
+            titre = v.findViewById(R.id.objetFil);
+            date = v.findViewById(R.id.dateDernierMessage);
+            contenu = v.findViewById(R.id.contenuDernierMessage);
         }
 
         void display(FilDeDiscussion _fil) {
             // Affiche les valeurs
-//            date.setText(getStringDate(_fil.get));
-//            String texte = _fil.getTexte();
-//            titre.setText(texte.substring(0, texte.length() < 50 ? texte.length() : 50));
-//            contenu.setText(texte);
+            Message dernierMessage = _fil.getDernierMessage();
+            if (dernierMessage != null) {
+                date.setText(getStringDate(dernierMessage.getDate()));
+                contenu.setText(dernierMessage.getTexte());
+            }
+
+            titre.setText(_fil.getObjet());
 
             Log.d(LOG, "Displaying : " + _fil.toString());
         }

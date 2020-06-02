@@ -9,33 +9,16 @@
   android:paddingEnd="10dp"
   android:background="@android:color/white">
 
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/titreMessage"
-    android:textStyle="bold"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:ellipsize="end"
-    android:gravity="start"
-    android:lines="1"
-    android:text="titre Message"
-    android:textAllCaps="true"
-    android:textColor="@android:color/black"
-    android:textSize="18sp"
-    app:layout_constraintBottom_toTopOf="@id/auteurMessage"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintWidth_percent=".8"/>
 
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/auteurMessage"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Gendarmerie"
+    android:text="Force"
     android:textSize="16sp"
     app:layout_constraintBottom_toBottomOf="@id/dateMessage"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/titreMessage"/>
+    app:layout_constraintTop_toTopOf="parent"/>
 
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/dateMessage"
@@ -54,7 +37,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:paddingBottom="10dp"
-    android:text="Contenu du annonce..."
+    android:text="Contenu du message..."
     android:textColor="@android:color/black"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"

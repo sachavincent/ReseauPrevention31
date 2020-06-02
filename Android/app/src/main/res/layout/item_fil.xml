@@ -10,7 +10,7 @@
   android:background="@android:color/white">
 
   <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/titreMessage"
+    android:id="@+id/objetFil"
     android:textStyle="bold"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -18,46 +18,36 @@
     android:ellipsize="end"
     android:gravity="start"
     android:lines="1"
-    android:text="titre Message"
+    android:text="Objet fil"
     android:textAllCaps="true"
     android:textColor="@android:color/black"
     android:textSize="18sp"
-    app:layout_constraintBottom_toTopOf="@id/auteurMessage"
+    app:layout_constraintBottom_toTopOf="@id/dateDernierMessage"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintWidth_percent=".8"/>
 
   <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/auteurMessage"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Gendarmerie"
-    android:textSize="16sp"
-    app:layout_constraintBottom_toBottomOf="@id/dateMessage"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/titreMessage"/>
-
-  <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/dateMessage"
+    android:id="@+id/dateDernierMessage"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="01/01/1970"
     android:textSize="16sp"
-    app:layout_constraintBottom_toBottomOf="@id/auteurMessage"
+    app:layout_constraintBottom_toBottomOf="@id/objetFil"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="@id/auteurMessage"/>
+    app:layout_constraintTop_toTopOf="@id/objetFil"/>
 
 
   <androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/contenuMessage"
+    android:id="@+id/contenuDernierMessage"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:paddingBottom="10dp"
-    android:text="Contenu du annonce..."
+    android:text="Contenu du dernier message..."
     android:textColor="@android:color/black"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/auteurMessage"/>
+    app:layout_constraintTop_toBottomOf="@id/dateDernierMessage"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

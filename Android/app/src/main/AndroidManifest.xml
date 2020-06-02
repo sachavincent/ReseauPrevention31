@@ -48,6 +48,16 @@
       android:launchMode="singleTop"
       android:name=".activity.messages.MessagesActivity"
       android:screenOrientation="portrait"/>
+    <activity
+      android:label="@string/app_name"
+      android:launchMode="singleTop"
+      android:name=".activity.ConseilsActivity"
+      android:screenOrientation="portrait"/>
+    <activity
+      android:label="@string/app_name"
+      android:launchMode="singleTop"
+      android:name=".activity.messages.MessagePriveActivity"
+      android:screenOrientation="portrait"/>
   </application>
 
 </manifest>

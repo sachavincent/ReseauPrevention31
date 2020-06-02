@@ -8,4 +8,5 @@
     <color name="colorArrierePlan">#0F056B</color>
     <color name="colorMessages">#AFAF11</color>
     <color name="colorLocaliser">#CC1616</color>
+  <color name="lightgray">#E0E0E0</color>
 </resources>

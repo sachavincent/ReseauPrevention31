@@ -1,7 +1,7 @@
 package fr.gendarmerienationale.reseauprevention31.adapter;
 
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
-import static fr.gendarmerienationale.reseauprevention31.util.Tools.getStringDate;
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.getDateForInsert;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,9 +31,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     @NonNull
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.item_message, parent, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup _parent, int _viewType) {
+        LayoutInflater inflater = LayoutInflater.from(_parent.getContext());
+        View v = inflater.inflate(R.layout.item_message, _parent, false);
         return new ViewHolder(v);
     }
 
@@ -41,34 +41,33 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int pos) {
         final Message message = mMessages.get(pos);
         holder.display(message);
-
-        // Event de click sur un message pour le sélectionner
-        holder.itemView.setOnLongClickListener(view -> {
-            Log.d(LOG, "Long click on msg");
-            return MainActivity.sDatabaseHelper.markMessageAsSeen(message);
-        });
+//
+//        // Event de click sur un message pour le sélectionner
+//        holder.itemView.setOnLongClickListener(view -> {
+//            Log.d(LOG, "Long click on msg");
+//            return MainActivity.sDatabaseHelper.markMessageAsSeen(message);
+//        });
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView titre;
+        private final TextView auteur;
         private final TextView date;
         private final TextView contenu;
 
         ViewHolder(final View v) {
             super(v);
 
-            titre = v.findViewById(R.id.titreMessage);
+            auteur = v.findViewById(R.id.auteurMessage);
             date = v.findViewById(R.id.dateMessage);
             contenu = v.findViewById(R.id.contenuMessage);
         }
 
         void display(Message _message) {
             // Affiche les valeurs
-            date.setText(getStringDate(_message.getDate()));
-            String texte = _message.getTexte();
-            titre.setText(texte.substring(0, texte.length() < 50 ? texte.length() : 50));
-            contenu.setText(texte);
+            date.setText(getDateForInsert(_message.getDate()));
+            contenu.setText(_message.getTexte());
+            auteur.setText(_message.getEmetteur().toString());
 
             Log.d(LOG, "Displaying : " + _message.toString());
         }

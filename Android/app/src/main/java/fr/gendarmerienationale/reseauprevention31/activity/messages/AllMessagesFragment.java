@@ -44,7 +44,7 @@ public class AllMessagesFragment extends ViewPagerFragment {
         recycler.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false));
 
         // Initialise l'adapter du recycler
-        mAdapter = new FilDeDiscussionAdapter(mFilsDeDiscussion);
+        mAdapter = new FilDeDiscussionAdapter(mFilsDeDiscussion, getActivity());
         recycler.setAdapter(mAdapter);
 
         refreshRecycler();

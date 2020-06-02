@@ -23,7 +23,7 @@
   <string name="texte_bandeau">Réseau Prévention 31</string>
   <string name="num_siret_incorrect">Numéro Siret incorrect</string>
   <string name="joindre_une_photo">Joindre une photo</string>
-  <string name="ecrivez_votre_message">Ecrivez votre annonce</string>
+  <string name="ecrivez_votre_message">Ecrivez votre message</string>
 
   <!-- communication avec le serveur HTTP -->
   <string name="http_success">success</string>
@@ -73,11 +73,17 @@
   <string name="renseigner_mail">Veuillez renseigner votre adresse email</string>
   <string name="mail_incorrect">Format du mail incorrect</string>
   <string name="num_telephone_incorrect">Numéro de téléphone incorrect</string>
-  <string name="envoi_cle">Une clé d\'identification va vous être envoyée par mail à l\'adresse %1$s</string>
+  <string name="envoi_cle">Une clé d\'identification vous sera envoyée par mail à l\'adresse %1$s dès que votre inscription sera validée par la %2$s.</string>
   <string name="accueil_anonyme">Accueil — Anonyme</string>
   <string name="nouvelles_annonces">Nouvelles annonces</string>
   <string name="anciennes_annonces">Anciennes annonces</string>
   <string name="all_messages">Tous les messages</string>
   <string name="marked_as_seen">Annonce marquée comme \"Vue\"</string>
   <string name="delete_announcement">Êtes-vous sûrs de vouloir supprimer cette annonce ?</string>
+  <string name="mise_a_jour_echec">Échec de la mise à jour</string>
+  <string name="err_http_informations_manquantes">Informations manquantes</string>
+  <string name="err_http_err_bdd">Erreur de connexion avec la base de données</string>
+  <string name="err_http_err_date">Format de date incorrect</string>
+  <string name="inscription_reussie">Inscription réussie</string>
+  <string name="err_http_err_register_spam">Votre inscription est déjà en cours de validation par votre chambre.</string>
 </resources>

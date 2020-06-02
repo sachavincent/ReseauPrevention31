@@ -11,7 +11,6 @@ import fr.gendarmerienationale.reseauprevention31.database.DatabaseHelper;
 public class ConseilsActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

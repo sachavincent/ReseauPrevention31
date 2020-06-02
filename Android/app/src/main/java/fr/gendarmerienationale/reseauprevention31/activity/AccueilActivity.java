@@ -41,7 +41,7 @@ public class AccueilActivity extends AppCompatActivity {
 //            buttonEnvoyerMessage = findViewById(R.id.buttonEnvoyerMessage);
             buttonConsulterMessage = findViewById(R.id.buttonConsulterMessageConnecte);
             buttonLocaliserBrigade = findViewById(R.id.buttonLocaliserBrigadeConnecte);
-            buttonConseilsProtection = findViewById(R.id.buttonConseilsProtection);
+            buttonConseilsProtection = findViewById(R.id.buttonConseilsProtectionConnecte);
 
             buttonConsulterMessage.setOnClickListener(
                     v -> startActivity(new Intent(AccueilActivity.this, MessagesActivity.class)));
@@ -49,8 +49,8 @@ public class AccueilActivity extends AppCompatActivity {
                     v -> startActivity(new Intent(AccueilActivity.this, ConseilsActivity.class)));
 //            buttonLocaliserBrigade.setOnClickListener(
 //                    v -> startActivity(new Intent(AccueilActivity.this, LocaliserBrigadeActivity.class)));
-            buttonLocaliserBrigade.setOnClickListener(
-                    v -> MainActivity.sDatabaseHelper.insertRandomMessage());
+//            buttonLocaliserBrigade.setOnClickListener(
+//                    v -> MainActivity.sDatabaseHelper.insertRandomMessage());
 
         } else {
             Log.d(LOG, "not connected");
@@ -136,6 +136,7 @@ public class AccueilActivity extends AppCompatActivity {
             Intent intent = new Intent(AccueilActivity.this, MainActivity.class);
 
             finish();
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }

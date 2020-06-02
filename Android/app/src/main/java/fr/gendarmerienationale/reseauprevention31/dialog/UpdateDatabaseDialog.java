@@ -1,9 +1,12 @@
 package fr.gendarmerienationale.reseauprevention31.dialog;
 
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -30,6 +33,14 @@ public class UpdateDatabaseDialog extends Dialog {
         super(_context);
 
         this.mContext = _context;
+    }
+
+    public void setText(String text) {
+        this.mTextView.setText(text);
+    }
+
+    public void setText(int text) {
+        this.mTextView.setText(text);
     }
 
     @Override
@@ -67,7 +78,7 @@ public class UpdateDatabaseDialog extends Dialog {
      * Changement du texte à l'initialisation
      */
     public void onInit() {
-        mTextView.setText(R.string.initialisation);
+        setText(R.string.initialisation);
     }
 
     /**
@@ -87,15 +98,20 @@ public class UpdateDatabaseDialog extends Dialog {
      * En cas de succès du téléchargement
      */
     public void onSuccess() {
+        Log.d(LOG, "success");
+
         // Mise à jour de la base de données
-        MainActivity.sDatabaseHelper.updateDatabase();
+        boolean res = MainActivity.sDatabaseHelper.updateDatabase();
 
         dismiss();
 
-        DialogsHelper.displayToast(mContext, R.string.mise_a_jour_reussie, Toast.LENGTH_LONG);
+        DialogsHelper.displayToast(mContext, res ? R.string.mise_a_jour_reussie : R.string.mise_a_jour_echec,
+                Toast.LENGTH_LONG);
 
-
-        mContext.startActivity(new Intent(mContext, AccueilActivity.class));
+        if (res)
+            mContext.startActivity(new Intent(mContext, AccueilActivity.class));
+        else
+            MainActivity.sDatabaseHelper.deleteUser();
     }
 
     public String onDownloadStart() {

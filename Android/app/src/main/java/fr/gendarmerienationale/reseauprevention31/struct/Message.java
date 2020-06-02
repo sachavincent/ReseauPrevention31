@@ -9,6 +9,15 @@ public class Message {
     private String          texte;
     private FilDeDiscussion fil;
     private boolean         vu;
+    private Emetteur        emetteur;
+
+    public Emetteur getEmetteur() {
+        return this.emetteur;
+    }
+
+    public void setEmetteur(Emetteur emetteur) {
+        this.emetteur = emetteur;
+    }
 
     public boolean isVu() {
         return this.vu;
@@ -48,5 +57,17 @@ public class Message {
 
     public void setTexte(String texte) {
         this.texte = texte;
+    }
+
+    public enum Emetteur {
+        FORCE,
+        UTILISATEUR;
+
+        public static Emetteur getEmetteur(String _emetteur) {
+            for (Emetteur emetteur : Emetteur.values())
+                if (emetteur.toString().equalsIgnoreCase(_emetteur))
+                    return emetteur;
+            return null;
+        }
     }
 }

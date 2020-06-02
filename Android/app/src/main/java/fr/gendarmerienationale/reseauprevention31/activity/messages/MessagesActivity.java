@@ -111,6 +111,7 @@ public class MessagesActivity extends AppCompatActivity {
             Intent intent = new Intent(MessagesActivity.this, MainActivity.class);
 
             finish();
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }
