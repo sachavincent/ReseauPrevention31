@@ -16,7 +16,7 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
         case 'Utilisateur':
             $requestSQL = $bdd->prepare('SELECT * FROM Utilisateur WHERE cle = ?');
             $requestSQL->execute(array($cle));
-            $fp = fopen("/home/$path//Utilisateur.csv", "w");
+            $fp = fopen("/home/$path/Utilisateur.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'CodeActivite':
@@ -155,6 +155,11 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
                     $requestSQL->execute(array($idFil));
                 $resultatRequete [] = $requestSQL->fetch();
             }
+            $maj = false;
+            foreach($resultatRequete as $res){
+                $maj = $maj || $res;
+            }
+            if (!$maj) $resultatRequete = array();
         break;
         case 'MessagePrive':
             $requestString = 'SELECT * FROM MessagePrive WHERE idFilDeDiscussion = ?';
@@ -169,6 +174,11 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
                     $requestSQL->execute(array($idFil));
                 $resultatRequete [] = $requestSQL->fetch();
             }
+            $maj = false;
+            foreach($resultatRequete as $res){
+                $maj = $maj || $res;
+            }
+            if (!$maj) $resultatRequete = array();
         break;
         case 'Annonce':
             $requestString = 'SELECT * FROM Annonce WHERE idAnnonce = ?';
@@ -176,6 +186,7 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
                 $requestString .= ' AND created_at > ?';
 
             $requestSQL = $bdd->prepare($requestString);
+            
             foreach($idFilAnnonce['annonce'] as $idAnnonce){
                 if ($derniereMAJ != NULL)
                     $requestSQL->execute(array($idAnnonce, $derniereMAJ));
@@ -183,6 +194,11 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
                     $requestSQL->execute(array($idAnnonce));
                 $resultatRequete [] = $requestSQL->fetch();
             }
+            $maj = false;
+            foreach($resultatRequete as $res){
+                $maj = $maj || $res;
+            }
+            if (!$maj) $resultatRequete = array();
 	break;
 
     }
@@ -213,7 +229,6 @@ function listeFilAnnonce($cle, $bdd){
     //Recuperation des annonces
     $requestSQL = $bdd->prepare('SELECT idAnnonce FROM DestinationAnnonce WHERE idUtilisateur = ?');
     $requestSQL->execute(array($idUtilisateur));
-
     while ($idAnnonce = $requestSQL->fetch()){
         $idFilAnnonce['annonce'][] = $idAnnonce['idAnnonce'];
     }
@@ -268,8 +283,8 @@ else {
         }
         foreach($tables as $table){
             if (besoinMaj($info['cle_identification'], $table, $dateDerniereMAJ, $bdd, $idFilAnnonce)){
-		creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
-		$retour['success'] = false;
+                creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
+                $retour['success'] = false;
             }
         }
     }
