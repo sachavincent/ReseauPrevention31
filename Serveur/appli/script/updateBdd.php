@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set(‘Europe/Paris’);
 /***
  * FONCTION creerCSV
  * Créer les fichier csv d'une table de la bdd (nom du fichier créer : '$table.csv')
@@ -192,21 +192,15 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
 
             foreach($idFilAnnonce['annonce'] as $idAnnonce) {
                 if ($derniereMAJ != NULL)
-                   $arr = array($idAnnonce, $derniereMAJ); 
+                   $arr = array($idAnnonce, $derniereMAJ);
                 else
 		   $arr = array($idAnnonce);
 
                 $requestSQL->execute($arr);
-//              $resultatRequete [] = $requestSQL->fetch();
 		$tempRes = $requestSQL->fetch();
 		if ($tempRes != false)
 		    $resultatRequete[] = $tempRes;
             }
-//            $maj = false;
-//            foreach($resultatRequete as $res){
-//                $maj = $maj || $res;
-//            }
-//            if (!$maj) $resultatRequete = array();
 	break;
 
     }
@@ -252,7 +246,7 @@ function listeFilAnnonce($cle, $bdd){
 
 //$info = strip_tags($request->getParsedBody());;
 $info = $request->getParsedBody();
-$dateDerniereMAJ = NULL;
+//$dateDerniereMAJ = NULL;
 $idFilAnnonce = array();
 if(empty($info['derniere_mise_a_jour']) OR empty($info['device_id'])) // Si le num de serie est vide ou la date de derniere maj
     $retour['error'] = 100;
@@ -262,8 +256,16 @@ else {
     if ($dateDerniereMAJEpoch == -1)
         $dateDerniereMAJ = NULL;
     else {
-        $dateDerniereMAJ = new DateTime("@" . $dateDerniereMAJEpoch);
+        $dateDerniereMAJ = new DateTime("@$dateDerniereMAJEpoch", new DateTimeZone('Europe/Paris'));
         $dateDerniereMAJ = $dateDerniereMAJ->format('Y-m-d H:i:s');
+
+	$userTimezone = new DateTimeZone('Europe/Paris');
+	$gmtTimezone = new DateTimeZone('GMT');
+	$myDateTime = new DateTime($dateDerniereMAJ, $gmtTimezone);
+	$offset = $userTimezone->getOffset($myDateTime);
+	$myInterval=DateInterval::createFromDateString((string)$offset . 'seconds');
+	$myDateTime->add($myInterval);
+	$dateDerniereMAJ = $myDateTime->format('Y-m-d H:i:s');
     }
     if ($dateDerniereMAJ != NULL && preg_match('^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$', $dateDerniereMAJ)) {
         $retour['error'] = 103;
@@ -292,7 +294,7 @@ else {
         foreach($tables as $table){
             if (besoinMaj($info['cle_identification'], $table, $dateDerniereMAJ, $bdd, $idFilAnnonce)){
                 creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
-                $retour['success'] = "false";
+                $retour['success'] = false;
             }
         }
     }
