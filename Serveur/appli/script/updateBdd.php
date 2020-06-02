@@ -102,39 +102,75 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
 
     switch($table){
         case 'CodeActivite':
-            $requestSQL = $bdd->prepare('SELECT * FROM CodeACtivite WHERE updated_at > ?');
-            $requestSQL->execute(array($derniereMAJ));
+            $requestString = 'SELECT * FROM CodeActivite';
+            if ($derniereMAJ != NULL)
+                $requestString .= ' WHERE updated_at > ?';
+            $requestSQL = $bdd->prepare($requestString);
+            if ($derniereMAJ != NULL)
+                $requestSQL->execute(array($derniereMAJ));
+            else
+                $requestSQL->execute();
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'Commune':
-            $requestSQL = $bdd->prepare('SELECT * FROM Commune WHERE updated_at > ?');
-            $requestSQL->execute(array($derniereMAJ));
+            $requestString = 'SELECT * FROM Commune';
+            if ($derniereMAJ != NULL)
+                $requestString .= ' WHERE updated_at > ?';
+            $requestSQL = $bdd->prepare($requestString);
+            if ($derniereMAJ != NULL)
+                $requestSQL->execute(array($derniereMAJ));
+            else
+                $requestSQL->execute();
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'Conseil':
-            $requestSQL = $bdd->prepare('SELECT * FROM Conseil WHERE updated_at > ?');
-            $requestSQL->execute(array($derniereMAJ));
+            $requestString = 'SELECT * FROM Conseil';
+            if ($derniereMAJ != NULL)
+                $requestString .= ' WHERE updated_at > ?';
+            $requestSQL = $bdd->prepare($requestString);
+            if ($derniereMAJ != NULL)
+                $requestSQL->execute(array($derniereMAJ));
+            else
+                $requestSQL->execute();
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'FilDeDiscussion':
-            $requestSQL = $bdd->prepare('SELECT * FROM FilDeDiscussion WHERE updated_at > ? AND idFilDeDiscussion = ?');
+            $requestString = 'SELECT * FROM FilDeDiscussion WHERE idFilDeDiscussion = ?';
+            if ($derniereMAJ != NULL)
+                $requestString .= ' AND updated_at > ?';
+            $requestSQL = $bdd->prepare($requestString);
             foreach($idFilAnnonce['fil'] as $idFil){
-                $requestSQL->execute(array($derniereMAJ, $idFil));
+                if ($derniereMAJ != NULL)
+                    $requestSQL->execute(array($idFil, $derniereMAJ));
+                else
+                    $requestSQL->execute(array($idFil));
                 $resultatRequete [] = $requestSQL->fetch();
             }
         break;
         case 'MessagePrive':
-            $requestSQL = $bdd->prepare('SELECT * FROM MessagePrive WHERE created_at > ? AND idFilDeDiscussion = ?');
+            $requestString = 'SELECT * FROM MessagePrive WHERE idFilDeDiscussion = ?';
+            if ($derniereMAJ != NULL)
+                $requestString .= ' AND created_at > ?';
+            $requestSQL = $bdd->prepare($requestString);
 
             foreach($idFilAnnonce['fil'] as $idFil){
-                $requestSQL->execute(array($derniereMAJ, $idFil));
+                if ($derniereMAJ != NULL)
+                    $requestSQL->execute(array($idFil, $derniereMAJ));
+                else
+                    $requestSQL->execute(array($idFil));
                 $resultatRequete [] = $requestSQL->fetch();
             }
         break;
         case 'Annonce':
-            $requestSQL = $bdd->prepare('SELECT * FROM Annonce WHERE created_at > ? AND idAnnonce = ?');
+            $requestString = 'SELECT * FROM Annonce WHERE idAnnonce = ?';
+            if ($derniereMAJ != NULL)
+                $requestString .= ' AND created_at > ?';
+            $requestSQL = $bdd->prepare($requestString);
             foreach($idFilAnnonce['annonce'] as $idAnnonce){
-                $requestSQL->execute(array($derniereMAJ, $idAnnonce));
+                if ($derniereMAJ != NULL)
+                    $requestSQL->execute(array($idAnnonce, $derniereMAJ));
+                else
+                    $requestSQL->execute(array($idAnnonce));
                 $resultatRequete [] = $requestSQL->fetch();
             }
 
@@ -180,47 +216,52 @@ function listeFilAnnonce($cle, $bdd){
  *      Cle de l'utilisateur (Facultatif)
  */
 
-$info = strip_tags($request->getParsedBody());
-
-//Creation de la date de derniere mise a jour au bon format
-$dateDerniereMAJEpoch = $info['derniere_mise_a_jour'];
-$dateDerniereMAJ = new DateTime("@$dateDerniereMAJEpoch");
-$dateDerniereMAJ = $dateDerniereMAJ->format('Y-m-d H:i:s');
-
+//$info = strip_tags($request->getParsedBody());;
+$info = $request->getParsedBody();
+$dateDerniereMAJ = NULL;
 $idFilAnnonce = array();
-
-if (empty($info['derniere_mise_a_jour']) OR empty($info['device_id'])){//Si date de derniere mise a jour non renseignée
+if(empty($info['derniere_mise_a_jour']) OR empty($info['device_id'])) // Si le num de serie est vide ou la date de derniere maj
     $retour['error'] = 100;
-} elseif (!preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$#', $dateDerniereMAJ)){
-    $retour['error'] = 103;
-} elseif (!empty($info['cle_identification'])) { //Verification de la clé de l'utilisateur si renseignée
-    $requestSQL = $bdd->prepare('SELECT cle FROM Utilisateur WHERE cle = ?');
-    $requestSQL->execute(array($info['cle_identification']));
-    $resultatRequete = $requestSQL->fetch();
+else {
+    //Creation de la date de derniere mise a jour au bon format
+    $dateDerniereMAJEpoch = $info['derniere_mise_a_jour'];
+    if ($dateDerniereMAJEpoch == -1)
+        $dateDerniereMAJ = NULL;
+    else {
+        $dateDerniereMAJ = new DateTime("@" . $dateDerniereMAJEpoch);
+        $dateDerniereMAJ = $dateDerniereMAJ->format('Y-m-d H:i:s');
+    }
+    if ($dateDerniereMAJ != NULL && preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$#', $dateDerniereMAJ)) {
+        $retour['error'] = 103;
+    } elseif (!empty($info['cle_identification'])) { //Verification de la clé de l'utilisateur si renseignée
+        $requestSQL = $bdd->prepare('SELECT cle FROM Utilisateur WHERE cle = ?');
+        $requestSQL->execute(array($info['cle_identification']));
+        $resultatRequete = $requestSQL->fetch();
 
-    if (empty($resultatRequete['cle'])){
-        $retour['error'] = 101;
-    } else {
+        if (empty($resultatRequete['cle'])){
+            $retour['error'] = 101;
+        } else {
             $tables = array('Utilisateur','CodeActivite', 'Commune', 'Conseil', 'FilDeDiscussion', 'MessagePrive', 'Annonce');
             $idFilAnnonce = listeFilAnnonce($info['cle_identification'], $bdd);
+        }
+    } else {
+        $info['cle_identification'] = NULL;
+        $tables = array('CodeActivite', 'Commune', 'Conseil');
     }
-} else {
-    $info['cle_identification'] = NULL;
-    $tables = array('CodeActivite', 'Commune', 'Conseil');
-}
-if (empty($retour['error'])){
-    $retour['success'] = true;
-    $device_id =  $info['device_id'];
-    if (!file_exists('../$device_id')) mkdir("../$device_id");
-    foreach($tables as $table){
-        if (besoinMaj($info['cle_identification'], $table, $dateDerniereMAJ, $bdd, $idFilAnnonce)){
-            creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
-            $retour['success'] = false;
+    if (empty($retour['error'])) {
+        $retour['success'] = true;
+        $device_id =  $info['device_id'];
+        if (!file_exists('../$device_id')) mkdir("../$device_id");
+        foreach($tables as $table){
+            if (besoinMaj($info['cle_identification'], $table, $dateDerniereMAJ, $bdd, $idFilAnnonce)){
+                creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
+                $retour['success'] = false;
+            }
         }
     }
 }
 
 header('Content-type: application/json');
-
+//echo strip_tags($request->getParsedBody());
 echo json_encode($retour);
 ?>
