@@ -1,5 +1,4 @@
 <?php
-date_default_timezone_set(‘Europe/Paris’);
 /***
  * FONCTION creerCSV
  * Créer les fichier csv d'une table de la bdd (nom du fichier créer : '$table.csv')

@@ -8,13 +8,14 @@ if (empty($info['cle_identification'])){
 } elseif(!preg_match(' /^[0-9]{13}$/ ', $info['cle_identification'])) {
     $retour['error'] = 101;
 } else{
-    $requeteSQL = $bdd->prepare('   SELECT cle, nomUtilisateur, prenomUtilisateur, chambre, codeAct, mail, telephone, nomSociete, idCommune, siret, secteur 
+    $requeteSQL = $bdd->prepare('   SELECT idUtilisateur, cle, nomUtilisateur, prenomUtilisateur, chambre, codeAct, mail, telephone, nomSociete, idCommune, siret, secteur 
                                     FROM Utilisateur WHERE cle = ?');
     $requeteSQL->execute(array($info['cle_identification']));
     $info = $requeteSQL->fetch();
     if (empty($info)){
         $retour['error'] = 100;
     } else {
+	$retour['success']['id'] = $info['idUtilisateur'];
         $retour['success']['cle_utilisateur'] = $info['cle'];
         $retour['success']['prenom'] = $info['prenomUtilisateur'];
         $retour['success']['nom'] = $info['nomUtilisateur'];
