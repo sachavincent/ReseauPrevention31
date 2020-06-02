@@ -11,26 +11,27 @@
  */
 function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
     header('Content-type: application/csv');
+    $path = $device_id . $cle;
     switch($table){
         case 'Utilisateur':
             $requestSQL = $bdd->prepare('SELECT * FROM Utilisateur WHERE cle = ?');
             $requestSQL->execute(array($cle));
-            $fp = fopen("/home/$device_id/Utilisateur.csv", "w");
+            $fp = fopen("/home/$path//Utilisateur.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'CodeActivite':
             $requestSQL = $bdd->query('SELECT * FROM CodeActivite');
-            $fp = fopen("/home/$device_id/CodeActivite.csv", "w");
+            $fp = fopen("/home/$path/CodeActivite.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'Commune':
             $requestSQL = $bdd->query('SELECT * FROM Commune');
-            $fp = fopen("/home/$device_id/Commune.csv", "w");
+            $fp = fopen("/home/$path/Commune.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'Conseil':
             $requestSQL = $bdd->query('SELECT * FROM Conseil');
-            $fp = fopen("/home/$device_id/Conseil.csv", "w");
+            $fp = fopen("/home/$path/Conseil.csv", "w");
             $resultatRequete = $requestSQL->fetchAll();
         break;
         case 'FilDeDiscussion':
@@ -41,7 +42,7 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
                 $resultatRequete [] = $requestSQL->fetch();
             }
 
-            $fp = fopen("/home/$device_id/FilDeDiscussion.csv", "w");
+            $fp = fopen("/home/$path/FilDeDiscussion.csv", "w");
         break;
         case 'MessagePrive':
             $requestSQL = $bdd->prepare('SELECT * FROM MessagePrive WHERE idFilDeDiscussion = ?');
@@ -52,7 +53,7 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
                     $resultatRequete [] = $res;
                 }
             }
-            $fp = fopen("/home/$device_id/MessagePrive.csv", "w");
+            $fp = fopen("/home/$path/MessagePrive.csv", "w");
         break;
         case 'Annonce':
             $requestSQL = $bdd->prepare('SELECT * FROM Annonce WHERE idAnnonce = ?');
@@ -63,7 +64,7 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
                     $resultatRequete [] = $res;
                 }
             }
-            $fp = fopen("/home/$device_id/Annonce.csv", "w");
+            $fp = fopen("/home/$path/Annonce.csv", "w");
         break;
         default:
             return;
@@ -85,7 +86,7 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
         }
 
         if ($i == 0) fputcsv($fp, $headCSV); //Si première ligne ajout de l'entete
-        fputcsv($fp, $tableauResultat[$i]);
+        fputcsv($fp, $tableauResultat[$i], "\0");
     }
     fclose($fp);
 }
@@ -103,11 +104,13 @@ function creerCSV($cle, $table, $bdd, $idFilAnnonce, $device_id){
 function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
     $resultatRequete = array();
 
+    $retour["table"] = $table;
     switch($table){
         case 'CodeActivite':
             $requestString = 'SELECT * FROM CodeActivite';
             if ($derniereMAJ != NULL)
                 $requestString .= ' WHERE updated_at > ?';
+
             $requestSQL = $bdd->prepare($requestString);
             if ($derniereMAJ != NULL)
                 $requestSQL->execute(array($derniereMAJ));
@@ -119,6 +122,7 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
             $requestString = 'SELECT * FROM Commune';
             if ($derniereMAJ != NULL)
                 $requestString .= ' WHERE updated_at > ?';
+
             $requestSQL = $bdd->prepare($requestString);
             if ($derniereMAJ != NULL)
                 $requestSQL->execute(array($derniereMAJ));
@@ -130,6 +134,7 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
             $requestString = 'SELECT * FROM Conseil';
             if ($derniereMAJ != NULL)
                 $requestString .= ' WHERE updated_at > ?';
+
             $requestSQL = $bdd->prepare($requestString);
             if ($derniereMAJ != NULL)
                 $requestSQL->execute(array($derniereMAJ));
@@ -141,6 +146,7 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
             $requestString = 'SELECT * FROM FilDeDiscussion WHERE idFilDeDiscussion = ?';
             if ($derniereMAJ != NULL)
                 $requestString .= ' AND updated_at > ?';
+
             $requestSQL = $bdd->prepare($requestString);
             foreach($idFilAnnonce['fil'] as $idFil){
                 if ($derniereMAJ != NULL)
@@ -168,6 +174,7 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
             $requestString = 'SELECT * FROM Annonce WHERE idAnnonce = ?';
             if ($derniereMAJ != NULL)
                 $requestString .= ' AND created_at > ?';
+
             $requestSQL = $bdd->prepare($requestString);
             foreach($idFilAnnonce['annonce'] as $idAnnonce){
                 if ($derniereMAJ != NULL)
@@ -176,6 +183,7 @@ function besoinMaj($cle, $table, $derniereMAJ, $bdd, $idFilAnnonce){
                     $requestSQL->execute(array($idAnnonce));
                 $resultatRequete [] = $requestSQL->fetch();
             }
+	break;
 
     }
     return (count($resultatRequete) != 0);
@@ -234,7 +242,7 @@ else {
         $dateDerniereMAJ = new DateTime("@" . $dateDerniereMAJEpoch);
         $dateDerniereMAJ = $dateDerniereMAJ->format('Y-m-d H:i:s');
     }
-    if ($dateDerniereMAJ != NULL && preg_match('#^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$#', $dateDerniereMAJ)) {
+    if ($dateDerniereMAJ != NULL && preg_match('^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$', $dateDerniereMAJ)) {
         $retour['error'] = 103;
     } elseif (!empty($info['cle_identification'])) { //Verification de la clé de l'utilisateur si renseignée
         $requestSQL = $bdd->prepare('SELECT cle FROM Utilisateur WHERE cle = ?');
@@ -254,18 +262,19 @@ else {
     if (empty($retour['error'])) {
         $retour['success'] = true;
         $device_id = $info['device_id'];
-        mkdir('/home/' . $device_id, 0777);
-        exec("/var/www/html/ReseauPrevention31/Serveur/appli/script/createFTPUser.sh " . $device_id);
+        if(!file_exists('/home/' . $device_id . $info['cle_identification'])) {
+            mkdir('/home/' . $device_id . $info['cle_identification'], 0744);
+            exec("/var/www/html/ReseauPrevention31/Serveur/appli/script/createFTPUser.sh " . $device_id . $info['cle_identification']);
+        }
         foreach($tables as $table){
             if (besoinMaj($info['cle_identification'], $table, $dateDerniereMAJ, $bdd, $idFilAnnonce)){
 		creerCSV($info['cle_identification'], $table, $bdd, $idFilAnnonce, $device_id);
-                $retour['success'] = false;
+		$retour['success'] = false;
             }
         }
     }
 }
 
 header('Content-type: application/json');
-//echo strip_tags($request->getParsedBody());
 echo json_encode($retour);
 ?>
