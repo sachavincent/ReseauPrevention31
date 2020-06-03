@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/main_content"
+  android:layout_width="match_parent"
+  android:background="@color/colorArrierePlan"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
+
+  <ScrollView
+    android:id="@+id/recyclerMessagesScroll"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@color/colorArrierePlan"
+    android:scrollbarSize="3.5dp"
+    android:scrollbars="vertical"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerMessages"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+  </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,11 @@
 package fr.gendarmerienationale.reseauprevention31.asynctask;
 
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.IP;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,17 +25,17 @@ import org.json.JSONObject;
 
 public class RegisterAPICaller extends AsyncTask<Void, Void, Boolean> {
 
-    private final WeakReference<Context> mContext;
+    private final WeakReference<Activity> mActivity;
 
     private String      mStrRep;
     private Utilisateur mUtilisateur;
 
-    private final static String URL = "http://192.168.42.26:80/inscription";
+    private final static String URL = "http://" + IP + ":80/inscription";
 
-    public RegisterAPICaller(Context _context, Utilisateur _utilisateur) {
+    public RegisterAPICaller(Activity _activity, Utilisateur _utilisateur) {
         mUtilisateur = _utilisateur;
 
-        mContext = new WeakReference<>(_context);
+        mActivity = new WeakReference<>(_activity);
     }
 
     @Override
@@ -84,10 +85,10 @@ public class RegisterAPICaller extends AsyncTask<Void, Void, Boolean> {
                 } else {
                     String res = keys.next();
 
-                    if (res.equals(mContext.get()
+                    if (res.equals(mActivity.get()
                             .getString(R.string.http_success))) { // Connexion réussie, initialisation des données
                         resultat = Boolean.parseBoolean(response.getString(res));
-                    } else if (res.equals(mContext.get()
+                    } else if (res.equals(mActivity.get()
                             .getString(R.string.http_error))) { // Connexion impossible, lecture du code d'erreur
                         resultat = false;
 
@@ -147,6 +148,8 @@ public class RegisterAPICaller extends AsyncTask<Void, Void, Boolean> {
                 mUtilisateur.getNumeroTelephone() +
                 "&nom_societe=" +
                 mUtilisateur.getNomSociete() +
+                "&num_siret=" +
+                mUtilisateur.getNumeroSiret() +
                 (mUtilisateur.getCommune() != null ? "&id_commune=" + mUtilisateur.getCommune().getId() : "") +
                 "&secteur=" +
                 mUtilisateur.getSecteur().getNum();
@@ -157,32 +160,37 @@ public class RegisterAPICaller extends AsyncTask<Void, Void, Boolean> {
         super.onPostExecute(result);
 
         if (result) { // Fenêtre de confirmation d'envoi de mail
-            new AlertDialog.Builder(mContext.get())
-                    .setTitle(mContext.get().getString(R.string.envoi_cle, mUtilisateur.getMail()))
-                    .setNeutralButton(R.string.ok, (dialog, which) -> dialog.dismiss())
+            new AlertDialog.Builder(mActivity.get())
+                    .setTitle(mActivity.get().getString(R.string.inscription_reussie))
+                    .setMessage(mActivity
+                            .get().getString(R.string.envoi_cle, mUtilisateur.getMail(), mUtilisateur.getChambre().toString()))
+                    .setPositiveButton(R.string.ok, (dialog, which) -> {
+                        mActivity.get().onBackPressed();
+                        dialog.dismiss();
+                    })
                     .setIcon(R.drawable.mail)
                     .setCancelable(false)
                     .show();
         } else {
-            DialogsHelper.displayToast(mContext.get(), mStrRep, Toast.LENGTH_LONG);
+            DialogsHelper.displayToast(mActivity.get(), mStrRep, Toast.LENGTH_LONG);
         }
     }
 
     private String translateHTTPError(int _code) {
-        String strErr = mContext.get().getString(R.string.err_http_connect) + " - " + _code;
+        String strErr = mActivity.get().getString(R.string.err_http_connect) + " - " + _code;
 
         switch (_code) {
             case 401:
-                strErr = mContext.get().getString(R.string.err_http_auth_requise);
+                strErr = mActivity.get().getString(R.string.err_http_auth_requise);
                 break;
             case 403:
-                strErr = mContext.get().getString(R.string.err_http_acces_interdit);
+                strErr = mActivity.get().getString(R.string.err_http_acces_interdit);
                 break;
             case 404:
-                strErr = mContext.get().getString(R.string.err_http_page_non_trouvee);
+                strErr = mActivity.get().getString(R.string.err_http_page_non_trouvee);
                 break;
             case 500:
-                strErr = mContext.get().getString(R.string.err_http_err_serveur_interne);
+                strErr = mActivity.get().getString(R.string.err_http_err_serveur_interne);
                 break;
         }
 
@@ -190,11 +198,20 @@ public class RegisterAPICaller extends AsyncTask<Void, Void, Boolean> {
     }
 
     private String translateCustomError(String _code) {
-        String strErr = "";
+        String strErr;
 
         switch (_code) {
+            case "100":
+                strErr = mActivity.get().getString(R.string.err_http_informations_manquantes);
+                break;
+            case "103":
+                strErr = mActivity.get().getString(R.string.err_http_err_date);
+                break;
+            case "104":
+                strErr = mActivity.get().getString(R.string.err_http_err_register_spam);
+                break;
             default:
-//                strErr = mContext.get().getString(R.string.connection_unsuccessful);
+                strErr = mActivity.get().getString(R.string.connection_unsuccessful) + ", code " + _code;
                 break;
 
         }

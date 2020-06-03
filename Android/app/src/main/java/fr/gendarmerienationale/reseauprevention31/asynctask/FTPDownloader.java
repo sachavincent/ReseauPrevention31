@@ -1,5 +1,6 @@
 package fr.gendarmerienationale.reseauprevention31.asynctask;
 
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.IP;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
@@ -25,10 +26,6 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
     private       FTPClient              mFtpClient;
     private       String                 mStrRep;
 
-
-    public final static String FTP_URL = "192.168.42.68:21";
-
-    public final static String FTP_LOGIN    = "root";
     public final static String FTP_PASSWORD = "root";
 
     public FTPDownloader(Context _context, UpdateDatabaseDialog _dialog) {
@@ -54,17 +51,14 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
             mFtpClient.setControlEncoding("UTF-8");
 
             // Connexion FTP
-            mFtpClient.connect(FTP_URL);
-            mFtpClient.login(FTP_LOGIN, FTP_PASSWORD);
+            mFtpClient.connect(IP);
+            mFtpClient.login(Tools.getDeviceID() + MainActivity.sDatabaseHelper.getUserKey(), FTP_PASSWORD);
 
             // Passage en mode passif
             mFtpClient.enterLocalPassiveMode();
 
             // Type de fichier binaire
             mFtpClient.setFileType(FTP.BINARY_FILE_TYPE);
-
-            // Change de working directory
-            mFtpClient.changeWorkingDirectory(mFtpClient.printWorkingDirectory() + "/DATABASE");
 
             publishProgress(mDialog.onDownloadStart());
 
@@ -89,6 +83,11 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
     }
 
     @Override
+    protected void onProgressUpdate(String... values) {
+        mDialog.setText(values[0]);
+    }
+
+    @Override
     protected void onPostExecute(Boolean result) {
         // Ferme le dialog et affiche le message d'information
         if (result)
@@ -101,6 +100,7 @@ public class FTPDownloader extends AsyncTask<Void, String, Boolean> {
      * Télécharge un fichier depuis le FTP
      */
     private boolean downloadFile(String ftpPath, String localPath) throws Exception {
+        Log.d(LOG, "Downloading file: " + ftpPath + " . . .");
         FileOutputStream desFileStream = new FileOutputStream(localPath);
         boolean status = mFtpClient.retrieveFile(ftpPath, desFileStream);
         desFileStream.close();

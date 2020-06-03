@@ -16,11 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import fr.gendarmerienationale.reseauprevention31.activity.MainActivity;
-import fr.gendarmerienationale.reseauprevention31.struct.Annonce;
-import fr.gendarmerienationale.reseauprevention31.struct.CodeActivite;
-import fr.gendarmerienationale.reseauprevention31.struct.Commune;
-import fr.gendarmerienationale.reseauprevention31.struct.Conseil;
-import fr.gendarmerienationale.reseauprevention31.struct.Secteur;
+import fr.gendarmerienationale.reseauprevention31.struct.*;
+import fr.gendarmerienationale.reseauprevention31.struct.Message.Emetteur;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
@@ -28,7 +25,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.regex.PatternSyntaxException;
+import org.apache.commons.lang3.StringUtils;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class Tools {
@@ -39,11 +38,13 @@ public class Tools {
     private final static String DATABASE_FOLDER = MAIN_FOLDER + File.separator + "Database";
     private static final String TRACE_FILE      = "ReseauPrevention31.txt";
 
-    private final static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    public final static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     private final static char DELIMITER = '\0';
 
     private static int width;
+
+    public final static String IP = "51.178.50.237";
 
     public static int getScreenWidth(Activity _activity) {
         Point size = new Point();
@@ -114,7 +115,10 @@ public class Tools {
             return null;
 
         try {
-            return new SimpleDateFormat(DATE_PATTERN, getCurrentLocale()).parse(_date);
+            SimpleDateFormat df = new SimpleDateFormat(DATE_PATTERN, getCurrentLocale());
+            df.setTimeZone(TimeZone.getTimeZone("Europe/Paris"));
+
+            return df.parse(_date);
         } catch (ParseException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
@@ -152,14 +156,20 @@ public class Tools {
      * Permet de récupérer la date actuelle formatée pour une insertion
      */
     public static String getCurrentDateForInsert() {
-        return new SimpleDateFormat(DATE_PATTERN, getCurrentLocale()).format(Calendar.getInstance().getTime());
+        return getDateForInsert(Calendar.getInstance().getTime());
     }
 
     /**
      * Permet de récupérer la date formattée pour une insertion
      */
     public static String getDateForInsert(Date _date) {
-        return new SimpleDateFormat(DATE_PATTERN, getCurrentLocale()).format(_date);
+        if (_date == null)
+            return null;
+
+        SimpleDateFormat df = new SimpleDateFormat(DATE_PATTERN, getCurrentLocale());
+        df.setTimeZone(TimeZone.getTimeZone("Europe/Paris"));
+
+        return df.format(_date);
     }
 
     /**
@@ -593,6 +603,7 @@ public class Tools {
      * @param _dbFile le fichier donné contenant les données des CodeActivités
      */
     public static boolean extractCodeActivites(File _dbFile) {
+        Log.d(LOG, "Extracting CodeActivites...");
         FileReader reader = null;
         BufferedReader bufferedReader = null;
 
@@ -600,7 +611,7 @@ public class Tools {
         try {
             reader = new FileReader(_dbFile);
             bufferedReader = new BufferedReader(reader);
-            String line;
+            String line = bufferedReader.readLine(); // Skip volontaire de la 1ère ligne
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] values = line.split(String.valueOf(DELIMITER));
@@ -616,7 +627,6 @@ public class Tools {
                     Log.w(LOG, "Insertion went wrong for CodeActivite: " + codeActivite.toString());
                 }
             }
-
         } catch (IOException | NumberFormatException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
@@ -643,6 +653,7 @@ public class Tools {
      * @param _dbFile le fichier donné contenant les données des communes
      */
     public static boolean extractCommunes(File _dbFile) {
+        Log.d(LOG, "Extracting Communes...");
         FileReader reader = null;
         BufferedReader bufferedReader = null;
 
@@ -650,7 +661,7 @@ public class Tools {
         try {
             reader = new FileReader(_dbFile);
             bufferedReader = new BufferedReader(reader);
-            String line;
+            String line = bufferedReader.readLine(); // Skip volontaire de la 1ère ligne
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] values = line.split(String.valueOf(DELIMITER));
@@ -669,7 +680,6 @@ public class Tools {
                             "Insertion went wrong for Commune: " + commune.toString() + ", with id " + commune.getId());
                 }
             }
-
         } catch (IOException | NumberFormatException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
@@ -696,6 +706,7 @@ public class Tools {
      * @param _dbFile le fichier donné contenant les données des conseils
      */
     public static boolean extractConseils(File _dbFile) {
+        Log.d(LOG, "Extracting Conseils...");
         FileReader reader = null;
         BufferedReader bufferedReader = null;
 
@@ -703,14 +714,18 @@ public class Tools {
         try {
             reader = new FileReader(_dbFile);
             bufferedReader = new BufferedReader(reader);
-            String line;
-
+            String line = bufferedReader.readLine(); // Skip volontaire de la 1ère ligne
             while ((line = bufferedReader.readLine()) != null) {
+                while (StringUtils.countMatches(line, DELIMITER) < 5) {
+                    // S'il y a des retours à la ligne dans le texte du conseil
+                    line += "\n" + bufferedReader.readLine();
+                }
                 String[] values = line.split(String.valueOf(DELIMITER));
 
                 Conseil conseil = new Conseil();
                 conseil.setId(Integer.parseInt(values[0]));
-                conseil.setTexte(values[1]);
+                conseil.setObjet(values[1]);
+                conseil.setTexte(values[2]);
 
                 boolean done = MainActivity.sDatabaseHelper.insertConseil(conseil);
                 if (!done) {
@@ -719,7 +734,6 @@ public class Tools {
                     Log.w(LOG, "Insertion went wrong for Conseil: " + conseil.toString());
                 }
             }
-
         } catch (IOException | NumberFormatException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
@@ -746,6 +760,7 @@ public class Tools {
      * @param _dbFile le fichier donné contenant les données des annonces
      */
     public static boolean extractAnnonces(File _dbFile) {
+        Log.d(LOG, "Extracting Annonces...");
         FileReader reader = null;
         BufferedReader bufferedReader = null;
 
@@ -753,14 +768,18 @@ public class Tools {
         try {
             reader = new FileReader(_dbFile);
             bufferedReader = new BufferedReader(reader);
-            String line;
+            String line = bufferedReader.readLine(); // Skip volontaire de la 1ère ligne
 
             while ((line = bufferedReader.readLine()) != null) {
+                while (StringUtils.countMatches(line, DELIMITER) < 5) {
+                    // S'il y a des retours à la ligne dans le texte de l'annonce
+                    line += "\n" + bufferedReader.readLine();
+                }
                 String[] values = line.split(String.valueOf(DELIMITER));
 
                 Annonce annonce = new Annonce();
                 annonce.setId(Integer.parseInt(values[0]));
-                annonce.setDate(getDateFromDatabase(values[1]));
+                annonce.setDate(getDateFromDatabase(values[1].replace("\"", "")));
                 annonce.setTexte(values[2]);
 
                 boolean done = MainActivity.sDatabaseHelper.insertAnnonce(annonce);
@@ -770,11 +789,123 @@ public class Tools {
                     Log.w(LOG, "Insertion went wrong for Annonce: " + annonce.toString());
                 }
             }
-
         } catch (IOException | NumberFormatException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
+            res = false;
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                Log.w(LOG, e.getMessage());
+                writeTraceException(e);
+            }
+        }
 
+        return res;
+    }
+
+    /**
+     * Permet d'extraire les messages privés du fichier donné et de les insérer dans la base de données
+     *
+     * @param _dbFile le fichier donné contenant les données des messages privés
+     */
+    public static boolean extractMessages(File _dbFile) {
+        Log.d(LOG, "Extracting Messages...");
+        FileReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        boolean res = true;
+        try {
+            reader = new FileReader(_dbFile);
+            bufferedReader = new BufferedReader(reader);
+            String line = bufferedReader.readLine(); // Skip volontaire de la 1ère ligne
+
+            while ((line = bufferedReader.readLine()) != null) {
+                while (StringUtils.countMatches(line, DELIMITER) < 5) {
+                    // S'il y a des retours à la ligne dans le texte du message
+                    line += "\n" + bufferedReader.readLine();
+                }
+                String[] values = line.split(String.valueOf(DELIMITER));
+
+                Message message = new Message();
+                message.setId(Integer.parseInt(values[0]));
+                message.setFil(MainActivity.sDatabaseHelper.getFilById(Integer.parseInt(values[1])));
+                message.setTexte(values[2]);
+                message.setDate(getDateFromDatabase(values[3].replace("\"", "")));
+                message.setVu(Integer.parseInt(values[4]) == 1);
+                message.setEmetteur(Emetteur.getEmetteur(values[5]));
+
+                boolean done = MainActivity.sDatabaseHelper.insertMessage(message);
+                if (!done) {
+                    res = false;
+
+                    Log.w(LOG, "Insertion went wrong for Message: " + message.toString());
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+            res = false;
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                Log.w(LOG, e.getMessage());
+                writeTraceException(e);
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Permet d'extraire les fils de discussion du fichier donné et de les insérer dans la base de données
+     *
+     * @param _dbFile le fichier donné contenant les données des fils de discussion
+     */
+    public static boolean extractFils(File _dbFile) {
+        Log.d(LOG, "Extracting Fils...");
+        FileReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        boolean res = true;
+        try {
+            reader = new FileReader(_dbFile);
+            bufferedReader = new BufferedReader(reader);
+            String line = bufferedReader.readLine(); // Skip volontaire de la 1ère ligne
+
+            while ((line = bufferedReader.readLine()) != null) {
+                while (StringUtils.countMatches(line, DELIMITER) < 5) {
+                    // S'il y a des retours à la ligne dans l'objet du fil de discussion
+                    line += "\n" + bufferedReader.readLine();
+                }
+                String[] values = line.split(String.valueOf(DELIMITER));
+
+                FilDeDiscussion fil = new FilDeDiscussion();
+                fil.setId(Integer.parseInt(values[0]));
+                fil.setUtilisateur(MainActivity.sDatabaseHelper.getUser());
+                fil.getUtilisateur().setId(Integer.parseInt(values[1]));
+                fil.setObjet(values[3]);
+//                fil.setDernierMessage(MainActivity.sDatabaseHelper.getMessageById(Integer.parseInt(values[2]), fil));
+
+                boolean done = MainActivity.sDatabaseHelper.insertFil(fil);
+                if (!done) {
+                    res = false;
+
+                    Log.w(LOG, "Insertion went wrong for Fil: " + fil.toString());
+                } else
+                    Log.d(LOG, "Fil inserted: " + fil.toString());
+            }
+        } catch (IOException | NumberFormatException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
             res = false;
         } finally {
             try {

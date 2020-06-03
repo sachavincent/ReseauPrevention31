@@ -1,5 +1,6 @@
 package fr.gendarmerienationale.reseauprevention31.asynctask;
 
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.IP;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
@@ -35,7 +36,7 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
 
     private String mKeyID, mStrRep;
 
-    private final static String URL = "http://192.168.1.16:80/connexion.php";
+    private final static String URL = "http://" + IP + ":80/connexion";
 
     private final WeakReference<ConnectionDialog> mDialog;
     private final WeakReference<MainActivity>     mMainActivity;
@@ -172,6 +173,7 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
 
     private boolean extractUtilisateur(JSONObject response) throws JSONException {
         String res;
+        String id = "";
         String cle_utilisateur = "";
         String mail = "";
         String num_telephone = "";
@@ -188,6 +190,9 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
             res = keys.next();
             String val = response.getString(res);
             switch (res) {
+                case "id":
+                    id = val;
+                    break;
                 case "cle_utilisateur":
                     cle_utilisateur = val;
                     break;
@@ -226,22 +231,31 @@ public class ConnectionAPICaller extends AsyncTask<Void, Void, Boolean> {
                     break;
             }
         }
+        try {
+            CodeActivite codeActivite = MainActivity.sDatabaseHelper.getActiviteByCode(code_act);
+            Utilisateur utilisateur = new Utilisateur();
+            utilisateur.setId(Integer.parseInt(id));
+            utilisateur.setCle(cle_utilisateur);
+            utilisateur.setCodeActivite(codeActivite);
+            utilisateur.setMail(mail);
+            utilisateur.setNom(nom);
+            utilisateur.setPrenom(prenom);
+            utilisateur.setNomSociete(nom_societe);
+            utilisateur.setNumeroTelephone(num_telephone);
+            utilisateur.setChambre(chambre);
+            utilisateur.setNumeroSiret(num_siret);
+            utilisateur.setSecteur(Secteur.getSecteur(Integer.parseInt(secteur)));
 
-        CodeActivite codeActivite = MainActivity.sDatabaseHelper.getActiviteByCode(code_act);
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setCle(cle_utilisateur);
-        utilisateur.setCodeActivite(codeActivite);
-        utilisateur.setMail(mail);
-        utilisateur.setNom(nom);
-        utilisateur.setPrenom(prenom);
-        utilisateur.setNomSociete(nom_societe);
-        utilisateur.setNumeroTelephone(num_telephone);
-        utilisateur.setChambre(chambre);
-        utilisateur.setNumeroSiret(num_siret);
-        utilisateur.setSecteur(Secteur.getSecteur(Integer.parseInt(secteur)));
-        utilisateur.setCommune(new Commune(Integer.parseInt(id_commune)));
+            Commune commune = MainActivity.sDatabaseHelper.getCommuneById(Integer.parseInt(id_commune));
+            utilisateur.setCommune(commune != null ? commune : new Commune(Integer.parseInt(id_commune)));
 
-        return MainActivity.sDatabaseHelper.saveUser(utilisateur);
+            return MainActivity.sDatabaseHelper.saveUser(utilisateur);
+        } catch (NumberFormatException e) {
+            Log.w(LOG, e.getMessage());
+            writeTraceException(e);
+
+            return false;
+        }
     }
 
     private String translateHTTPError(int _code) {

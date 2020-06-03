@@ -1,6 +1,8 @@
 package fr.gendarmerienationale.reseauprevention31.asynctask;
 
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.IP;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.LOG;
+import static fr.gendarmerienationale.reseauprevention31.util.Tools.getCurrentLocale;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.writeTraceException;
 
 import android.content.Context;
@@ -13,6 +15,7 @@ import fr.gendarmerienationale.reseauprevention31.R;
 import fr.gendarmerienationale.reseauprevention31.activity.AccueilActivity;
 import fr.gendarmerienationale.reseauprevention31.dialog.UpdateDatabaseDialog;
 import fr.gendarmerienationale.reseauprevention31.util.DialogsHelper;
+import fr.gendarmerienationale.reseauprevention31.util.Tools;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,8 +24,10 @@ import java.io.PrintWriter;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.TimeZone;
 import org.json.JSONObject;
 
 public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
@@ -32,7 +37,7 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
     private String mKeyID, mStrRep;
     private Date mLastConnectionDate;
 
-    private final static String URL = "http://192.168.43.174:80/updatebdd.php";
+    private final static String URL = "http://" + IP + ":80/updatebdd";
 
     public DatabaseDateAPICaller(Context _context, String _keyID, Date _lastConnectionDate) {
         mLastConnectionDate = _lastConnectionDate;
@@ -61,9 +66,14 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
             httpConnection.setDoOutput(true);
             httpConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             httpConnection.connect();
-
+            SimpleDateFormat df = new SimpleDateFormat(Tools.DATE_PATTERN, getCurrentLocale());
+            long diff = TimeZone.getDefault().getRawOffset() - df.getTimeZone().getRawOffset();
+            // Si mLastConnectionDate = null alors 1ere mise à jour, sinon on renvoie epoch depuis la derniere maj
+            long lastUpdate = mLastConnectionDate == null ? -1 : mLastConnectionDate.getTime() / 1000;
+            Log.d(LOG, "Last update : " + mLastConnectionDate + " => " + lastUpdate);
             writer = new PrintWriter(httpConnection.getOutputStream());
-            writer.write("cle_identification=" + mKeyID + "&derniere_mise_a_jour=" + mLastConnectionDate);
+            writer.write("cle_identification=" + mKeyID + "&derniere_mise_a_jour=" + lastUpdate + "&device_id=" +
+                    Tools.getDeviceID());
             writer.flush();
 
 
@@ -134,17 +144,19 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
+        Handler handler = new Handler();
         Log.d(LOG, "DatabaseDateAPICaller result=" + result);
         if (result) { // La base de données est à jour
             mContext.get().startActivity(new Intent(mContext.get(), AccueilActivity.class));
 
-            Handler handler = new Handler();
             handler.postDelayed(() -> {
                 DialogsHelper.displayToast(mContext.get(), "Base de données à jour", Toast.LENGTH_SHORT);
             }, 1200);
         } else {
             if (mStrRep == null) { // La base de données doit être mise à jour
-                new UpdateDatabaseDialog(mContext.get()).show();
+                handler.postDelayed(() -> {
+                    new UpdateDatabaseDialog(mContext.get()).show();
+                }, 1200);
             } else { // Erreur lors de la requête
                 DialogsHelper.displayToast(mContext.get(), mStrRep, Toast.LENGTH_LONG);
             }
@@ -173,11 +185,23 @@ public class DatabaseDateAPICaller extends AsyncTask<Void, Void, Boolean> {
     }
 
     private String translateCustomError(String _code) {
-        String strErr = "";
+        String strErr;
 
         switch (_code) {
+            case "100":
+                strErr = mContext.get().getString(R.string.err_http_informations_manquantes);
+                break;
+            case "101":
+                strErr = mContext.get().getString(R.string.err_http_cle_inconnue);
+                break;
+            case "102":
+                strErr = mContext.get().getString(R.string.err_http_err_bdd);
+                break;
+            case "103":
+                strErr = mContext.get().getString(R.string.err_http_err_date);
+                break;
             default:
-//                strErr = mContext.get().getString(R.string.connection_unsuccessful);
+                strErr = mContext.get().getString(R.string.connection_unsuccessful) + ", code " + _code;
                 break;
 
         }

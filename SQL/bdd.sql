@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  ven. 29 mai 2020 à 16:03
+-- Généré le :  mar. 02 juin 2020 à 16:21
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -970,7 +970,8 @@ CREATE TABLE `FilDeDiscussion` (
 --
 
 INSERT INTO `FilDeDiscussion` (`idFilDeDiscussion`, `idUtilisateur`, `idDernierMessage`, `objet`, `created_at`, `updated_at`) VALUES
-(7, 17, 26, 'COVID', '2020-05-23 23:39:49', '2020-05-28 10:56:16');
+(7, 17, 28, 'COVID', '2020-05-23 23:39:49', '2020-06-02 17:50:38'),
+(8, 14, 31, 'Test', '2020-06-02 18:01:57', '2020-06-02 18:06:33');
 
 -- --------------------------------------------------------
 
@@ -994,7 +995,7 @@ CREATE TABLE `ForceDeLOrdre` (
 
 INSERT INTO `ForceDeLOrdre` (`idForce`, `mdpForce`, `nomForce`, `prenomForce`, `force`, `mail`, `nbConnexion`) VALUES
 ('1234', '$2y$10$jmOToTTnEUIWBUItuT.wre4G3TeH3kaW7ZGAWdjYtZdVJ.bYKBQxO', 'Nguyen', 'Thanh', 'P', 'thanh@nguyen.fr', 0),
-('12345', '$2y$10$BJS8gzgD822RXPz5mJGzOebKVKpY3tJaOCXqnZ/cAfI3J4xhLI7DW', 'Appriou', 'Thomas', 'G', 'thomas@appriou.com', 0),
+('12345', '$2y$10$BJS8gzgD822RXPz5mJGzOebKVKpY3tJaOCXqnZ/cAfI3J4xhLI7DW', 'Appriou', 'Thomas', 'G', 'thomas@appriou.com', 1),
 ('ngt234hvs', '$2y$10$fsq6z8EES0nWYSBSlCCHDO4cpKrGOqZbR4O8jrJUDIkMHRql1SgWS', 'Nguyen', 'Thanh', 'G', 'thanh@nguyen.pages', 1);
 
 -- --------------------------------------------------------
@@ -1040,18 +1041,23 @@ CREATE TABLE `MessagePrive` (
 --
 
 INSERT INTO `MessagePrive` (`idMessagePrive`, `idFilDeDiscussion`, `texte`, `created_at`, `ouvert`, `emetteur`) VALUES
-(21, 7, 'Bonjour bienvenue', '2020-05-23 23:47:31', 1, 'UTILISATEUR'),
-(22, 7, 'Bonjour c\'est quoi ton soucis??', '2020-05-24 18:13:52', 0, 'FORCE'),
-(23, 7, 'bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu ', '2020-05-24 18:14:24', 1, 'UTILISATEUR'),
+(21, 7, 'Bonjour bienvenue', '2020-05-23 23:47:31', 1, 'FORCE'),
+(22, 7, 'Bonjour c\'est quoi ton soucis??', '2020-05-24 18:13:52', 0, 'UTILISATEUR'),
+(23, 7, 'bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu bcgfbace filage efefvmz OMQBVQSDBV>SBVBKJW B,    N ,hjvhcghj, et j\'ai vu ', '2020-05-24 18:14:24', 1, 'FORCE'),
 (24, 7, 'BIJOUUUR', '2020-05-26 16:06:48', 1, 'FORCE'),
-(25, 7, 'coucou\r\n', '2020-05-27 16:10:28', 1, 'FORCE'),
-(26, 7, 'BAAAAH', '2020-05-28 10:56:16', 1, 'FORCE');
+(25, 7, 'coucou\r\n', '2020-05-27 16:10:28', 1, 'UTILISATEUR'),
+(26, 7, 'BAAAAH', '2020-05-28 10:56:16', 1, 'FORCE'),
+(27, 7, 'coucou\r\n', '2020-06-02 17:11:26', 1, 'UTILISATEUR'),
+(28, 7, 'yo', '2020-06-02 17:50:38', 1, 'FORCE'),
+(29, 8, 'Message de test ', '2020-06-02 18:02:54', 1, 'UTILISATEUR'),
+(30, 8, 'Message 2', '2020-06-02 18:06:24', 0, 'FORCE'),
+(31, 8, 'Message 3 ', '2020-06-02 18:06:33', 1, 'UTILISATEUR');
 
 --
 -- Déclencheurs `MessagePrive`
 --
 DELIMITER $$
-CREATE TRIGGER `last_message_trigger` AFTER INSERT ON `MessagePrive` FOR EACH ROW UPDATE fildediscussion f SET f.idDernierMessage = NEW.idMessagePrive WHERE f.idFilDeDiscussion = NEW.idFilDeDiscussion
+CREATE TRIGGER `last_message_trigger` AFTER INSERT ON `MessagePrive` FOR EACH ROW UPDATE FilDeDiscussion SET FilDeDiscussion.idDernierMessage = NEW.idMessagePrive WHERE FilDeDiscussion.idFilDeDiscussion = NEW.idFilDeDiscussion
 $$
 DELIMITER ;
 
@@ -1191,13 +1197,13 @@ ALTER TABLE `Conseil`
 -- AUTO_INCREMENT pour la table `FilDeDiscussion`
 --
 ALTER TABLE `FilDeDiscussion`
-  MODIFY `idFilDeDiscussion` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idFilDeDiscussion` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `MessagePrive`
 --
 ALTER TABLE `MessagePrive`
-  MODIFY `idMessagePrive` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `idMessagePrive` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT pour la table `Utilisateur`
