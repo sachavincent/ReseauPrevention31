@@ -698,6 +698,13 @@ h10 {
   color: grey;
 }
 
+mark {
+  color: #005A9E;
+  text-decoration: underline;
+  background-color: #FAF9F8;
+  cursor: pointer;
+}
+
 #cle {
   font-size: 25px;
   font-weight: bold;

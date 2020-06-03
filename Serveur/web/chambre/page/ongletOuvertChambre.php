@@ -29,14 +29,15 @@ if ($_GET['m'] != 'none') {
           <fieldset>
             <time id='date-demande'>" . $dateMsg . "</time>
             <legend>INFORMATION DE LA DEMANDE</legend><br>
-            <b>Nom : </b><label>" . $infosUser['nomUtilisateur'] . "<br><p>
-            <b>Prénom : </b><label>" . $infosUser['prenomUtilisateur'] . "</label><br></p>
-            <b>Nom Société : </b><label>" . $infosUser['nomSociete'] . "</label><br></p>
-            <b>Type d'activité : </b><label>" . $infosUser['activite'] . "</label><br></p>
-            <b>Numéro Siret : </b><label>" . $infosUser['siret'] . "</label><br></p>
-            <b>Localisaiton : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br></p>
-            <b>Téléphone : </b><label>" . $infosUser['telephone'] . "</label><br></p>
-            <b>Adresse mail : </b><label>" . $infosUser['mail'] . "</label><br></p>
+            <b>Nom : </b><label>" . $infosUser['nomUtilisateur'] . "<br><br>
+            <b>Prénom : </b><label>" . $infosUser['prenomUtilisateur'] . "</label><br><br>
+            <b>Nom Société : </b><label>" . $infosUser['nomSociete'] . "</label><br><br>
+            <b>Type d'activité : </b><label>" . $infosUser['activite'] . "</label><br><br>
+            <b>Numéro Siret : </b><label>" . $infosUser['siret'] . " → </label>
+            <mark onclick=window.open('https:\/\/www.infogreffe.fr/entreprise-societe/\$numSiret') />Cliquez-ici</mark> pour vérifier le numéro Siret.<br><br>
+            <b>Localisaiton : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br><br>
+            <b>Téléphone : </b><label>" . $infosUser['telephone'] . "</label><br><br>
+            <b>Adresse mail : </b><label>" . $infosUser['mail'] . "</label><br><br>
           </fieldset>
     ";
 
