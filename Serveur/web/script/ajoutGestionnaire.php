@@ -12,7 +12,7 @@
                 break;
                 case 'CHAMBRE':
                     $requeteListeId = $bdd->query('SELECT idGestionnaire FROM `Gestionnaire`');
-                    $requeteAjout = $bdd->prepare('INSERT INTO `Gestionnaire`(`idGestionnaire`, `mdpGestionnaire`, `nomGestionnaire`, `prenomGestionnaire`, `chambre`, `mail`) VALUES (?,?,?,?,?, ?)');
+                    $requeteAjout = $bdd->prepare('INSERT INTO `Gestionnaire`(`idGestionnaire`, `mdpGestionnaire`, `nomGestionnaire`, `prenomGestionnaire`, `chambre`, `mail`) VALUES (?,?,?,?,?,?)');
                 break;
                 default: exit();
             }

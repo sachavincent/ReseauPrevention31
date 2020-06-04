@@ -20,8 +20,12 @@ if ($_GET['m'] != 'none') {
     $infosUser["activite"] = ($activite->fetch() ["activite"]);
 
     //Creation de la cé de l'utilisateur
-    $infosUser['cle'] = sprintf("%03d", $infosUser['codeAct']) . $infosUser['codePostal'] . $infosUser['secteur'] . sprintf("%04d", $infosUser['idUtilisateur']);
-    $_SESSION[$onglet][$_GET['m']]['cle'] = $infosUser['cle'];
+    if ($_SESSION[$onglet][$_GET['m']]['cle'] == NULL){
+      $requetNbUtilisateurParAct = $bdd->prepare('SELECT * FROM Utilisateur WHERE codeAct = ?  AND cle IS NOT NULL');
+      $requetNbUtilisateurParAct->execute(array($infosUser['codeAct']));
+      $infosUser['cle'] = sprintf("%03d", $infosUser['codeAct']) . $infosUser['codePostal'] . $infosUser['secteur'] . sprintf("%04d", count($requetNbUtilisateurParAct->fetchAll()) );
+      $_SESSION[$onglet][$_GET['m']]['cle'] = $infosUser['cle'];
+    }
 
     // affichage
     echo "
@@ -34,7 +38,7 @@ if ($_GET['m'] != 'none') {
             <b>Nom Société : </b><label>" . $infosUser['nomSociete'] . "</label><br><br>
             <b>Type d'activité : </b><label>" . $infosUser['activite'] . "</label><br><br>
             <b>Numéro Siret : </b><label>" . $infosUser['siret'] . " → </label>
-            <mark onclick=window.open('https:\/\/www.infogreffe.fr/entreprise-societe/" . $infosUser['siret'] . ") />Cliquez-ici</mark> pour vérifier le numéro Siret.<br><br>
+            <mark onclick=window.open('https:\/\/www.infogreffe.fr/entreprise-societe/" . $infosUser['siret'] . "') />Cliquez-ici</mark> pour vérifier le numéro Siret.<br><br>
             <b>Localisaiton : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br><br>
             <b>Téléphone : </b><label>" . $infosUser['telephone'] . "</label><br><br>
             <b>Adresse mail : </b><label>" . $infosUser['mail'] . "</label><br><br>
