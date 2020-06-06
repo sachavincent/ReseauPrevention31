@@ -21,8 +21,12 @@ $body = [
                 ]
             ],
             'Subject' => "Validation de votre inscription",
-            'TextPart' => "Bonjour, suite à votre inscription sur l'application prevention31 voici votre de clé de connexion unique:" . $cle,
-            'HTMLPart' => "<p> Bonjour,<br><br> suite à votre inscription sur l'application prevention31 voici votre de clé de connexion unique: </p> <p><h2>" . $cle ."</h2></p>"
+            'TextPart' => "Bonjour, suite à votre inscription sur l'application prevention31 voici votre clé de connexion unique:" . $cle
+                            . ' Pour vous connecter sur l\'application : - Copiez la cle - Rendez-vous sur l\'application - Selectionnez connexion puis collez la clé - Enfin validez, vous voila maintenant sur votre espace' 
+                            . 'L\'équipe RéseauPrévention31',
+            'HTMLPart' => "<p> Bonjour,<br><br> suite à votre inscription sur l'application prevention31 voici votre clé de connexion unique: </p> <p><h2>" . $cle ."</h2></p>"
+                            . '<p> Pour vous connecter sur l\'application :<br> - Copiez la cle<br> - Rendez-vous sur l\'application<br> - Selectionnez connexion puis collez la clé<br> - Enfin validez, vous voila maintenant sur votre espace</p>'
+                            . '<br><p>L\'équipe RéseauPrévention31</p>'
         ]
     ]
 ];
