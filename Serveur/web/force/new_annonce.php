@@ -17,7 +17,7 @@ if (!isset($commune)){
 ?>
 
 <!-- ============================================== -->
-<form method="post" action="../script/test.php">
+<form method="post" action="../script/creationAnnonce.php">
 <!-- barre d'actions -->
 <div id="barre-actions">
   <input type="button" class="new-annonce" value="+ Annonce" onclick="window.location.href='demandes.php?e=new_annonce'" />

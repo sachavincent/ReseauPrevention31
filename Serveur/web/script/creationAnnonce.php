@@ -12,6 +12,41 @@ if (!(isset($objet) and isset($texte)) or empty($objet) or empty($texte)) {
 else {
     $success = true;
 
+    //Recuperation idCommune et codeActivite 
+    $idCommune1 = null;
+    $idCommune2 = null;
+    $idCommune3 = null;
+    $codeActivite1 = null;
+    $codeActivite2 = null;
+    $codeActivite3 = null;
+
+    if (!empty($_POST['commune1'])){
+        $idCommune1 =  explode(', ', $_POST['commune1'])[2];
+    }
+    if (!empty($_POST['commune2'])){
+        $idCommune2 =  explode(', ', $_POST['commune2'])[2];
+    }
+    if (!empty($_POST['commune3'])){
+        $idCommune3 =  explode(', ', $_POST['commune3'])[2];
+    }
+    if (!empty($_POST['activite1'])){
+        $codeActivite1 =  explode(', ', $_POST['activite1'])[0];
+    }
+    if (!empty($_POST['activite2'])){
+        $codeActivite2 =  explode(', ', $_POST['activite2'])[0];
+    }
+    if (!empty($_POST['activite3'])){
+        $codeActivite3 =  explode(', ', $_POST['activite3'])[0];
+    }
+
+    //Suppression des balises html 
+    $idCommune1 = strip_tags($idCommune1);
+    $idCommune2 = strip_tags($idCommune2);
+    $idCommune3 = strip_tags($idCommune3);
+    $codeActivite1 = strip_tags($codeActivite1);
+    $codeActivite2 = strip_tags($codeActivite2);
+    $codeActivite3 = strip_tags($codeActivite3);
+
     if (isset($_POST['toutes-activites']) and isset($_POST['toutes-communes']) and isset($_POST['toutes-zones'])) {
         $requeteListeDestinataire = $bdd->query('SELECT idUtilisateur, mail, nomUtilisateur, prenomUtilisateur FROM Utilisateur');
 
@@ -25,25 +60,25 @@ else {
     } elseif (isset($_POST['toutes-activites']) and isset($_POST['toutes-zones'])) {
         $requeteListeDestinataire = $bdd->prepare('SELECT idUtilisateur, mail, nomUtilisateur, prenomUtilisateur FROM Utilisateur WHERE idCommune = ? OR idCommune = ? OR idCommune = ?');
         $requeteListeDestinataire->execute(array(
-            $_POST['commune1'],
-            $_POST['commune2'],
-            $_POST['commune3']
+            $idCommune1,
+            $idCommune2,
+            $idCommune3
         ));
     } elseif (isset($_POST['toutes-communes']) and isset($_POST['toutes-zones'])) {
         $requeteListeDestinataire = $bdd->prepare('SELECT idUtilisateur, mail, nomUtilisateur, prenomUtilisateur FROM Utilisateur WHERE codeAct = ? OR codeAct = ? OR codeAct = ?');
         $requeteListeDestinataire->execute(array(
-            $_POST['activite1'],
-            $_POST['activite2'],
-            $_POST['activite3']
+            $codeActivite1,
+            $codeActivite2,
+            $codeActivite3
         ));
     } elseif (isset($_POST['toutes-activites'])) {
         $requeteListeDestinataire = $bdd->prepare(' SELECT idUtilisateur, mail, nomUtilisateur, prenomUtilisateur FROM Utilisateur 
                                                     WHERE (idCommune = ? OR idCommune = ? OR idCommune = ?)
                                                     AND (secteur = ? OR secteur = ? OR secteur = ?)');
         $requeteListeDestinataire->execute(array(
-            $_POST['commune1'],
-            $_POST['commune2'],
-            $_POST['commune3'],
+            $idCommune1,
+            $idCommune2,
+            $idCommune3,
             $_POST['secteur1'],
             $_POST['secteur2'],
             $_POST['secteur3']
@@ -53,9 +88,9 @@ else {
                                                     WHERE (codeAct = ? OR codeAct = ? OR codeAct = ?)
                                                     AND (secteur = ? OR secteur = ? OR secteur = ?)');
         $requeteListeDestinataire->execute(array(
-            $_POST['activite1'],
-            $_POST['activite2'],
-            $_POST['activite3'],
+            $codeActivite1,
+            $codeActivite2,
+            $codeActivite3,
             $_POST['secteur1'],
             $_POST['secteur2'],
             $_POST['secteur3']
@@ -65,12 +100,12 @@ else {
                                                     WHERE (idCommune = ? OR idCommune = ? OR idCommune = ?)
                                                     AND (codeAct = ? OR codeAct = ? OR codeAct = ?)');
         $requeteListeDestinataire->execute(array(
-            $_POST['commune1'],
-            $_POST['commune2'],
-            $_POST['commune3'],
-            $_POST['activite1'],
-            $_POST['activite2'],
-            $_POST['activite3']
+            $idCommune1,
+            $idCommune2,
+            $idCommune3,
+            $codeActivite1,
+            $codeActivite2,
+            $codeActivite3
         ));
     } else {
         $requeteListeDestinataire = $bdd->prepare(' SELECT idUtilisateur, mail, nomUtilisateur, prenomUtilisateur FROM Utilisateur 
@@ -78,12 +113,12 @@ else {
                                                     AND (codeAct = ? OR codeAct = ? OR codeAct = ?)
                                                     AND (secteur = ? OR secteur = ? OR secteur = ?)');
         $requeteListeDestinataire->execute(array(
-            $_POST['commune1'],
-            $_POST['commune2'],
-            $_POST['commune3'],
-            $_POST['activite1'],
-            $_POST['activite2'],
-            $_POST['activite3'],
+            $idCommune1,
+            $idCommune2,
+            $idCommune3,
+            $codeActivite1,
+            $codeActivite2,
+            $codeActivite3,
             $_POST['secteur1'],
             $_POST['secteur2'],
             $_POST['secteur3']
