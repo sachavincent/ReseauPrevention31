@@ -1,4 +1,5 @@
 <?php
+//Chambre
 if ($_SESSION['chambre'] == 'CCI' or $_SESSION['chambre'] == 'CA' or $_SESSION['chambre'] == 'CMA') {
 
     $categorie = array(

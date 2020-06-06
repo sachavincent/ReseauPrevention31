@@ -904,3 +904,9 @@ h3 {
 #ajout-failed, #ajout-mdp-different, #ajout-id-existant {
   color: red;
 }
+
+
+.eac-commune input {
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}

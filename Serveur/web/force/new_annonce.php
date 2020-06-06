@@ -17,7 +17,7 @@ if (!isset($commune)){
 ?>
 
 <!-- ============================================== -->
-<form method="post" action="../script/creationAnnonce.php">
+<form method="post" action="../script/test.php">
 <!-- barre d'actions -->
 <div id="barre-actions">
   <input type="button" class="new-annonce" value="+ Annonce" onclick="window.location.href='demandes.php?e=new_annonce'" />
@@ -46,26 +46,11 @@ if (!isset($commune)){
       <div class="selection-params">
         <p class="alignement-msg"><b>Activités :</b>
           <!-- menu deroulant des activites -->
-          <select name="activite1" class="select-activites" size="l">
-            <option value="--">Choisir une activité</option>
-            <?php foreach($activite as $act) { ?>
-                <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite'] ?></option>
-            <?php } ?>
-          </select>
-  
-          <select name="activite2" class="select-activites" size="l">
-            <option value="--">Choisir une activité</option>
-            <?php foreach($activite as $act) { ?>
-                <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite'] ?></option>
-            <?php } ?>
-          </select>
-  
-          <select name="activite3" class="select-activites" size="l">
-            <option value="--">Choisir une activité</option>
-            <?php foreach($activite as $act) { ?>
-                <option value=<?= $act['code']?>><?= $act['code'] . ', ' . $act['activite'] ?></option>
-            <?php } ?>
-          </select>
+          <input type="text" class="rechercheActivite" name='activite1' placeholder='Saisir une activité'/>
+    
+          <input type="text" class="rechercheActivite" name='activite2' placeholder='Saisir une activité'/>
+
+          <input type="text" class="rechercheActivite" name='activite3' placeholder='Saisir une activité'/>
         </p>
       </div>
   
@@ -77,26 +62,11 @@ if (!isset($commune)){
       <!-- menu deroulant des communes -->
       <div class="selection-params">
         <p class="alignement-msg"><b>Commune :</b>
-          <select name ="commune1" class="select-commune" size="l">
-            <option value="--">Choisir une commune</option>
-            <?php foreach($commune as $com) { ?>      
-                <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune'] ?></option>
-            <?php } ?>
-          </select>
+          <input type="text" class="rechercheCommune" name='commune1' placeholder='Saisir une commune'/>
     
-          <select name ="commune2" class="select-commune" size="l">
-            <option value="--">Choisir une commune</option>
-            <?php foreach($commune as $com) { ?>      
-                <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune'] ?></option>
-            <?php } ?>
-          </select>
+          <input type="text" class="rechercheCommune" name='commune2' placeholder='Saisir une commune'/>
     
-          <select name ="commune3" class="select-commune" size="l">
-            <option value="--">Choisir une commune</option>
-            <?php foreach($commune as $com) { ?>      
-                <option value=<?= $com['idCommune']?>><?= $com['codePostal'] . ', ' . $com['commune'] ?></option>
-            <?php } ?>
-          </select>
+          <input type="text" class="rechercheCommune" name='commune3' placeholder='Saisir une commune'/>
         </p>
       </div>
     
@@ -164,4 +134,21 @@ if (!isset($commune)){
   <textarea name="texte" id="write-annonce" required></textarea>
 
 </form>
+<!-- Traitement des recherches commune/activite -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$('.rechercheCommune').autocomplete({
+  source : '../script/rechercheCommune.php',
+  autoFocus: true,
+  minLength: 3
+});
+
+$('.rechercheActivite').autocomplete({
+  source : '../script/rechercheActivite.php',
+  autoFocus: true,
+  minLength: 3
+});
+</script>
 </section>
