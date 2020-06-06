@@ -905,8 +905,9 @@ h3 {
   color: red;
 }
 
-
-.eac-commune input {
-  background-repeat: no-repeat;
-  background-position: right 10px center;
+#carteHG{
+  position: fixed;
+  margin-left: 800px;
+  max-width: 18%;
+  height: auto;
 }

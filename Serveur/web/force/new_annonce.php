@@ -43,6 +43,7 @@ if (!isset($commune)){
   <section id="zone-saisie-annonce">
     <fieldset>
       <legend>Informations à compléter pour une nouvelle annonce :</legend>
+      <img src="../images/carte.png" alt="Carte" id="carteHG">
       <div class="selection-params">
         <p class="alignement-msg"><b>Activités :</b>
           <!-- menu deroulant des activites -->
@@ -123,7 +124,6 @@ if (!isset($commune)){
           <input id="mail" name="mail" type="checkbox"/>
       </div><br>
     </fieldset>
-
     <fieldset>
       <legend>Objet :</legend>
       <input name='input-objet-annonce' required>
