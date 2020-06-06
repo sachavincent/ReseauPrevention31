@@ -21,13 +21,22 @@ else {
     $codeActivite3 = null;
 
     if (!empty($_POST['commune1'])){
-        $idCommune1 =  explode(', ', $_POST['commune1'])[2];
+        $commune =  explode(', ', $_POST['commune1']);
+        $requeteIdCommune = $bdd->prepare('SELECT idCommune FROM Commune WHERE codePostal = ? AND commune = ?');
+        $requeteIdCommune->execute(array($commune[0], $commune[1]));
+        $idCommune1 = ($requeteIdCommune->fetch())['idCommune'];
     }
     if (!empty($_POST['commune2'])){
-        $idCommune2 =  explode(', ', $_POST['commune2'])[2];
+        $commune =  explode(', ', $_POST['commune2']);
+        $requeteIdCommune = $bdd->prepare('SELECT idCommune FROM Commune WHERE codePostal = ? AND commune = ?');
+        $requeteIdCommune->execute(array($commune[0], $commune[1]));
+        $idCommune2 = ($requeteIdCommune->fetch())['idCommune'];    
     }
     if (!empty($_POST['commune3'])){
-        $idCommune3 =  explode(', ', $_POST['commune3'])[2];
+        $commune =  explode(', ', $_POST['commune3']);
+        $requeteIdCommune = $bdd->prepare('SELECT idCommune FROM Commune WHERE codePostal = ? AND commune = ?');
+        $requeteIdCommune->execute(array($commune[0], $commune[1]));
+        $idCommune3 = ($requeteIdCommune->fetch())['idCommune'];    
     }
     if (!empty($_POST['activite1'])){
         $codeActivite1 =  explode(', ', $_POST['activite1'])[0];
