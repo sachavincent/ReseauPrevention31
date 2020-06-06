@@ -142,13 +142,13 @@ if (!isset($commune)){
 $('.rechercheCommune').autocomplete({
   source : '../script/rechercheCommune.php',
   autoFocus: true,
-  minLength: 3
+  minLength: 0
 });
 
 $('.rechercheActivite').autocomplete({
   source : '../script/rechercheActivite.php',
   autoFocus: true,
-  minLength: 3
+  minLength: 0
 });
 </script>
 </section>
