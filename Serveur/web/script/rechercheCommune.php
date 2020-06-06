@@ -9,7 +9,7 @@ $requete->execute(array('%'.$term.'%'));
 $array = array(); 
 
 while($donnee = $requete->fetch()){
-    array_push($array, $donnee['codePostal'] . ', ' . $donnee['commune'] . ', ' . $donnee['idCommune']); 
+    array_push($array, $donnee['codePostal'] . ', ' . $donnee['commune']); 
 }
 
 echo json_encode($array); 
