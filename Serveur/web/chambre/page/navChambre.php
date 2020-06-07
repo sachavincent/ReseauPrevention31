@@ -56,7 +56,7 @@ function nbNewMsg($categorie)
   <!-- boutons profil / deconnexion -->
   <div class="onglet-profil">
     <span onclick="window.location.href='../chambre/profil-ch.php?return=none&e=profil'">
-      <?= $_SESSION['prenom']?>
+      PROFIL
     </span>
     <img onclick="window.location.href='../connexion/choix-chambre.php'" src="../images/disconnect.png"/>
   </div>
@@ -65,7 +65,7 @@ function nbNewMsg($categorie)
   <div class=<?= $onglet_attente; ?> onclick=window.location.href='../chambre/demandes.php?e=attente&m=none' >
     En attente
     <!-- nb de demandes -->
-    <p class="number-msg"><?php nbNewMsg("EN_COURS") ?>1</p>
+    <p class="number-msg"><?php nbNewMsg("EN_COURS") ?></p>
   </div>
 
   <div class=<?= $onglet_accepte; ?> onclick=window.location.href='../chambre/demandes.php?e=accepte&m=none' >

@@ -30,6 +30,7 @@
   font-family: "KoHo", Arial;
   margin: 0;
   padding: 0;
+  word-break: break-word;
 }
 
 h1 {
@@ -56,7 +57,7 @@ body {
 
 #page-identification .pan-chambres #logo-ca, #page-identification .pan-chambres #logo-cma, #page-identification .pan-chambres #logo-cci, #page-identification .pan-chambres #logo-gendarmerie, #page-identification .pan-chambres #logo-police, #page-identification .pan-forces #logo-ca, #page-identification .pan-forces #logo-cma, #page-identification .pan-forces #logo-cci, #page-identification .pan-forces #logo-gendarmerie, #page-identification .pan-forces #logo-police {
   display: inline-block;
-  background-color: #DBDBDB;
+  background-color: #ececec;
   padding: 10px;
   border-radius: 5px 5px 5px 5px;
 }
@@ -77,7 +78,7 @@ body {
 }
 
 #page-identification .pan-chambres h1, #page-identification .pan-forces h1 {
-  color: #DBDBDB;
+  color: #ececec;
   margin-left: 25px;
   margin-bottom: 45px;
   padding-bottom: 5px;
@@ -117,7 +118,7 @@ body {
 }
 
 #page-identification #pan-identification #logo-choisi {
-  background-color: #DBDBDB;
+  background-color: #ececec;
   margin: auto;
   margin-bottom: 40px;
   margin-top: 15px;
@@ -141,7 +142,7 @@ body {
   font-family: "KoHo";
   font-weight: 600;
   text-align: left;
-  color: #DBDBDB;
+  color: #ececec;
 }
 
 #page-identification #pan-identification [name='mdp'], #page-identification #pan-identification [name='id'] {
@@ -152,9 +153,9 @@ body {
   padding-bottom: 10px;
   margin-bottom: 22px;
   border: 0px;
-  border-bottom: 2px solid #DBDBDB;
+  border-bottom: 2px solid #ececec;
   background-color: transparent;
-  color: #DBDBDB;
+  color: #ececec;
 }
 
 #page-identification #pan-identification [name='mdp']:focus, #page-identification #pan-identification [name='id']:focus {
@@ -166,7 +167,7 @@ body {
   height: 40px;
   padding: 10px;
   background-color: #4285F4;
-  color: #DBDBDB;
+  color: #ececec;
   border: 0px;
   border-radius: 2px;
   margin-top: 5px;
@@ -174,7 +175,7 @@ body {
 }
 
 #page-identification #pan-identification [value="valider"]:hover {
-  background-color: #DBDBDB;
+  background-color: #ececec;
   color: #1E1E1E;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
@@ -198,14 +199,25 @@ body {
   background-color: #1E1E1E;
   display: block;
   text-align: left;
-  color: #DBDBDB;
+  color: #ececec;
   position: absolute;
   border-right: 1px #121212;
 }
 
 #nav-gauche .onglet-profil {
-  padding: 15px;
+  width: 80%;
+  height: 35px;
+  margin: 15px;
+  padding: 5px;
   background-color: #4285F4;
+  border-radius: 2px;
+}
+
+#nav-gauche .onglet-profil:hover {
+  -webkit-filter: brightness(115%);
+          filter: brightness(115%);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 
 #nav-gauche .onglet-profil span {
@@ -219,7 +231,7 @@ body {
 }
 
 #nav-gauche .onglet-profil img {
-  margin-left: 35%;
+  margin-left: 25%;
   padding-top: 5px;
   width: 20px;
   height: 20px;
@@ -240,7 +252,7 @@ body {
 #nav-gauche .onglets:hover, #nav-gauche .onglet-selected:hover {
   -webkit-transition: 0.5s all ease;
   transition: 0.5s all ease;
-  background-color: #4285F4;
+  background-color: #000000;
   cursor: pointer;
 }
 
@@ -250,11 +262,15 @@ body {
   margin-top: -10%;
 }
 
+#nav-gauche .onglet-selected {
+  border-left: 4px solid #4285F4;
+}
+
 #nav-gauche .logo {
   margin-left: 15%;
   top: 72%;
   position: absolute;
-  background-color: #DBDBDB;
+  background-color: #ececec;
   border-radius: 2px;
 }
 
@@ -290,7 +306,7 @@ body {
   background-color: #1E1E1E;
   border-radius: 2px;
   margin-top: 6.5%;
-  color: #DBDBDB;
+  color: #ececec;
   font-size: 19px;
 }
 
@@ -401,5 +417,199 @@ body {
 
 #pan-profil #pan-profil-interieur #error {
   color: #FF2646;
+}
+
+#pan-content {
+  position: absolute;
+  background-color: #F9F9F9;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 230px;
+}
+
+#pan-content #barre-refresh {
+  width: 260px;
+  height: 25px;
+  background-color: whitesmoke;
+  position: absolute;
+  top: -1px;
+  border-bottom: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+}
+
+#pan-content #barre-refresh img {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 15%;
+}
+
+#pan-content #barre-refresh img:hover {
+  -webkit-filter: brightness(50%);
+          filter: brightness(50%);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+
+#pan-content #barre-refresh em {
+  margin-left: 85px;
+  padding-top: 2px;
+  font-weight: 600;
+  font-style: normal;
+  color: #4285F4;
+  cursor: pointer;
+}
+
+#pan-content #barre-refresh em:hover {
+  -webkit-filter: brightness(50%);
+          filter: brightness(50%);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+
+#pan-content #liste-onglets {
+  width: 260px;
+  position: absolute;
+  bottom: 0;
+  top: 25px;
+  border-right: 1px solid lightgrey;
+  background-color: whitesmoke;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+#pan-content #liste-onglets .onglet-msg-selected, #pan-content #liste-onglets .onglet-msg, #pan-content #liste-onglets .onglet-non-lu {
+  height: 75px;
+  width: 100%;
+  background-color: whitesmoke;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 1px solid lightgrey;
+}
+
+#pan-content #liste-onglets .onglet-msg-selected:hover, #pan-content #liste-onglets .onglet-msg:hover, #pan-content #liste-onglets .onglet-non-lu:hover {
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+
+#pan-content #liste-onglets .onglet-msg-selected #date-reception, #pan-content #liste-onglets .onglet-msg #date-reception, #pan-content #liste-onglets .onglet-non-lu #date-reception {
+  font-size: 12px;
+  position: absolute;
+  margin-left: 170px;
+  margin-top: 14px;
+}
+
+#pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg-selected h10, #pan-content #liste-onglets .onglet-msg h9, #pan-content #liste-onglets .onglet-msg h10, #pan-content #liste-onglets .onglet-non-lu h9, #pan-content #liste-onglets .onglet-non-lu h10 {
+  position: absolute;
+  margin-left: 22px;
+}
+
+#pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg h9, #pan-content #liste-onglets .onglet-non-lu h9 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #4285F4;
+  margin-top: 12px;
+}
+
+#pan-content #liste-onglets .onglet-msg-selected h10, #pan-content #liste-onglets .onglet-msg h10, #pan-content #liste-onglets .onglet-non-lu h10 {
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+#pan-content #liste-onglets .onglet-msg-selected {
+  background-color: #4285F4;
+}
+
+#pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg-selected h10, #pan-content #liste-onglets .onglet-msg-selected #date-reception {
+  color: #ececec;
+}
+
+#pan-content #liste-onglets .onglet-non-lu::after {
+  content: "";
+  position: absolute;
+  height: 75px;
+  background-color: #4285F4;
+  width: 4px;
+}
+
+#pan-content #barre-actions {
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 261px;
+  border-bottom: 1px solid lightgrey;
+}
+
+#pan-content #barre-actions [type="button"] {
+  width: 115px;
+  height: 30px;
+  margin-top: 5px;
+  margin-left: 50px;
+  background-color: #4285F4;
+  color: #ececec;
+  border: none;
+  border-radius: 2px;
+}
+
+#pan-content #barre-actions [type="button"]:hover {
+  -webkit-filter: brightness(115%);
+          filter: brightness(115%);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+
+#pan-content #pan-demande {
+  position: absolute;
+  right: 0;
+  top: 41px;
+  left: 261px;
+  bottom: 0;
+  padding: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
+  background-color: whitesmoke;
+}
+
+#pan-content #pan-demande fieldset {
+  border: none;
+}
+
+#pan-content #pan-demande fieldset #date-demande {
+  font-size: 13px;
+  color: grey;
+  position: absolute;
+  right: 50px;
+  top: 20px;
+}
+
+#pan-content #pan-demande fieldset legend {
+  font-weight: bold;
+  color: #4285F4;
+  border-bottom: 2px solid #4285F4;
+}
+
+#pan-content #pan-demande fieldset em {
+  font-weight: 600;
+  color: #4285F4;
+  cursor: pointer;
+}
+
+#pan-content #pan-demande fieldset #cle {
+  font-size: 25px;
+  font-weight: 600;
 }
 /*# sourceMappingURL=style.css.map */

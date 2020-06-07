@@ -31,9 +31,10 @@
 $color-dark: #121212;
 $color-dark-light: #1E1E1E;
 $color-light: #F9F9F9;
-$color-text: #DBDBDB;
-$color-hover-logo: #4285F4;
+$color-text: rgb(236, 236, 236);
+$color-hover-nav: #000000;
 $color-second: #4285F4;
+$color-grey: whitesmoke;
 $color-success: #26FF26;
 $color-error: #FF2646;
 
@@ -42,6 +43,7 @@ $color-error: #FF2646;
     font-family: "KoHo", Arial;
     margin: 0;
     padding: 0;
+    word-break: break-word;
 }
 
 h1 {
@@ -71,7 +73,7 @@ body {
             border-radius: 5px 5px 5px 5px;
             &:hover {
                 transition: 0.5s all ease;
-                background-color: $color-hover-logo;
+                background-color: $color-second;
             }
             img {
                 width: 175px;
@@ -133,7 +135,7 @@ body {
             }
             &:hover {
                 transition: 0.5s all ease;
-                background-color: $color-hover-logo;
+                background-color: $color-second;
             }
         }
         p {
@@ -198,8 +200,16 @@ body {
     position: absolute;
     border-right: 1px $color-dark;
     .onglet-profil {
-        padding: 15px;
+        width: 80%;
+        height: 35px;
+        margin: 15px;
+        padding: 5px;
         background-color: $color-second;
+        border-radius: 2px;
+        &:hover {
+            filter: brightness(115%);
+            transition: 0.4s ease;
+        }
         span {
             font-weight: 600;
             font-size: 20px;
@@ -209,7 +219,7 @@ body {
             }
         }
         img {
-            margin-left: 35%;
+            margin-left: 25%;
             padding-top: 5px;
             width: 20px;
             height: 20px;
@@ -227,7 +237,7 @@ body {
         padding-bottom: 5%;
         &:hover {
             transition: 0.5s all ease;
-            background-color: $color-hover-logo;
+            background-color: $color-hover-nav;
             cursor: pointer;
         }
         & .number-msg {
@@ -235,6 +245,9 @@ body {
             left: 80%;
             margin-top: -10%;
         }
+    }
+    .onglet-selected {
+        border-left: 4px solid $color-second;
     }
     .logo {
         margin-left: 15%;
@@ -244,13 +257,12 @@ body {
         border-radius: 2px;
         &:hover {
             transition: 0.5s all ease;
-            background-color: $color-hover-logo;
+            background-color: $color-second;
         }
     }
 }
 
 #pan-profil {
-    // height: 100%;
     position: absolute;
     background-color: $color-light;
     top: 0;
@@ -365,6 +377,167 @@ body {
         }
         #error {
             color: $color-error;
+        }
+    }
+}
+
+#pan-content {
+    position: absolute;
+    background-color: $color-light;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 230px;
+    #barre-refresh {
+        width: 260px;
+        height: 25px;
+        background-color: $color-grey;
+        position: absolute;
+        top: -1px;
+        border-bottom: 1px solid lightgrey;
+        border-right: 1px solid lightgrey;
+        img {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            margin-top: 5px;
+            margin-left: 15%;
+            &:hover {
+                filter: brightness(50%);
+                transition: 0.4s ease;
+                cursor: pointer;
+            }
+        }
+        em {
+            margin-left: 85px;
+            padding-top: 2px;
+            font-weight: 600;
+            font-style: normal;
+            color: $color-second;
+            cursor: pointer;
+            &:hover {
+                filter: brightness(50%);
+                transition: 0.4s ease;
+                cursor: pointer;
+            }
+        }
+    }
+    #liste-onglets {
+        width: 260px;
+        position: absolute;
+        bottom: 0;
+        top: 25px;
+        border-right: 1px solid lightgrey;
+        background-color: $color-grey;
+        overflow: hidden;
+        overflow-y: auto;
+        .onglet-msg-selected, .onglet-msg, .onglet-non-lu {
+            height: 75px;
+            width: 100%;
+            background-color: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid lightgrey;
+            &:hover {
+                filter: brightness(70%);
+                transition: 0.4s ease;
+                cursor: pointer;
+            }
+            #date-reception {
+                font-size: 12px;
+                position: absolute;
+                margin-left: 170px;
+                margin-top: 14px;
+            }
+            h9, h10 {
+                position: absolute;
+                margin-left: 22px;
+            }
+            h9 {
+                font-size: 15px;
+                font-weight: bold;
+                color: $color-second;
+                margin-top: 12px;
+            }
+            h10 {
+                font-size: 14px;
+                margin-top: 40px;
+            }
+        }
+        .onglet-msg-selected {
+            background-color: $color-second;
+            h9, h10, #date-reception {
+                color: $color-text;
+            }
+        }
+        .onglet-non-lu {
+            &::after {
+                content: "";
+                position: absolute;
+                height: 75px;
+                background-color: $color-second;
+                width: 4px;
+
+            }
+        }
+    }
+    #barre-actions {
+        height: 40px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 261px;
+        // background-color: lightgray;
+        border-bottom: 1px solid lightgrey;
+        [type="button"] {
+            width: 115px;
+            height: 30px;
+            margin-top: 5px;
+            margin-left: 50px;
+            background-color: $color-second;
+            color: $color-text;
+            border: none;
+            border-radius: 2px;
+            &:hover {
+                filter: brightness(115%);
+                transition: 0.4s ease;
+                cursor: pointer;
+            }
+        }
+    }
+    #pan-demande {
+        position: absolute;
+        right: 0;
+        top: 41px;
+        left: 261px;
+        bottom: 0;
+        padding: 20px;
+        padding-left: 35px;
+        padding-right: 35px;
+        background-color: whitesmoke;
+        fieldset {
+            border: none;
+            #date-demande {
+                font-size: 13px;
+                color: grey;
+                position: absolute;
+                right: 50px;
+                top: 20px;
+            }
+            legend {
+                font-weight: bold;
+                color: $color-second;
+                border-bottom: 2px solid $color-second;
+            }
+            em {
+                font-weight: 600;
+                color: $color-second;
+                cursor: pointer;
+            }
+            #cle {
+                font-size: 25px;
+                font-weight: 600;
+            }
         }
     }
 }

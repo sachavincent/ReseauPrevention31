@@ -38,8 +38,8 @@ if ($_GET['m'] != 'none') {
             <b>Nom Société : </b><label>" . $infosUser['nomSociete'] . "</label><br><br>
             <b>Type d'activité : </b><label>" . $infosUser['activite'] . "</label><br><br>
             <b>Numéro Siret : </b><label>" . $infosUser['siret'] . " → </label>
-            <mark onclick=window.open('https:\/\/www.infogreffe.fr/entreprise-societe/" . $infosUser['siret'] . "') />Cliquez-ici</mark> pour vérifier le numéro Siret.<br><br>
-            <b>Localisaiton : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br><br>
+            <em onclick=window.open('https:\/\/www.infogreffe.fr/entreprise-societe/" . $infosUser['siret'] . "') />Cliquez-ici</em> pour vérifier le numéro Siret.<br><br>
+            <b>Localisation : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br><br>
             <b>Téléphone : </b><label>" . $infosUser['telephone'] . "</label><br><br>
             <b>Adresse mail : </b><label>" . $infosUser['mail'] . "</label><br><br>
           </fieldset>

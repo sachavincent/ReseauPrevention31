@@ -96,7 +96,31 @@ function infoCommune($infosUser) {
 
 <!-- pan liste msg -->
 <section id="pan-content">
-  <nav id="pan-reception">
+  <!-- barre d'actions -->
+  <div id="barre-refresh">
+    <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=attente&m=none'" />
+    <em onclick="window.location.href='demandes.php?e=attente&m=none'">Actualiser</em>
+  </div>
+
+  <div id="barre-actions">
+    <?php switch ($_GET['e']) { 
+        case 'attente': ?>
+            <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
+            <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
+        <?php
+            break;
+        case 'accepte': ?>
+            <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
+        <?php
+            break;
+        case 'refuse': ?>
+            <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
+        <?php
+        break; 
+    } ?>
+  </div>
+
+  <nav id="liste-onglets">
     <?php   
     /* ======================== LISTE ONGLETS FORCES ========================== */
 
