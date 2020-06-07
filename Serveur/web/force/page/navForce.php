@@ -97,28 +97,39 @@ function nbNewConseil() {
 
 <!-- panel gauche -->
 <nav id="nav-gauche">
+  <!-- boutons profil / deconnexion -->
+  <div class="onglet-profil">
+    <span onclick="window.location.href='../force/profil-fo.php?return=none&e=profil'">
+      PROFIL
+    </span>
+    <img onclick="window.location.href='../connexion/choix-chambre.php'" src="../images/disconnect.png"/>
+  </div>
+
+  <input type="button" class="new-annonce" value="+   Nouvelle Annonce" onclick="window.location.href='demandes.php?e=new_annonce'" />
+  <input type="button" class="new-conseil" value="+   Nouveau Conseil" onclick="window.location.href='demandes.php?e=new_conseil'" />
+
   <!-- onglets d'interfaces -->
   <div class=<?= $onglet_prive; ?> onclick=window.location.href='../force/demandes.php?e=prive&m=none' >
-    <img class="img-nav" src="../images/received.png" />Messages privés
+    Messages privés
     <!-- nb de demandes -->
     <p class="number-msg"><?php nbNewMessage(); ?></p>
   </div>
 
   <div class=<?= $onglet_annonce; ?> onclick=window.location.href='../force/demandes.php?e=annonce&m=none' >
-    <img class="img-nav" src="../images/annonce.png" />Annonces
+    Annonces
     <!-- nb de demandes -->
     <p class="number-msg"><?php nbNewAnnonce(); ?></p>
   </div>
 
   <div class=<?= $onglet_conseil; ?> onclick=window.location.href='../force/demandes.php?e=conseil&m=none' >
-    <img class="img-nav" src="../images/conseil.png" />Conseils
+    Conseils
     <!-- nb de demandes -->
     <p class="number-msg"><?php nbNewConseil(); ?></p>
   </div>
 
   <!-- logo -->
   <img src=<?= $_SESSION['logoChambre']; ?> class="logo" width="150px" height="150px"/>
-  <p style='font-size:12px; text-align : center'>Nombre de connexions : <?= $_SESSION['nbConnexion']?></p>
+  <p class="nb-connexions">Nombre de connexions : <?= $_SESSION['nbConnexion']?></p>
 
 </nav>
 

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("../script/connexionBDD.php");
 ?>
 
 <!DOCTYPE html>
@@ -7,12 +8,12 @@ session_start();
   <head>
     <title>Boîte de réception</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../style/style.css" />
   </head>
 
   <body>
-    <!-- header -->
-    <?php include("page/headerForce.php"); ?>
+    <!-- affichage menu gauche -->
+    <?php include("page/navForce.php"); ?>
 
     <!-- ouverture du contenu | Privé | Annonce | Conseil | Corbeille | -->
     <?php switch ($_GET['e']) {

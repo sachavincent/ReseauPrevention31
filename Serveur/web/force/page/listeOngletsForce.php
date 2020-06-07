@@ -16,20 +16,20 @@ if (!empty($_SESSION[$onglet])) {
             $affiche['created_at'] = $affiche['message'][$dernierMsg]['created_at'];
             // elements de l'onglet
             $objet = trunc($affiche['objet'], 15);
-            $texte = trunc($affiche['message'][$dernierMsg]['texte'], 17);
+            $texte = trunc($affiche['message'][$dernierMsg]['texte'], 22);
         } else {
             $msgOuvert = $affiche['ouvert'];
             // elements de l'onglet
             $objet = trunc($affiche['objet'], 15);
-            $texte = trunc($affiche['texte'], 20);
+            $texte = trunc($affiche['texte'], 25);
         }
         // date dans les onglets
         $dateSQL     = substr($affiche['created_at'], 0, 10);
         $reverseDate = implode('/', array_reverse(explode('-', $dateSQL)));
         $date        = "<time id='date-reception'>" . $reverseDate . "</time>";
         // contenu de l'onglet
-        $onglet_affiche        = $date . '<h9>' . $objet . '</h9>' . '<td>' . '<br/>' . $texte;
-        $onglet_affiche_clique = $date . '<h10>' . $objet . '</h10>' . '<td>' . '<br/>' . $texte;
+        $onglet_affiche        = $date . '<h9>' . $objet . '</h9>' . '<h10>' . $texte . '</h10>';
+        $onglet_affiche_clique = $date . '<h9>' . $objet . '</h9>' . '<h10>' . $texte . '</h10>';
 
         // si selection d'un onglet
         if ($_GET['m'] != 'none') {

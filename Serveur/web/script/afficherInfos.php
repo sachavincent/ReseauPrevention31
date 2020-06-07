@@ -98,9 +98,10 @@ function infoCommune($infosUser) {
 <section id="pan-content">
   <!-- barre d'actions -->
   <div id="barre-refresh">
-    <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=attente&m=none'" />
-    <em onclick="window.location.href='demandes.php?e=attente&m=none'">Actualiser</em>
-  </div>
+    <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=<?= $lien ?>&m=none'" />
+    <em onclick="window.location.href='demandes.php?e=<?= $lien ?>&m=none'">Actualiser</em>
+  </div> 
+
 
   <div id="barre-actions">
     <?php switch ($_GET['e']) { 
@@ -124,7 +125,7 @@ function infoCommune($infosUser) {
     <?php   
     /* ======================== LISTE ONGLETS FORCES ========================== */
 
-    if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
+    if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P') { 
         include "../force/page/listeOngletsForce.php";
     }
     /* ======================== LISTE ONGLETS CHAMBRES ========================== */
@@ -136,7 +137,7 @@ function infoCommune($infosUser) {
   <?php
     /* ===================== ZONE OUVERTURE DU MESSAGE FORCES ============+============= */
     
-    if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P'){ 
+    if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P') { 
         include "../force/page/ongletOuvertForce.php";
     }
     /* ===================== ZONE OUVERTURE DEMANDE CHAMBRE ========================= */

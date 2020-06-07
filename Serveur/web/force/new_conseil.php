@@ -12,14 +12,6 @@
   <input class="actions" type="button" value="supprimer" onclick="window.location.href='demandes.php?e=prive&m=none'" />
 </div>
 
-<!-- barre grise a droite (decoratif) -->
-<div id="deco-droite"></div>
-
-<!-- ============================================== -->
-
-<!-- affichage menu gauche -->
-<?php include("page/navForce.php"); ?>
-
 <!-- ============================================== -->
 
 <!-- pan liste msg -->
