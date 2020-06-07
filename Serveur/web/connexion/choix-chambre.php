@@ -9,7 +9,7 @@ $_SESSION['connexion'] = false;
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../style/style.css" />
   </head>
 
   <body>
@@ -20,42 +20,42 @@ $_SESSION['connexion'] = false;
 
     <!-- conteneur principal -->
     <section id="page-identification">
-      <!-- conteneur identification -->
-      <section id="panel-choix">
-        <h2>IDENTIFICATION</h2>
-
-        <!-- choix avec selection de logos -->
+      <!-- choix avec selection de logos -->
+      <div class="pan-chambres">
+        <h1>Gestion des chambres</h1>
         <div id="logo-ca">
           <a href="identification.php?chambre=CA">
-            <img src="../images/ca.png" type="submit" name="chambre" width="180px" height="180px" />
+            <img src="../images/ca.png" type="submit" name="chambre" />
           </a>
         </div>
-
+  
         <div id="logo-cma">
           <a href="identification.php?chambre=CMA">
-            <img src="../images/cma.png" type="submit" name="chambre" width="180px" height="180px" />
+            <img src="../images/cma.png" type="submit" name="chambre" />
           </a>
         </div>
-
+  
         <div id="logo-cci">
           <a href="identification.php?chambre=CCI">
-            <img src="../images/cci.png" type="submit" name="chambre" width="180px" height="180px" />
+            <img src="../images/cci.png" type="submit" name="chambre" />
           </a>
         </div>
-
+      </div>
+  
+      <div class="pan-forces">
+        <h1>Gestion des forces de l'ordre</h1>
         <div id="logo-gendarmerie">
           <a href="identification.php?chambre=G">
-            <img src="../images/gendarmerie.png" type="submit" name="force" width="180px" height="180px" />
+            <img src="../images/gendarmerie.png" type="submit" name="force" />
           </a>
         </div>
-
+  
         <div id="logo-police">
           <a href="identification.php?chambre=P">
-            <img src="../images/police.png" type="submit" name="force" width="180px" height="180px" />
+            <img src="../images/police.png" type="submit" name="force" />
           </a>
         </div>
-
-      </section>
+      </div>
     </section>
   </body>
 </html>

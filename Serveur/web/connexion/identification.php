@@ -31,7 +31,7 @@ switch ($_GET['chambre']) {
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../style/style.css" />
   </head>
 
   <body>
@@ -43,31 +43,29 @@ switch ($_GET['chambre']) {
     <!-- conteneur principal -->
     <section id="page-identification">
       <!-- conteneur identification -->
-      <section id="panel-identification">
-        <h2>IDENTIFICATION</h2>
+      <div id="pan-identification">
+        <!-- <h1>IDENTIFICATION</h1> -->
 
         <form action=<?= "verifierConnexion.php?chambre=" . $_SESSION['chambre'];?>  method="post">
         <!-- affichage des elements de connexion -->
-        <div id="logo-choisi"><img src=<?= $_SESSION['logoChambre'];?> width="170px" height="170px"></div>
+        <div id="logo-choisi"><img src=<?= $_SESSION['logoChambre'];?> ></div>
         
-        <div class="identifiants"><b>Nom d'utilisateur</b></div>
+        <p>IDENTIFIANT</p>
         <!-- zone de saisie identifiant -->
-        <input id="login-username" name='id' type="login" placeholder="Entrer le nom d'utilisateur" required>
+        <input name='id' type="login" placeholder="Entrer le nom d'utilisateur" required>
 
-        <div class="identifiants"><b>Mot de passe</b></div>
+        <p>MOT DE PASSE</p>
         <!-- zone de saisie mdp -->
-        <input id="login-password" name='mdp' type="password" placeholder="Entrer le mot de passe" required>
-
-        <br>
-        <!-- boutons retour / valider -->
-        <input onclick="window.location.href='choix-chambre.php'"; class="bouton-id" type="button" value="retour" >
-        <input class="bouton-id" type="submit" value="valider" >
+        <input name='mdp' type="password" placeholder="Entrer le mot de passe" required>
 
         <!-- ligne d'erreur si la connexion échoue -->
         <?php if ($_SESSION['connexion']) { echo '<p id="login-failed">Identifiant ou mot de passe incorrect.</p>'; }?>
+        <!-- boutons retour / valider -->
+        <input class="bouton-id" type="submit" value="valider" >
+        <input onclick="window.location.href='choix-chambre.php'"; class="bouton-id" type="button" value="retour" >
 
         </form>
-      </section>
+      </div>
     </section>
   </body>
 </html>
