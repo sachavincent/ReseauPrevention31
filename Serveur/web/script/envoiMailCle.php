@@ -3,7 +3,7 @@ $cle = $infoUtilisateur['cle'];
 $requete = $bdd->prepare('SELECT nomUtilisateur, prenomUtilisateur, mail FROM Utilisateur WHERE cle = ?');
 $requete->execute(array($cle));
 $infoUtilisateur = $requete->fetch();
-
+/* 
 require '../../vendor/autoload.php';
 use \Mailjet\Resources;
 $mj = new \Mailjet\Client('0904172806ab77b1da0f835836cbadc3','6c72c75e671030418bdcdc09004fee86',true,['version' => 'v3.1']);
@@ -30,6 +30,11 @@ $body = [
         ]
     ]
 ];
-$response = $mj->post(Resources::$Email, ['body' => $body]);
+$response = $mj->post(Resources::$Email, ['body' => $body]); */
 //$response->success() && var_dump($response->getData());
+
+shell_exec ("echo -e 
+    'Bonjour,\nsuite à votre inscription sur l'application prevention31 voici votre clé de connexion unique: \n\n" . $cle 
+    . "\n\nPour vous connecter sur l\'application :\n   - Copiez la cle\n   - Rendez-vous sur l\'application\n  - Selectionnez connexion puis collez la clé\n   - Enfin validez, vous voila maintenant sur votre espace\n\n
+    L\'équipe RéseauPrévention31' | mail -s 'Validation de votre inscription' " . $infoUtilisateur['mail']);
 ?>
