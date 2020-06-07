@@ -52,7 +52,7 @@ if ($_GET['m'] != 'none') {
                             $emetteur = 'msg-user';
                         break;
                     }
-                    echo '<div class=' . $emetteur . '>' . $msg['texte'] . '</div>';
+                    echo '<div class=' . $emetteur . '>' . nl2br($msg['texte']) . '</div>';
                 } ?>
               </section>
               <!-- Bas de page par defaut des messages -->
@@ -83,7 +83,7 @@ if ($_GET['m'] != 'none') {
                         <p class="user-concernes">Utilisateurs concernés : ' . $_SESSION['ANNONCE'][$_GET['m']]['nbDestinataire'] . '</p>
                       </fieldset>
                     </section>
-                    <div id="affichage-texte">' . $infosUser['texte'] . '</div>
+                    <div id="affichage-texte">' . nl2br($infosUser['texte']) . '</div>
                  ');
         break;
         case 'conseil':
@@ -95,7 +95,7 @@ if ($_GET['m'] != 'none') {
                         <p class="user-concernes">À destination des utilisateurs de l\'application mobile</p>
                     </fieldset>
                     </section>
-                    <div id="affichage-texte">' . $infosUser['texte'] . '</div>
+                    <div id="affichage-texte">' . nl2br($infosUser['texte']) . '</div>
                 ');
         break;
     }
