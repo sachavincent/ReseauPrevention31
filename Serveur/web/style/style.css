@@ -185,10 +185,221 @@ body {
 }
 
 #page-identification #pan-identification #login-failed {
-  color: #FF3A3A;
+  color: #FF2646;
   margin: auto;
   font-size: 14px;
   text-align: center;
   margin-bottom: 10px;
+}
+
+#nav-gauche {
+  height: 100%;
+  width: 230px;
+  background-color: #1E1E1E;
+  display: block;
+  text-align: left;
+  color: #DBDBDB;
+  position: absolute;
+  border-right: 1px #121212;
+}
+
+#nav-gauche .onglet-profil {
+  padding: 15px;
+  background-color: #4285F4;
+}
+
+#nav-gauche .onglet-profil span {
+  font-weight: 600;
+  font-size: 20px;
+  padding-left: 15%;
+}
+
+#nav-gauche .onglet-profil span:hover {
+  cursor: pointer;
+}
+
+#nav-gauche .onglet-profil img {
+  margin-left: 35%;
+  padding-top: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+#nav-gauche .onglet-profil img:hover {
+  cursor: pointer;
+}
+
+#nav-gauche .onglets, #nav-gauche .onglet-selected {
+  width: 80%;
+  height: 30px;
+  padding-left: 20%;
+  padding-top: 8%;
+  padding-bottom: 5%;
+}
+
+#nav-gauche .onglets:hover, #nav-gauche .onglet-selected:hover {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  background-color: #4285F4;
+  cursor: pointer;
+}
+
+#nav-gauche .onglets .number-msg, #nav-gauche .onglet-selected .number-msg {
+  position: absolute;
+  left: 80%;
+  margin-top: -10%;
+}
+
+#nav-gauche .logo {
+  margin-left: 15%;
+  top: 72%;
+  position: absolute;
+  background-color: #DBDBDB;
+  border-radius: 2px;
+}
+
+#nav-gauche .logo:hover {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  background-color: #4285F4;
+}
+
+#pan-profil {
+  position: absolute;
+  background-color: #F9F9F9;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 231px;
+  padding: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+#pan-profil h1 {
+  position: absolute;
+  left: 42%;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  border-bottom: 5px solid #4285F4;
+}
+
+#pan-profil #pan-profil-interieur {
+  width: 100%;
+  height: 85%;
+  background-color: #1E1E1E;
+  border-radius: 2px;
+  margin-top: 6.5%;
+  color: #DBDBDB;
+  font-size: 19px;
+}
+
+#pan-profil #pan-profil-interieur .img-profil {
+  margin-left: 15%;
+  padding-top: 2.5%;
+}
+
+#pan-profil #pan-profil-interieur .img-profil img {
+  width: 17%;
+  height: 17%;
+}
+
+#pan-profil #pan-profil-interieur .nom, #pan-profil #pan-profil-interieur .prenom {
+  font-weight: 600;
+  position: absolute;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#pan-profil #pan-profil-interieur .nom {
+  font-size: 30px;
+  left: 38%;
+  top: 24%;
+}
+
+#pan-profil #pan-profil-interieur .prenom {
+  font-size: 26px;
+  left: 38%;
+  top: 32%;
+}
+
+#pan-profil #pan-profil-interieur .zone-infos {
+  width: 27%;
+  position: absolute;
+  left: 12%;
+}
+
+#pan-profil #pan-profil-interieur .zone-infos .infos-user {
+  margin-top: 2%;
+}
+
+#pan-profil #pan-profil-interieur .zone-infos .input-infos {
+  width: 100%;
+  height: 23px;
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 17px;
+}
+
+#pan-profil #pan-profil-interieur .zone-mdp {
+  width: 27%;
+  position: absolute;
+  left: 45%;
+}
+
+#pan-profil #pan-profil-interieur .zone-mdp .mdp-user {
+  margin-top: 2%;
+}
+
+#pan-profil #pan-profil-interieur .zone-mdp .input-mdp {
+  width: 100%;
+  height: 23px;
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 17px;
+}
+
+#pan-profil #pan-profil-interieur .required-input {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 57%;
+  top: 6.5%;
+}
+
+#pan-profil #pan-profil-interieur [type="submit"] {
+  width: 130px;
+  height: 40px;
+  position: absolute;
+  left: 45%;
+  top: 82%;
+  border: none;
+  font-size: 16px;
+  background-color: #4285F4;
+  color: #F9F9F9;
+  border-radius: 2px;
+}
+
+#pan-profil #pan-profil-interieur [type="submit"]:hover {
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  background-color: #F9F9F9;
+  color: #1E1E1E;
+  cursor: pointer;
+}
+
+#pan-profil #pan-profil-interieur #success, #pan-profil #pan-profil-interieur #error {
+  font-size: 15px;
+  position: absolute;
+  left: 12%;
+  top: 82%;
+}
+
+#pan-profil #pan-profil-interieur #success {
+  color: #26FF26;
+}
+
+#pan-profil #pan-profil-interieur #error {
+  color: #FF2646;
 }
 /*# sourceMappingURL=style.css.map */

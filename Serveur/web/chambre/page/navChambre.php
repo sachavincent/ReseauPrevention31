@@ -53,21 +53,29 @@ function nbNewMsg($categorie)
 
 <!-- panel gauche -->
 <nav id="nav-gauche">
+  <!-- boutons profil / deconnexion -->
+  <div class="onglet-profil">
+    <span onclick="window.location.href='../chambre/profil-ch.php?return=none&e=profil'">
+      <?= $_SESSION['prenom']?>
+    </span>
+    <img onclick="window.location.href='../connexion/choix-chambre.php'" src="../images/disconnect.png"/>
+  </div>
+
   <!-- onglets d'interfaces -->
   <div class=<?= $onglet_attente; ?> onclick=window.location.href='../chambre/demandes.php?e=attente&m=none' >
-    <img class="img-nav" src="../images/received.png" />En attente
+    En attente
     <!-- nb de demandes -->
-    <p class="number-msg"><?php nbNewMsg("EN_COURS") ?></p>
+    <p class="number-msg"><?php nbNewMsg("EN_COURS") ?>1</p>
   </div>
 
   <div class=<?= $onglet_accepte; ?> onclick=window.location.href='../chambre/demandes.php?e=accepte&m=none' >
-    <img class="img-nav" src="../images/accepter.png" />Acceptées
+    Acceptées
     <!-- nb de demandes -->
     <p class="number-msg"><?php nbNewMsg("VALIDE") ?></p>
   </div>
 
   <div class=<?= $onglet_refuse; ?> onclick=window.location.href='../chambre/demandes.php?e=refuse&m=none' >
-    <img class="img-nav" src="../images/refuser.png" />Refusées
+    Refusées
     <!-- nb de demandes -->
     <p class="number-msg"><?php nbNewMsg("REFUSE") ?></p>
   </div>
