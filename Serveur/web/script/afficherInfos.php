@@ -102,22 +102,35 @@ function infoCommune($infosUser) {
     <em onclick="window.location.href='demandes.php?e=<?= $lien ?>&m=none'">Actualiser</em>
   </div> 
 
-
+  <!-- barre d'actions boutons -->
   <div id="barre-actions">
-    <?php switch ($_GET['e']) { 
-        case 'attente': ?>
-            <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
-            <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
-        <?php
-            break;
-        case 'accepte': ?>
-            <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
-        <?php
-            break;
-        case 'refuse': ?>
-            <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
-        <?php
-        break; 
+    <?php if (($_GET['m']) != 'none') {    
+        switch ($_GET['e']) { 
+            case 'attente': ?>
+                <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
+                <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
+            <?php
+                break;
+            case 'accepte': ?>
+                <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
+            <?php
+                break;
+            case 'refuse': ?>
+                <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
+            <?php
+                break;
+            case 'annonce': ?>
+                <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer'" />
+            <?php
+                break;
+            case 'conseil': ?>
+                <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer'" />
+            <?php
+                break;
+            case 'prive': ?>
+                <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer'" />
+            <?php
+        } 
     } ?>
   </div>
 

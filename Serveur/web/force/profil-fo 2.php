@@ -23,7 +23,7 @@ session_start();
       <!-- conteneur image de profil avec nom prenom -->
       <section id="pan-profil-interieur">
         <!-- affichage nom / prenom -->
-        <div class="img-profil"><img src="../images/user.jpg"></div>
+        <div class="img-profil"><img src="../images/user.png"></div>
         <p class="nom"> <?= $_SESSION['nom'] ?></p>
         <p class="prenom"> <?= $_SESSION['prenom'] ?></p>
 

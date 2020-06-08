@@ -30,12 +30,12 @@ if ($_GET['m'] != 'none') {
               <!-- champs infos msg prive -->
               <section id="zone-infos-prive">
                 <fieldset>
-                  <legend><?=$objet ?></legend>
-                    <p><b>Utilisateur : </b><?=$nom ?> <?=$prenom ?></p>
-                    <p><b>Adresse Mail : </b><?=$mail ?></p>
-                    <p><b>Téléphone : </b><?=$telephone ?></p>
-                    <p><b>Localisation : </b>secteur <?=$secteur ?></p>
-                    <p><b>Société : </b><?=$societe ?></p>
+                  <legend><?=$objet ?></legend><br>
+                    <b>Utilisateur : </b><?=$nom ?> <?=$prenom ?><br><br>
+                    <b>Adresse Mail : </b><?=$mail ?><br><br>
+                    <b>Téléphone : </b><?=$telephone ?><br><br>
+                    <b>Localisation : </b>secteur <?=$secteur ?><br><br>
+                    <b>Société : </b><?=$societe ?><br><br>
                 </fieldset>
               </section>
 
