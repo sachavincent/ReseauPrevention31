@@ -254,6 +254,7 @@ body {
   font-weight: 600;
   text-align: left;
   margin-top: 15px;
+  text-transform: uppercase;
 }
 
 #page-identification #pan-ajout-gestionnaire .input-new-gestionnaire {
