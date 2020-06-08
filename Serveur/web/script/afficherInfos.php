@@ -112,11 +112,11 @@ function infoCommune($infosUser) {
             <?php
                 break;
             case 'accepte': ?>
-                <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
+                <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
             <?php
                 break;
             case 'refuse': ?>
-                <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
+                <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
             <?php
                 break;
             case 'annonce': ?>

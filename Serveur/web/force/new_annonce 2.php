@@ -18,48 +18,59 @@ if (!isset($commune)){
 
 <!-- ============================================== -->
 <form method="post" action="../script/creationAnnonce.php">
+<!-- barre d'actions -->
+<div id="barre-actions">
+  <input type="button" class="new-annonce" value="+ Annonce" onclick="window.location.href='demandes.php?e=new_annonce'" />
+  <input type="button" class="new-conseil" value="+ Conseil" onclick="window.location.href='demandes.php?e=new_conseil'" />
+  <!-- actions de la demande ouverte -->
+  <input class="envoyer" type="submit" value="Envoyer" />
+  <input class="actions" type="button" value="supprimer" onclick="window.location.href='demandes.php?e=prive&m=none'" />
+</div>
 
 <!-- ============================================== -->
 
 <!-- pan liste msg -->
 <section id="pan-content">
-
-  <div id="barre-envoi">
-    <input class="btn-new-annonce-conseil" type="submit" value="Envoyer" />
-    <input class="btn-new-annonce-conseil" type="button" value="supprimer" onclick="window.location.href='demandes.php?e=prive&m=none'" />
-  </div>
-
   <!-- zone de saisies du message -->
   <section id="zone-saisie-annonce">
-    <img src="../images/carte.png" alt="Carte" id="carteHG">
     <fieldset>
       <legend>Informations à compléter pour une nouvelle annonce :</legend>
-      <div class="champs-annonce"><span id="align-activite">Activités :</span>
-        <!-- menu deroulant des activites -->
-        <input type="text" class="rechercheActivite" name='activite1' placeholder='Saisir une activité'/>
-        <input type="text" class="rechercheActivite" name='activite2' placeholder='Saisir une activité'/>
-        <input type="text" class="rechercheActivite" name='activite3' placeholder='Saisir une activité'/>
-      </div>
+      <img src="../images/carte.png" alt="Carte" id="carteHG">
+      <div class="selection-params">
+        <p class="alignement-msg"><b>Activités :</b>
+          <!-- menu deroulant des activites -->
+          <input type="text" class="rechercheActivite" name='activite1' placeholder='Saisir une activité'/>
+    
+          <input type="text" class="rechercheActivite" name='activite2' placeholder='Saisir une activité'/>
 
+          <input type="text" class="rechercheActivite" name='activite3' placeholder='Saisir une activité'/>
+        </p>
+      </div>
+  
       <!-- ligne selection toutes activites -->
-      <div class="champs-annonce">Sélectionner toutes les activités :
-        <input class="select-all" name="toutes-activites" type="checkbox"/>
+      <div class="selection-params">Sélectionner toutes les activités :
+        <input id="toutes-activites" name="toutes-activites" type="checkbox"/>
       </div>
     
       <!-- menu deroulant des communes -->
-      <div class="champs-annonce"><span id="align-commune">Commune :</span>
-        <input type="text" class="rechercheCommune" name='commune1' placeholder='Saisir une commune'/>
-        <input type="text" class="rechercheCommune" name='commune2' placeholder='Saisir une commune'/>
-        <input type="text" class="rechercheCommune" name='commune3' placeholder='Saisir une commune'/>
+      <div class="selection-params">
+        <p class="alignement-msg"><b>Commune :</b>
+          <input type="text" class="rechercheCommune" name='commune1' placeholder='Saisir une commune'/>
+    
+          <input type="text" class="rechercheCommune" name='commune2' placeholder='Saisir une commune'/>
+    
+          <input type="text" class="rechercheCommune" name='commune3' placeholder='Saisir une commune'/>
+        </p>
       </div>
     
       <!-- ligne selection toutes communes -->
-      <div class="champs-annonce">Sélectionner toutes les communes :
-        <input class="select-all" name="toutes-communes" type="checkbox"/>
+      <div class="selection-params">Sélectionner toutes les communes :
+        <input id="toutes-communes" name="toutes-communes" type="checkbox"/>
       </div>
     
       <!-- menu deroulant des communes -->
-      <div class="champs-annonce"><span id="align-zone">Zone :</span>
+      <div class="selection-params">
+        <p class="alignement-msg"><b>Zone :</b>
           <select name="secteur1" class="select-zone" size="l">
             <option value="--">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
@@ -92,26 +103,24 @@ if (!isset($commune)){
             <option value=6>Secteur 6</option>
             <option value=7>Secteur 7</option>
           </select>
+        </p>
       </div>
     
       <!-- ligne selection toutes zones -->
-      <div class="champs-annonce">Sélectionner toutes les zones :
-        <input class="select-all" name="toutes-zones" type="checkbox"/>
-      </div>
+      <div class="selection-params">Sélectionner toutes les zones :
+        <input id="toutes-zones" name="toutes-zones" type="checkbox"/>
+      </div><br>
   
       <!-- checkbox envoi mail -->
-      <div class="champs-annonce"><b>Envoyer l'annonce par mail :</b>
-          <input name="mail" type="checkbox"/>
-      </div>
+      <div class="selection-params"><b>Envoyer l'annonce par mail :</b>
+          <input id="mail" name="mail" type="checkbox"/>
+      </div><br>
     </fieldset>
-  </section>
-    
-  <div id="objet-new-annonce">
     <fieldset>
       <legend>Objet :</legend>
       <input name='input-objet-annonce' required>
     </fieldset>
-  </div>
+  </section>
 
   <!-- zone de redaction du message -->
   <textarea name="texte" id="write-annonce" required></textarea>

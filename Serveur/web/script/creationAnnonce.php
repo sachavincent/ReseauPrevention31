@@ -48,7 +48,7 @@ else {
         $codeActivite3 =  explode(', ', $_POST['activite3'])[0];
     }
 
-    //Suppression des balises html 
+    //Suppression des balises html (faille XSS)
     $idCommune1 = strip_tags($idCommune1);
     $idCommune2 = strip_tags($idCommune2);
     $idCommune3 = strip_tags($idCommune3);

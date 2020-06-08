@@ -32,6 +32,7 @@ switch ($_GET['chambre']) {
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../style/style.css" />
+    <link rel="icon" type="image/png" href="../images/doggo.png" />
   </head>
 
   <body>
