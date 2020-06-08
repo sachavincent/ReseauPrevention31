@@ -193,6 +193,109 @@ body {
   margin-bottom: 10px;
 }
 
+#page-identification [value="retour"], #page-identification [value="Administrateur"] {
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+  background-color: #4285F4;
+  border: none;
+  color: #ececec;
+  border-radius: 2px;
+}
+
+#page-identification [value="retour"]:hover, #page-identification [value="Administrateur"]:hover {
+  background-color: #ececec;
+  color: #1E1E1E;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+#page-identification #pan-ajout-gestionnaire {
+  width: 385px;
+  height: 690px;
+  background-color: #1E1E1E;
+  margin: auto;
+  margin-top: 3%;
+  border-radius: 5px 5px 5px 5px;
+  text-align: center;
+  padding: 65px;
+  color: #ececec;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#page-identification #pan-ajout-gestionnaire h1 {
+  margin-top: -30px;
+}
+
+#page-identification #pan-ajout-gestionnaire img {
+  width: 125px;
+  border-radius: 50%;
+  border: 5px solid whitesmoke;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+#page-identification #pan-ajout-gestionnaire [name="select-chambre"] {
+  padding: 5px;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+#page-identification #pan-ajout-gestionnaire .identifiants {
+  font-size: 17px;
+  font-weight: 600;
+  text-align: left;
+  margin-top: 15px;
+}
+
+#page-identification #pan-ajout-gestionnaire .input-new-gestionnaire {
+  padding: 5px;
+  margin-top: 2px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #F9F9F9;
+  color: #ececec;
+  outline: none;
+}
+
+#page-identification #pan-ajout-gestionnaire .bouton-id {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  background-color: #4285F4;
+  color: #ececec;
+  border: none;
+  border-radius: 2px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+#page-identification #pan-ajout-gestionnaire .bouton-id:hover {
+  background-color: #ececec;
+  color: #1E1E1E;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+#page-identification #pan-ajout-gestionnaire #ajout-success, #page-identification #pan-ajout-gestionnaire #ajout-failed, #page-identification #pan-ajout-gestionnaire #ajout-mdp-different, #page-identification #pan-ajout-gestionnaire #ajout-id-existant {
+  font-size: 14px;
+  color: #FF2646;
+  margin-top: 10px;
+}
+
+#page-identification #pan-ajout-gestionnaire #ajout-success {
+  color: #26FF26;
+}
+
 #nav-gauche {
   height: 100%;
   width: 230px;

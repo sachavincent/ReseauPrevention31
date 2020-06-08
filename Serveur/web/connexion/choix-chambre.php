@@ -21,6 +21,8 @@ $_SESSION['connexion'] = false;
 
     <!-- conteneur principal -->
     <section id="page-identification">
+      <input type="button" value="Administrateur" title="Accès administration des chambres"
+      onclick="window.location.href='../script/ajoutGestionnaire.php'" >
       <!-- choix avec selection de logos -->
       <div class="pan-chambres">
         <h1>Gestion des chambres</h1>

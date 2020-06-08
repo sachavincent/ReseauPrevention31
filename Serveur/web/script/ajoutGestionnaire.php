@@ -37,70 +37,79 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../style.css" />
-    <title>Ajout d'un gestionnaire</title>
-</head>
-<body>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="icon" type="image/png" href="../images/doggo.png" />
+  </head>
+
+  <body>
+    <!-- header -->
     <header>
-      <title>Identification</title>
+        <title>Ajout d'un gestionnaire</title>
     </header>
+
     <form action="ajoutGestionnaire.php" method="post">
-        <!-- conteneur principal -->
-        <section id="panel-new-gestionnaire">
-            <section id="creation-gestionnaire">
-            <h3>CRÉATION<br> D'UN GESTIONNAIRE</h3><br>
-                <select name="select-chambre" required>
-                    <option value="">Choisir un gestionnaire</option>
-                    <option value="CMA">CMA</option>
-                    <option value="CCI">CCI</option>
-                    <option value="CA">CA</option>
-                    <option value="G">Gendarmerie</option>
-                    <option value="P">Police</option>
-                </select><br>
-                
-                <div class="identifiants"><b>Identifiant</b></div>
-                <input class="input-new-gestionnaire" type="text" name="id" placeholder="Entrer l'identifiant" required><br>
-                
-                <div class="identifiants"><b>Mot de passe</b></div>
-                <input class="input-new-gestionnaire" type="password" name="mdp" placeholder="Entrer le mot de passe" required><br>
-                
-                <div class="identifiants"><b>Confirmation mot de passe</b></div>
-                <input class="input-new-gestionnaire" type="password" name="mdp-confirm" placeholder="Confirmation du mot de passe" required><br>
-                
-                <div class="identifiants"><b>Nom</b></div>
-                <input class="input-new-gestionnaire" type="text" name="nom" placeholder="Entrer le nom" required><br>
-                
-                <div class="identifiants"><b>Prénom</b></div>
-                <input class="input-new-gestionnaire" type="text" name="prenom" placeholder="Entrer le prénom" required><br>
+    <!-- conteneur principal -->
+    <section id="page-identification">
+      <input type="button" value="retour" title="Cliquez ici pour revenir à l'écran des chambres"
+      onclick="window.location.href='../connexion/choix-chambre.php'" >
+      <!-- conteneur identification -->
+      <div id="pan-ajout-gestionnaire">
+        <h1>CRÉATION<br> D'UN GESTIONNAIRE</h1>
 
-                <div class="identifiants"><b>Adresse Mail</b></div>
-                <input class="input-new-gestionnaire" type="email" name="mail" placeholder="Entrer l'adresse email" required><br>
+        <img src="../images/doggo2.jpg" alt="image profil">
 
-                <input class="bouton-id" type="submit"><br>
-                
-                <?php
-                    if (isset($_GET['etat'])){
-                        switch($_GET['etat']){
-                            case 'success':
-                                echo '<p id="ajout-success">Utilisateur ajouté<p>';
-                            break;
-                            case 'failed':
-                                echo '<p id="ajout-failed">Erreur de l\'ajout de l\'utilisateur<p>';
-                            break;
-                            case 'mdpInco':
-                                echo '<p id="ajout-mdp-different">Les mots de passe ne correspondent pas !<p>';
-                            break;                       
-                            case 'idInco':
-                                echo '<p id="ajout-id-existant">Cet identifiant existe déjà !<p>';
-                            break;
-                        }
-                    }
-                ?>
-            </section>
-        </section>
+        <select name="select-chambre" required>
+            <option value="">Choisir un gestionnaire</option>
+            <option value="CMA">CMA</option>
+            <option value="CCI">CCI</option>
+            <option value="CA">CA</option>
+            <option value="G">Gendarmerie</option>
+            <option value="P">Police</option>
+        </select>
+        
+        <p class="identifiants">Identifiant</p>
+        <input class="input-new-gestionnaire" type="text" name="id" placeholder="Entrer l'identifiant" required>
+        
+        <p class="identifiants">Mot de passe</p>
+        <input class="input-new-gestionnaire" type="password" name="mdp" placeholder="Entrer le mot de passe" required>
+        
+        <p class="identifiants">Confirmation mot de passe</p>
+        <input class="input-new-gestionnaire" type="password" name="mdp-confirm" placeholder="Confirmation du mot de passe" required>
+        
+        <p class="identifiants">Nom</p>
+        <input class="input-new-gestionnaire" type="text" name="nom" placeholder="Entrer le nom" required>
+        
+        <p class="identifiants">Prénom</p>
+        <input class="input-new-gestionnaire" type="text" name="prenom" placeholder="Entrer le prénom" required>
+
+        <p class="identifiants">Adresse Mail</p>
+        <input class="input-new-gestionnaire" type="email" name="mail" placeholder="Entrer l'adresse email" required>
+
+        <input class="bouton-id" type="submit">
+        
+        <?php
+            if (isset($_GET['etat'])){
+                switch($_GET['etat']){
+                    case 'success':
+                        echo '<p id="ajout-success">Utilisateur ajouté<p>';
+                    break;
+                    case 'failed':
+                        echo '<p id="ajout-failed">Erreur de l\'ajout de l\'utilisateur<p>';
+                    break;
+                    case 'mdpInco':
+                        echo '<p id="ajout-mdp-different">Les mots de passe ne correspondent pas !<p>';
+                    break;                       
+                    case 'idInco':
+                        echo '<p id="ajout-id-existant">Cet identifiant existe déjà !<p>';
+                    break;
+                }
+            }
+        ?>
+      </div>
+    </section>
     </form>
-</body>
+  </body>
 </html>
