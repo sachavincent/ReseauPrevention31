@@ -13,5 +13,6 @@ else
 	sudo adduser --force-badname --shell /bin/false --home /home/$username --ingroup www-data $username --disabled-password --gecos ""
 	[ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
 	echo "${username}${password}" | sudo chpasswd
-
+	sudo chown -R $username:www-data /home/$username
+	sudo chmod -R g+rxw /home/$username
 fi
