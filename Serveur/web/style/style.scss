@@ -645,6 +645,122 @@ body {
         overflow-y: auto;
         outline: 0;
     }
+    // nouvelle annonce
+    #zone-saisie-annonce {
+        height: 285px;
+        position: absolute;
+        top: 51px;
+        right: 0;
+        left: 0;
+        padding: 15px;
+        padding-left: 35px;
+        padding-right: 35px;
+        border-bottom: 1px solid lightgray;
+        background-color: white;
+        #carteHG {
+            width: 225px;
+            height: 225px;
+            position: absolute;
+            right: 10%;
+            top: 25px;
+        }
+        fieldset {
+            border: none;
+            legend {
+                font-weight: bold;
+                font-size: 20px;
+                color: $color-second;
+                border-bottom: 2px solid $color-second;
+                margin-bottom: 15px;
+            }
+            .champs-annonce {
+                margin-top: 8px;
+            }
+            .rechercheActivite, .rechercheCommune, .select-zone {
+                height: 22px;
+                width: 15%;
+                padding: 2.5px;
+                padding-left: 5px;
+                padding-right: 5px;
+                margin-right: 1%;
+            }
+            #align-activite {
+                font-weight: bold;
+                margin-right: 15px;
+            }
+            #align-commune {
+                font-weight: bold;
+                margin-right: 6px;
+            }
+            #align-zone {
+                font-weight: bold;
+                margin-right: 42px;
+            }
+            .select-zone {
+                height: 30px;
+                width: 16%;
+            }
+            .select-all, [name="mail"] {
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                left: 25%;
+                margin-top: 5px;
+            }
+            [type="checkbox"] {
+                cursor: pointer;
+            }
+        }
+    }
+    #objet-new-annonce {
+        height: 30px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 367px;
+        padding-top: 10px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid lightgray;
+        fieldset {
+            border: none;
+            legend {
+                font-weight: bold;
+                font-size: 20px;
+                color: $color-second;
+                border-bottom: 2px solid $color-second;
+            }
+            [name='input-objet-annonce'] {
+                width: 80%;
+                height: 25px;
+                padding: 0.5%;
+                padding-top: 2.5px;
+                padding-bottom: 2.5px;
+                font-size: 17px;
+                position: absolute;
+                top: 15px;
+                left: 115px;
+            }
+        }
+    }
+    #write-annonce {
+        width: 95%;
+        padding: 2%;
+        padding-top: 20px;
+        padding-bottom: 25px;
+        font-size: 15px;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 434px;
+        border: none;
+        resize: none;
+        overflow-y: auto;
+        outline: 0;
+    }
+
 }
 
 #zone-annonce-conseil {

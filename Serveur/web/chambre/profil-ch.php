@@ -8,6 +8,7 @@ session_start();
     <title>Profil</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../style/style.css" />
+    <link rel="icon" type="image/png" href="../images/doggo.png" />
   </head>  
   <body>
     <header>
