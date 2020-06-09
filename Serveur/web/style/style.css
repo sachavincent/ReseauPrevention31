@@ -60,6 +60,8 @@ body {
   background-color: #ececec;
   padding: 10px;
   border-radius: 5px 5px 5px 5px;
+  -webkit-transition: 1s all ease;
+  transition: 1s all ease;
 }
 
 #page-identification .pan-chambres #logo-ca:hover, #page-identification .pan-chambres #logo-cma:hover, #page-identification .pan-chambres #logo-cci:hover, #page-identification .pan-chambres #logo-gendarmerie:hover, #page-identification .pan-chambres #logo-police:hover, #page-identification .pan-forces #logo-ca:hover, #page-identification .pan-forces #logo-cma:hover, #page-identification .pan-forces #logo-cci:hover, #page-identification .pan-forces #logo-gendarmerie:hover, #page-identification .pan-forces #logo-police:hover {
@@ -125,6 +127,8 @@ body {
   width: 60%;
   padding: 20px;
   border-radius: 50%;
+  -webkit-transition: 1s all ease;
+  transition: 1s all ease;
 }
 
 #page-identification #pan-identification #logo-choisi img {
@@ -238,6 +242,7 @@ body {
   padding: 5px;
   font-size: 15px;
   margin-top: 35px;
+  cursor: pointer;
 }
 
 #page-identification #pan-ajout-gestionnaire .identifiants {

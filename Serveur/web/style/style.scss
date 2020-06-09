@@ -72,6 +72,7 @@ body {
             background-color: $color-text;
             padding: 10px;
             border-radius: 5px 5px 5px 5px;
+            transition: 1s all ease;
             &:hover {
                 transition: 0.5s all ease;
                 background-color: $color-second;
@@ -120,7 +121,7 @@ body {
         border-radius: 5px 5px 5px 5px;
         text-align: center;
         padding: 50px;
-
+        
         #logo-choisi {
             background-color: $color-text;
             margin: auto;
@@ -129,6 +130,7 @@ body {
             width: 60%;
             padding: 20px;
             border-radius: 50%;
+            transition: 1s all ease;
             img {
                 width: 175px;
                 height: 175px;
@@ -224,6 +226,7 @@ body {
             padding: 5px;
             font-size: 15px;
             margin-top: 35px;
+            cursor: pointer;
         }
         .identifiants {
             font-size: 17px;

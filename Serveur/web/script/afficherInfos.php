@@ -94,6 +94,20 @@ function infoCommune($infosUser) {
 }
 ?>
 
+<script>
+function confirmDelete(delUrl) {
+  if (confirm("Voulez-vous vraiment supprimer ?")) {
+   document.location = delUrl;
+  }
+}
+
+function confirmChoice(linkUrl) {
+  if (confirm("Confirmez-vous votre choix ?")) {
+   document.location = linkUrl;
+  }
+}
+</script>
+
 <!-- pan liste msg -->
 <section id="pan-content">
   <!-- barre d'actions -->
@@ -106,29 +120,46 @@ function infoCommune($infosUser) {
   <div id="barre-actions">
     <?php if (($_GET['m']) != 'none') {    
         switch ($_GET['e']) { 
+            // page en attente
             case 'attente': ?>
-                <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
-                <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
+                <!-- bouton accepter / refuser -->
+                <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter')">
+                    <input class="actions" type="button" value="accepter"/></a>
+                <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser')">
+                    <input class="actions" type="button" value="refuser" /></a>
             <?php
                 break;
+            // page acceptees
             case 'accepte': ?>
-                <input class="actions" type="button" value="refuser" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser'" />
+                <!-- bouton refuser / supprimer -->
+                <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser')">
+                    <input class="actions" type="button" value="refuser" /></a>
+                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
+                    <input class="actions" type="button" value="supprimer" /></a>
             <?php
                 break;
+            // page refusees
             case 'refuse': ?>
-                <input class="actions" type="button" value="accepter" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter'" />
+                <!-- bouton accepter / supprimer -->
+                <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter')">
+                    <input class="actions" type="button" value="accepter"/></a>
+                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
+                    <input class="actions" type="button" value="supprimer" /></a>
             <?php
                 break;
             case 'annonce': ?>
-                <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer'" />
+                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
+                    <input class="actions" type="button" value="supprimer" /></a>
             <?php
                 break;
             case 'conseil': ?>
-                <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer'" />
+                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
+                    <input class="actions" type="button" value="supprimer" /></a>
             <?php
                 break;
             case 'prive': ?>
-                <input class="actions" type="button" value="supprimer" onclick="window.location.href='../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer'" />
+                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
+                    <input class="actions" type="button" value="supprimer" /></a>
             <?php
         } 
     } ?>
