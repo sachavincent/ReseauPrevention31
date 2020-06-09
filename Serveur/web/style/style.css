@@ -239,10 +239,11 @@ body {
 }
 
 #page-identification #pan-ajout-gestionnaire [name="select-chambre"] {
-  padding: 5px;
+  padding: 6px;
   font-size: 15px;
   margin-top: 35px;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 #page-identification #pan-ajout-gestionnaire .identifiants {
@@ -631,8 +632,8 @@ body {
 }
 
 #pan-content #liste-onglets .onglet-msg-selected:hover, #pan-content #liste-onglets .onglet-msg:hover, #pan-content #liste-onglets .onglet-non-lu:hover {
-  -webkit-filter: brightness(70%);
-          filter: brightness(70%);
+  -webkit-filter: brightness(80%);
+          filter: brightness(80%);
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
   cursor: pointer;

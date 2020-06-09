@@ -15,8 +15,8 @@ if (!empty($_SESSION[$onglet])) {
         $date                  = "<time id='date-reception'>" . $reverseDate . "</time>";
         // affichage de l'onglet demande
         $nomPrenom             = $affiche['nomUtilisateur'] . ' ' . $affiche['prenomUtilisateur'];
-        $onglet_affiche        = $date . '<h9>' . trunc($nomPrenom, 17) . '</h9>' . '<td>' . '<h10>' . trunc($affiche['nomSociete'], 19) . ', ' . 'secteur ' . $affiche['secteur'] . '</h10>';
-        $onglet_affiche_clique = $date . '<h9>' . trunc($nomPrenom, 17) . '</h9>' . '<td>' . '<h10>' . trunc($affiche['nomSociete'], 19) . ', ' . 'secteur ' . $affiche['secteur'] . '</h10>';
+        $onglet_affiche        = $date . '<h9>' . trunc($nomPrenom, 15) . '</h9>' . '<td>' . '<h10>' . trunc($affiche['nomSociete'], 18) . ', ' . 'secteur ' . $affiche['secteur'] . '</h10>';
+        $onglet_affiche_clique = $date . '<h9>' . trunc($nomPrenom, 15) . '</h9>' . '<td>' . '<h10>' . trunc($affiche['nomSociete'], 18) . ', ' . 'secteur ' . $affiche['secteur'] . '</h10>';
         
         // si selection d'un onglet
         if ($_GET['m'] != 'none') {

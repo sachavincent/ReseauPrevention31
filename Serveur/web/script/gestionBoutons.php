@@ -6,7 +6,7 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
 
     function accepterDemande($infoUtilisateur){
         include("connexionBDD.php");
-        $requeteUpdateUtilisateur = $bdd->prepare('UPDATE `Utilisateur` SET cle = ?, demande = ? WHERE `Utilisateur`.`idUtilisateur` = ?');
+        $requeteUpdateUtilisateur = $bdd->prepare('UPDATE `Utilisateur` SET cle = ?, demande = ?, ouvert = 0 WHERE `Utilisateur`.`idUtilisateur` = ?');
 
         $requeteUpdateUtilisateur->execute(array($infoUtilisateur['cle'], 'VALIDE', $infoUtilisateur['idUtilisateur']));
         include './envoiMailCle.php';
@@ -14,12 +14,39 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
 
     function refuserDemande($infoUtilisateur){
         include("connexionBDD.php");
-        $requeteUpdateUtilisateur = $bdd->prepare('UPDATE `Utilisateur` SET  demande = ? WHERE `Utilisateur`.`idUtilisateur` = ?');
+        $requeteUpdateUtilisateur = $bdd->prepare('UPDATE `Utilisateur` SET  demande = ?, ouvert = 0 WHERE `Utilisateur`.`idUtilisateur` = ?');
         $requeteUpdateUtilisateur->execute(array('REFUSE', $infoUtilisateur['idUtilisateur']));
 
         // si on refuse la demande apres l'avoir accepté (cas d'erreur)
         $requeteSupprCle = $bdd->prepare('UPDATE `Utilisateur` SET `cle` = NULL WHERE `Utilisateur`.`idUtilisateur` = ?');
         $requeteSupprCle->execute(array($infoUtilisateur['idUtilisateur']));
+    }
+
+    function supprimerUtilisateur($infoUtilisateur){
+        include("connexionBDD.php");
+
+        $requeteSuppDestAnnonce = $bdd->prepare('DELETE FROM `DestinationAnnonce` WHERE idUtilisateur = ?');
+        $requeteSuppDestAnnonce->execute(array($infoUtilisateur['idUtilisateur']));
+
+        $requeteSuppFilDeDiscussion = $bdd->prepare('DELETE FROM `FilDeDiscussion` WHERE idUtilisateur = ?');
+        $requeteSuppFilDeDiscussion->execute(array($infoUtilisateur['idUtilisateur']));
+
+        $requeteSuppUtilisateur = $bdd->prepare('DELETE FROM `Utilisateur` WHERE `idUtilisateur` = ?');
+        $requeteSuppUtilisateur->execute(array($infoUtilisateur['idUtilisateur']));
+    }
+
+    function supprimerDemande($infoUtilisateur){
+        include("connexionBDD.php");
+
+        // dans demandes acceptees : demande non affichee
+        if (($_GET['e']) == 'accepte') {
+            $requeteSupprDemande = $bdd->prepare('UPDATE `Utilisateur` SET `demande` = ? WHERE `Utilisateur`.`idUtilisateur` = ?');
+            $requeteSupprDemande->execute(array('SUPPRIME', $infoUtilisateur['idUtilisateur']));
+        } 
+        // dans demandes refusees : suppression de l'utilisateur (definitif)
+        else {
+            supprimerUtilisateur($infoUtilisateur);
+        }
     }
 
     // redirections
@@ -42,6 +69,9 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
                             case 'refuser' :
                                 refuserDemande($_SESSION["VALIDE"][$_GET['m']]);
                             break;
+                            case 'supprimer' :
+                                supprimerDemande($_SESSION["VALIDE"][$_GET['m']]);
+                            break;
                         }
                         header('Location: ../chambre/demandes.php?e=accepte&m=none');
                         exit();
@@ -52,6 +82,9 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
                             break;
                             case 'refuser' :
                                 refuserDemande($_SESSION["REFUSE"][$_GET['m']]);
+                            break;
+                            case 'supprimer' :
+                                supprimerDemande($_SESSION["REFUSE"][$_GET['m']]);
                             break;
                         }
                         header('Location: ../chambre/demandes.php?e=refuse&m=none');
