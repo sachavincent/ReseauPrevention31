@@ -6,6 +6,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.os.Build;
@@ -602,15 +603,22 @@ public class Tools {
      *
      * @param _dbFile le fichier donné contenant les données des CodeActivités
      */
-    public static boolean extractCodeActivites(File _dbFile) {
+    public static boolean extractCodeActivites(File _dbFile, boolean asset, SQLiteDatabase _database) {
         Log.d(LOG, "Extracting CodeActivites...");
         FileReader reader = null;
         BufferedReader bufferedReader = null;
+        InputStreamReader inputStreamReader = null;
 
         boolean res = true;
         try {
-            reader = new FileReader(_dbFile);
-            bufferedReader = new BufferedReader(reader);
+            if (asset) {
+                inputStreamReader = new InputStreamReader(getContext().getAssets().open(_dbFile.getName()));
+                bufferedReader = new BufferedReader(inputStreamReader);
+            } else {
+                reader = new FileReader(_dbFile);
+                bufferedReader = new BufferedReader(reader);
+            }
+
             String line = bufferedReader.readLine(); // Skip volontaire de la 1ère ligne
 
             while ((line = bufferedReader.readLine()) != null) {
@@ -620,7 +628,7 @@ public class Tools {
                 codeActivite.setCode(Integer.parseInt(values[0]));
                 codeActivite.setActivite(values[1]);
 
-                boolean done = MainActivity.sDatabaseHelper.insertCodeActivite(codeActivite);
+                boolean done = MainActivity.sDatabaseHelper.insertCodeActivite(codeActivite, _database);
                 if (!done) {
                     res = false;
 
@@ -638,6 +646,8 @@ public class Tools {
                     reader.close();
                 if (bufferedReader != null)
                     bufferedReader.close();
+                if (inputStreamReader != null)
+                    inputStreamReader.close();
             } catch (IOException e) {
                 Log.w(LOG, e.getMessage());
                 writeTraceException(e);
@@ -652,15 +662,22 @@ public class Tools {
      *
      * @param _dbFile le fichier donné contenant les données des communes
      */
-    public static boolean extractCommunes(File _dbFile) {
+    public static boolean extractCommunes(File _dbFile, boolean asset, SQLiteDatabase _database) {
         Log.d(LOG, "Extracting Communes...");
         FileReader reader = null;
         BufferedReader bufferedReader = null;
+        InputStreamReader inputStreamReader = null;
 
         boolean res = true;
         try {
-            reader = new FileReader(_dbFile);
-            bufferedReader = new BufferedReader(reader);
+            if (asset) {
+                inputStreamReader = new InputStreamReader(getContext().getAssets().open(_dbFile.getName()));
+                bufferedReader = new BufferedReader(inputStreamReader);
+            } else {
+                reader = new FileReader(_dbFile);
+                bufferedReader = new BufferedReader(reader);
+            }
+
             String line = bufferedReader.readLine(); // Skip volontaire de la 1ère ligne
 
             while ((line = bufferedReader.readLine()) != null) {
@@ -672,7 +689,7 @@ public class Tools {
                 commune.setNom(values[2]);
                 commune.setSecteur(Secteur.getSecteur(Integer.parseInt(values[3])));
 
-                boolean done = MainActivity.sDatabaseHelper.insertCommune(commune);
+                boolean done = MainActivity.sDatabaseHelper.insertCommune(commune, _database);
                 if (!done) {
                     res = false;
 
@@ -691,6 +708,8 @@ public class Tools {
                     reader.close();
                 if (bufferedReader != null)
                     bufferedReader.close();
+                if (inputStreamReader != null)
+                    inputStreamReader.close();
             } catch (IOException e) {
                 Log.w(LOG, e.getMessage());
                 writeTraceException(e);

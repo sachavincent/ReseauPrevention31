@@ -1,5 +1,6 @@
 package fr.gendarmerienationale.reseauprevention31.database;
 
+import static fr.gendarmerienationale.reseauprevention31.application.App.getContext;
 import static fr.gendarmerienationale.reseauprevention31.util.Tools.*;
 
 import android.content.ContentValues;
@@ -15,6 +16,7 @@ import fr.gendarmerienationale.reseauprevention31.struct.*;
 import fr.gendarmerienationale.reseauprevention31.struct.Message.Emetteur;
 import fr.gendarmerienationale.reseauprevention31.util.Tools;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -203,14 +205,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "new." + MESSAGE_COLUMN_ID_FIL + " = " + FIL_COLUMN_ID + "; " +
                     "END;";
 
-            Log.d(LOG, sql);
             _database.execSQL(sql);
 
             ContentValues contentValues = new ContentValues();
             contentValues.putNull(CONFIG_COLUMN_LAST_DB_UPDATE);
             _database.insertOrThrow(CONFIG_TABLE_NAME, "", contentValues);
+
+
+            for (String f : getContext().getAssets().list("")) {
+                switch (f.toLowerCase()) {
+                    case "codeactivite.csv":
+                        Log.d(LOG, "Found CodeA");
+                        Tools.extractCodeActivites(new File(f), true, _database);
+                        break;
+                    case "commune.csv":
+                        Log.d(LOG, "Found Commune");
+                        Tools.extractCommunes(new File(f), true, _database);
+                        break;
+                }
+            }
+
             Log.d(LOG, "done");
-        } catch (SQLException e) {
+        } catch (SQLException | IOException | NullPointerException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
         }
@@ -242,7 +258,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void open() {
-        mDb = this.getWritableDatabase();
+        if (mDb == null)
+            mDb = this.getWritableDatabase();
     }
 
     public void beginTransaction() {
@@ -605,11 +622,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             for (File dbFile : finalList) {
                 switch (dbFile.getName().toLowerCase()) {
                     case "commune.csv":
-                        if (extractCommunes(dbFile))
+                        if (extractCommunes(dbFile, false, null))
                             deleteFile(dbFile);
                         break;
                     case "codeactivite.csv":
-                        if (extractCodeActivites(dbFile))
+                        if (extractCodeActivites(dbFile, false, null))
                             deleteFile(dbFile);
                         break;
                     case "conseil.csv":
@@ -832,8 +849,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Permet d'insérer une commune dans la base de données
      */
-    public boolean insertCommune(Commune _commune) {
-        if (mDb == null)
+    public boolean insertCommune(Commune _commune, SQLiteDatabase _database) {
+        if (mDb == null && _database == null)
             open();
 
         try {
@@ -845,7 +862,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(COMMUNE_COLUMN_NOM, _commune.getNom());
             values.put(COMMUNE_COLUMN_CODE_POSTAL, _commune.getCodePostal());
             values.put(COMMUNE_COLUMN_SECTEUR, _commune.getSecteur().getNum());
-            return mDb.insertOrThrow(COMMUNE_TABLE_NAME, "", values) != -1;
+
+            SQLiteDatabase db = _database == null ? mDb : _database;
+            return db.insertOrThrow(COMMUNE_TABLE_NAME, "", values) != -1;
         } catch (IllegalArgumentException | SQLiteException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);
@@ -857,8 +876,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Permet d'insérer un CodeActivite dans la base de données
      */
-    public boolean insertCodeActivite(CodeActivite _codeActivite) {
-        if (mDb == null)
+    public boolean insertCodeActivite(CodeActivite _codeActivite, SQLiteDatabase _database) {
+        if (mDb == null && _database == null)
             open();
 
         try {
@@ -868,7 +887,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put(CODE_ACTIVITE_COLUMN_CODE, _codeActivite.getCode());
             values.put(CODE_ACTIVITE_COLUMN_ACTIVITE, _codeActivite.getActivite());
-            return mDb.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", values) != -1;
+
+            SQLiteDatabase db = _database == null ? mDb : _database;
+            return db.insertOrThrow(CODE_ACTIVITE_TABLE_NAME, "", values) != -1;
         } catch (IllegalArgumentException | SQLiteException e) {
             Log.w(LOG, e.getMessage());
             writeTraceException(e);

@@ -57,9 +57,6 @@ public class CreationCompteActivity extends AppCompatActivity {
         for (Commune commune : listeCommunes)
             listeLocalisations.add(commune.toString());
 
-        for (String c : listeLocalisations)
-            Log.d(LOG, c);
-
         // Adapters pour les AutoCompleteTextView
         ArrayAdapter<CodeActivite> adapterCodeAPE = new ArrayAdapter<>(this, R.layout.dropdown_item_distrib, listeAPE);
         ArrayAdapter<String> adapterCommune = new ArrayAdapter<>(this, R.layout.dropdown_item_distrib,
