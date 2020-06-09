@@ -207,6 +207,21 @@ body {
         }
     }
 
+    #pan-connexion-admin {
+        width: 350px;
+        background-color: $color-dark-light;
+        margin: auto;
+        margin-top: 3%;
+        border-radius: 5px 5px 5px 5px;
+        text-align: center;
+        padding: 65px;
+        padding-bottom: 50px;
+        color: $color-text;
+        display: flex;
+        flex-direction: column;
+        transition: 1.5s all ease;
+    }
+
     #pan-ajout-gestionnaire {
         width: 350px;
         background-color: $color-dark-light;
@@ -219,6 +234,7 @@ body {
         color: $color-text;
         display: flex;
         flex-direction: column;
+        transition: 1.5s all ease;
         h1 {
             margin-top: -30px;
         }

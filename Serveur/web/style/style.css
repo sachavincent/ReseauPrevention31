@@ -215,6 +215,27 @@ body {
   transition: 0.5s ease;
 }
 
+#page-identification #pan-connexion-admin {
+  width: 350px;
+  background-color: #1E1E1E;
+  margin: auto;
+  margin-top: 3%;
+  border-radius: 5px 5px 5px 5px;
+  text-align: center;
+  padding: 65px;
+  padding-bottom: 50px;
+  color: #ececec;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: 1.5s all ease;
+  transition: 1.5s all ease;
+}
+
 #page-identification #pan-ajout-gestionnaire {
   width: 350px;
   background-color: #1E1E1E;
@@ -232,6 +253,8 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-transition: 1.5s all ease;
+  transition: 1.5s all ease;
 }
 
 #page-identification #pan-ajout-gestionnaire h1 {
