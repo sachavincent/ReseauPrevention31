@@ -212,14 +212,14 @@ body {
 }
 
 #page-identification #pan-ajout-gestionnaire {
-  width: 385px;
-  height: 690px;
+  width: 350px;
   background-color: #1E1E1E;
   margin: auto;
   margin-top: 3%;
   border-radius: 5px 5px 5px 5px;
   text-align: center;
   padding: 65px;
+  padding-bottom: 50px;
   color: #ececec;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -234,32 +234,23 @@ body {
   margin-top: -30px;
 }
 
-#page-identification #pan-ajout-gestionnaire img {
-  width: 125px;
-  border-radius: 50%;
-  border: 5px solid whitesmoke;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-
 #page-identification #pan-ajout-gestionnaire [name="select-chambre"] {
   padding: 5px;
   font-size: 15px;
-  margin-top: 5px;
+  margin-top: 35px;
 }
 
 #page-identification #pan-ajout-gestionnaire .identifiants {
   font-size: 17px;
   font-weight: 600;
   text-align: left;
-  margin-top: 15px;
+  margin-top: 22px;
   text-transform: uppercase;
 }
 
 #page-identification #pan-ajout-gestionnaire .input-new-gestionnaire {
   padding: 5px;
-  margin-top: 2px;
+  margin-top: 5px;
   font-size: 16px;
   background-color: transparent;
   border: none;
@@ -276,7 +267,7 @@ body {
   color: #ececec;
   border: none;
   border-radius: 2px;
-  margin-top: 15px;
+  margin-top: 25px;
   cursor: pointer;
 }
 

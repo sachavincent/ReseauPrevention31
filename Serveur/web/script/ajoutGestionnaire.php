@@ -59,8 +59,6 @@
       <div id="pan-ajout-gestionnaire">
         <h1>CRÉATION<br> D'UN GESTIONNAIRE</h1>
 
-        <img src="../images/doggo2.jpg" alt="image profil">
-
         <select name="select-chambre" required>
             <option value="">Choisir un gestionnaire</option>
             <option value="CMA">CMA</option>

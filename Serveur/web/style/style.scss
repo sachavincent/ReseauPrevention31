@@ -206,43 +206,35 @@ body {
     }
 
     #pan-ajout-gestionnaire {
-        width: 385px;
-        height: 690px;
+        width: 350px;
         background-color: $color-dark-light;
         margin: auto;
         margin-top: 3%;
         border-radius: 5px 5px 5px 5px;
         text-align: center;
         padding: 65px;
+        padding-bottom: 50px;
         color: $color-text;
         display: flex;
         flex-direction: column;
         h1 {
             margin-top: -30px;
         }
-        img {
-            width: 125px;
-            border-radius: 50%;
-            border: 5px solid whitesmoke;
-            margin: auto;
-            margin-top: 10px;
-            margin-bottom: 5px;
-        }
         [name="select-chambre"] {
             padding: 5px;
             font-size: 15px;
-            margin-top: 5px;
+            margin-top: 35px;
         }
         .identifiants {
             font-size: 17px;
             font-weight: 600;
             text-align: left;
-            margin-top: 15px;
+            margin-top: 22px;
             text-transform: uppercase;
         }
         .input-new-gestionnaire {
             padding: 5px;
-            margin-top: 2px;
+            margin-top: 5px;
             font-size: 16px;
             background-color: transparent;
             border: none;
@@ -258,7 +250,7 @@ body {
             color: $color-text;
             border: none;
             border-radius: 2px;
-            margin-top: 15px;
+            margin-top: 25px;
             cursor: pointer;
             &:hover {
                 background-color: $color-text;
