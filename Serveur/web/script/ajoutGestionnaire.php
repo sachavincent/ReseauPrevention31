@@ -37,7 +37,7 @@
             $requeteMdpAdmin->execute(array($_POST['mdp']));
             $mdpHach = ($requeteMdpAdmin->fetch())['mdp'];
             if (empty($mdpHach)){
-                echo 'mdp inco';
+                header('Location: ajoutGestionnaire.php?p=mdpInco');
             } else {
                 if (isset($_POST['select-chambre']) AND isset($_POST['mdp-confirm']) AND isset($_POST['id']) AND isset($_POST['mdp']) AND isset($_POST['nom']) AND isset($_POST['prenom']) AND isset($_POST['select-chambre']) AND isset($_POST['mail'])){
                     // chambre ou force
