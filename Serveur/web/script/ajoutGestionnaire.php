@@ -24,12 +24,16 @@
         if (!(isset($_POST['mdp']))) { ?>           
             <form action="ajoutGestionnaire.php" method="post">
             <div id="pan-connexion-admin">
+                <h1>Connexion Administrateur</h1>
+                <p class="identifiants">Mot de passe</p>
                 <input type="password" name="mdp" required>
                 <input type="submit">
+                <?php if (isset($_GET['p']) AND $_GET['p'] == 'mdpInco') {
+                    echo '<p id="error">Le mot de passe est incorrect.<p>';
+                } ?>
             </div>
             </form>
-            
-            <?php 
+        <?php 
         }
         else {
             

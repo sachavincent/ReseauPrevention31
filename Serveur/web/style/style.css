@@ -215,7 +215,7 @@ body {
   transition: 0.5s ease;
 }
 
-#page-identification #pan-connexion-admin {
+#page-identification #pan-ajout-gestionnaire, #page-identification #pan-connexion-admin {
   width: 350px;
   background-color: #1E1E1E;
   margin: auto;
@@ -236,32 +236,11 @@ body {
   transition: 1.5s all ease;
 }
 
-#page-identification #pan-ajout-gestionnaire {
-  width: 350px;
-  background-color: #1E1E1E;
-  margin: auto;
-  margin-top: 3%;
-  border-radius: 5px 5px 5px 5px;
-  text-align: center;
-  padding: 65px;
-  padding-bottom: 50px;
-  color: #ececec;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-transition: 1.5s all ease;
-  transition: 1.5s all ease;
-}
-
-#page-identification #pan-ajout-gestionnaire h1 {
+#page-identification #pan-ajout-gestionnaire h1, #page-identification #pan-connexion-admin h1 {
   margin-top: -30px;
 }
 
-#page-identification #pan-ajout-gestionnaire [name="select-chambre"] {
+#page-identification #pan-ajout-gestionnaire [name="select-chambre"], #page-identification #pan-connexion-admin [name="select-chambre"] {
   padding: 6px;
   font-size: 15px;
   margin-top: 35px;
@@ -269,7 +248,7 @@ body {
   border-radius: 3px;
 }
 
-#page-identification #pan-ajout-gestionnaire .identifiants {
+#page-identification #pan-ajout-gestionnaire .identifiants, #page-identification #pan-connexion-admin .identifiants {
   font-size: 17px;
   font-weight: 600;
   text-align: left;
@@ -277,7 +256,7 @@ body {
   text-transform: uppercase;
 }
 
-#page-identification #pan-ajout-gestionnaire .input-new-gestionnaire {
+#page-identification #pan-ajout-gestionnaire .input-new-gestionnaire, #page-identification #pan-ajout-gestionnaire [type="password"], #page-identification #pan-connexion-admin .input-new-gestionnaire, #page-identification #pan-connexion-admin [type="password"] {
   padding: 5px;
   margin-top: 5px;
   font-size: 16px;
@@ -288,7 +267,7 @@ body {
   outline: none;
 }
 
-#page-identification #pan-ajout-gestionnaire .bouton-id {
+#page-identification #pan-ajout-gestionnaire .bouton-id, #page-identification #pan-ajout-gestionnaire [type="submit"], #page-identification #pan-connexion-admin .bouton-id, #page-identification #pan-connexion-admin [type="submit"] {
   width: 100%;
   height: 40px;
   padding: 10px;
@@ -300,21 +279,43 @@ body {
   cursor: pointer;
 }
 
-#page-identification #pan-ajout-gestionnaire .bouton-id:hover {
+#page-identification #pan-ajout-gestionnaire .bouton-id:hover, #page-identification #pan-ajout-gestionnaire [type="submit"]:hover, #page-identification #pan-connexion-admin .bouton-id:hover, #page-identification #pan-connexion-admin [type="submit"]:hover {
   background-color: #ececec;
   color: #1E1E1E;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
 }
 
-#page-identification #pan-ajout-gestionnaire #ajout-success, #page-identification #pan-ajout-gestionnaire #ajout-failed, #page-identification #pan-ajout-gestionnaire #ajout-mdp-different, #page-identification #pan-ajout-gestionnaire #ajout-id-existant {
+#page-identification #pan-ajout-gestionnaire #ajout-success, #page-identification #pan-ajout-gestionnaire #ajout-failed, #page-identification #pan-ajout-gestionnaire #ajout-mdp-different, #page-identification #pan-ajout-gestionnaire #ajout-id-existant, #page-identification #pan-ajout-gestionnaire #error, #page-identification #pan-connexion-admin #ajout-success, #page-identification #pan-connexion-admin #ajout-failed, #page-identification #pan-connexion-admin #ajout-mdp-different, #page-identification #pan-connexion-admin #ajout-id-existant, #page-identification #pan-connexion-admin #error {
   font-size: 14px;
   color: #FF2646;
   margin-top: 10px;
 }
 
-#page-identification #pan-ajout-gestionnaire #ajout-success {
+#page-identification #pan-ajout-gestionnaire #ajout-success, #page-identification #pan-connexion-admin #ajout-success {
   color: #26FF26;
+}
+
+#page-identification #pan-connexion-admin {
+  width: 325px;
+  margin-top: 10%;
+  padding-bottom: 40px;
+}
+
+#page-identification #pan-connexion-admin h1 {
+  margin-top: -35px;
+  margin-bottom: 10px;
+}
+
+#page-identification #pan-connexion-admin .input-new-gestionnaire {
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #F9F9F9;
+  color: #ececec;
+  outline: none;
 }
 
 #nav-gauche {

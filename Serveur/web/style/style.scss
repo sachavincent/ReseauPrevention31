@@ -207,22 +207,7 @@ body {
         }
     }
 
-    #pan-connexion-admin {
-        width: 350px;
-        background-color: $color-dark-light;
-        margin: auto;
-        margin-top: 3%;
-        border-radius: 5px 5px 5px 5px;
-        text-align: center;
-        padding: 65px;
-        padding-bottom: 50px;
-        color: $color-text;
-        display: flex;
-        flex-direction: column;
-        transition: 1.5s all ease;
-    }
-
-    #pan-ajout-gestionnaire {
+    #pan-ajout-gestionnaire, #pan-connexion-admin {
         width: 350px;
         background-color: $color-dark-light;
         margin: auto;
@@ -253,7 +238,7 @@ body {
             margin-top: 22px;
             text-transform: uppercase;
         }
-        .input-new-gestionnaire {
+        .input-new-gestionnaire, [type="password"] {
             padding: 5px;
             margin-top: 5px;
             font-size: 16px;
@@ -263,7 +248,7 @@ body {
             color: $color-text;
             outline: none;
         }
-        .bouton-id {
+        .bouton-id, [type="submit"] {
             width: 100%;
             height: 40px;
             padding: 10px;
@@ -279,7 +264,7 @@ body {
                 transition: 0.5s ease;
             }
         }
-        #ajout-success, #ajout-failed, #ajout-mdp-different, #ajout-id-existant {
+        #ajout-success, #ajout-failed, #ajout-mdp-different, #ajout-id-existant, #error {
             font-size: 14px;
             color: $color-error;
             margin-top: 10px;
@@ -287,7 +272,26 @@ body {
         #ajout-success {
             color: $color-success;
         }
+    }
 
+    #pan-connexion-admin {
+        width: 325px;
+        margin-top: 10%;
+        padding-bottom: 40px;
+        h1 {
+            margin-top: -35px;
+            margin-bottom: 10px;
+        }
+        .input-new-gestionnaire {
+            padding: 5px;
+            margin-top: 5px;
+            font-size: 16px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid $color-light;
+            color: $color-text;
+            outline: none;
+        }
     }
 }
 
