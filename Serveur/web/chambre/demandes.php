@@ -9,7 +9,7 @@ include("../script/connexionBDD.php");
     <title>Demandes</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../style/style.css" />
-    <link rel="icon" type="image/png" href="../images/doggo.png" />
+    <link rel="icon" type="image/png" href="../images/icon.png" />
   </head>
   <body>
     <!-- affichage menu gauche -->

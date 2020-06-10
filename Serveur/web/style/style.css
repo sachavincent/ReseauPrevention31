@@ -436,6 +436,8 @@ body {
 }
 
 #pan-profil {
+  min-width: 700px;
+  min-height: 500px;
   position: absolute;
   background-color: #F9F9F9;
   top: 0;
@@ -458,9 +460,12 @@ body {
 #pan-profil #pan-profil-interieur {
   width: 100%;
   height: 85%;
+  min-width: 576px;
+  min-height: 394px;
   background-color: #1E1E1E;
   border-radius: 2px;
   margin-top: 6.5%;
+  margin-top: 50px;
   color: #ececec;
   font-size: 19px;
 }
@@ -487,13 +492,15 @@ body {
 #pan-profil #pan-profil-interieur .nom {
   font-size: 30px;
   left: 38%;
-  top: 24%;
+  min-width: left;
+  top: 130px;
 }
 
 #pan-profil #pan-profil-interieur .prenom {
   font-size: 26px;
   left: 38%;
-  top: 32%;
+  min-width: left;
+  top: 185px;
 }
 
 #pan-profil #pan-profil-interieur .zone-infos {
@@ -577,6 +584,8 @@ body {
 }
 
 #pan-content {
+  min-width: 1140px;
+  min-height: 570px;
   position: absolute;
   background-color: #F9F9F9;
   top: 0;
