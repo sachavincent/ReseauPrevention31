@@ -45,19 +45,19 @@ if (!isset($commune)){
       <div class="champs-annonce">Sélectionner toutes les activités :
         <input class="select-all" name="toutes-activites" type="checkbox"/>
       </div>
-    
+
       <!-- menu deroulant des communes -->
       <div class="champs-annonce"><span id="align-commune">Commune :</span>
         <input type="text" class="rechercheCommune" name='commune1' placeholder='Saisir une commune'/>
         <input type="text" class="rechercheCommune" name='commune2' placeholder='Saisir une commune'/>
         <input type="text" class="rechercheCommune" name='commune3' placeholder='Saisir une commune'/>
       </div>
-    
+
       <!-- ligne selection toutes communes -->
       <div class="champs-annonce">Sélectionner toutes les communes :
         <input class="select-all" name="toutes-communes" type="checkbox"/>
       </div>
-    
+
       <!-- menu deroulant des communes -->
       <div class="champs-annonce"><span id="align-zone">Zone :</span>
           <select name="secteur1" class="select-zone" size="l">
@@ -70,7 +70,7 @@ if (!isset($commune)){
             <option value=6>Secteur 6</option>
             <option value=7>Secteur 7</option>
           </select>
-    
+
           <select name="secteur2" class="select-zone" size="l">
             <option value="--">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
@@ -81,7 +81,7 @@ if (!isset($commune)){
             <option value=6>Secteur 6</option>
             <option value=7>Secteur 7</option>
           </select>
-    
+
           <select name="secteur3" class="select-zone" size="l">
             <option value="--">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
@@ -93,19 +93,19 @@ if (!isset($commune)){
             <option value=7>Secteur 7</option>
           </select>
       </div>
-    
+
       <!-- ligne selection toutes zones -->
       <div class="champs-annonce">Sélectionner toutes les zones :
         <input class="select-all" name="toutes-zones" type="checkbox"/>
       </div>
-  
+
       <!-- checkbox envoi mail -->
       <div class="champs-annonce"><b>Envoyer l'annonce par mail :</b>
           <input name="mail" type="checkbox"/>
       </div>
     </fieldset>
   </section>
-    
+
   <div id="objet-new-annonce">
     <fieldset>
       <legend>Objet :</legend>
