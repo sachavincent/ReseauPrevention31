@@ -963,7 +963,7 @@ body {
 }
 
 #pan-content #objet-new-annonce {
-  height: 30px;
+  height: 45px;
   position: absolute;
   left: 0;
   right: 0;
@@ -998,6 +998,13 @@ body {
   left: 115px;
 }
 
+#pan-content #objet-new-annonce fieldset #dest-concernes {
+  font-size: 15px;
+  color: grey;
+  display: block;
+  margin-top: 15px;
+}
+
 #pan-content #write-annonce {
   width: 95%;
   padding: 2%;
@@ -1008,7 +1015,7 @@ body {
   right: 0;
   left: 0;
   bottom: 0;
-  top: 434px;
+  top: 450px;
   border: none;
   resize: none;
   overflow-y: auto;

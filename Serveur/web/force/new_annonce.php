@@ -36,31 +36,31 @@ if (!isset($commune)){
       <legend>Informations à compléter pour une nouvelle annonce :</legend>
       <div class="champs-annonce"><span id="align-activite">Activités :</span>
         <!-- menu deroulant des activites -->
-        <input type="text" class="rechercheActivite" name='activite1' placeholder='Saisir une activité'/>
-        <input type="text" class="rechercheActivite" name='activite2' placeholder='Saisir une activité'/>
-        <input type="text" class="rechercheActivite" name='activite3' placeholder='Saisir une activité'/>
+        <input type="text" class="rechercheActivite" name='activite1' placeholder='Saisir une activité' onblur="afficheDest()"/>
+        <input type="text" class="rechercheActivite" name='activite2' placeholder='Saisir une activité' onblur="afficheDest()"/>
+        <input type="text" class="rechercheActivite" name='activite3' placeholder='Saisir une activité' onblur="afficheDest()"/>
       </div>
 
       <!-- ligne selection toutes activites -->
       <div class="champs-annonce">Sélectionner toutes les activités :
-        <input class="select-all" name="toutes-activites" type="checkbox"/>
+        <input class="select-all" name="toutes-activites" type="checkbox" onclick="afficheDest()"/>
       </div>
 
       <!-- menu deroulant des communes -->
       <div class="champs-annonce"><span id="align-commune">Commune :</span>
-        <input type="text" class="rechercheCommune" name='commune1' placeholder='Saisir une commune'/>
-        <input type="text" class="rechercheCommune" name='commune2' placeholder='Saisir une commune'/>
-        <input type="text" class="rechercheCommune" name='commune3' placeholder='Saisir une commune'/>
+        <input type="text" class="rechercheCommune" name='commune1' placeholder='Saisir une commune' onblur="afficheDest()"/>
+        <input type="text" class="rechercheCommune" name='commune2' placeholder='Saisir une commune' onblur="afficheDest()"/>
+        <input type="text" class="rechercheCommune" name='commune3' placeholder='Saisir une commune' onblur="afficheDest()"/>
       </div>
 
       <!-- ligne selection toutes communes -->
       <div class="champs-annonce">Sélectionner toutes les communes :
-        <input class="select-all" name="toutes-communes" type="checkbox"/>
+        <input class="select-all" name="toutes-communes" type="checkbox" onclick="afficheDest()"/>
       </div>
 
       <!-- menu deroulant des communes -->
       <div class="champs-annonce"><span id="align-zone">Zone :</span>
-          <select name="secteur1" class="select-zone" size="l">
+          <select name="secteur1" class="select-zone" size="l" onclick="afficheDest()">
             <option value="--">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
@@ -71,7 +71,7 @@ if (!isset($commune)){
             <option value=7>Secteur 7</option>
           </select>
 
-          <select name="secteur2" class="select-zone" size="l">
+          <select name="secteur2" class="select-zone" size="l" onclick="afficheDest()">
             <option value="--">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
@@ -82,7 +82,7 @@ if (!isset($commune)){
             <option value=7>Secteur 7</option>
           </select>
 
-          <select name="secteur3" class="select-zone" size="l">
+          <select name="secteur3" class="select-zone" size="l" onclick="afficheDest()">
             <option value="--">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
@@ -96,7 +96,7 @@ if (!isset($commune)){
 
       <!-- ligne selection toutes zones -->
       <div class="champs-annonce">Sélectionner toutes les zones :
-        <input class="select-all" name="toutes-zones" type="checkbox"/>
+        <input class="select-all" name="toutes-zones" type="checkbox" onclick="afficheDest(10)"/>
       </div>
 
       <!-- checkbox envoi mail -->
@@ -110,8 +110,18 @@ if (!isset($commune)){
     <fieldset>
       <legend>Objet :</legend>
       <input name='input-objet-annonce' required>
+      <p id="dest-concernes">Nombre de destinataires concernés : </p>
     </fieldset>
   </div>
+
+  <script language="JavaScript">
+    // affichage destinataires concernés (nb for test)
+    function afficheDest(nb) {
+        dest = document.getElementById('dest-concernes');
+        dest.textContent = "Nombre de destinataires concernés :" + nb + " (à implémenter)";
+    }
+
+  </script>
 
   <!-- zone de redaction du message -->
   <textarea name="texte" id="write-annonce" required></textarea>
