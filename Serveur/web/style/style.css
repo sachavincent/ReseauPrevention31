@@ -26,6 +26,24 @@
   src: url("../docs/font/Adam/ADAM.CG PRO.otf");
 }
 
+@-webkit-keyframes apparition {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes apparition {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 * {
   font-family: "KoHo", Arial;
   margin: 0;
@@ -46,6 +64,8 @@ body {
 #page-identification {
   width: 100%;
   height: 100%;
+  -webkit-animation: apparition 0.75s linear 0s forwards;
+          animation: apparition 0.75s linear 0s forwards;
 }
 
 #page-identification .pan-chambres, #page-identification .pan-forces {
@@ -60,8 +80,6 @@ body {
   background-color: #ececec;
   padding: 10px;
   border-radius: 5px 5px 5px 5px;
-  -webkit-transition: 1s all ease;
-  transition: 1s all ease;
 }
 
 #page-identification .pan-chambres #logo-ca:hover, #page-identification .pan-chambres #logo-cma:hover, #page-identification .pan-chambres #logo-cci:hover, #page-identification .pan-chambres #logo-gendarmerie:hover, #page-identification .pan-chambres #logo-police:hover, #page-identification .pan-forces #logo-ca:hover, #page-identification .pan-forces #logo-cma:hover, #page-identification .pan-forces #logo-cci:hover, #page-identification .pan-forces #logo-gendarmerie:hover, #page-identification .pan-forces #logo-police:hover {
@@ -127,8 +145,6 @@ body {
   width: 60%;
   padding: 20px;
   border-radius: 50%;
-  -webkit-transition: 1s all ease;
-  transition: 1s all ease;
 }
 
 #page-identification #pan-identification #logo-choisi img {
@@ -232,8 +248,6 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-transition: 1.5s all ease;
-  transition: 1.5s all ease;
 }
 
 #page-identification #pan-ajout-gestionnaire h1, #page-identification #pan-connexion-admin h1 {
@@ -436,6 +450,8 @@ body {
 }
 
 #pan-profil {
+  -webkit-animation: apparition 0.5s linear 0s forwards;
+          animation: apparition 0.5s linear 0s forwards;
   min-width: 700px;
   min-height: 500px;
   position: absolute;
