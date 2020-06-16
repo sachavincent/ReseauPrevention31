@@ -253,7 +253,8 @@ body {
   width: 350px;
   background-color: #1E1E1E;
   margin: auto;
-  margin-top: 25vh;
+  margin-top: 10vh;
+  margin-top: 10vh;
   border-radius: 5px 5px 5px 5px;
   text-align: center;
   padding: 65px;
@@ -330,6 +331,7 @@ body {
 
 #page-identification #pan-connexion-admin {
   width: 325px;
+  margin-top: 25vh;
   padding-bottom: 40px;
 }
 
