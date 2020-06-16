@@ -66,50 +66,69 @@ body {
   height: 100%;
   -webkit-animation: apparition 0.75s linear 0s forwards;
           animation: apparition 0.75s linear 0s forwards;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#page-identification .btn-admin {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 #page-identification .pan-chambres, #page-identification .pan-forces {
-  height: 300px;
+  width: 600px;
   padding: 30px;
   background-color: #1E1E1E;
-  border-radius: 5px 5px 5px 5px;
-}
-
-#page-identification .pan-chambres #logo-ca, #page-identification .pan-chambres #logo-cma, #page-identification .pan-chambres #logo-cci, #page-identification .pan-chambres #logo-gendarmerie, #page-identification .pan-chambres #logo-police, #page-identification .pan-forces #logo-ca, #page-identification .pan-forces #logo-cma, #page-identification .pan-forces #logo-cci, #page-identification .pan-forces #logo-gendarmerie, #page-identification .pan-forces #logo-police {
-  display: inline-block;
-  background-color: #ececec;
-  padding: 10px;
-  border-radius: 5px 5px 5px 5px;
-}
-
-#page-identification .pan-chambres #logo-ca:hover, #page-identification .pan-chambres #logo-cma:hover, #page-identification .pan-chambres #logo-cci:hover, #page-identification .pan-chambres #logo-gendarmerie:hover, #page-identification .pan-chambres #logo-police:hover, #page-identification .pan-forces #logo-ca:hover, #page-identification .pan-forces #logo-cma:hover, #page-identification .pan-forces #logo-cci:hover, #page-identification .pan-forces #logo-gendarmerie:hover, #page-identification .pan-forces #logo-police:hover {
-  -webkit-transition: 0.5s all ease;
-  transition: 0.5s all ease;
-  background-color: #4285F4;
-}
-
-#page-identification .pan-chambres #logo-ca img, #page-identification .pan-chambres #logo-cma img, #page-identification .pan-chambres #logo-cci img, #page-identification .pan-chambres #logo-gendarmerie img, #page-identification .pan-chambres #logo-police img, #page-identification .pan-forces #logo-ca img, #page-identification .pan-forces #logo-cma img, #page-identification .pan-forces #logo-cci img, #page-identification .pan-forces #logo-gendarmerie img, #page-identification .pan-forces #logo-police img {
-  width: 175px;
-  height: 175px;
-}
-
-#page-identification .pan-chambres #logo-gendarmerie, #page-identification .pan-forces #logo-gendarmerie {
-  margin-left: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  margin-top: 25vh;
 }
 
 #page-identification .pan-chambres h1, #page-identification .pan-forces h1 {
   color: #ececec;
-  margin-left: 25px;
-  margin-bottom: 45px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   border-bottom: 5px solid #4285F4;
   text-transform: uppercase;
+  display: block;
+  margin: auto;
 }
 
-#page-identification .pan-chambres {
-  position: absolute;
-  left: 9%;
-  top: 25%;
+#page-identification .pan-chambres #logos-chambres, #page-identification .pan-chambres #logos-forces, #page-identification .pan-forces #logos-chambres, #page-identification .pan-forces #logos-forces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 25px;
+}
+
+#page-identification .pan-chambres #logos-chambres img, #page-identification .pan-chambres #logos-forces img, #page-identification .pan-forces #logos-chambres img, #page-identification .pan-forces #logos-forces img {
+  width: 175px;
+  padding: 10px;
+  background-color: #F9F9F9;
+  border-radius: 5px;
+}
+
+#page-identification .pan-chambres #logos-chambres img:hover, #page-identification .pan-chambres #logos-forces img:hover, #page-identification .pan-forces #logos-chambres img:hover, #page-identification .pan-forces #logos-forces img:hover {
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  background-color: #4285F4;
 }
 
 #page-identification .pan-chambres h1 {
@@ -117,9 +136,8 @@ body {
 }
 
 #page-identification .pan-forces {
-  position: absolute;
-  left: 60%;
-  top: 25%;
+  width: 400px;
+  margin-bottom: 50px;
 }
 
 #page-identification .pan-forces h1 {
@@ -235,7 +253,7 @@ body {
   width: 350px;
   background-color: #1E1E1E;
   margin: auto;
-  margin-top: 3%;
+  margin-top: 25vh;
   border-radius: 5px 5px 5px 5px;
   text-align: center;
   padding: 65px;
@@ -312,7 +330,6 @@ body {
 
 #page-identification #pan-connexion-admin {
   width: 325px;
-  margin-top: 10%;
   padding-bottom: 40px;
 }
 

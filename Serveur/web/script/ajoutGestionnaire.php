@@ -15,7 +15,7 @@
         <!-- conteneur principal -->
         <section id="page-identification">
             
-        <input type="button" value="retour" title="Cliquez ici pour revenir à l'écran des chambres"
+        <input class="btn-admin" type="button" value="retour" title="Cliquez ici pour revenir à l'écran des chambres"
         onclick="window.location.href='../connexion/choix-chambre.php'" >
 
     <?php
