@@ -60,8 +60,8 @@ if (!isset($commune)){
 
       <!-- menu deroulant des communes -->
       <div class="champs-annonce"><span id="align-zone">Zone :</span>
-          <select name="secteur1" class="select-zone" size="l" onclick="afficheDest()">
-            <option value="--">Choisir un secteur</option>
+          <select name="secteur1" class="select-zone" size="l" onblur="afficheDest()">
+            <option value="0">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
             <option value=3>Secteur 3</option>
@@ -71,8 +71,8 @@ if (!isset($commune)){
             <option value=7>Secteur 7</option>
           </select>
 
-          <select name="secteur2" class="select-zone" size="l" onclick="afficheDest()">
-            <option value="--">Choisir un secteur</option>
+          <select name="secteur2" class="select-zone" size="l" onblur="afficheDest()">
+            <option value="0">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
             <option value=3>Secteur 3</option>
@@ -82,8 +82,8 @@ if (!isset($commune)){
             <option value=7>Secteur 7</option>
           </select>
 
-          <select name="secteur3" class="select-zone" size="l" onclick="afficheDest()">
-            <option value="--">Choisir un secteur</option>
+          <select name="secteur3" class="select-zone" size="l" onblur="afficheDest()">
+            <option value="0">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
             <option value=3>Secteur 3</option>
@@ -96,7 +96,7 @@ if (!isset($commune)){
 
       <!-- ligne selection toutes zones -->
       <div class="champs-annonce">Sélectionner toutes les zones :
-        <input class="select-all" name="toutes-zones" type="checkbox" onclick="afficheDest(10)"/>
+        <input class="select-all" name="toutes-zones" type="checkbox" onclick="afficheDest()"/>
       </div>
 
       <!-- checkbox envoi mail -->
@@ -110,17 +110,72 @@ if (!isset($commune)){
     <fieldset>
       <legend>Objet :</legend>
       <input name='input-objet-annonce' required>
-      <p id="dest-concernes">Nombre de destinataires concernés : </p>
+      <p id="dest-concernes">Nombre de destinataires concernés : 0</p>
     </fieldset>
   </div>
 
-  <script language="JavaScript">
-    // affichage destinataires concernés (nb for test)
-    function afficheDest(nb) {
-        dest = document.getElementById('dest-concernes');
-        dest.textContent = "Nombre de destinataires concernés :" + nb + " (à implémenter)";
-    }
 
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>
+
+  <script type="text/javascript">
+    // affichage destinataires concernés (nb for test)
+    function afficheDest() {
+        var dest = document.getElementById('dest-concernes');
+        
+        var info = new Object();
+        info['toutes-zones'] = document.getElementsByName('toutes-zones')[0].checked;
+        info['toutes-activites'] = document.getElementsByName('toutes-activites')[0].checked;
+        info['toutes-communes'] = document.getElementsByName('toutes-communes')[0].checked;
+        
+        info['commune1'] = document.getElementsByName('commune1')[0].value;
+        info['commune2'] = document.getElementsByName('commune2')[0].value;
+        info['commune3'] = document.getElementsByName('commune3')[0].value;
+        
+        info['activite1'] = document.getElementsByName('activite1')[0].value;
+        info['activite2'] = document.getElementsByName('activite2')[0].value;
+        info['activite3'] = document.getElementsByName('activite3')[0].value;
+      
+        info['secteur1'] = document.getElementsByName('secteur1')[0].selectedIndex;
+        info['secteur2'] = document.getElementsByName('secteur2')[0].selectedIndex;
+        info['secteur3'] = document.getElementsByName('secteur3')[0].selectedIndex;
+
+        console.log(info)
+
+         console.log("check all")
+         console.log(info['toutes-zones'], info['toutes-activites'], info['toutes-communes'])
+        // console.log("commune")
+        // console.log(info['commune1'], info['commune2'], info['commune3'])
+        // console.log("activite")
+        // console.log(info['activite1'], info['activite2'], info['activite3'])
+        // console.log("secteur")
+        // console.log(info['secteur1'], info['secteur2'], info['secteur3'])
+
+        let request = 
+          $.ajax({
+            type: "POST",
+            url: '../script/calculerDestinatairesAnnonce.php',
+            data: info,
+            dataType: 'json',
+            asynch: false,
+            timeout: 3000,
+            success: function(data){
+              var nbDest = 0;
+              for (i in data) {
+                nbDest++;
+              }
+              dest.textContent = "Nombre de destinataires concernés : " + nbDest;
+              
+            },
+            error : function(data){
+              dest.textContent = "Nombre de destinataires concernés : ko " ;
+              console.log(data)
+              
+            }
+          });
+
+    }
   </script>
 
   <!-- zone de redaction du message -->
@@ -129,8 +184,6 @@ if (!isset($commune)){
 </form>
 <!-- Traitement des recherches commune/activite -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $('.rechercheCommune').autocomplete({
   source : '../script/rechercheCommune.php',
