@@ -17,7 +17,7 @@ if (!isset($commune)){
 ?>
 
 <!-- ============================================== -->
-<form method="post" action="../script/creationAnnonce.php">
+<form method="POST" action="../script/creationAnnonce.php">
 
 <!-- ============================================== -->
 

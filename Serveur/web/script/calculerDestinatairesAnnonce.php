@@ -8,6 +8,7 @@
     $codeActivite2 = null;
     $codeActivite3 = null;
 
+   
     //Recuperation idCommune et codeActivite 
     
     if (!empty($_POST['commune1'])){
@@ -50,8 +51,23 @@
     if ($_POST['toutes-communes'] == 'false') $_POST['toutes-communes'] = false; 
     if ($_POST['toutes-zones'] == 'false') $_POST['toutes-zones'] = false; 
 
+     //Si aucune commune selectionnée et case non cochée 
+    if (empty($_POST['commune1']) AND empty($_POST['commune2']) AND empty($_POST['commune3']) AND !(isset($_POST['toutes-communes']) AND $_POST['toutes-communes'])){
+        $_POST['toutes-communes'] = true;
+    }
 
-    if (isset($_POST['toutes-activites']) and isset($_POST['toutes-communes']) and isset($_POST['toutes-zones'])
+    //Si aucune activitée selectionnée et case non cochée 
+    if (empty($_POST['activite1']) AND empty($_POST['activite2']) AND empty($_POST['activite3']) AND !(isset($_POST['toutes-activite']) AND $_POST['toutes-activite'])){
+        $_POST['toutes-activites'] = true;
+    }
+
+    //Si aucun secteur selectionné et case non cochée
+    if (empty($_POST['secteur1']) AND empty($_POST['secteur2']) AND empty($_POST['secteur3']) AND !(isset($_POST['toutes-zones']) AND $_POST['toutes-zones'])){
+        $_POST['toutes-zones'] = true;
+    }
+
+
+    if (isset($_POST['toutes-activites']) AND isset($_POST['toutes-communes']) AND isset($_POST['toutes-zones'])
             AND $_POST['toutes-activites'] AND $_POST['toutes-communes'] AND $_POST['toutes-zones']) {
         $requeteListeDestinataire = $bdd->query('SELECT idUtilisateur, mail, nomUtilisateur, prenomUtilisateur FROM Utilisateur');
 
@@ -94,6 +110,7 @@
         ));
     } elseif (isset($_POST['toutes-communes'])
             AND $_POST['toutes-communes']) {
+
         $requeteListeDestinataire = $bdd->prepare(' SELECT idUtilisateur, mail, nomUtilisateur, prenomUtilisateur FROM Utilisateur 
                                                     WHERE (codeAct = ? OR codeAct = ? OR codeAct = ?)
                                                     AND (secteur = ? OR secteur = ? OR secteur = ?)');
