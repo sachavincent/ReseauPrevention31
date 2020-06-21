@@ -1,4 +1,5 @@
 <?php
+$creationAnnonce = true;
 include 'calculerDestinatairesAnnonce.php';
 
 $objet = strip_tags($_POST['input-objet-annonce']);

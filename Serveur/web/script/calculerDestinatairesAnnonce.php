@@ -154,7 +154,9 @@
     }
 
     $listeDestinataire = $requeteListeDestinataire->fetchAll();
+    if (!isset($creationAnnonce)){
+        header('Content-Type: application/json');
+        echo json_encode($listeDestinataire);
+    }
     
-    header('Content-Type: application/json');
-    echo json_encode($listeDestinataire);
 ?>
