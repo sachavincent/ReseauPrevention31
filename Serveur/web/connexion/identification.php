@@ -45,26 +45,23 @@ switch ($_GET['chambre']) {
     <section id="page-identification">
       <!-- conteneur identification -->
       <div id="pan-identification">
-        <!-- <h1>IDENTIFICATION</h1> -->
-
         <form action=<?= "verifierConnexion.php?chambre=" . $_SESSION['chambre'];?>  method="post">
         <!-- affichage des elements de connexion -->
         <div id="logo-choisi"><img src=<?= $_SESSION['logoChambre'];?> ></div>
         
-        <p>IDENTIFIANT</p>
         <!-- zone de saisie identifiant -->
         <input name='id' type="login" placeholder="Entrer le nom d'utilisateur" required>
 
-        <p>MOT DE PASSE</p>
         <!-- zone de saisie mdp -->
         <input name='mdp' type="password" placeholder="Entrer le mot de passe" required>
 
         <!-- ligne d'erreur si la connexion échoue -->
         <?php if ($_SESSION['connexion']) { echo '<p id="login-failed">Identifiant ou mot de passe incorrect.</p>'; }?>
         <!-- boutons retour / valider -->
-        <input class="bouton-id" type="submit" value="valider" >
-        <input onclick="window.location.href='choix-chambre.php'"; class="bouton-id" type="button" value="retour" >
-
+        <div class="buttons-id">
+            <input class="bouton-id" type="submit" value="valider" >
+            <input onclick="window.location.href='choix-chambre.php'"; class="bouton-id" type="button" value="retour" >
+        </div>
         </form>
       </div>
     </section>

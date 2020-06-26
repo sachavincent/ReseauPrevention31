@@ -12,22 +12,21 @@
             <title>Page d'administration</title>
         </header>
 
-        <!-- conteneur principal -->
-        <section id="page-identification">
-            
         <input class="btn-admin" type="button" value="retour" title="Cliquez ici pour revenir à l'écran des chambres"
         onclick="window.location.href='../connexion/choix-chambre.php'" >
 
-    <?php
-        include 'connexionBDD.php';
+        <!-- conteneur principal -->
+        <section id="page-identification">
+        
+        <?php include 'connexionBDD.php';
+        // panel verifier connexion administrateur
+        if (!(isset($_POST['mdp']))) { ?>   
 
-        if (!(isset($_POST['mdp']))) { ?>           
             <form action="ajoutGestionnaire.php" method="post">
             <div id="pan-connexion-admin">
                 <h1>Connexion Administrateur</h1>
-                <p class="identifiants">Mot de passe</p>
-                <input type="password" name="mdp" required>
-                <input type="submit">
+                <input type="password" name="mdp" placeholder="Entrer le mot de passe" required>
+                <input class="button-id" type="submit" value="valider">
                 <?php if (isset($_GET['p']) AND $_GET['p'] == 'mdpInco') {
                     echo '<p id="error">Le mot de passe est incorrect.<p>';
                 } ?>
@@ -36,10 +35,10 @@
         <?php 
         }
         else {
-            
             $requeteMdpAdmin = $bdd->prepare('SELECT mdp FROM Administrateur WHERE `mdp` = PASSWORD(?)');
             $requeteMdpAdmin->execute(array($_POST['mdp']));
             $mdpHach = ($requeteMdpAdmin->fetch())['mdp'];
+
             if (empty($mdpHach)){
                 header('Location: ajoutGestionnaire.php?p=mdpInco');
             } else {
@@ -79,7 +78,7 @@
                 } ?>
 
             <form action="ajoutGestionnaire.php" method="post">
-            <!-- conteneur identification -->
+            <!-- conteneur ajout gestionnaire -->
             <div id="pan-ajout-gestionnaire">
                 <h1>CRÉATION<br> D'UN GESTIONNAIRE</h1>
 
@@ -92,26 +91,14 @@
                     <option value="P">Police</option>
                 </select>
                 
-                <p class="identifiants">Identifiant</p>
+                <!-- champs de saisies -->
                 <input class="input-new-gestionnaire" type="text" name="id" placeholder="Entrer l'identifiant" required>
-                
-                <p class="identifiants">Mot de passe</p>
                 <input class="input-new-gestionnaire" type="password" name="mdp" placeholder="Entrer le mot de passe" required>
-                
-                <p class="identifiants">Confirmation mot de passe</p>
                 <input class="input-new-gestionnaire" type="password" name="mdp-confirm" placeholder="Confirmation du mot de passe" required>
-                
-                <p class="identifiants">Nom</p>
                 <input class="input-new-gestionnaire" type="text" name="nom" placeholder="Entrer le nom" required>
-                
-                <p class="identifiants">Prénom</p>
                 <input class="input-new-gestionnaire" type="text" name="prenom" placeholder="Entrer le prénom" required>
-
-                <p class="identifiants">Adresse Mail</p>
                 <input class="input-new-gestionnaire" type="email" name="mail" placeholder="Entrer l'adresse email" required>
-
-                <input class="bouton-id" type="submit">
-                
+                <!-- affichage erreur si erreur -->
                 <?php
                     if (isset($_GET['etat'])){
                         switch($_GET['etat']){
@@ -130,6 +117,8 @@
                         }
                     }
                 ?>
+                <!-- btn valider -->
+                <input class="button-id" type="submit" value="valider">
             </div>
             </form>
 <?php   }

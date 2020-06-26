@@ -1,32 +1,7 @@
 @charset "UTF-8";
-@font-face {
-    font-family: 'KoHo';
-    src: url("../docs/font/KoHo/KoHo-Regular.ttf") format("truetype");
-}
-  
-@font-face {
-    font-family: 'KoHo';
-    font-weight: bold;
-    src: url("../docs/font/KoHo/KoHo-Bold.ttf") format("truetype");
-}
-  
-@font-face {
-    font-family: 'KoHo';
-    font-weight: 600;
-    src: url("../docs/font/KoHo/KoHo-SemiBold.ttf") format("truetype");
-}
-  
-@font-face {
-    font-family: 'KoHo';
-    font-style: italic;
-    src: url("../docs/font/KoHo/KoHo-Italic.ttf") format("truetype");
-}
 
-@font-face {
-    font-family: "Adam";
-    src: url("../docs/font/Adam/ADAM.CG\ PRO.otf");
-}
-
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Titillium+Web:wght@400;600;700&display=swap');
 
 $color-dark: #121212;
 $color-dark-light: #1E1E1E;
@@ -39,6 +14,35 @@ $color-grey: whitesmoke;
 $color-success: #26FF26;
 $color-error: #FF2646;
 
+:root {
+    --background-color: #dddddd;
+    --font-color: #121212;
+    --panel-color: #f5f5f5;
+    --border-color: #dadada;
+    --hover-bg-color: #dddddd;
+    --hover-font-color: #f5f5f5;
+    --shadow-color: #b4b4b4;
+    --blue-color: #1E88E5;
+    --error-color: #FF2646;
+    --success-color: #26FF26;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: #100E17;
+        --font-color: #f5f5f5;
+        --panel-color: #17141D;
+        --border-color: #dadada;
+        --hover-bg-color: #ddddddce;
+        --hover-font-color: #f5f5f5;
+        --shadow-color: #000000;
+        --blue-color: #2196F3;
+        --error-color: #FF2646;
+        --success-color: #26FF26;
+    }
+}
+
+
 @keyframes apparition {
     from {
         opacity: 0;
@@ -48,268 +52,505 @@ $color-error: #FF2646;
     }
 }
 
+@mixin flex($flow, $justify, $align) {
+    display: flex;
+    flex-flow: $flow;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin shadow($blur, $spread) {
+    box-shadow: 0 0 $blur $spread var(--shadow-color);
+}
+
+@mixin hover($color-bg, $font-color) {
+    &:hover {
+        cursor: pointer;
+        background-color: $color-bg;
+        color: $font-color;
+        transition: 0.3s all ease;
+        box-shadow: none;
+    }
+}
+
+@mixin center-xy-axis {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 * {
-    font-family: "KoHo", Arial;
+    font-family: 'Titillium Web', sans-serif;
     margin: 0;
     padding: 0;
+    color: var(--font-color);
     word-break: break-word;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-size: 62.5%;   /* 1 rem = 10px */
+    scroll-behavior: smooth;    /* scrollbar smooth */
+}
+
+p {
+    font-size: 1.5rem;
 }
 
 h1 {
-    font-family: "KoHo", "Adam";
-    font-weight: bold;;
-    font-size: 21.5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 2.0rem;
 }
 
 body {
-    background-color: #121212;
+    background-color: var(--background-color);
+    color: var(--font-color);
+    width: 100%;
+    height: 100%;
+//     overflow:;
 }
 
 
+// #page-identification {
+//     width: 100%;
+//     height: 100%;
+//     animation: apparition 0.75s linear 0s forwards;
+//     display: flex;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: space-around;
+
+//     .btn-admin {
+//         display: block;
+//         position: absolute;
+//         left: 0;
+//         top: 0;
+//     }
+
+//     .pan-chambres, .pan-forces {
+//         width: 600px;
+//         padding: 30px;
+//         background-color: $color-dark-light;
+//         border-radius: 5px;
+//         text-align: center;
+//         margin: auto;
+//         margin-top: 25vh;
+
+//         h1 {
+//             color: $color-text;
+//             padding-bottom: 10px;
+//             border-bottom: 5px solid $color-second;
+//             text-transform: uppercase;
+//             display: block;
+//             margin: auto;
+//         }
+
+//         #logos-chambres, #logos-forces {
+//             display: flex;
+//             flex-wrap: wrap;
+//             align-items: center;
+//             justify-content: space-around;
+//             margin-top: 25px;
+//             img {
+//                 width: 175px;
+//                 padding: 10px;
+//                 background-color: $color-light;
+//                 border-radius: 5px;
+//                 &:hover {
+//                     transition: 0.5s all ease;
+//                     background-color: $color-second;
+//                 }
+//             }
+//         }
+//     }
+//     .pan-chambres {
+//         h1 {
+//             width: 262px;
+//         }
+//     }
+//     .pan-forces {
+//         width: 400px;
+//         h1 {
+//             width: 355px;
+//         }
+//         margin-bottom: 50px;
+//     }
+
+//     // identification
+//     #pan-identification {
+//         width: 300px;
+//         height: 510px;
+//         background-color: $color-dark-light;
+//         margin: auto;
+//         margin-top: 5%;
+//         border-radius: 5px 5px 5px 5px;
+//         text-align: center;
+//         padding: 50px;
+        
+//         #logo-choisi {
+//             background-color: $color-text;
+//             margin: auto;
+//             margin-bottom: 40px;
+//             margin-top: 15px;
+//             width: 60%;
+//             padding: 20px;
+//             border-radius: 50%;
+//             img {
+//                 width: 175px;
+//                 height: 175px;
+//             }
+//             &:hover {
+//                 transition: 0.5s all ease;
+//                 background-color: $color-second;
+//             }
+//         }
+//         p {
+//             font-family: "KoHo";
+//             font-weight: 600;
+//             text-align: left;
+//             color: $color-text;
+//         }
+//         [name='mdp'], [name='id'] {
+//             width: 100%;
+//             height: 10px;
+//             font-size: 16px;
+//             padding-top: 10px;
+//             padding-bottom: 10px;
+//             margin-bottom: 22px;
+//             border: 0px;
+//             border-bottom: 2px solid $color-text;
+//             background-color: transparent;
+//             color: $color-text;
+//             &:focus {
+//                 outline: 0;
+//             }
+//         }
+//         .bouton-id  {
+//             width: 100%;
+//             height: 40px;
+//             padding: 10px;
+//             background-color: $color-second;
+//             color: $color-text;
+//             border: 0px;
+//             border-radius: 2px;
+//             margin-top: 5px;
+//             cursor: pointer;
+//         }
+//         [value="valider"] {
+//             &:hover {
+//                 background-color: $color-text;
+//                 color: $color-dark-light;
+//                 transition: 0.5s ease;
+//             }
+//         }
+//         [value="retour"] {
+//             background-color: transparent;
+//         }
+//         #login-failed {
+//             color: $color-error;
+//             margin: auto;
+//             font-size: 14px;
+//             text-align: center;
+//             margin-bottom: 10px;
+//         }
+//     }
+
+//     [value="retour"], [value="Administrateur"] {
+//         padding: 5px;
+//         padding-left: 20px;
+//         padding-right: 20px;
+//         cursor: pointer;
+//         background-color: $color-second;
+//         border: none;
+//         color: $color-text;
+//         border-radius: 2px;
+//         &:hover {
+//             background-color: $color-text;
+//             color: $color-dark-light;
+//             transition: 0.5s ease;
+//         }
+//     }
+
+//     #pan-ajout-gestionnaire, #pan-connexion-admin {
+//         width: 350px;
+//         background-color: $color-dark-light;
+//         margin: auto;
+//         margin-top: 10vh;
+//         margin-top: 10vh;
+//         border-radius: 5px 5px 5px 5px;
+//         text-align: center;
+//         padding: 65px;
+//         padding-bottom: 50px;
+//         color: $color-text;
+//         display: flex;
+//         flex-direction: column;
+//         h1 {
+//             margin-top: -30px;
+//         }
+//         [name="select-chambre"] {
+//             padding: 6px;
+//             font-size: 15px;
+//             margin-top: 35px;
+//             cursor: pointer;
+//             border-radius: 3px;
+//             // appearance: none;
+//         }
+//         .identifiants {
+//             font-size: 17px;
+//             font-weight: 600;
+//             text-align: left;
+//             margin-top: 22px;
+//             text-transform: uppercase;
+//         }
+//         .input-new-gestionnaire, [type="password"] {
+//             padding: 5px;
+//             margin-top: 5px;
+//             font-size: 16px;
+//             background-color: transparent;
+//             border: none;
+//             border-bottom: 2px solid $color-light;
+//             color: $color-text;
+//             outline: none;
+//         }
+//         .bouton-id, [type="submit"] {
+//             width: 100%;
+//             height: 40px;
+//             padding: 10px;
+//             background-color: $color-second;
+//             color: $color-text;
+//             border: none;
+//             border-radius: 2px;
+//             margin-top: 25px;
+//             cursor: pointer;
+//             &:hover {
+//                 background-color: $color-text;
+//                 color: $color-dark-light;
+//                 transition: 0.5s ease;
+//             }
+//         }
+//         #ajout-success, #ajout-failed, #ajout-mdp-different, #ajout-id-existant, #error {
+//             font-size: 14px;
+//             color: $color-error;
+//             margin-top: 10px;
+//         }
+//         #ajout-success {
+//             color: $color-success;
+//         }
+//     }
+
+//     #pan-connexion-admin {
+//         width: 325px;
+//         margin-top: 25vh;
+//         padding-bottom: 40px;
+//         h1 {
+//             margin-top: -35px;
+//             margin-bottom: 10px;
+//         }
+//         .input-new-gestionnaire {
+//             padding: 5px;
+//             margin-top: 5px;
+//             font-size: 16px;
+//             background-color: transparent;
+//             border: none;
+//             border-bottom: 2px solid $color-light;
+//             color: $color-text;
+//             outline: none;
+//         }
+//     }
+// }
+
+.btn-admin {
+    background-color: var(--panel-color);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include shadow(5px, 1px);
+    @include hover(var(--blue-color), var(--hover-font-color));
+}
+
 #page-identification {
-    width: 100%;
-    height: 100%;
-    animation: apparition 0.75s linear 0s forwards;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
+    @include flex(row wrap, center, center);
+    transition: 0.5s all ease;
 
-    .btn-admin {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-
+    // choix chambres
     .pan-chambres, .pan-forces {
-        width: 600px;
-        padding: 30px;
-        background-color: $color-dark-light;
-        border-radius: 5px;
-        text-align: center;
-        margin: auto;
-        margin-top: 25vh;
+        background-color: var(--panel-color);
+        padding: 25px;
+        margin: 25vh 5vh 5vh;
+        @include shadow(10px, 2px);
 
         h1 {
-            color: $color-text;
-            padding-bottom: 10px;
-            border-bottom: 5px solid $color-second;
-            text-transform: uppercase;
             display: block;
-            margin: auto;
-        }
+            margin-bottom: 15px;
+            text-align: center;
 
-        #logos-chambres, #logos-forces {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-around;
-            margin-top: 25px;
-            img {
-                width: 175px;
-                padding: 10px;
-                background-color: $color-light;
-                border-radius: 5px;
-                &:hover {
-                    transition: 0.5s all ease;
-                    background-color: $color-second;
-                }
+            em {
+                font-style: normal;
+                font-weight: 700;
+                color: var(--blue-color);
             }
         }
-    }
-    .pan-chambres {
-        h1 {
-            width: 262px;
+
+        img {
+            width: 200px;
+            margin: 10px 2.5px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            // border: 2px solid transparent;
+            @include shadow(5px, 1px);
+            @include hover(var(--hover-bg-color), none);
         }
-    }
-    .pan-forces {
-        width: 400px;
-        h1 {
-            width: 355px;
-        }
-        margin-bottom: 50px;
     }
 
     // identification
     #pan-identification {
-        width: 300px;
-        height: 510px;
-        background-color: $color-dark-light;
-        margin: auto;
-        margin-top: 5%;
-        border-radius: 5px 5px 5px 5px;
+        width: 385px;
+        background-color: var(--panel-color);
+        padding: 55px;
         text-align: center;
-        padding: 50px;
-        
-        #logo-choisi {
-            background-color: $color-text;
-            margin: auto;
-            margin-bottom: 40px;
-            margin-top: 15px;
-            width: 60%;
-            padding: 20px;
+        @include center-xy-axis;
+        @include shadow(10px, 2px);
+        @include flex(column nowrap, flex-start, center);
+
+        img {
+            width: 225px;
+            padding: 15px;
             border-radius: 50%;
-            img {
-                width: 175px;
-                height: 175px;
-            }
-            &:hover {
-                transition: 0.5s all ease;
-                background-color: $color-second;
-            }
+            background-color: #f5f5f5;
+            margin-bottom: 15px;
+            @include shadow(5px, 1px);
+            @include hover(var(--hover-bg-color), none);
         }
-        p {
-            font-family: "KoHo";
-            font-weight: 600;
-            text-align: left;
-            color: $color-text;
-        }
-        [name='mdp'], [name='id'] {
-            width: 100%;
-            height: 10px;
-            font-size: 16px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            margin-bottom: 22px;
-            border: 0px;
-            border-bottom: 2px solid $color-text;
-            background-color: transparent;
-            color: $color-text;
-            &:focus {
-                outline: 0;
-            }
-        }
-        .bouton-id  {
-            width: 100%;
-            height: 40px;
-            padding: 10px;
-            background-color: $color-second;
-            color: $color-text;
-            border: 0px;
-            border-radius: 2px;
-            margin-top: 5px;
-            cursor: pointer;
-        }
-        [value="valider"] {
-            &:hover {
-                background-color: $color-text;
-                color: $color-dark-light;
-                transition: 0.5s ease;
-            }
-        }
-        [value="retour"] {
-            background-color: transparent;
-        }
-        #login-failed {
-            color: $color-error;
-            margin: auto;
-            font-size: 14px;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-    }
 
-    [value="retour"], [value="Administrateur"] {
-        padding: 5px;
-        padding-left: 20px;
-        padding-right: 20px;
-        cursor: pointer;
-        background-color: $color-second;
-        border: none;
-        color: $color-text;
-        border-radius: 2px;
-        &:hover {
-            background-color: $color-text;
-            color: $color-dark-light;
-            transition: 0.5s ease;
-        }
-    }
-
-    #pan-ajout-gestionnaire, #pan-connexion-admin {
-        width: 350px;
-        background-color: $color-dark-light;
-        margin: auto;
-        margin-top: 10vh;
-        margin-top: 10vh;
-        border-radius: 5px 5px 5px 5px;
-        text-align: center;
-        padding: 65px;
-        padding-bottom: 50px;
-        color: $color-text;
-        display: flex;
-        flex-direction: column;
-        h1 {
-            margin-top: -30px;
-        }
-        [name="select-chambre"] {
-            padding: 6px;
-            font-size: 15px;
-            margin-top: 35px;
-            cursor: pointer;
-            border-radius: 3px;
-            // appearance: none;
-        }
-        .identifiants {
-            font-size: 17px;
-            font-weight: 600;
-            text-align: left;
-            margin-top: 22px;
-            text-transform: uppercase;
-        }
-        .input-new-gestionnaire, [type="password"] {
-            padding: 5px;
-            margin-top: 5px;
-            font-size: 16px;
-            background-color: transparent;
+        [name="id"], [name="mdp"] {
+            width: 100%;
+            font-size: 1.6rem;
+            padding: 10px 0 7.5px;
             border: none;
-            border-bottom: 2px solid $color-light;
-            color: $color-text;
+            border-bottom: 2px solid var(--border-color);
             outline: none;
+            background-color: transparent;
+            margin: 20px 0 5px;
         }
-        .bouton-id, [type="submit"] {
+
+        #login-failed {
+            color: var(--error-color);
+            font-size: 1.25rem;
+            margin: 5px 0 -10px;
+            text-align: left;
+        }
+
+        .buttons-id {
             width: 100%;
-            height: 40px;
-            padding: 10px;
-            background-color: $color-second;
-            color: $color-text;
-            border: none;
-            border-radius: 2px;
-            margin-top: 25px;
-            cursor: pointer;
-            &:hover {
-                background-color: $color-text;
-                color: $color-dark-light;
-                transition: 0.5s ease;
+            @include flex(row nowrap, space-between, center);
+
+            .bouton-id {
+                width: 45%;
+                padding: 10px;
+                border: none;
+                border-radius: 0px;
+                margin-top: 25px;
+                background-color: var(--background-color);
+                @include shadow(2px, 1px);
+                @include hover(var(--blue-color), var(--hover-font-color));
             }
         }
-        #ajout-success, #ajout-failed, #ajout-mdp-different, #ajout-id-existant, #error {
-            font-size: 14px;
-            color: $color-error;
-            margin-top: 10px;
+    }
+
+    // ajout gestionnaire (admin)
+    #pan-connexion-admin {
+        width: 400px;
+        background-color: var(--panel-color);
+        padding: 35px 50px;
+        text-align: center;
+        @include center-xy-axis;
+        @include shadow(10px, 2px);
+
+        [name="mdp"] {
+            width: 100%;
+            font-size: 1.6rem;
+            padding: 10px 0 7.5px;
+            border: none;
+            border-bottom: 2px solid var(--border-color);
+            outline: none;
+            background-color: transparent;
+            margin: 20px 0 20px;
+        }
+
+        .button-id {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 0px;
+            background-color: var(--background-color);
+            @include shadow(2px, 1px);
+            @include hover(var(--blue-color), var(--hover-font-color));
+        }
+    }
+
+    // pan ajout gestionnaire
+    #pan-ajout-gestionnaire {
+        width: 410px;
+        background-color: var(--panel-color);
+        padding: 55px;
+        @include flex(column wrap, none, none);
+        @include shadow(10px, 2.5px);
+        @include center-xy-axis;
+        
+        h1 {
+            display: block;
+            font-size: 2.0rem;
+            text-align: center;
+        }
+        
+        select {
+            font-size: 1.6rem;
+            padding:5px;
+            margin-top: 20px;
+            border-radius: 0px;
+            color: #151515;
+            
+            option {
+              color: #151515;
+            }
+        }
+        
+        .input-new-gestionnaire {
+            width: 100%;
+            font-size: 1.6rem;
+            padding: 10px 0 7.5px;
+            border: none;
+            border-bottom: 2px solid var(--border-color);
+            outline: none;
+            background-color: transparent;
+            margin: 20px 0 5px;
+        }
+        
+        .button-id {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 0px;
+            background-color: var(--background-color);
+            margin-top: 30px;
+            @include shadow(2px, 1px);
+            @include hover(var(--blue-color), var(--hover-font-color));
+        }
+
+        #ajout-success, #ajout-failed, #ajout-mdp-different, #ajout-id-existant {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            text-align: center;
+            color: var(--error-color);
         }
         #ajout-success {
-            color: $color-success;
-        }
-    }
-
-    #pan-connexion-admin {
-        width: 325px;
-        margin-top: 25vh;
-        padding-bottom: 40px;
-        h1 {
-            margin-top: -35px;
-            margin-bottom: 10px;
-        }
-        .input-new-gestionnaire {
-            padding: 5px;
-            margin-top: 5px;
-            font-size: 16px;
-            background-color: transparent;
-            border: none;
-            border-bottom: 2px solid $color-light;
-            color: $color-text;
-            outline: none;
+            color: var(--success-color);
         }
     }
 }

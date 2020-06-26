@@ -1,29 +1,30 @@
-@font-face {
-  font-family: 'KoHo';
-  src: url("../docs/font/KoHo/KoHo-Regular.ttf") format("truetype");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Titillium+Web:wght@400;600;700&display=swap");
+:root {
+  --background-color: #dddddd;
+  --font-color: #121212;
+  --panel-color: #f5f5f5;
+  --border-color: #dadada;
+  --hover-bg-color: #dddddd;
+  --hover-font-color: #f5f5f5;
+  --shadow-color: #b4b4b4;
+  --blue-color: #1E88E5;
+  --error-color: #FF2646;
+  --success-color: #26FF26;
 }
 
-@font-face {
-  font-family: 'KoHo';
-  font-weight: bold;
-  src: url("../docs/font/KoHo/KoHo-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: 'KoHo';
-  font-weight: 600;
-  src: url("../docs/font/KoHo/KoHo-SemiBold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: 'KoHo';
-  font-style: italic;
-  src: url("../docs/font/KoHo/KoHo-Italic.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Adam";
-  src: url("../docs/font/Adam/ADAM.CG PRO.otf");
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #100E17;
+    --font-color: #f5f5f5;
+    --panel-color: #17141D;
+    --border-color: #dadada;
+    --hover-bg-color: #ddddddce;
+    --hover-font-color: #f5f5f5;
+    --shadow-color: #000000;
+    --blue-color: #2196F3;
+    --error-color: #FF2646;
+    --success-color: #26FF26;
+  }
 }
 
 @-webkit-keyframes apparition {
@@ -45,310 +46,352 @@
 }
 
 * {
-  font-family: "KoHo", Arial;
+  font-family: 'Titillium Web', sans-serif;
   margin: 0;
   padding: 0;
+  color: var(--font-color);
   word-break: break-word;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+  /* 1 rem = 10px */
+  scroll-behavior: smooth;
+  /* scrollbar smooth */
+}
+
+p {
+  font-size: 1.5rem;
 }
 
 h1 {
-  font-family: "KoHo", "Adam";
-  font-weight: bold;
-  font-size: 21.5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 2.0rem;
 }
 
 body {
-  background-color: #121212;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  width: 100%;
+  height: 100%;
+}
+
+.btn-admin {
+  background-color: var(--panel-color);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0 0 5px 1px var(--shadow-color);
+          box-shadow: 0 0 5px 1px var(--shadow-color);
+}
+
+.btn-admin:hover {
+  cursor: pointer;
+  background-color: var(--blue-color);
+  color: var(--hover-font-color);
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 #page-identification {
-  width: 100%;
-  height: 100%;
-  -webkit-animation: apparition 0.75s linear 0s forwards;
-          animation: apparition 0.75s linear 0s forwards;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-#page-identification .btn-admin {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
 }
 
 #page-identification .pan-chambres, #page-identification .pan-forces {
-  width: 600px;
-  padding: 30px;
-  background-color: #1E1E1E;
-  border-radius: 5px;
-  text-align: center;
-  margin: auto;
-  margin-top: 25vh;
+  background-color: var(--panel-color);
+  padding: 25px;
+  margin: 25vh 5vh 5vh;
+  -webkit-box-shadow: 0 0 10px 2px var(--shadow-color);
+          box-shadow: 0 0 10px 2px var(--shadow-color);
 }
 
 #page-identification .pan-chambres h1, #page-identification .pan-forces h1 {
-  color: #ececec;
-  padding-bottom: 10px;
-  border-bottom: 5px solid #4285F4;
-  text-transform: uppercase;
   display: block;
-  margin: auto;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
-#page-identification .pan-chambres #logos-chambres, #page-identification .pan-chambres #logos-forces, #page-identification .pan-forces #logos-chambres, #page-identification .pan-forces #logos-forces {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  margin-top: 25px;
+#page-identification .pan-chambres h1 em, #page-identification .pan-forces h1 em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--blue-color);
 }
 
-#page-identification .pan-chambres #logos-chambres img, #page-identification .pan-chambres #logos-forces img, #page-identification .pan-forces #logos-chambres img, #page-identification .pan-forces #logos-forces img {
-  width: 175px;
+#page-identification .pan-chambres img, #page-identification .pan-forces img {
+  width: 200px;
+  margin: 10px 2.5px 0;
   padding: 10px;
-  background-color: #F9F9F9;
-  border-radius: 5px;
+  background-color: #f5f5f5;
+  -webkit-box-shadow: 0 0 5px 1px var(--shadow-color);
+          box-shadow: 0 0 5px 1px var(--shadow-color);
 }
 
-#page-identification .pan-chambres #logos-chambres img:hover, #page-identification .pan-chambres #logos-forces img:hover, #page-identification .pan-forces #logos-chambres img:hover, #page-identification .pan-forces #logos-forces img:hover {
-  -webkit-transition: 0.5s all ease;
-  transition: 0.5s all ease;
-  background-color: #4285F4;
-}
-
-#page-identification .pan-chambres h1 {
-  width: 262px;
-}
-
-#page-identification .pan-forces {
-  width: 400px;
-  margin-bottom: 50px;
-}
-
-#page-identification .pan-forces h1 {
-  width: 355px;
+#page-identification .pan-chambres img:hover, #page-identification .pan-forces img:hover {
+  cursor: pointer;
+  background-color: var(--hover-bg-color);
+  color: none;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 #page-identification #pan-identification {
-  width: 300px;
-  height: 510px;
-  background-color: #1E1E1E;
-  margin: auto;
-  margin-top: 5%;
-  border-radius: 5px 5px 5px 5px;
+  width: 385px;
+  background-color: var(--panel-color);
+  padding: 55px;
   text-align: center;
-  padding: 50px;
-}
-
-#page-identification #pan-identification #logo-choisi {
-  background-color: #ececec;
-  margin: auto;
-  margin-bottom: 40px;
-  margin-top: 15px;
-  width: 60%;
-  padding: 20px;
-  border-radius: 50%;
-}
-
-#page-identification #pan-identification #logo-choisi img {
-  width: 175px;
-  height: 175px;
-}
-
-#page-identification #pan-identification #logo-choisi:hover {
-  -webkit-transition: 0.5s all ease;
-  transition: 0.5s all ease;
-  background-color: #4285F4;
-}
-
-#page-identification #pan-identification p {
-  font-family: "KoHo";
-  font-weight: 600;
-  text-align: left;
-  color: #ececec;
-}
-
-#page-identification #pan-identification [name='mdp'], #page-identification #pan-identification [name='id'] {
-  width: 100%;
-  height: 10px;
-  font-size: 16px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 22px;
-  border: 0px;
-  border-bottom: 2px solid #ececec;
-  background-color: transparent;
-  color: #ececec;
-}
-
-#page-identification #pan-identification [name='mdp']:focus, #page-identification #pan-identification [name='id']:focus {
-  outline: 0;
-}
-
-#page-identification #pan-identification .bouton-id {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  background-color: #4285F4;
-  color: #ececec;
-  border: 0px;
-  border-radius: 2px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
-#page-identification #pan-identification [value="valider"]:hover {
-  background-color: #ececec;
-  color: #1E1E1E;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-#page-identification #pan-identification [value="retour"] {
-  background-color: transparent;
-}
-
-#page-identification #pan-identification #login-failed {
-  color: #FF2646;
-  margin: auto;
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-#page-identification [value="retour"], #page-identification [value="Administrateur"] {
-  padding: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
-  cursor: pointer;
-  background-color: #4285F4;
-  border: none;
-  color: #ececec;
-  border-radius: 2px;
-}
-
-#page-identification [value="retour"]:hover, #page-identification [value="Administrateur"]:hover {
-  background-color: #ececec;
-  color: #1E1E1E;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-#page-identification #pan-ajout-gestionnaire, #page-identification #pan-connexion-admin {
-  width: 350px;
-  background-color: #1E1E1E;
-  margin: auto;
-  margin-top: 10vh;
-  margin-top: 10vh;
-  border-radius: 5px 5px 5px 5px;
-  text-align: center;
-  padding: 65px;
-  padding-bottom: 50px;
-  color: #ececec;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0 0 10px 2px var(--shadow-color);
+          box-shadow: 0 0 10px 2px var(--shadow-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-#page-identification #pan-ajout-gestionnaire h1, #page-identification #pan-connexion-admin h1 {
-  margin-top: -30px;
+#page-identification #pan-identification img {
+  width: 225px;
+  padding: 15px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  margin-bottom: 15px;
+  -webkit-box-shadow: 0 0 5px 1px var(--shadow-color);
+          box-shadow: 0 0 5px 1px var(--shadow-color);
 }
 
-#page-identification #pan-ajout-gestionnaire [name="select-chambre"], #page-identification #pan-connexion-admin [name="select-chambre"] {
-  padding: 6px;
-  font-size: 15px;
-  margin-top: 35px;
+#page-identification #pan-identification img:hover {
   cursor: pointer;
-  border-radius: 3px;
+  background-color: var(--hover-bg-color);
+  color: none;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
-#page-identification #pan-ajout-gestionnaire .identifiants, #page-identification #pan-connexion-admin .identifiants {
-  font-size: 17px;
-  font-weight: 600;
-  text-align: left;
-  margin-top: 22px;
-  text-transform: uppercase;
-}
-
-#page-identification #pan-ajout-gestionnaire .input-new-gestionnaire, #page-identification #pan-ajout-gestionnaire [type="password"], #page-identification #pan-connexion-admin .input-new-gestionnaire, #page-identification #pan-connexion-admin [type="password"] {
-  padding: 5px;
-  margin-top: 5px;
-  font-size: 16px;
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid #F9F9F9;
-  color: #ececec;
-  outline: none;
-}
-
-#page-identification #pan-ajout-gestionnaire .bouton-id, #page-identification #pan-ajout-gestionnaire [type="submit"], #page-identification #pan-connexion-admin .bouton-id, #page-identification #pan-connexion-admin [type="submit"] {
+#page-identification #pan-identification [name="id"], #page-identification #pan-identification [name="mdp"] {
   width: 100%;
-  height: 40px;
-  padding: 10px;
-  background-color: #4285F4;
-  color: #ececec;
+  font-size: 1.6rem;
+  padding: 10px 0 7.5px;
   border: none;
-  border-radius: 2px;
+  border-bottom: 2px solid var(--border-color);
+  outline: none;
+  background-color: transparent;
+  margin: 20px 0 5px;
+}
+
+#page-identification #pan-identification #login-failed {
+  color: var(--error-color);
+  font-size: 1.25rem;
+  margin: 5px 0 -10px;
+  text-align: left;
+}
+
+#page-identification #pan-identification .buttons-id {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#page-identification #pan-identification .buttons-id .bouton-id {
+  width: 45%;
+  padding: 10px;
+  border: none;
+  border-radius: 0px;
   margin-top: 25px;
+  background-color: var(--background-color);
+  -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
+          box-shadow: 0 0 2px 1px var(--shadow-color);
+}
+
+#page-identification #pan-identification .buttons-id .bouton-id:hover {
   cursor: pointer;
-}
-
-#page-identification #pan-ajout-gestionnaire .bouton-id:hover, #page-identification #pan-ajout-gestionnaire [type="submit"]:hover, #page-identification #pan-connexion-admin .bouton-id:hover, #page-identification #pan-connexion-admin [type="submit"]:hover {
-  background-color: #ececec;
-  color: #1E1E1E;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-#page-identification #pan-ajout-gestionnaire #ajout-success, #page-identification #pan-ajout-gestionnaire #ajout-failed, #page-identification #pan-ajout-gestionnaire #ajout-mdp-different, #page-identification #pan-ajout-gestionnaire #ajout-id-existant, #page-identification #pan-ajout-gestionnaire #error, #page-identification #pan-connexion-admin #ajout-success, #page-identification #pan-connexion-admin #ajout-failed, #page-identification #pan-connexion-admin #ajout-mdp-different, #page-identification #pan-connexion-admin #ajout-id-existant, #page-identification #pan-connexion-admin #error {
-  font-size: 14px;
-  color: #FF2646;
-  margin-top: 10px;
-}
-
-#page-identification #pan-ajout-gestionnaire #ajout-success, #page-identification #pan-connexion-admin #ajout-success {
-  color: #26FF26;
+  background-color: var(--blue-color);
+  color: var(--hover-font-color);
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 #page-identification #pan-connexion-admin {
-  width: 325px;
-  margin-top: 25vh;
-  padding-bottom: 40px;
+  width: 400px;
+  background-color: var(--panel-color);
+  padding: 35px 50px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0 0 10px 2px var(--shadow-color);
+          box-shadow: 0 0 10px 2px var(--shadow-color);
 }
 
-#page-identification #pan-connexion-admin h1 {
-  margin-top: -35px;
-  margin-bottom: 10px;
-}
-
-#page-identification #pan-connexion-admin .input-new-gestionnaire {
-  padding: 5px;
-  margin-top: 5px;
-  font-size: 16px;
-  background-color: transparent;
+#page-identification #pan-connexion-admin [name="mdp"] {
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 10px 0 7.5px;
   border: none;
-  border-bottom: 2px solid #F9F9F9;
-  color: #ececec;
+  border-bottom: 2px solid var(--border-color);
   outline: none;
+  background-color: transparent;
+  margin: 20px 0 20px;
+}
+
+#page-identification #pan-connexion-admin .button-id {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 0px;
+  background-color: var(--background-color);
+  -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
+          box-shadow: 0 0 2px 1px var(--shadow-color);
+}
+
+#page-identification #pan-connexion-admin .button-id:hover {
+  cursor: pointer;
+  background-color: var(--blue-color);
+  color: var(--hover-font-color);
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#page-identification #pan-ajout-gestionnaire {
+  width: 410px;
+  background-color: var(--panel-color);
+  padding: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: none;
+      -ms-flex-pack: none;
+          justify-content: none;
+  -webkit-box-align: none;
+      -ms-flex-align: none;
+          align-items: none;
+  -webkit-box-shadow: 0 0 10px 2.5px var(--shadow-color);
+          box-shadow: 0 0 10px 2.5px var(--shadow-color);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#page-identification #pan-ajout-gestionnaire h1 {
+  display: block;
+  font-size: 2.0rem;
+  text-align: center;
+}
+
+#page-identification #pan-ajout-gestionnaire select {
+  font-size: 1.6rem;
+  padding: 5px;
+  margin-top: 20px;
+  border-radius: 0px;
+  color: #151515;
+}
+
+#page-identification #pan-ajout-gestionnaire select option {
+  color: #151515;
+}
+
+#page-identification #pan-ajout-gestionnaire .input-new-gestionnaire {
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 10px 0 7.5px;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  outline: none;
+  background-color: transparent;
+  margin: 20px 0 5px;
+}
+
+#page-identification #pan-ajout-gestionnaire .button-id {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 0px;
+  background-color: var(--background-color);
+  margin-top: 30px;
+  -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
+          box-shadow: 0 0 2px 1px var(--shadow-color);
+}
+
+#page-identification #pan-ajout-gestionnaire .button-id:hover {
+  cursor: pointer;
+  background-color: var(--blue-color);
+  color: var(--hover-font-color);
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#page-identification #pan-ajout-gestionnaire #ajout-success, #page-identification #pan-ajout-gestionnaire #ajout-failed, #page-identification #pan-ajout-gestionnaire #ajout-mdp-different, #page-identification #pan-ajout-gestionnaire #ajout-id-existant {
+  font-size: 1.3rem;
+  margin-top: 20px;
+  text-align: center;
+  color: var(--error-color);
+}
+
+#page-identification #pan-ajout-gestionnaire #ajout-success {
+  color: var(--success-color);
 }
 
 #nav-gauche {
