@@ -284,12 +284,12 @@ body {
   border-bottom: 2px solid var(--border-color);
   outline: none;
   background-color: transparent;
-  margin: 20px 0 20px;
+  margin: 20px 0 0px;
 }
 
 #page-identification #pan-connexion-admin #error {
   font-size: 1.3rem;
-  margin: 0 20px;
+  margin: 15px 0 20px;
   text-align: center;
   color: var(--error-color);
 }
@@ -300,6 +300,7 @@ body {
   border: none;
   border-radius: 0px;
   background-color: var(--background-color);
+  margin-top: 20px;
   -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
           box-shadow: 0 0 2px 1px var(--shadow-color);
 }
