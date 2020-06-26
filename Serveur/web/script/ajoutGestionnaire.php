@@ -17,18 +17,19 @@
 
         <!-- conteneur principal -->
         <section id="page-identification">
-    <?php
-        include 'connexionBDD.php';
+        
+        <?php include 'connexionBDD.php';
+        // panel verifier connexion administrateur
+        if (!(isset($_POST['mdp']))) { ?>   
 
-        if (!(isset($_POST['mdp']))) { ?>           
             <form action="ajoutGestionnaire.php" method="post">
             <div id="pan-connexion-admin">
                 <h1>Connexion Administrateur</h1>
                 <input type="password" name="mdp" placeholder="Entrer le mot de passe" required>
-                <input class="button-id" type="submit" value="valider">
                 <?php if (isset($_GET['p']) AND $_GET['p'] == 'mdpInco') {
                     echo '<p id="error">Le mot de passe est incorrect.<p>';
                 } ?>
+                <input class="button-id" type="submit" value="valider">
             </div>
             </form>
         <?php 
@@ -77,7 +78,7 @@
                 } ?>
 
             <form action="ajoutGestionnaire.php" method="post">
-            <!-- conteneur identification -->
+            <!-- conteneur ajout gestionnaire -->
             <div id="pan-ajout-gestionnaire">
                 <h1>CRÉATION<br> D'UN GESTIONNAIRE</h1>
 
@@ -90,38 +91,34 @@
                     <option value="P">Police</option>
                 </select>
                 
+                <!-- champs de saisies -->
                 <input class="input-new-gestionnaire" type="text" name="id" placeholder="Entrer l'identifiant" required>
-                
                 <input class="input-new-gestionnaire" type="password" name="mdp" placeholder="Entrer le mot de passe" required>
-                
                 <input class="input-new-gestionnaire" type="password" name="mdp-confirm" placeholder="Confirmation du mot de passe" required>
-                
                 <input class="input-new-gestionnaire" type="text" name="nom" placeholder="Entrer le nom" required>
-                
                 <input class="input-new-gestionnaire" type="text" name="prenom" placeholder="Entrer le prénom" required>
-
                 <input class="input-new-gestionnaire" type="email" name="mail" placeholder="Entrer l'adresse email" required>
-
-                <input class="button-id" type="submit">
-                
+                <!-- affichage erreur si erreur -->
                 <?php
-                    if (isset($_GET['etat'])){
-                        switch($_GET['etat']){
-                            case 'success':
-                                echo '<p id="ajout-success">Utilisateur ajouté<p>';
-                            break;
-                            case 'failed':
-                                echo '<p id="ajout-failed">Erreur de l\'ajout de l\'utilisateur<p>';
-                            break;
-                            case 'mdpInco':
-                                echo '<p id="ajout-mdp-different">Les mots de passe ne correspondent pas !<p>';
-                            break;                       
-                            case 'idInco':
-                                echo '<p id="ajout-id-existant">Cet identifiant existe déjà !<p>';
-                            break;
-                        }
+                if (isset($_GET['etat'])){
+                    switch($_GET['etat']){
+                        case 'success':
+                            echo '<p id="ajout-success">Utilisateur ajouté<p>';
+                        break;
+                        case 'failed':
+                            echo '<p id="ajout-failed">Erreur de l\'ajout de l\'utilisateur<p>';
+                        break;
+                        case 'mdpInco':
+                            echo '<p id="ajout-mdp-different">Les mots de passe ne correspondent pas !<p>';
+                        break;                       
+                        case 'idInco':
+                            echo '<p id="ajout-id-existant">Cet identifiant existe déjà !<p>';
+                        break;
                     }
+                }
                 ?>
+                <!-- btn valider -->
+                <input class="button-id" type="submit" value="valider">
             </div>
             </form>
 <?php   }
