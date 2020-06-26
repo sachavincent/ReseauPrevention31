@@ -98,27 +98,27 @@
                 <input class="input-new-gestionnaire" type="text" name="nom" placeholder="Entrer le nom" required>
                 <input class="input-new-gestionnaire" type="text" name="prenom" placeholder="Entrer le prénom" required>
                 <input class="input-new-gestionnaire" type="email" name="mail" placeholder="Entrer l'adresse email" required>
-                <!-- affichage erreur si erreur -->
-                <?php
-                    if (isset($_GET['etat'])){
-                        switch($_GET['etat']){
-                            case 'success':
-                                echo '<p id="ajout-success">Utilisateur ajouté<p>';
-                            break;
-                            case 'failed':
-                                echo '<p id="ajout-failed">Erreur de l\'ajout de l\'utilisateur<p>';
-                            break;
-                            case 'mdpInco':
-                                echo '<p id="ajout-mdp-different">Les mots de passe ne correspondent pas !<p>';
-                            break;                       
-                            case 'idInco':
-                                echo '<p id="ajout-id-existant">Cet identifiant existe déjà !<p>';
-                            break;
-                        }
-                    }
-                ?>
                 <!-- btn valider -->
                 <input class="button-id" type="submit" value="valider">
+                <!-- affichage erreur si erreur -->
+                <?php
+                if (isset($_GET['etat'])){
+                    switch($_GET['etat']){
+                        case 'success':
+                            echo '<p id="ajout-success">Utilisateur ajouté<p>';
+                        break;
+                        case 'failed':
+                            echo '<p id="ajout-failed">Erreur de l\'ajout de l\'utilisateur<p>';
+                        break;
+                        case 'mdpInco':
+                            echo '<p id="ajout-mdp-different">Les mots de passe ne correspondent pas !<p>';
+                        break;                       
+                        case 'idInco':
+                            echo '<p id="ajout-id-existant">Cet identifiant existe déjà !<p>';
+                        break;
+                    }
+                }
+                ?>
             </div>
             </form>
 <?php   }
