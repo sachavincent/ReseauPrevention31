@@ -307,6 +307,13 @@ body {
           box-shadow: none;
 }
 
+#page-identification #pan-connexion-admin #error {
+  font-size: 1.3rem;
+  margin-top: 20px;
+  text-align: center;
+  color: var(--error-color);
+}
+
 #page-identification #pan-ajout-gestionnaire {
   width: 410px;
   background-color: var(--panel-color);
