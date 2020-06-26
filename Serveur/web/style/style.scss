@@ -483,6 +483,13 @@ body {
             margin: 20px 0 20px;
         }
 
+        #error {
+            font-size: 1.3rem;
+            margin: 0 20px;
+            text-align: center;
+            color: var(--error-color);
+        }
+
         .button-id {
             width: 100%;
             padding: 10px;
@@ -491,13 +498,6 @@ body {
             background-color: var(--background-color);
             @include shadow(2px, 1px);
             @include hover(var(--blue-color), var(--hover-font-color));
-        }
-
-        #error {
-            font-size: 1.3rem;
-            margin-top: 20px;
-            text-align: center;
-            color: var(--error-color);
         }
     }
 

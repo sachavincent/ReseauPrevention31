@@ -287,6 +287,13 @@ body {
   margin: 20px 0 20px;
 }
 
+#page-identification #pan-connexion-admin #error {
+  font-size: 1.3rem;
+  margin: 0 20px;
+  text-align: center;
+  color: var(--error-color);
+}
+
 #page-identification #pan-connexion-admin .button-id {
   width: 100%;
   padding: 10px;
@@ -305,13 +312,6 @@ body {
   transition: 0.3s all ease;
   -webkit-box-shadow: none;
           box-shadow: none;
-}
-
-#page-identification #pan-connexion-admin #error {
-  font-size: 1.3rem;
-  margin-top: 20px;
-  text-align: center;
-  color: var(--error-color);
 }
 
 #page-identification #pan-ajout-gestionnaire {
