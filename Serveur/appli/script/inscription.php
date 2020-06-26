@@ -14,10 +14,15 @@ elseif(!preg_match("#^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$#", strtoupper($inf
 } //Ajout de l'utilisateur a la bdd
 else {
 
-    //Test si l'utilisateur a deja tenté de s'inscrire
-    $requeteSQL = $bdd->prepare('SELECT * FROM Utilisateur WHERE `nomUtilisateur` = ? AND `prenomUtilisateur` = ? AND `siret` = ?');
-    $requeteSQL->execute(array($info['nom'], $info['prenom'], $info['num_siret']));
-    if (count($requeteSQL->fetchAll())){
+    //Test si l'utilisateur a deja tenté de s'inscrire et si Secteur correspond au code postal
+    $requeteUtilisateur = $bdd->prepare('SELECT * FROM Utilisateur WHERE `nomUtilisateur` = ? AND `prenomUtilisateur` = ? AND `siret` = ?');
+    $requeteUtilisateur->execute(array($info['nom'], $info['prenom'], $info['num_siret']));
+
+    $requeteCommune = $bdd->prepare('SELECT secteur FROM Commune WHERE idCommune = ?');
+    $requeteCommune->execute(array($info['id_commune']));
+    $secteurCommuneRentree = ($requeteCommune->fetch())['secteur'];
+
+    if (count($requeteUtilisateur->fetchAll()) OR $secteurCommuneRentree != $info['secteur']){
         $retour['error'] = 104;
     } else {
         $requeteSQL = $bdd->prepare(' INSERT INTO `Utilisateur` (`nomUtilisateur`, `prenomUtilisateur`, `siret`, `codeAct`, `idCommune`, `secteur`,  `telephone`, `mail`, `chambre`, `nomSociete`)
