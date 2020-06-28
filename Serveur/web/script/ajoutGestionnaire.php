@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,12 +21,12 @@
         
         <?php include 'connexionBDD.php';
         // panel verifier connexion administrateur
-        if (!(isset($_POST['mdp']))) { ?>   
+        if (!(isset($_POST['mdpAdmin']) OR isset($_SESSION['mdpAdmin']))) { ?>   
 
             <form action="ajoutGestionnaire.php" method="post">
             <div id="pan-connexion-admin">
                 <h1>Connexion Administrateur</h1>
-                <input type="password" name="mdp" placeholder="Entrer le mot de passe" required>
+                <input type="password" name="mdpAdmin" placeholder="Entrer le mot de passe" required>
                 <?php if (isset($_GET['p']) AND $_GET['p'] == 'mdpInco') {
                     echo '<p id="error">Le mot de passe est incorrect.<p>';
                 } ?>
@@ -35,8 +36,9 @@
         <?php 
         }
         else {
+            $_SESSION['mdpAdmin'] = isset($_POST['mdpAdmin']) ? $_POST['mdpAdmin'] : $_SESSION['mdpAdmin'];
             $requeteMdpAdmin = $bdd->prepare('SELECT mdp FROM Administrateur WHERE `mdp` = PASSWORD(?)');
-            $requeteMdpAdmin->execute(array($_POST['mdp']));
+            $requeteMdpAdmin->execute(array($_SESSION['mdpAdmin']));
             $mdpHach = ($requeteMdpAdmin->fetch())['mdp'];
 
             if (empty($mdpHach)){
