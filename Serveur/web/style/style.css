@@ -7,6 +7,7 @@
   --hover-bg-color: #dddddd;
   --hover-font-color: #f5f5f5;
   --shadow-color: #b4b4b4;
+  --button-color: #A9A9A9;
   --primary-color: #F3F2F1;
   --second-color: #FAF9F8;
   --third-color: #FFFFFF;
@@ -20,12 +21,13 @@
   --nav-select-bg: #dadada;
   --nav-select-font: #121212;
   --blue-color: #0078D7;
-  --error-color: #FF2646;
-  --success-color: #26FF26;
+  --error-color: #E81123;
+  --success-color: #00CC6A;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --background-color: #100E17;
     --background-color: #100E17;
     --font-color: #f5f5f5;
     --panel-color: #17141D;
@@ -460,6 +462,8 @@ body {
   width: 100%;
   height: 55px;
   background-color: var(--nav-profile-bg);
+  -webkit-box-shadow: 0px 0px 15px -5px var(--blue-color);
+          box-shadow: 0px 0px 15px -5px var(--blue-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -473,7 +477,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 1px solid var(--shadow-color);
   text-align: right;
 }
 
@@ -523,37 +526,31 @@ body {
   padding-left: 26px;
 }
 
+#nav-gauche .onglet-selected .number-msg {
+  color: var(--nav-profile-bg);
+}
+
 #nav-gauche .logo {
   position: absolute;
   bottom: 5%;
 }
 
+/* ========== PROFILE =========== */
 #pan-profil {
   background-color: var(--second-color);
-  text-align: center;
+  text-align: left;
   height: 100vh;
 }
 
-#pan-profil #pan-photo {
-  height: 25%;
-  padding-top: 1%;
+#pan-profil .block-titre {
+  height: 15%;
+  width: 100%;
+  padding: 2% 0 0 20%;
   background-color: var(--blue-color);
-  -webkit-box-shadow: 0 0 5px 2.5px var(--shadow-color);
-          box-shadow: 0 0 5px 2.5px var(--shadow-color);
-}
-
-#pan-profil #pan-photo h1 {
+  -webkit-box-shadow: 0px 0px 20px -5px var(--blue-color);
+          box-shadow: 0px 0px 20px -5px var(--blue-color);
   font-size: 2.5rem;
-  font-weight: normal;
-  color: var(--nav-profile-font);
-  display: block;
-}
-
-#pan-profil #pan-photo .img-profil img {
-  width: 15%;
-  border-radius: 50%;
-  margin-top: 1%;
-  border: 2.5px solid var(--primary-color);
+  font-weight: 600;
 }
 
 #pan-profil form {
@@ -564,17 +561,36 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
 }
 
+#pan-profil form #pan-photo {
+  margin: 7.5% 2.5% 0 7.55%;
+  text-align: center;
+}
+
+#pan-profil form #pan-photo .img-profil img {
+  width: 200px;
+  border-radius: 50%;
+  margin-bottom: 25px;
+  border: 2.5px solid var(--primary-color);
+}
+
+#pan-profil form #pan-photo h1 {
+  font-size: 2.5rem;
+  font-weight: normal;
+  color: var(--nav-profile-font);
+  display: block;
+}
+
 #pan-profil form .zone-infos, #pan-profil form .zone-mdp {
   width: 25%;
-  margin: 10% 5% 0;
+  margin: 7.5% 2.5% 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -594,6 +610,18 @@ body {
   font-size: 1.85rem;
   color: var(--blue-color);
   font-weight: 600;
+}
+
+#pan-profil form .zone-infos #success, #pan-profil form .zone-infos #error, #pan-profil form .zone-mdp #success, #pan-profil form .zone-mdp #error {
+  font-size: 1.5rem;
+  font-weight: normal;
+  display: block;
+  margin-top: 15px;
+  color: var(--error-color);
+}
+
+#pan-profil form .zone-infos #success, #pan-profil form .zone-mdp #success {
+  color: var(--success-color);
 }
 
 #pan-profil form .zone-infos .input-infos, #pan-profil form .zone-infos .input-mdp, #pan-profil form .zone-mdp .input-infos, #pan-profil form .zone-mdp .input-mdp {

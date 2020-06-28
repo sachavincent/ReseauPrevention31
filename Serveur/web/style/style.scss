@@ -25,6 +25,7 @@ $color-error: #FF2646;
     --shadow-color: #b4b4b4;
 
     // grey colors
+    --button-color: #A9A9A9;
     --primary-color: #F3F2F1;
     --second-color: #FAF9F8;
     --third-color: #FFFFFF;
@@ -42,12 +43,13 @@ $color-error: #FF2646;
 
     // others
     --blue-color: #0078D7;
-    --error-color: #FF2646;
-    --success-color: #26FF26;
+    --error-color: #E81123;
+    --success-color: #00CC6A;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --background-color: #100E17;
         --background-color: #100E17;
         --font-color: #f5f5f5;
         --panel-color: #17141D;
@@ -369,8 +371,8 @@ body {
         width: 100%;
         height: 55px;
         background-color: var(--nav-profile-bg);
+        box-shadow: 0px 0px 15px -5px var(--blue-color);
         @include flex(row wrap, center, center);
-        border-bottom: 1px solid var(--shadow-color);
         text-align: right;
 
         span {
@@ -408,6 +410,10 @@ body {
         color: var(--nav-select-font);
         border-left: 4px solid var(--nav-profile-bg);
         padding-left: 26px;
+
+        .number-msg {
+            color: var(--nav-profile-bg);
+        }
     }
 
     .logo {
@@ -416,177 +422,68 @@ body {
     }
 }
 
-
-// #pan-profil {   
-//     animation: apparition 0.5s linear 0s forwards;
-//     min-width: 700px;
-//     min-height: 500px;
-//     position: absolute;
-//     background-color: $color-light;
-//     top: 0;
-//     bottom: 0;
-//     right: 0;
-//     left: 231px;
-//     padding: 30px;
-//     padding-left: 60px;
-//     padding-right: 60px;
-//     h1 {
-//         position: absolute;
-//         left: 42%;
-//         text-transform: uppercase;
-//         padding-bottom: 5px;
-//         border-bottom: 5px solid $color-second;
-//     }
-//     #pan-profil-interieur {
-//         width: 100%;
-//         height: 85%;
-//         min-width: 576px;
-//         min-height: 394px;
-//         background-color: $color-dark-light;
-//         border-radius: 2px;
-//         margin-top: 6.5%;
-//         margin-top: 50px;
-//         color: $color-text;
-//         font-size: 19px;
-//         .img-profil {
-//             margin-left: 15%;
-//             padding-top: 2.5%;
-//             img {
-//                 width: 17%;
-//                 height: 17%;
-//                 border-radius: 50%;
-//                 border: 5px solid whitesmoke;
-//             }
-//         }
-//         .nom, .prenom {
-//             font-weight: 600;
-//             position: absolute;
-//             display: block;
-//             margin-bottom: 10px;
-//         }
-//         .nom {
-//             font-size: 30px;
-//             left: 38%;
-//             min-width: left;
-//             top: 130px;
-//         }
-//         .prenom {
-//             font-size: 26px;
-//             left: 38%;
-//             min-width: left;
-//             top: 185px;
-//         }
-//         .zone-infos {
-//             width: 27%;
-//             position: absolute;
-//             left: 12%;
-//             .infos-user {
-//                 margin-top: 2%;
-//             }
-//             .input-infos {
-//                 width: 100%;
-//                 height: 23px;
-//                 margin-top: 5px;
-//                 padding: 5px;   
-//                 font-size: 17px;
-//             }
-//         }
-//         .zone-mdp {
-//             width: 27%;
-//             position: absolute;
-//             left: 45%;
-//             .mdp-user {
-//                 margin-top: 2%;
-//             }
-//             .input-mdp {
-//                 width: 100%;
-//                 height: 23px;
-//                 margin-top: 5px;
-//                 padding: 5px;   
-//                 font-size: 17px;
-//             }
-//         }
-//         .required-input {
-//             width: 15px;
-//             height: 15px;
-//             position: absolute;
-//             left: 57%;
-//             top: 6.5%;
-//         }
-//         [type="submit"] {
-//             width: 130px;
-//             height: 40px;
-//             position: absolute;
-//             left: 45%;
-//             top: 82%;
-//             border: none;
-//             font-size: 16px;
-//             background-color: $color-second;
-//             color: $color-light;
-//             border-radius: 2px;
-//             &:hover {
-//                 transition: 0.5s ease;
-//                 background-color: $color-light;
-//                 color: $color-dark-light;
-//                 cursor: pointer;
-//             }
-//         }
-//         #success, #error {
-//             font-size: 15px;
-//             position: absolute;
-//             left: 12%;
-//             top: 82%;
-//         }
-//         #success {
-//             color: $color-success;
-//         }
-//         #error {
-//             color: $color-error;
-//         }
-//     }
-// }
-
+/* ========== PROFILE =========== */
 #pan-profil {
     background-color: var(--second-color);
-    text-align: center;
+    text-align: left;
     // padding-top: 10%;
     height: 100vh;
-    
-    #pan-photo {
-        height: 25%;
-        padding-top: 1%;
-        background-color: var(--blue-color);
-        @include shadow(5px, 2.5px);
-    
-        h1 {
-            font-size: 2.5rem;
-            font-weight: normal;
-            color: var(--nav-profile-font);
-            display: block;
-        }
 
-        .img-profil {
-            img {
-                width: 15%;
-                border-radius: 50%;
-                margin-top: 1%;
-                border: 2.5px solid var(--primary-color);
-            }
-        }
+    .block-titre {
+        height: 15%;
+        width: 100%;
+        padding: 2% 0 0 20%;
+        background-color: var(--blue-color);
+        box-shadow: 0px 0px 20px -5px var(--blue-color);
+        font-size: 2.5rem;
+        font-weight: 600;
     }
 
     form {
-        @include flex(row wrap, center, flex-start);
+        @include flex(row wrap, flex-start, flex-start);
+
+        #pan-photo {
+            margin: 7.5% 2.5% 0 7.55%;
+            text-align: center;
+
+            .img-profil {
+                img {
+                    width: 200px;
+                    border-radius: 50%;
+                    margin-bottom: 25px;
+                    border: 2.5px solid var(--primary-color);
+                }
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                font-weight: normal;
+                color: var(--nav-profile-font);
+                display: block;
+            }
+        }
 
         .zone-infos, .zone-mdp {
             width: 25%;
-            margin: 10% 5% 0;
+            margin: 7.5% 2.5% 0;
             @include flex(column wrap, flex-start, flex-start);
     
             p {
                 font-size: 1.85rem;
                 color: var(--blue-color);
                 font-weight: 600;
+            }
+
+            #success, #error {
+                font-size: 1.5rem;
+                font-weight: normal;
+                display: block;
+                margin-top: 15px;
+                color: var(--error-color);
+            }
+
+            #success {
+                color: var(--success-color);
             }
 
             .input-infos, .input-mdp {

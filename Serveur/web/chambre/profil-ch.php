@@ -21,17 +21,19 @@ session_start();
     <!-- ============================================== -->  
     <!-- page du profil -->
     <section id="pan-profil">
-      <!-- <h1>Mon Profil</h1> -->
-      <!-- conteneur image de profil avec nom prenom -->
-      <div id="pan-photo">
-        <!-- affichage nom / prenom -->
-        <h1 class="nom"> <?php echo $_SESSION['nom']." ".$_SESSION['prenom']; ?></h1>
-        <div class="img-profil"><img src="../images/user.jpg"></div>
+      <div class="block-titre">
+        Mon profil
       </div>
-
+      
       <!-- ============================================== -->  
 
       <form action="../script/modifier_profil.php?return=none" method="post">
+        <!-- conteneur image de profil avec nom prenom -->
+        <div id="pan-photo">
+            <div class="img-profil"><img src="../images/user.jpg"></div>
+            <!-- affichage nom / prenom -->
+            <h1 class="nom"> <?php echo $_SESSION['nom']." ".$_SESSION['prenom']; ?></h1>
+        </div>
         <!-- conteneur avec les infos modifiables -->
         <div class="zone-infos">
           <!-- nom -->
@@ -43,6 +45,20 @@ session_start();
           <!-- mail -->
           <p>Adresse Mail</p>
           <input class="input-infos" name="mail" type="email" value=<?= $_SESSION['mail']; ?> />
+          <!-- ligne d'erreur si la modification échoue -->
+          <?php 
+            /* recuperation de l'URL pour les modifications de profil */
+            switch ($_GET['return']) {
+                case 'none' :
+                    default;
+                break;
+                case 'success' :
+                    echo '<p id="success">Modifications effectuées.</p>';
+                break;
+                case 'error' :
+                    echo '<p id="error">Erreur lors de la modification du profil.</p>';
+                break;
+            } ?>
         </div>
         <!-- mdp actuel -->
         <div class="zone-mdp">
@@ -59,20 +75,6 @@ session_start();
         <input type="submit" value="valider" />
         </div>
 
-        <!-- ligne d'erreur si la modification échoue -->
-        <?php 
-          /* recuperation de l'URL pour les modifications de profil */
-          switch ($_GET['return']) {
-              case 'none' :
-                  default;
-              break;
-              case 'success' :
-                  echo '<p id="success">Modifications effectuées.</p>';
-              break;
-              case 'error' :
-                  echo '<p id="error">Erreur lors de la modification du profil.</p>';
-              break;
-          } ?>
       </form>
     </section>
   </body>
