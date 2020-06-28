@@ -25,7 +25,7 @@
   --success-color: #00CC6A;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background-color: #100E17;
     --background-color: #100E17;
@@ -277,7 +277,6 @@ body {
   width: 45%;
   padding: 10px;
   border: none;
-  border-radius: 0px;
   margin-top: 25px;
   background-color: var(--background-color);
   -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
@@ -330,7 +329,6 @@ body {
   width: 100%;
   padding: 10px;
   border: none;
-  border-radius: 0px;
   background-color: var(--background-color);
   margin-top: 20px;
   -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
@@ -545,7 +543,9 @@ body {
 #pan-profil .block-titre {
   height: 15%;
   width: 100%;
-  padding: 2% 0 0 20%;
+  padding-top: 2%;
+  padding-left: 50%;
+  color: var(--nav-profile-font);
   background-color: var(--blue-color);
   -webkit-box-shadow: 0px 0px 20px -5px var(--blue-color);
           box-shadow: 0px 0px 20px -5px var(--blue-color);
@@ -584,7 +584,7 @@ body {
 #pan-profil form #pan-photo h1 {
   font-size: 2.5rem;
   font-weight: normal;
-  color: var(--nav-profile-font);
+  color: var(--font-color);
   display: block;
 }
 
@@ -627,10 +627,8 @@ body {
 #pan-profil form .zone-infos .input-infos, #pan-profil form .zone-infos .input-mdp, #pan-profil form .zone-mdp .input-infos, #pan-profil form .zone-mdp .input-mdp {
   width: 100%;
   font-size: 1.65rem;
-  padding: 6.5px 0 6.5px;
-  border: none;
-  border-bottom: 2px solid var(--border-color);
-  outline: none;
+  padding: 6.5px;
+  border: 2px solid var(--border-color);
   background-color: transparent;
   margin: 2% 0 4%;
 }
@@ -639,7 +637,6 @@ body {
   width: 50%;
   padding: 10px;
   border: none;
-  border-radius: 0px;
   background-color: var(--nav-bg-color);
   margin-top: 4%;
   -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);

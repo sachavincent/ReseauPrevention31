@@ -22,7 +22,7 @@ session_start();
     <!-- page du profil -->
     <section id="pan-profil">
       <div class="block-titre">
-        Mon profil
+        MON PROFIL
       </div>
       
       <!-- ============================================== -->  

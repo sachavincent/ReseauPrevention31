@@ -47,7 +47,7 @@ $color-error: #FF2646;
     --success-color: #00CC6A;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
         --background-color: #100E17;
         --background-color: #100E17;
@@ -247,7 +247,6 @@ body {
                 width: 45%;
                 padding: 10px;
                 border: none;
-                border-radius: 0px;
                 margin-top: 25px;
                 background-color: var(--background-color);
                 @include shadow(2px, 1px);
@@ -287,7 +286,6 @@ body {
             width: 100%;
             padding: 10px;
             border: none;
-            border-radius: 0px;
             background-color: var(--background-color);
             margin-top: 20px;
             @include shadow(2px, 1px);
@@ -426,13 +424,14 @@ body {
 #pan-profil {
     background-color: var(--second-color);
     text-align: left;
-    // padding-top: 10%;
     height: 100vh;
 
     .block-titre {
         height: 15%;
         width: 100%;
-        padding: 2% 0 0 20%;
+        padding-top: 2%;
+        padding-left: 50%;
+        color: var(--nav-profile-font);
         background-color: var(--blue-color);
         box-shadow: 0px 0px 20px -5px var(--blue-color);
         font-size: 2.5rem;
@@ -458,7 +457,7 @@ body {
             h1 {
                 font-size: 2.5rem;
                 font-weight: normal;
-                color: var(--nav-profile-font);
+                color: var(--font-color);
                 display: block;
             }
         }
@@ -489,10 +488,8 @@ body {
             .input-infos, .input-mdp {
                 width: 100%;
                 font-size: 1.65rem;
-                padding: 6.5px 0 6.5px;
-                border: none;
-                border-bottom: 2px solid var(--border-color);
-                outline: none;
+                padding: 6.5px;
+                border: 2px solid var(--border-color);
                 background-color: transparent;
                 margin: 2% 0 4%;
             }
@@ -501,7 +498,6 @@ body {
                 width: 50%;
                 padding: 10px;
                 border: none;
-                border-radius: 0px;
                 background-color: var(--nav-bg-color);
                 margin-top: 4%;
                 @include shadow(2px, 1px);
