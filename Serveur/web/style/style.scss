@@ -38,8 +38,7 @@ $color-error: #FF2646;
     --nav-profile-bg: #0078D7;
     --nav-profile-font: #f5f5f5;
     --nav-onglet-font: #2236449a;
-    --nav-hover-bg: #fff;
-    --nav-select-bg: #ffffff9a;
+    --nav-hover-bg: #e7e7e7d0;
     --nav-select-bg: #dadada;
     --nav-select-font: #121212;
 
@@ -49,7 +48,7 @@ $color-error: #FF2646;
     --success-color: #00CC6A;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
         --background-color: #100E17;
         --background-color: #100E17;
