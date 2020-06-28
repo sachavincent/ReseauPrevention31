@@ -3,26 +3,28 @@
   --background-color: #dddddd;
   --font-color: #121212;
   --panel-color: #f5f5f5;
-  --border-color: #dadada;
+  --border-color: #cccccc;
   --hover-bg-color: #dddddd;
   --hover-font-color: #f5f5f5;
   --shadow-color: #b4b4b4;
   --primary-color: #F3F2F1;
   --second-color: #FAF9F8;
   --third-color: #FFFFFF;
-  --nav-bg-color: #f3f2f1;
+  --nav-bg-color: #f5f5f5;
+  --nav-border: #dadada;
   --nav-profile-bg: #0078D7;
   --nav-profile-font: #f5f5f5;
   --nav-onglet-font: #2236449a;
   --nav-hover-bg: #fff;
   --nav-select-bg: #ffffff9a;
+  --nav-select-bg: #dadada;
   --nav-select-font: #121212;
-  --blue-color: #1E88E5;
+  --blue-color: #0078D7;
   --error-color: #FF2646;
   --success-color: #26FF26;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background-color: #100E17;
     --font-color: #f5f5f5;
@@ -32,12 +34,13 @@
     --hover-font-color: #f5f5f5;
     --shadow-color: #000000;
     --primary-color: #F4F6F8;
-    --second-color: #F4F4F4;
+    --second-color: #17141D;
     --third-color: #FDFDFD;
     --blue-color: #2196F3;
     --error-color: #FF2646;
     --success-color: #26FF26;
-    --nav-bg-color: #17141D;
+    --nav-bg-color: #100E17;
+    --nav-border: #000;
     --nav-profile-bg: #2196F3;
     --nav-profile-font: #f5f5f5;
     --nav-onglet-font: #ffffff9a;
@@ -77,6 +80,10 @@
   text-decoration: none;
 }
 
+* img {
+  max-width: 100%;
+}
+
 html {
   font-size: 62.5%;
   /* 1 rem = 10px */
@@ -103,7 +110,7 @@ body {
 
 .btn-admin {
   background-color: var(--panel-color);
-  padding: 10px 15px;
+  padding: 7.5px 15px;
   border: none;
   border-radius: 0px;
   position: absolute;
@@ -431,8 +438,9 @@ body {
   height: 100vh;
   float: left;
   background-color: var(--nav-bg-color);
-  border-right: 1px solid var(--shadow-color);
+  border-right: 1px solid var(--nav-border);
   position: relative;
+  z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -489,6 +497,7 @@ body {
   padding: 12.5px;
   font-weight: 600;
   color: var(--nav-onglet-font);
+  padding-left: 30px;
 }
 
 #nav-gauche .onglets:hover, #nav-gauche .onglet-selected:hover {
@@ -501,12 +510,6 @@ body {
           box-shadow: none;
 }
 
-#nav-gauche .onglets i, #nav-gauche .onglet-selected i {
-  width: 10px;
-  margin: 0 35px 0 15px;
-  color: var(--nav-onglet-font);
-}
-
 #nav-gauche .onglets .number-msg, #nav-gauche .onglet-selected .number-msg {
   float: right;
   margin-right: 10px;
@@ -517,15 +520,112 @@ body {
   background-color: var(--nav-select-bg);
   color: var(--nav-select-font);
   border-left: 4px solid var(--nav-profile-bg);
-}
-
-#nav-gauche .onglet-selected i, #nav-gauche .onglet-selected .number-msg {
-  color: var(--nav-profile-bg);
+  padding-left: 26px;
 }
 
 #nav-gauche .logo {
   position: absolute;
   bottom: 5%;
+}
+
+#pan-profil {
+  background-color: var(--second-color);
+  text-align: center;
+  height: 100vh;
+}
+
+#pan-profil #pan-photo {
+  height: 25%;
+  padding-top: 1%;
+  background-color: var(--blue-color);
+  -webkit-box-shadow: 0 0 5px 2.5px var(--shadow-color);
+          box-shadow: 0 0 5px 2.5px var(--shadow-color);
+}
+
+#pan-profil #pan-photo h1 {
+  font-size: 2.5rem;
+  font-weight: normal;
+  color: var(--nav-profile-font);
+  display: block;
+}
+
+#pan-profil #pan-photo .img-profil img {
+  width: 15%;
+  border-radius: 50%;
+  margin-top: 1%;
+  border: 2.5px solid var(--primary-color);
+}
+
+#pan-profil form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+#pan-profil form .zone-infos, #pan-profil form .zone-mdp {
+  width: 25%;
+  margin: 10% 5% 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+#pan-profil form .zone-infos p, #pan-profil form .zone-mdp p {
+  font-size: 1.85rem;
+  color: var(--blue-color);
+  font-weight: 600;
+}
+
+#pan-profil form .zone-infos .input-infos, #pan-profil form .zone-infos .input-mdp, #pan-profil form .zone-mdp .input-infos, #pan-profil form .zone-mdp .input-mdp {
+  width: 100%;
+  font-size: 1.65rem;
+  padding: 6.5px 0 6.5px;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  outline: none;
+  background-color: transparent;
+  margin: 2% 0 4%;
+}
+
+#pan-profil form .zone-infos [value="valider"], #pan-profil form .zone-mdp [value="valider"] {
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 0px;
+  background-color: var(--nav-bg-color);
+  margin-top: 4%;
+  -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
+          box-shadow: 0 0 2px 1px var(--shadow-color);
+}
+
+#pan-profil form .zone-infos [value="valider"]:hover, #pan-profil form .zone-mdp [value="valider"]:hover {
+  cursor: pointer;
+  background-color: var(--blue-color);
+  color: var(--hover-font-color);
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 #pan-content {

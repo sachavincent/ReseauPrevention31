@@ -19,7 +19,7 @@ $color-error: #FF2646;
     --background-color: #dddddd;
     --font-color: #121212;
     --panel-color: #f5f5f5;
-    --border-color: #dadada;
+    --border-color: #cccccc;
     --hover-bg-color: #dddddd;
     --hover-font-color: #f5f5f5;
     --shadow-color: #b4b4b4;
@@ -30,21 +30,23 @@ $color-error: #FF2646;
     --third-color: #FFFFFF;
 
     // color nav gauche
-    --nav-bg-color: #f3f2f1;
+    --nav-bg-color: #f5f5f5;
+    --nav-border: #dadada;
     --nav-profile-bg: #0078D7;
     --nav-profile-font: #f5f5f5;
     --nav-onglet-font: #2236449a;
     --nav-hover-bg: #fff;
     --nav-select-bg: #ffffff9a;
+    --nav-select-bg: #dadada;
     --nav-select-font: #121212;
 
     // others
-    --blue-color: #1E88E5;
+    --blue-color: #0078D7;
     --error-color: #FF2646;
     --success-color: #26FF26;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
     :root {
         --background-color: #100E17;
         --font-color: #f5f5f5;
@@ -54,14 +56,15 @@ $color-error: #FF2646;
         --hover-font-color: #f5f5f5;
         --shadow-color: #000000;
         --primary-color: #F4F6F8;
-        --second-color: #F4F4F4;
+        --second-color: #17141D;
         --third-color: #FDFDFD;
         --blue-color: #2196F3;
         --error-color: #FF2646;
         --success-color: #26FF26;
 
         // color nav gauche
-        --nav-bg-color: #17141D;
+        --nav-bg-color: #100E17;
+        --nav-border: #000;
         --nav-profile-bg: #2196F3;
         --nav-profile-font: #f5f5f5;
         --nav-onglet-font: #ffffff9a;
@@ -118,6 +121,9 @@ $color-error: #FF2646;
     word-break: break-word;
     box-sizing: border-box;
     text-decoration: none;
+    img {
+        max-width: 100%;
+    }
 }
 
 html {
@@ -147,7 +153,7 @@ body {
 
 .btn-admin {
     background-color: var(--panel-color);
-    padding: 10px 15px;
+    padding: 7.5px 15px;
     border: none;
     border-radius: 0px;
     position: absolute;
@@ -354,8 +360,9 @@ body {
     height: 100vh;
     float: left;
     background-color: var(--nav-bg-color);
-    border-right: 1px solid var(--shadow-color);
+    border-right: 1px solid var(--nav-border);
     position: relative;
+    z-index: 10;
     @include flex(column wrap, flex-start, center);
 
     .onglet-profil {
@@ -388,12 +395,7 @@ body {
         font-weight: 600;
         color: var(--nav-onglet-font);
         @include hover(var(--nav-hover-bg), none);
-
-        i {
-            width: 10px;
-            margin: 0 35px 0 15px;
-            color: var(--nav-onglet-font);
-        }
+        padding-left: 30px;
 
         .number-msg {
             float: right;
@@ -405,10 +407,7 @@ body {
         background-color: var(--nav-select-bg);
         color: var(--nav-select-font);
         border-left: 4px solid var(--nav-profile-bg);
-
-        i, .number-msg {
-            color: var(--nav-profile-bg);
-        }
+        padding-left: 26px;
     }
 
     .logo {
@@ -548,8 +547,73 @@ body {
 // }
 
 #pan-profil {
+    background-color: var(--second-color);
+    text-align: center;
+    // padding-top: 10%;
+    height: 100vh;
     
+    #pan-photo {
+        height: 25%;
+        padding-top: 1%;
+        background-color: var(--blue-color);
+        @include shadow(5px, 2.5px);
+    
+        h1 {
+            font-size: 2.5rem;
+            font-weight: normal;
+            color: var(--nav-profile-font);
+            display: block;
+        }
+
+        .img-profil {
+            img {
+                width: 15%;
+                border-radius: 50%;
+                margin-top: 1%;
+                border: 2.5px solid var(--primary-color);
+            }
+        }
+    }
+
+    form {
+        @include flex(row wrap, center, flex-start);
+
+        .zone-infos, .zone-mdp {
+            width: 25%;
+            margin: 10% 5% 0;
+            @include flex(column wrap, flex-start, flex-start);
+    
+            p {
+                font-size: 1.85rem;
+                color: var(--blue-color);
+                font-weight: 600;
+            }
+
+            .input-infos, .input-mdp {
+                width: 100%;
+                font-size: 1.65rem;
+                padding: 6.5px 0 6.5px;
+                border: none;
+                border-bottom: 2px solid var(--border-color);
+                outline: none;
+                background-color: transparent;
+                margin: 2% 0 4%;
+            }
+            
+            [value="valider"] {
+                width: 50%;
+                padding: 10px;
+                border: none;
+                border-radius: 0px;
+                background-color: var(--nav-bg-color);
+                margin-top: 4%;
+                @include shadow(2px, 1px);
+                @include hover(var(--blue-color), var(--hover-font-color));
+            }
+        }
+    }
 }
+
 
 
 

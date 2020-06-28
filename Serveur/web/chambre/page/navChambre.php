@@ -63,19 +63,19 @@ function nbNewMsg($categorie)
 
   <!-- onglets d'interfaces -->
   <div class=<?= $onglet_attente; ?> onclick=window.location.href='../chambre/demandes.php?e=attente&m=none' >
-    <i class="fas fa-envelope"></i>En attente
+    En attente
     <!-- nb de demandes -->
     <p class="number-msg"><?php nbNewMsg("EN_COURS") ?></p>
   </div>
 
   <div class=<?= $onglet_accepte; ?> onclick=window.location.href='../chambre/demandes.php?e=accepte&m=none' >
-    <i class="fas fa-check"></i>Acceptées
+    Acceptées
     <!-- nb de demandes -->
     <p class="number-msg"><?php nbNewMsg("VALIDE") ?></p>
   </div>
 
   <div class=<?= $onglet_refuse; ?> onclick=window.location.href='../chambre/demandes.php?e=refuse&m=none' >
-    <i class="fas fa-times"></i>Refusées
+    Refusées
     <!-- nb de demandes -->
     <p class="number-msg"><?php nbNewMsg("REFUSE") ?></p>
   </div>
