@@ -7,10 +7,10 @@
   --hover-bg-color: #dddddd;
   --hover-font-color: #f5f5f5;
   --shadow-color: #b4b4b4;
-  --button-color: #A9A9A9;
   --primary-color: #F3F2F1;
   --second-color: #FAF9F8;
   --third-color: #FFFFFF;
+  --button-color: #c0c0c0;
   --nav-bg-color: #f5f5f5;
   --nav-border: #dadada;
   --nav-profile-bg: #0078D7;
@@ -278,9 +278,8 @@ body {
   padding: 10px;
   border: none;
   margin-top: 25px;
-  background-color: var(--background-color);
-  -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
-          box-shadow: 0 0 2px 1px var(--shadow-color);
+  font-weight: 600;
+  background-color: var(--button-color);
 }
 
 #page-identification #pan-identification .buttons-id .bouton-id:hover {
@@ -329,10 +328,9 @@ body {
   width: 100%;
   padding: 10px;
   border: none;
-  background-color: var(--background-color);
+  font-weight: 600;
+  background-color: var(--button-color);
   margin-top: 20px;
-  -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
-          box-shadow: 0 0 2px 1px var(--shadow-color);
 }
 
 #page-identification #pan-connexion-admin .button-id:hover {
@@ -404,11 +402,9 @@ body {
   width: 100%;
   padding: 10px;
   border: none;
-  border-radius: 0px;
-  background-color: var(--background-color);
+  font-weight: 600;
+  background-color: var(--button-color);
   margin-top: 30px;
-  -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
-          box-shadow: 0 0 2px 1px var(--shadow-color);
 }
 
 #page-identification #pan-ajout-gestionnaire .button-id:hover {
@@ -637,10 +633,9 @@ body {
   width: 50%;
   padding: 10px;
   border: none;
-  background-color: var(--nav-bg-color);
+  font-weight: 600;
+  background-color: var(--button-color);
   margin-top: 4%;
-  -webkit-box-shadow: 0 0 2px 1px var(--shadow-color);
-          box-shadow: 0 0 2px 1px var(--shadow-color);
 }
 
 #pan-profil form .zone-infos [value="valider"]:hover, #pan-profil form .zone-mdp [value="valider"]:hover {

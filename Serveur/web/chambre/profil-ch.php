@@ -41,7 +41,6 @@ session_start();
                 echo  '<img src="../images/'. $_SESSION["id"]. 'c.png"></div>';
               } else {
                 echo  '<img src="../images/user.jpg"></div>';
-
               } ?>
             </div>
             <!-- affichage nom / prenom -->
@@ -80,13 +79,13 @@ session_start();
         <div class="zone-mdp">
           <p>Mot de passe actuel</p>
           <!-- <img class="required-input" src="../images/required.png" title="champ obligatoire" /> -->
-          <input class="input-mdp" name="mdp" type="password" required/>
+          <input class="input-mdp" name="mdp" type="password" placeholder="Entrer le mot de passe actuel" required/>
           <!-- nouveau mdp -->
           <p>Nouveau mot de passe</p>
-          <input class="input-mdp" name="nouveauMdp" type="password"/>
+          <input class="input-mdp" name="nouveauMdp" type="password" placeholder="Saisissez ici un nouveau mot de passe"/>
           <!-- confirmation mdp -->
           <p>Confirmation</p>
-          <input class="input-mdp" name="confirmationMdp" type="password"/>
+          <input class="input-mdp" name="confirmationMdp" type="password" placeholder="Confirmez ici le nouveau mot de passe"/>
 
           <!-- bouton valider -->
         <input type="submit" value="valider" />
