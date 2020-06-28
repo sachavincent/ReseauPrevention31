@@ -9,6 +9,7 @@ session_start();
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="icon" type="image/png" href="../images/icon.png" />
+    <script src="https://kit.fontawesome.com/161f845565.js" crossorigin="anonymous"></script>
   </head>  
   <body>
     <header>

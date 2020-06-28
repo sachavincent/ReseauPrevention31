@@ -15,6 +15,7 @@ $color-success: #26FF26;
 $color-error: #FF2646;
 
 :root {
+    // general colors
     --background-color: #dddddd;
     --font-color: #121212;
     --panel-color: #f5f5f5;
@@ -22,7 +23,24 @@ $color-error: #FF2646;
     --hover-bg-color: #dddddd;
     --hover-font-color: #f5f5f5;
     --shadow-color: #b4b4b4;
+
+    // grey colors
+    --primary-color: #F3F2F1;
+    --second-color: #FAF9F8;
+    --third-color: #FFFFFF;
+
+    // color nav gauche
+    --nav-bg-color: #151515;
+    --nav-profile-bg: #0078D7;
+    --nav-profile-font: #f5f5f5;
+    --nav-onglet-font: #f5f5f5;
+    --nav-hover-bg: #000000;
+    --nav-select-bg: #f5f5f5;
+    --nav-select-font: #0078D7;
+
+    // others
     --blue-color: #1E88E5;
+    --light-blue-color: #C7E0F4;
     --error-color: #FF2646;
     --success-color: #26FF26;
 }
@@ -36,7 +54,11 @@ $color-error: #FF2646;
         --hover-bg-color: #ddddddce;
         --hover-font-color: #f5f5f5;
         --shadow-color: #000000;
+        --primary-color: #F4F6F8;
+        --second-color: #F4F4F4;
+        --third-color: #FDFDFD;
         --blue-color: #2196F3;
+        --light-blue-color: #106EBE;
         --error-color: #FF2646;
         --success-color: #26FF26;
     }
@@ -82,6 +104,7 @@ $color-error: #FF2646;
 
 * {
     font-family: 'Titillium Web', sans-serif;
+    font-size: 1.5rem;
     margin: 0;
     padding: 0;
     color: var(--font-color);
@@ -110,257 +133,10 @@ body {
     color: var(--font-color);
     width: 100%;
     height: 100%;
+    // min-width: 1280px;
+    // min-height: 720px;
 //     overflow:;
 }
-
-
-// #page-identification {
-//     width: 100%;
-//     height: 100%;
-//     animation: apparition 0.75s linear 0s forwards;
-//     display: flex;
-//     flex-wrap: wrap;
-//     align-items: center;
-//     justify-content: space-around;
-
-//     .btn-admin {
-//         display: block;
-//         position: absolute;
-//         left: 0;
-//         top: 0;
-//     }
-
-//     .pan-chambres, .pan-forces {
-//         width: 600px;
-//         padding: 30px;
-//         background-color: $color-dark-light;
-//         border-radius: 5px;
-//         text-align: center;
-//         margin: auto;
-//         margin-top: 25vh;
-
-//         h1 {
-//             color: $color-text;
-//             padding-bottom: 10px;
-//             border-bottom: 5px solid $color-second;
-//             text-transform: uppercase;
-//             display: block;
-//             margin: auto;
-//         }
-
-//         #logos-chambres, #logos-forces {
-//             display: flex;
-//             flex-wrap: wrap;
-//             align-items: center;
-//             justify-content: space-around;
-//             margin-top: 25px;
-//             img {
-//                 width: 175px;
-//                 padding: 10px;
-//                 background-color: $color-light;
-//                 border-radius: 5px;
-//                 &:hover {
-//                     transition: 0.5s all ease;
-//                     background-color: $color-second;
-//                 }
-//             }
-//         }
-//     }
-//     .pan-chambres {
-//         h1 {
-//             width: 262px;
-//         }
-//     }
-//     .pan-forces {
-//         width: 400px;
-//         h1 {
-//             width: 355px;
-//         }
-//         margin-bottom: 50px;
-//     }
-
-//     // identification
-//     #pan-identification {
-//         width: 300px;
-//         height: 510px;
-//         background-color: $color-dark-light;
-//         margin: auto;
-//         margin-top: 5%;
-//         border-radius: 5px 5px 5px 5px;
-//         text-align: center;
-//         padding: 50px;
-        
-//         #logo-choisi {
-//             background-color: $color-text;
-//             margin: auto;
-//             margin-bottom: 40px;
-//             margin-top: 15px;
-//             width: 60%;
-//             padding: 20px;
-//             border-radius: 50%;
-//             img {
-//                 width: 175px;
-//                 height: 175px;
-//             }
-//             &:hover {
-//                 transition: 0.5s all ease;
-//                 background-color: $color-second;
-//             }
-//         }
-//         p {
-//             font-family: "KoHo";
-//             font-weight: 600;
-//             text-align: left;
-//             color: $color-text;
-//         }
-//         [name='mdp'], [name='id'] {
-//             width: 100%;
-//             height: 10px;
-//             font-size: 16px;
-//             padding-top: 10px;
-//             padding-bottom: 10px;
-//             margin-bottom: 22px;
-//             border: 0px;
-//             border-bottom: 2px solid $color-text;
-//             background-color: transparent;
-//             color: $color-text;
-//             &:focus {
-//                 outline: 0;
-//             }
-//         }
-//         .bouton-id  {
-//             width: 100%;
-//             height: 40px;
-//             padding: 10px;
-//             background-color: $color-second;
-//             color: $color-text;
-//             border: 0px;
-//             border-radius: 2px;
-//             margin-top: 5px;
-//             cursor: pointer;
-//         }
-//         [value="valider"] {
-//             &:hover {
-//                 background-color: $color-text;
-//                 color: $color-dark-light;
-//                 transition: 0.5s ease;
-//             }
-//         }
-//         [value="retour"] {
-//             background-color: transparent;
-//         }
-//         #login-failed {
-//             color: $color-error;
-//             margin: auto;
-//             font-size: 14px;
-//             text-align: center;
-//             margin-bottom: 10px;
-//         }
-//     }
-
-//     [value="retour"], [value="Administrateur"] {
-//         padding: 5px;
-//         padding-left: 20px;
-//         padding-right: 20px;
-//         cursor: pointer;
-//         background-color: $color-second;
-//         border: none;
-//         color: $color-text;
-//         border-radius: 2px;
-//         &:hover {
-//             background-color: $color-text;
-//             color: $color-dark-light;
-//             transition: 0.5s ease;
-//         }
-//     }
-
-//     #pan-ajout-gestionnaire, #pan-connexion-admin {
-//         width: 350px;
-//         background-color: $color-dark-light;
-//         margin: auto;
-//         margin-top: 10vh;
-//         margin-top: 10vh;
-//         border-radius: 5px 5px 5px 5px;
-//         text-align: center;
-//         padding: 65px;
-//         padding-bottom: 50px;
-//         color: $color-text;
-//         display: flex;
-//         flex-direction: column;
-//         h1 {
-//             margin-top: -30px;
-//         }
-//         [name="select-chambre"] {
-//             padding: 6px;
-//             font-size: 15px;
-//             margin-top: 35px;
-//             cursor: pointer;
-//             border-radius: 3px;
-//             // appearance: none;
-//         }
-//         .identifiants {
-//             font-size: 17px;
-//             font-weight: 600;
-//             text-align: left;
-//             margin-top: 22px;
-//             text-transform: uppercase;
-//         }
-//         .input-new-gestionnaire, [type="password"] {
-//             padding: 5px;
-//             margin-top: 5px;
-//             font-size: 16px;
-//             background-color: transparent;
-//             border: none;
-//             border-bottom: 2px solid $color-light;
-//             color: $color-text;
-//             outline: none;
-//         }
-//         .bouton-id, [type="submit"] {
-//             width: 100%;
-//             height: 40px;
-//             padding: 10px;
-//             background-color: $color-second;
-//             color: $color-text;
-//             border: none;
-//             border-radius: 2px;
-//             margin-top: 25px;
-//             cursor: pointer;
-//             &:hover {
-//                 background-color: $color-text;
-//                 color: $color-dark-light;
-//                 transition: 0.5s ease;
-//             }
-//         }
-//         #ajout-success, #ajout-failed, #ajout-mdp-different, #ajout-id-existant, #error {
-//             font-size: 14px;
-//             color: $color-error;
-//             margin-top: 10px;
-//         }
-//         #ajout-success {
-//             color: $color-success;
-//         }
-//     }
-
-//     #pan-connexion-admin {
-//         width: 325px;
-//         margin-top: 25vh;
-//         padding-bottom: 40px;
-//         h1 {
-//             margin-top: -35px;
-//             margin-bottom: 10px;
-//         }
-//         .input-new-gestionnaire {
-//             padding: 5px;
-//             margin-top: 5px;
-//             font-size: 16px;
-//             background-color: transparent;
-//             border: none;
-//             border-bottom: 2px solid $color-light;
-//             color: $color-text;
-//             outline: none;
-//         }
-//     }
-// }
 
 .btn-admin {
     background-color: var(--panel-color);
@@ -374,6 +150,7 @@ body {
     @include hover(var(--blue-color), var(--hover-font-color));
 }
 
+/* ========== IDENTIFICATION =========== */
 #page-identification {
     @include flex(row wrap, center, center);
     transition: 0.5s all ease;
@@ -393,6 +170,7 @@ body {
             em {
                 font-style: normal;
                 font-weight: 700;
+                font-size: 2.0rem;
                 color: var(--blue-color);
             }
         }
@@ -563,103 +341,116 @@ body {
     }
 }
 
+/* ========== NAV GAUCHE =========== */
 #nav-gauche {
-    height: 100%;
-    width: 230px;
-    background-color: $color-dark-light;
-    display: block;
-    text-align: left;
-    color: $color-text;
-    position: absolute;
-    border-right: 1px $color-dark;
+    width: 225px;
+    height: 100vh;
+    float: left;
+    background-color: var(--nav-bg-color);
+    border-right: 1px solid var(--border-color);
+    position: relative;
+    @include flex(column wrap, flex-start, center);
+
     .onglet-profil {
-        width: 80%;
-        height: 35px;
-        margin: 15px;
-        padding: 5px;
-        background-color: $color-second;
-        border-radius: 2px;
-        &:hover {
-            filter: brightness(115%);
-            transition: 0.4s ease;
-        }
-        span {
-            font-weight: 600;
-            font-size: 20px;
-            padding-left: 15%;
-            &:hover {
-                cursor: pointer;
-            }
-        }
-        img {
-            margin-left: 25%;
-            padding-top: 5px;
-            width: 20px;
-            height: 20px;
-            &:hover {
-                cursor: pointer;
-            }
-        }
-    }
-    .new-annonce, .new-conseil {
         width: 100%;
-        height: 35px;
-        font-size: 16px;
-        margin-bottom: 2px;
-        background-color: transparent;
-        border: none;
-        color: $color-light;
-        text-align: left;
-        padding-left: 32px;
-        &:hover {
-            transition: 0.5s all ease;
-            background-color: $color-second;
+        height: 55px;
+        background-color: var(--nav-profile-bg);
+        @include flex(row wrap, center, center);
+        // border-bottom: 1px solid var(--border-color);
+        text-align: right;
+
+        span {
+            color: var(--nav-profile-font);
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-right: 40%;
+            cursor: pointer;
+        }
+
+        img {
+            width: 18px;
+            margin-bottom: 2.5px;
             cursor: pointer;
         }
     }
-    .new-conseil {
-        margin-bottom: 15px;
-    }
+
     .onglets, .onglet-selected {
-        width: 80%;
-        height: 30px;
-        padding-left: 20%;
-        padding-top: 8%;
-        padding-bottom: 5%;
-        &:hover {
-            transition: 0.5s all ease;
-            background-color: $color-hover-nav;
-            cursor: pointer;
+        width: 100%;
+        background-color: transparent;
+        padding: 12px;
+        // font-weight: 600;
+        color: var(--nav-onglet-font);
+        @include hover(var(--nav-hover-bg), none);
+
+        i {
+            width: 10px;
+            margin: 0 35px 0 15px;
+            color: var(--nav-onglet-font);
         }
-        & .number-msg {
-            position: absolute;
-            left: 80%;
-            margin-top: -10%;
+
+        .number-msg {
+            float: right;
+            margin-right: 10px;
+            color: var(--nav-onglet-font);
         }
     }
     .onglet-selected {
-        border-left: 4px solid $color-second;
-    }
-    .nb-connexions {
-        font-size: 13px;
-        top: 68%;
-        margin-left: 15%;
-        position: absolute;
-    }
-    .logo {
-        margin-left: 15%;
-        top: 72%;
-        position: absolute;
-        background-color: $color-text;
-        border-radius: 2px;
-        &:hover {
-            transition: 0.5s all ease;
-            background-color: $color-second;
+        // background-color: var(--nav-onglet-font);
+        // color: var(--nav-select-font);
+        border-left: 4px solid var(--nav-select-font);
+
+        i, .number-msg {
+            color: var(--nav-select-font);
         }
+    }
+
+    .logo {
+        position: absolute;
+        bottom: 5%;
     }
 }
 
-#pan-profil {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pan-profil {   
+    display: none;
     animation: apparition 0.5s linear 0s forwards;
     min-width: 700px;
     min-height: 500px;
