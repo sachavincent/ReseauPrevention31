@@ -30,17 +30,16 @@ $color-error: #FF2646;
     --third-color: #FFFFFF;
 
     // color nav gauche
-    --nav-bg-color: #151515;
+    --nav-bg-color: #f3f2f1;
     --nav-profile-bg: #0078D7;
     --nav-profile-font: #f5f5f5;
-    --nav-onglet-font: #f5f5f5;
-    --nav-hover-bg: #000000;
-    --nav-select-bg: #f5f5f5;
-    --nav-select-font: #0078D7;
+    --nav-onglet-font: #2236449a;
+    --nav-hover-bg: #fff;
+    --nav-select-bg: #ffffff9a;
+    --nav-select-font: #121212;
 
     // others
     --blue-color: #1E88E5;
-    --light-blue-color: #C7E0F4;
     --error-color: #FF2646;
     --success-color: #26FF26;
 }
@@ -58,9 +57,17 @@ $color-error: #FF2646;
         --second-color: #F4F4F4;
         --third-color: #FDFDFD;
         --blue-color: #2196F3;
-        --light-blue-color: #106EBE;
         --error-color: #FF2646;
         --success-color: #26FF26;
+
+        // color nav gauche
+        --nav-bg-color: #17141D;
+        --nav-profile-bg: #2196F3;
+        --nav-profile-font: #f5f5f5;
+        --nav-onglet-font: #ffffff9a;
+        --nav-hover-bg: #000;
+        --nav-select-bg: #5fa1d61e;
+        --nav-select-font: #fff;
     }
 }
 
@@ -250,7 +257,7 @@ body {
         @include center-xy-axis;
         @include shadow(10px, 2px);
 
-        [name="mdp"] {
+        [name="mdpAdmin"] {
             width: 100%;
             font-size: 1.6rem;
             padding: 10px 0 7.5px;
@@ -347,7 +354,7 @@ body {
     height: 100vh;
     float: left;
     background-color: var(--nav-bg-color);
-    border-right: 1px solid var(--border-color);
+    border-right: 1px solid var(--shadow-color);
     position: relative;
     @include flex(column wrap, flex-start, center);
 
@@ -356,7 +363,7 @@ body {
         height: 55px;
         background-color: var(--nav-profile-bg);
         @include flex(row wrap, center, center);
-        // border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--shadow-color);
         text-align: right;
 
         span {
@@ -377,8 +384,8 @@ body {
     .onglets, .onglet-selected {
         width: 100%;
         background-color: transparent;
-        padding: 12px;
-        // font-weight: 600;
+        padding: 12.5px;
+        font-weight: 600;
         color: var(--nav-onglet-font);
         @include hover(var(--nav-hover-bg), none);
 
@@ -395,12 +402,12 @@ body {
         }
     }
     .onglet-selected {
-        // background-color: var(--nav-onglet-font);
-        // color: var(--nav-select-font);
-        border-left: 4px solid var(--nav-select-font);
+        background-color: var(--nav-select-bg);
+        color: var(--nav-select-font);
+        border-left: 4px solid var(--nav-profile-bg);
 
         i, .number-msg {
-            color: var(--nav-select-font);
+            color: var(--nav-profile-bg);
         }
     }
 
@@ -411,173 +418,176 @@ body {
 }
 
 
+// #pan-profil {   
+//     animation: apparition 0.5s linear 0s forwards;
+//     min-width: 700px;
+//     min-height: 500px;
+//     position: absolute;
+//     background-color: $color-light;
+//     top: 0;
+//     bottom: 0;
+//     right: 0;
+//     left: 231px;
+//     padding: 30px;
+//     padding-left: 60px;
+//     padding-right: 60px;
+//     h1 {
+//         position: absolute;
+//         left: 42%;
+//         text-transform: uppercase;
+//         padding-bottom: 5px;
+//         border-bottom: 5px solid $color-second;
+//     }
+//     #pan-profil-interieur {
+//         width: 100%;
+//         height: 85%;
+//         min-width: 576px;
+//         min-height: 394px;
+//         background-color: $color-dark-light;
+//         border-radius: 2px;
+//         margin-top: 6.5%;
+//         margin-top: 50px;
+//         color: $color-text;
+//         font-size: 19px;
+//         .img-profil {
+//             margin-left: 15%;
+//             padding-top: 2.5%;
+//             img {
+//                 width: 17%;
+//                 height: 17%;
+//                 border-radius: 50%;
+//                 border: 5px solid whitesmoke;
+//             }
+//         }
+//         .nom, .prenom {
+//             font-weight: 600;
+//             position: absolute;
+//             display: block;
+//             margin-bottom: 10px;
+//         }
+//         .nom {
+//             font-size: 30px;
+//             left: 38%;
+//             min-width: left;
+//             top: 130px;
+//         }
+//         .prenom {
+//             font-size: 26px;
+//             left: 38%;
+//             min-width: left;
+//             top: 185px;
+//         }
+//         .zone-infos {
+//             width: 27%;
+//             position: absolute;
+//             left: 12%;
+//             .infos-user {
+//                 margin-top: 2%;
+//             }
+//             .input-infos {
+//                 width: 100%;
+//                 height: 23px;
+//                 margin-top: 5px;
+//                 padding: 5px;   
+//                 font-size: 17px;
+//             }
+//         }
+//         .zone-mdp {
+//             width: 27%;
+//             position: absolute;
+//             left: 45%;
+//             .mdp-user {
+//                 margin-top: 2%;
+//             }
+//             .input-mdp {
+//                 width: 100%;
+//                 height: 23px;
+//                 margin-top: 5px;
+//                 padding: 5px;   
+//                 font-size: 17px;
+//             }
+//         }
+//         .required-input {
+//             width: 15px;
+//             height: 15px;
+//             position: absolute;
+//             left: 57%;
+//             top: 6.5%;
+//         }
+//         [type="submit"] {
+//             width: 130px;
+//             height: 40px;
+//             position: absolute;
+//             left: 45%;
+//             top: 82%;
+//             border: none;
+//             font-size: 16px;
+//             background-color: $color-second;
+//             color: $color-light;
+//             border-radius: 2px;
+//             &:hover {
+//                 transition: 0.5s ease;
+//                 background-color: $color-light;
+//                 color: $color-dark-light;
+//                 cursor: pointer;
+//             }
+//         }
+//         #success, #error {
+//             font-size: 15px;
+//             position: absolute;
+//             left: 12%;
+//             top: 82%;
+//         }
+//         #success {
+//             color: $color-success;
+//         }
+//         #error {
+//             color: $color-error;
+//         }
+//     }
+// }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pan-profil {   
-    display: none;
-    animation: apparition 0.5s linear 0s forwards;
-    min-width: 700px;
-    min-height: 500px;
-    position: absolute;
-    background-color: $color-light;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 231px;
-    padding: 30px;
-    padding-left: 60px;
-    padding-right: 60px;
-    h1 {
-        position: absolute;
-        left: 42%;
-        text-transform: uppercase;
-        padding-bottom: 5px;
-        border-bottom: 5px solid $color-second;
-    }
-    #pan-profil-interieur {
-        width: 100%;
-        height: 85%;
-        min-width: 576px;
-        min-height: 394px;
-        background-color: $color-dark-light;
-        border-radius: 2px;
-        margin-top: 6.5%;
-        margin-top: 50px;
-        color: $color-text;
-        font-size: 19px;
-        .img-profil {
-            margin-left: 15%;
-            padding-top: 2.5%;
-            img {
-                width: 17%;
-                height: 17%;
-                border-radius: 50%;
-                border: 5px solid whitesmoke;
-            }
-        }
-        .nom, .prenom {
-            font-weight: 600;
-            position: absolute;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .nom {
-            font-size: 30px;
-            left: 38%;
-            min-width: left;
-            top: 130px;
-        }
-        .prenom {
-            font-size: 26px;
-            left: 38%;
-            min-width: left;
-            top: 185px;
-        }
-        .zone-infos {
-            width: 27%;
-            position: absolute;
-            left: 12%;
-            .infos-user {
-                margin-top: 2%;
-            }
-            .input-infos {
-                width: 100%;
-                height: 23px;
-                margin-top: 5px;
-                padding: 5px;   
-                font-size: 17px;
-            }
-        }
-        .zone-mdp {
-            width: 27%;
-            position: absolute;
-            left: 45%;
-            .mdp-user {
-                margin-top: 2%;
-            }
-            .input-mdp {
-                width: 100%;
-                height: 23px;
-                margin-top: 5px;
-                padding: 5px;   
-                font-size: 17px;
-            }
-        }
-        .required-input {
-            width: 15px;
-            height: 15px;
-            position: absolute;
-            left: 57%;
-            top: 6.5%;
-        }
-        [type="submit"] {
-            width: 130px;
-            height: 40px;
-            position: absolute;
-            left: 45%;
-            top: 82%;
-            border: none;
-            font-size: 16px;
-            background-color: $color-second;
-            color: $color-light;
-            border-radius: 2px;
-            &:hover {
-                transition: 0.5s ease;
-                background-color: $color-light;
-                color: $color-dark-light;
-                cursor: pointer;
-            }
-        }
-        #success, #error {
-            font-size: 15px;
-            position: absolute;
-            left: 12%;
-            top: 82%;
-        }
-        #success {
-            color: $color-success;
-        }
-        #error {
-            color: $color-error;
-        }
-    }
+#pan-profil {
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #pan-content {
     min-width: 1140px;
