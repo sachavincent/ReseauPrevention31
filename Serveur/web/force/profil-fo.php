@@ -24,13 +24,25 @@ session_start();
       <!-- conteneur image de profil avec nom prenom -->
       <section id="pan-profil-interieur">
         <!-- affichage nom / prenom -->
-        <div class="img-profil"><img src="../images/user.jpg"></div>
+        <div class="img-profil">
+              <?php
+              if (file_exists('../images/' . $_SESSION['id'] . '.jpeg')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'f.jpeg"></div>';
+              } elseif (file_exists('../images/' . $_SESSION['id'] . 'f.jpg')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'f.jpg"></div>';
+              } elseif (file_exists('../images/' . $_SESSION['id'] . 'f.png')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'f.png"></div>';
+              } else {
+                echo  '<img src="../images/user.jpg"></div>';
+
+              } ?>
+        </div>
         <p class="nom"> <?= $_SESSION['nom'] ?></p>
         <p class="prenom"> <?= $_SESSION['prenom'] ?></p>
 
       <!-- ============================================== -->  
       <!-- conteneur avec les infos modifiables -->
-      <form action="../script/modifier_profil.php?return=none" method="post">
+      <form action="../script/modifier_profil.php?return=none" method="post" enctype="multipart/form-data">
         <!-- nom -->
         <div class="zone-infos">
           <p class="infos-user">Nom</p>
@@ -41,6 +53,8 @@ session_start();
           <!-- mail -->
           <p class="infos-user">Adresse Mail</p>
           <input class="input-infos" name="mail" type="email" value=<?= $_SESSION['mail']; ?> />
+          <p>Photo</p>
+          <input type="file" name="photoProfil" id='photoProfil' accept='image/jpeg'>
         </div>
         <!-- mdp actuel -->
         <div class="zone-mdp">

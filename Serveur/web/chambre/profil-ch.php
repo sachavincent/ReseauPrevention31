@@ -27,10 +27,23 @@ session_start();
       
       <!-- ============================================== -->  
 
-      <form action="../script/modifier_profil.php?return=none" method="post">
+      <form action="../script/modifier_profil.php?return=none" method="post"  enctype="multipart/form-data">
         <!-- conteneur image de profil avec nom prenom -->
         <div id="pan-photo">
-            <div class="img-profil"><img src="../images/user.jpg"></div>
+        <div id="pan-photo">
+            <div class="img-profil">
+              <?php
+              if (file_exists('../images/' . $_SESSION['id'] . 'c.jpeg')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'c.jpeg"></div>';
+              } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.jpg')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'c.jpg"></div>';
+              } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.png')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'c.png"></div>';
+              } else {
+                echo  '<img src="../images/user.jpg"></div>';
+
+              } ?>
+            </div>
             <!-- affichage nom / prenom -->
             <h1 class="nom"> <?php echo $_SESSION['nom']." ".$_SESSION['prenom']; ?></h1>
         </div>
@@ -45,6 +58,9 @@ session_start();
           <!-- mail -->
           <p>Adresse Mail</p>
           <input class="input-infos" name="mail" type="email" value=<?= $_SESSION['mail']; ?> />
+          <!-- modifier photo profil -->
+          <p>Photo</p>
+          <input type="file" name="photoProfil" id='photoProfil' accept='image/jpeg'>
           <!-- ligne d'erreur si la modification échoue -->
           <?php 
             /* recuperation de l'URL pour les modifications de profil */
@@ -71,6 +87,7 @@ session_start();
           <!-- confirmation mdp -->
           <p>Confirmation</p>
           <input class="input-mdp" name="confirmationMdp" type="password"/>
+
           <!-- bouton valider -->
         <input type="submit" value="valider" />
         </div>
