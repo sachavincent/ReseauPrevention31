@@ -45,6 +45,16 @@ if ($_SESSION['chambre'] == 'CCI' OR $_SESSION['chambre'] == 'CA' OR $_SESSION['
                     $requeteModifierInfo->execute(array($infosXSS, $_SESSION['id']));
                 }
             }
+             // Cas photo profil 
+             if(isset($_FILES['photoProfil'])){ 
+                $dossier = '../images/';
+                if(move_uploaded_file($_FILES['photoProfil']['tmp_name'], $dossier . $_SESSION['id'] . 'c.jpeg')){ 
+                    echo 'Upload effectué avec succès !';
+                } else {
+                    echo 'Echec de l\'upload !';
+                }
+            }
+
             // Cas changement mdp
             if (!empty($_POST['nouveauMdp'])){
                 if (empty($_POST['confirmationMdp']) OR $_POST['nouveauMdp'] != $_POST['confirmationMdp']){
@@ -118,6 +128,16 @@ else {
                     $requeteModifierInfo->execute(array($infosXSS, $_SESSION['id']));
                 }
             }
+             // Cas photo profil 
+             if(isset($_FILES['photoProfil'])){ 
+                $dossier = '../images/';
+                if(move_uploaded_file($_FILES['photoProfil']['tmp_name'], $dossier . $_SESSION['id'] . 'f.jpeg')){ 
+                    echo 'Upload effectué avec succès !';
+                } else {
+                    echo 'Echec de l\'upload !';
+                }
+            }
+
             // Cas changement mdp
             if (!empty($_POST['nouveauMdp'])){
                 if (empty($_POST['confirmationMdp']) OR $_POST['nouveauMdp'] != $_POST['confirmationMdp']){
