@@ -21,16 +21,16 @@ if ($_GET['m'] != 'none') {
 
     //Creation de la cé de l'utilisateur
     if ($_SESSION[$onglet][$_GET['m']]['cle'] == NULL){
-      $requetNbUtilisateurParAct = $bdd->prepare('SELECT * FROM Utilisateur WHERE codeAct = ?  AND cle IS NOT NULL');
-      $requetNbUtilisateurParAct->execute(array($infosUser['codeAct']));
-      $infosUser['cle'] = sprintf("%03d", $infosUser['codeAct']) . $infosUser['codePostal'] . $infosUser['secteur'] . sprintf("%04d", count($requetNbUtilisateurParAct->fetchAll()) );
-      $_SESSION[$onglet][$_GET['m']]['cle'] = $infosUser['cle'];
+        $requetNbUtilisateurParAct = $bdd->prepare('SELECT * FROM Utilisateur WHERE codeAct = ?  AND cle IS NOT NULL');
+        $requetNbUtilisateurParAct->execute(array($infosUser['codeAct']));
+        $infosUser['cle'] = sprintf("%03d", $infosUser['codeAct']) . $infosUser['codePostal'] . $infosUser['secteur'] . sprintf("%04d", count($requetNbUtilisateurParAct->fetchAll()) );
+        $_SESSION[$onglet][$_GET['m']]['cle'] = $infosUser['cle'];
     }
 
     // affichage
     echo "
         <section id='pan-demande'>
-          <fieldset>
+        <fieldset>
             <time id='date-demande'>" . $dateMsg . "</time>
             <legend>INFORMATION DE LA DEMANDE</legend><br>
             <b>Nom : </b><label>" . $infosUser['nomUtilisateur'] . "<br><br>
@@ -42,15 +42,15 @@ if ($_GET['m'] != 'none') {
             <b>Localisation : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br><br>
             <b>Téléphone : </b><label>" . $infosUser['telephone'] . "</label><br><br>
             <b>Adresse mail : </b><label>" . $infosUser['mail'] . "</label><br><br>
-          </fieldset>
+        </fieldset>
     ";
 
     // affichage de la clé d'identification
     if ($_GET['e'] != 'refuse') {
         echo "
             <fieldset>
-              <legend>CLÉ D'IDENTIFICATION GÉNÉRÉE :</legend><br>
-              <label id='cle'>". $infosUser['cle'] . "</label><br>
+            <legend>CLÉ D'IDENTIFICATION GÉNÉRÉE :</legend><br>
+            <label id='cle'>". $infosUser['cle'] . "</label><br>
             </fieldset>
             </section>";
     } else {

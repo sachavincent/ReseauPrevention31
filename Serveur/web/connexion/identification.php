@@ -29,13 +29,13 @@ switch ($_GET['chambre']) {
 
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="icon" type="image/png" href="../images/icon.png" />
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- header -->
     <header>
         <title>Identification</title>
@@ -43,8 +43,8 @@ switch ($_GET['chambre']) {
 
     <!-- conteneur principal -->
     <section id="page-identification">
-      <!-- conteneur identification -->
-      <div id="pan-identification">
+    <!-- conteneur identification -->
+    <div id="pan-identification">
         <form action=<?= "verifierConnexion.php?chambre=" . $_SESSION['chambre'];?>  method="post">
         <!-- affichage des elements de connexion -->
         <div id="logo-choisi"><img src=<?= $_SESSION['logoChambre'];?> ></div>
@@ -63,7 +63,7 @@ switch ($_GET['chambre']) {
             <input onclick="window.location.href='choix-chambre.php'"; class="bouton-id" type="button" value="retour" >
         </div>
         </form>
-      </div>
+    </div>
     </section>
-  </body>
+</body>
 </html>

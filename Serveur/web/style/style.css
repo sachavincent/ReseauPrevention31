@@ -3,22 +3,22 @@
   --background-color: #dddddd;
   --font-color: #121212;
   --panel-color: #f5f5f5;
-  --border-color: #cccccc;
+  --border-color: #dadada;
   --hover-bg-color: #dddddd;
   --hover-font-color: #f5f5f5;
   --shadow-color: #b4b4b4;
-  --primary-color: #F3F2F1;
-  --second-color: #FAF9F8;
-  --third-color: #FFFFFF;
+  --input-border: #dadada;
+  --page-content: #FAF9F8;
+  --msg-content: #FFFFFF;
   --button-color: #c0c0c0;
   --nav-bg-color: #f5f5f5;
-  --nav-border: #dadada;
   --nav-profile-bg: #0078D7;
   --nav-profile-font: #f5f5f5;
   --nav-onglet-font: #2236449a;
   --nav-hover-bg: #e7e7e7d0;
   --nav-select-bg: #dadada;
   --nav-select-font: #121212;
+  --date-color: #9E9E9E;
   --blue-color: #0078D7;
   --error-color: #E81123;
   --success-color: #00CC6A;
@@ -27,28 +27,28 @@
 @media (prefers-color-scheme: light) {
   :root {
     --background-color: #100E17;
-    --background-color: #100E17;
     --font-color: #f5f5f5;
     --panel-color: #17141D;
-    --border-color: #dadada;
+    --border-color: #000;
     --hover-bg-color: #ddddddce;
     --hover-font-color: #f5f5f5;
     --shadow-color: #000000;
+    --input-border: #eeeeee;
     --primary-color: #F4F6F8;
-    --second-color: #17141D;
-    --third-color: #FDFDFD;
-    --blue-color: #2196F3;
-    --error-color: #FF2646;
-    --success-color: #26FF26;
+    --page-content: #17141D;
+    --msg-content: #FDFDFD;
     --button-color: #100E17;
     --nav-bg-color: #100E17;
-    --nav-border: #000;
     --nav-profile-bg: #2196F3;
     --nav-profile-font: #f5f5f5;
     --nav-onglet-font: #ffffff9a;
     --nav-hover-bg: #000;
     --nav-select-bg: #5fa1d61e;
     --nav-select-font: #fff;
+    --date-color: #9E9E9E;
+    --blue-color: #2196F3;
+    --error-color: #FF2646;
+    --success-color: #26FF26;
   }
 }
 
@@ -70,6 +70,28 @@
   }
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--blue-color);
+  border-radius: 2.5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-color);
+}
+
+/* ========== MAIN CODE =========== */
 * {
   font-family: 'Titillium Web', sans-serif;
   font-size: 1.5rem;
@@ -106,8 +128,11 @@ h1 {
 body {
   background-color: var(--background-color);
   color: var(--font-color);
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .btn-admin {
@@ -244,7 +269,7 @@ body {
   font-size: 1.6rem;
   padding: 10px 0 7.5px;
   border: none;
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--input-border);
   outline: none;
   background-color: transparent;
   margin: 20px 0 5px;
@@ -313,7 +338,7 @@ body {
   font-size: 1.6rem;
   padding: 10px 0 7.5px;
   border: none;
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--input-border);
   outline: none;
   background-color: transparent;
   margin: 20px 0 0px;
@@ -395,7 +420,7 @@ body {
   font-size: 1.6rem;
   padding: 10px 0 7.5px;
   border: none;
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--input-border);
   outline: none;
   background-color: transparent;
   margin: 20px 0 5px;
@@ -436,10 +461,8 @@ body {
 #nav-gauche {
   width: 225px;
   height: 100vh;
-  float: left;
   background-color: var(--nav-bg-color);
-  border-right: 1px solid var(--nav-border);
-  position: relative;
+  border-right: 1px solid var(--border-color);
   z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -535,14 +558,18 @@ body {
 
 /* ========== PROFILE =========== */
 #pan-profil {
-  background-color: var(--second-color);
+  background-color: var(--page-content);
   text-align: left;
   height: 100vh;
+  position: absolute;
+  left: 225px;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 
 #pan-profil .block-titre {
   height: 15%;
-  width: 100%;
   padding-top: 2%;
   padding-left: 50%;
   color: var(--nav-profile-font);
@@ -578,7 +605,6 @@ body {
   width: 200px;
   border-radius: 50%;
   margin-bottom: 25px;
-  border: 2.5px solid var(--primary-color);
 }
 
 #pan-profil form #pan-photo h1 {
@@ -658,427 +684,111 @@ body {
           box-shadow: none;
 }
 
+/* ========== PAN LISTE DEMANDES =========== */
+/* ========== PAN DEMANDES / MESSAGES =========== */
 #pan-content {
-  min-width: 1140px;
-  min-height: 570px;
+  background-color: var(--page-content);
   position: absolute;
-  background-color: #F9F9F9;
+  left: 225px;
+  right: 0;
   top: 0;
   bottom: 0;
-  right: 0;
-  left: 230px;
-  overflow: hidden;
-}
-
-#pan-content #barre-refresh {
-  width: 260px;
-  height: 35px;
-  background-color: whitesmoke;
-  position: absolute;
-  top: -1px;
-  border-bottom: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
-}
-
-#pan-content #barre-refresh img {
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  margin-top: 10px;
-  margin-left: 15%;
-}
-
-#pan-content #barre-refresh img:hover {
-  -webkit-filter: brightness(50%);
-          filter: brightness(50%);
-  -webkit-transition: 0.4s ease;
-  transition: 0.4s ease;
-  cursor: pointer;
-}
-
-#pan-content #barre-refresh em {
-  position: absolute;
-  margin-left: 85px;
-  padding-top: 6px;
-  font-weight: 600;
-  font-style: normal;
-  color: #4285F4;
-  cursor: pointer;
-}
-
-#pan-content #barre-refresh em:hover {
-  -webkit-filter: brightness(50%);
-          filter: brightness(50%);
-  -webkit-transition: 0.4s ease;
-  transition: 0.4s ease;
-  cursor: pointer;
 }
 
 #pan-content #liste-onglets {
-  width: 260px;
+  width: 275px;
   position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
   bottom: 0;
-  top: 35px;
-  border-right: 1px solid lightgrey;
-  background-color: whitesmoke;
+  background-color: var(--page-content);
+  border-right: 1px solid var(--border-color);
   overflow: hidden;
   overflow-y: auto;
 }
 
-#pan-content #liste-onglets .onglet-msg-selected, #pan-content #liste-onglets .onglet-msg, #pan-content #liste-onglets .onglet-non-lu {
-  height: 75px;
-  width: 100%;
-  background-color: whitesmoke;
+#pan-content #liste-onglets #barre-refresh {
+  background-color: var(--nav-bg-color);
+  padding: 5px;
+  border-bottom: 1px solid var(--border-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  border-bottom: 1px solid lightgrey;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-#pan-content #liste-onglets .onglet-msg-selected:hover, #pan-content #liste-onglets .onglet-msg:hover, #pan-content #liste-onglets .onglet-non-lu:hover {
-  -webkit-filter: brightness(80%);
-          filter: brightness(80%);
-  -webkit-transition: 0.4s ease;
-  transition: 0.4s ease;
+#pan-content #liste-onglets #barre-refresh i, #pan-content #liste-onglets #barre-refresh em {
+  font-style: normal;
+  color: var(--blue-color);
+  font-weight: 600;
+  margin: 0 25px 0 0px;
+}
+
+#pan-content #liste-onglets #barre-refresh i:hover, #pan-content #liste-onglets #barre-refresh em:hover {
+  cursor: pointer;
+  background-color: none;
+  color: var(--font-color);
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#pan-content #liste-onglets .onglet-msg, #pan-content #liste-onglets .onglet-msg-selected, #pan-content #liste-onglets .onglet-non-lu {
+  width: 100%;
+  padding: 12.5px;
+  border-bottom: 1px solid var(--border-color);
   cursor: pointer;
 }
 
-#pan-content #liste-onglets .onglet-msg-selected #date-reception, #pan-content #liste-onglets .onglet-msg #date-reception, #pan-content #liste-onglets .onglet-non-lu #date-reception {
-  font-size: 12px;
-  position: absolute;
-  margin-left: 170px;
-  margin-top: 14px;
+#pan-content #liste-onglets .onglet-msg #date-reception, #pan-content #liste-onglets .onglet-msg-selected #date-reception, #pan-content #liste-onglets .onglet-non-lu #date-reception {
+  color: var(--date-color);
+  font-size: 1.2rem;
+  float: right;
+  margin-right: 5px;
 }
 
-#pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg-selected h10, #pan-content #liste-onglets .onglet-msg h9, #pan-content #liste-onglets .onglet-msg h10, #pan-content #liste-onglets .onglet-non-lu h9, #pan-content #liste-onglets .onglet-non-lu h10 {
-  position: absolute;
-  margin-left: 22px;
+#pan-content #liste-onglets .onglet-msg h9, #pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-non-lu h9 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--blue-color);
 }
 
-#pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg h9, #pan-content #liste-onglets .onglet-non-lu h9 {
-  font-size: 15px;
-  font-weight: bold;
-  color: #4285F4;
-  margin-top: 12px;
+#pan-content #liste-onglets .onglet-msg h10, #pan-content #liste-onglets .onglet-msg-selected h10, #pan-content #liste-onglets .onglet-non-lu h10 {
+  font-size: 1.4rem;
+  color: var(--font-color);
 }
 
-#pan-content #liste-onglets .onglet-msg-selected h10, #pan-content #liste-onglets .onglet-msg h10, #pan-content #liste-onglets .onglet-non-lu h10 {
-  font-size: 14px;
-  margin-top: 40px;
+#pan-content #liste-onglets .onglet-msg:hover, #pan-content #liste-onglets .onglet-non-lu:hover {
+  cursor: pointer;
+  background-color: var(--nav-hover-bg);
+  color: none;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#pan-content #liste-onglets .onglet-non-lu {
+  border-left: 4px solid var(--blue-color);
 }
 
 #pan-content #liste-onglets .onglet-msg-selected {
-  background-color: #4285F4;
+  background-color: var(--blue-color);
 }
 
-#pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg-selected h10, #pan-content #liste-onglets .onglet-msg-selected #date-reception {
-  color: #ececec;
-}
-
-#pan-content #liste-onglets .onglet-non-lu::after {
-  content: "";
-  position: absolute;
-  height: 75px;
-  background-color: #4285F4;
-  width: 4px;
-}
-
-#pan-content #barre-actions {
-  height: 50px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 261px;
-  border-bottom: 1px solid lightgrey;
-}
-
-#pan-content #barre-actions [type="button"] {
-  width: 115px;
-  height: 35px;
-  margin-top: 7.5px;
-  margin-left: 50px;
-  background-color: #4285F4;
-  color: #ececec;
-  border: none;
-  border-radius: 2px;
-}
-
-#pan-content #barre-actions [type="button"]:hover {
-  -webkit-filter: brightness(115%);
-          filter: brightness(115%);
-  -webkit-transition: 0.4s ease;
-  transition: 0.4s ease;
-  cursor: pointer;
-}
-
-#pan-content #pan-demande {
-  position: absolute;
-  right: 0;
-  top: 51px;
-  left: 261px;
-  bottom: 0;
-  padding: 20px;
-  padding-left: 35px;
-  padding-right: 35px;
-  background-color: whitesmoke;
-}
-
-#pan-content #pan-demande fieldset {
-  border: none;
-}
-
-#pan-content #pan-demande fieldset #date-demande {
-  font-size: 13px;
-  color: grey;
-  position: absolute;
-  right: 50px;
-  top: 20px;
-}
-
-#pan-content #pan-demande fieldset legend {
-  font-weight: bold;
-  color: #4285F4;
-  border-bottom: 2px solid #4285F4;
-}
-
-#pan-content #pan-demande fieldset em {
-  font-weight: 600;
-  color: #4285F4;
-  cursor: pointer;
-}
-
-#pan-content #pan-demande fieldset #cle {
-  font-size: 25px;
-  font-weight: 600;
-}
-
-#pan-content #barre-envoi {
-  height: 50px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  border-bottom: 1px solid lightgray;
-}
-
-#pan-content #barre-envoi .btn-new-annonce-conseil {
-  width: 115px;
-  height: 35px;
-  margin-top: 7.5px;
-  margin-left: 50px;
-  background-color: #4285F4;
-  color: #ececec;
-  border: none;
-  border-radius: 2px;
-}
-
-#pan-content #barre-envoi .btn-new-annonce-conseil:hover {
-  -webkit-filter: brightness(115%);
-          filter: brightness(115%);
-  -webkit-transition: 0.4s ease;
-  transition: 0.4s ease;
-  cursor: pointer;
-}
-
-#pan-content #objet-new-conseil {
-  height: 65px;
-  position: absolute;
-  top: 51px;
-  right: 0;
-  left: 0;
-  padding: 15px;
-  padding-left: 35px;
-  padding-right: 35px;
-  border-bottom: 1px solid lightgray;
-}
-
-#pan-content #objet-new-conseil fieldset {
-  border: none;
-}
-
-#pan-content #objet-new-conseil fieldset legend {
-  font-weight: bold;
-  font-size: 22px;
-  color: #4285F4;
-  border-bottom: 2px solid #4285F4;
-}
-
-#pan-content #objet-new-conseil fieldset [name='input-objet-conseil'] {
-  width: 80%;
-  height: 25px;
-  padding: 0.5%;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
-  font-size: 17px;
-  position: absolute;
-  top: 15px;
-  left: 115px;
-}
-
-#pan-content #objet-new-conseil fieldset .user-concernes {
-  font-size: 14px;
-  color: gray;
-  margin-top: 10px;
-}
-
-#pan-content #write-conseil {
-  width: 93%;
-  min-width: 50%;
-  padding: 3%;
-  padding-top: 20px;
-  padding-bottom: 25px;
-  font-size: 15px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 147px;
-  border: none;
-  resize: none;
-  overflow-y: auto;
-  outline: 0;
-}
-
-#pan-content #zone-saisie-annonce {
-  height: 285px;
-  position: absolute;
-  top: 51px;
-  right: 0;
-  left: 0;
-  padding: 15px;
-  padding-left: 35px;
-  padding-right: 35px;
-  border-bottom: 1px solid lightgray;
-  background-color: white;
-}
-
-#pan-content #zone-saisie-annonce #carteHG {
-  width: 225px;
-  height: 225px;
-  position: absolute;
-  right: 10%;
-  top: 25px;
-}
-
-#pan-content #zone-saisie-annonce fieldset {
-  border: none;
-}
-
-#pan-content #zone-saisie-annonce fieldset legend {
-  font-weight: bold;
-  font-size: 20px;
-  color: #4285F4;
-  border-bottom: 2px solid #4285F4;
-  margin-bottom: 15px;
-}
-
-#pan-content #zone-saisie-annonce fieldset .champs-annonce {
-  margin-top: 8px;
-}
-
-#pan-content #zone-saisie-annonce fieldset .rechercheActivite, #pan-content #zone-saisie-annonce fieldset .rechercheCommune, #pan-content #zone-saisie-annonce fieldset .select-zone {
-  height: 22px;
-  width: 15%;
-  padding: 2.5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-right: 1%;
-}
-
-#pan-content #zone-saisie-annonce fieldset #align-activite {
-  font-weight: bold;
-  margin-right: 15px;
-}
-
-#pan-content #zone-saisie-annonce fieldset #align-commune {
-  font-weight: bold;
-  margin-right: 6px;
-}
-
-#pan-content #zone-saisie-annonce fieldset #align-zone {
-  font-weight: bold;
-  margin-right: 42px;
-}
-
-#pan-content #zone-saisie-annonce fieldset .select-zone {
-  height: 30px;
-  width: 16%;
-}
-
-#pan-content #zone-saisie-annonce fieldset .select-all, #pan-content #zone-saisie-annonce fieldset [name="mail"] {
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  left: 25%;
-  margin-top: 5px;
-}
-
-#pan-content #zone-saisie-annonce fieldset [type="checkbox"] {
-  cursor: pointer;
-}
-
-#pan-content #objet-new-annonce {
-  height: 45px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 367px;
-  padding-top: 10px;
-  padding-left: 35px;
-  padding-right: 35px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid lightgray;
-}
-
-#pan-content #objet-new-annonce fieldset {
-  border: none;
-}
-
-#pan-content #objet-new-annonce fieldset legend {
-  font-weight: bold;
-  font-size: 20px;
-  color: #4285F4;
-  border-bottom: 2px solid #4285F4;
-}
-
-#pan-content #objet-new-annonce fieldset [name='input-objet-annonce'] {
-  width: 80%;
-  height: 25px;
-  padding: 0.5%;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
-  font-size: 17px;
-  position: absolute;
-  top: 15px;
-  left: 115px;
-}
-
-#pan-content #objet-new-annonce fieldset #dest-concernes {
-  font-size: 15px;
-  color: grey;
-  display: block;
-  margin-top: 15px;
-}
-
-#pan-content #write-annonce {
-  width: 95%;
-  padding: 2%;
-  padding-top: 20px;
-  padding-bottom: 25px;
-  font-size: 15px;
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  top: 450px;
-  border: none;
-  resize: none;
-  overflow-y: auto;
-  outline: 0;
+#pan-content #liste-onglets .onglet-msg-selected #date-reception, #pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg-selected h10 {
+  color: var(--nav-profile-font);
 }
 
 #zone-annonce-conseil {

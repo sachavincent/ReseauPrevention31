@@ -28,8 +28,8 @@ if (!empty($_SESSION[$onglet])) {
         $reverseDate = implode('/', array_reverse(explode('-', $dateSQL)));
         $date        = "<time id='date-reception'>" . $reverseDate . "</time>";
         // contenu de l'onglet
-        $onglet_affiche        = $date . '<h9>' . $objet . '</h9>' . '<h10>' . $texte . '</h10>';
-        $onglet_affiche_clique = $date . '<h9>' . $objet . '</h9>' . '<h10>' . $texte . '</h10>';
+        $onglet_affiche        = $date . '<h9>' . $objet . '</h9><br>' . '<h10>' . $texte . '</h10>';
+        $onglet_affiche_clique = $date . '<h9>' . $objet . '</h9><br>' . '<h10>' . $texte . '</h10>';
 
         // si selection d'un onglet
         if ($_GET['m'] != 'none') {

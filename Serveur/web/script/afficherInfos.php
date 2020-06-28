@@ -96,77 +96,70 @@ function infoCommune($infosUser) {
 
 <script>
 function confirmDelete(delUrl) {
-  if (confirm("Voulez-vous vraiment supprimer ?")) {
-   document.location = delUrl;
-  }
+    if (confirm("Voulez-vous vraiment supprimer ?")) {
+    document.location = delUrl;
+    }
 }
 
 function confirmChoice(linkUrl) {
-  if (confirm("Confirmez-vous votre choix ?")) {
-   document.location = linkUrl;
-  }
+    if (confirm("Confirmez-vous votre choix ?")) {
+    document.location = linkUrl;
+    }
 }
 </script>
 
-<!-- pan liste msg -->
-<section id="pan-content">
-  <!-- barre d'actions -->
-  <div id="barre-refresh">
-    <img class="refresh-rapide" src="../images/refresh.png" onclick="window.location.href='demandes.php?e=<?= $lien ?>&m=none'" />
-    <em onclick="window.location.href='demandes.php?e=<?= $lien ?>&m=none'">Actualiser</em>
-  </div> 
+<!-- barre d'actions boutons -->
+<div id="barre-actions">
+<?php if (($_GET['m']) != 'none') {    
+    switch ($_GET['e']) { 
+        /* ===== CHAMBRES ===== */
+        // page en attente
+        case 'attente': ?>
+            <!-- bouton accepter / refuser -->
+            <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter')">
+                <input class="actions" type="button" value="accepter"/></a>
+            <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser')">
+                <input class="actions" type="button" value="refuser" /></a>
+        <?php
+            break;
+        // page acceptees
+        case 'accepte': ?>
+            <!-- bouton refuser / supprimer -->
+            <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser')">
+                <input class="actions" type="button" value="refuser" /></a>
+            <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
+                <input class="actions" type="button" value="supprimer" /></a>
+        <?php
+            break;
+        // page refusees
+        case 'refuse': ?>
+            <!-- bouton accepter / supprimer -->
+            <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter')">
+                <input class="actions" type="button" value="accepter"/></a>
+            <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
+                <input class="actions" type="button" value="supprimer" /></a>
+        <?php
+            break;  
 
-  <!-- barre d'actions boutons -->
-  <div id="barre-actions">
-    <?php if (($_GET['m']) != 'none') {    
-        switch ($_GET['e']) { 
-            // page en attente
-            case 'attente': ?>
-                <!-- bouton accepter / refuser -->
-                <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter')">
-                    <input class="actions" type="button" value="accepter"/></a>
-                <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser')">
-                    <input class="actions" type="button" value="refuser" /></a>
-            <?php
-                break;
-            // page acceptees
-            case 'accepte': ?>
-                <!-- bouton refuser / supprimer -->
-                <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser')">
-                    <input class="actions" type="button" value="refuser" /></a>
-                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
-                    <input class="actions" type="button" value="supprimer" /></a>
-            <?php
-                break;
-            // page refusees
-            case 'refuse': ?>
-                <!-- bouton accepter / supprimer -->
-                <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter')">
-                    <input class="actions" type="button" value="accepter"/></a>
-                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
-                    <input class="actions" type="button" value="supprimer" /></a>
-            <?php
-                break;
-            case 'annonce': ?>
-                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
-                    <input class="actions" type="button" value="supprimer" /></a>
-            <?php
-                break;
-            case 'conseil': ?>
-                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
-                    <input class="actions" type="button" value="supprimer" /></a>
-            <?php
-                break;
-            case 'prive': ?>
-                <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
-                    <input class="actions" type="button" value="supprimer" /></a>
-            <?php
-        } 
-    } ?>
-  </div>
+        /* ===== FORCES ===== */
+        case 'annonce' || 'conseil' || 'prive': ?>
+            <script>console.log("annonce");</script>
+            <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
+                <input class="actions" type="button" value="supprimer" /></a>
+        <?php
+            break;
+    } 
+} ?>
+</div>
 
-  <nav id="liste-onglets">
-    <?php   
+<nav id="liste-onglets">
+    <!-- barre d'actions -->
+    <div id="barre-refresh">
+        <i class="fas fa-redo-alt" onclick="window.location.href='demandes.php?e=<?= $lien ?>&m=none'"></i>
+        <em onclick="window.location.href='demandes.php?e=<?= $lien ?>&m=none'">Actualiser</em>
+    </div>
+
+    <?php
     /* ======================== LISTE ONGLETS FORCES ========================== */
 
     if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P') { 
@@ -177,10 +170,10 @@ function confirmChoice(linkUrl) {
         include "../chambre/page/listeOngletsChambre.php";
     }
     ?>
-  </nav>
-  <?php
+    </nav>
+    <?php
     /* ===================== ZONE OUVERTURE DU MESSAGE FORCES ============+============= */
-    
+
     if($_SESSION['chambre'] == 'G' OR $_SESSION['chambre'] == 'P') { 
         include "../force/page/ongletOuvertForce.php";
     }
@@ -188,5 +181,4 @@ function confirmChoice(linkUrl) {
     else {
         include "../chambre/page/ongletOuvertChambre.php";
     }
-  ?>
-</section>
+?>

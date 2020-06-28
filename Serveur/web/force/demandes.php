@@ -16,23 +16,26 @@ include("../script/connexionBDD.php");
     <!-- affichage menu gauche -->
     <?php include("page/navForce.php"); ?>
 
-    <!-- ouverture du contenu | Privé | Annonce | Conseil | Corbeille | -->
-    <?php switch ($_GET['e']) {
-        case 'prive' :
-            include("prive.php");
-        break;
-        case 'annonce' :
-            include("annonce.php");
-        break;
-        case 'conseil' :
-            include("conseil.php");
-        break;
-        case 'new_annonce' :
-            include("new_annonce.php");
-        break;
-        case 'new_conseil' :
-            include("new_conseil.php");
-        break;
-    } ?>
+    <!-- pan liste demandes -->
+    <section id="pan-content">
+        <!-- ouverture du contenu | Privé | Annonce | Conseil | Corbeille | -->
+        <?php switch ($_GET['e']) {
+            case 'prive' :
+                include("prive.php");
+            break;
+            case 'annonce' :
+                include("annonce.php");
+            break;
+            case 'conseil' :
+                include("conseil.php");
+            break;
+            case 'new_annonce' :
+                include("new_annonce.php");
+            break;
+            case 'new_conseil' :
+                include("new_conseil.php");
+            break;
+        } ?>
+        </section>
   </body>
 </html>
