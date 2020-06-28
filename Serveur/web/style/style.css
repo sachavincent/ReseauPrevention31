@@ -25,7 +25,7 @@
   --success-color: #00CC6A;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background-color: #100E17;
     --background-color: #100E17;
@@ -41,6 +41,7 @@
     --blue-color: #2196F3;
     --error-color: #FF2646;
     --success-color: #26FF26;
+    --button-color: #100E17;
     --nav-bg-color: #100E17;
     --nav-border: #000;
     --nav-profile-bg: #2196F3;
@@ -111,13 +112,14 @@ body {
 }
 
 .btn-admin {
-  background-color: var(--panel-color);
+  background-color: var(--background-color);
   padding: 7.5px 15px;
   border: none;
   border-radius: 0px;
   position: absolute;
   top: 0;
   left: 0;
+  border: 1px solid var(--shadow-color);
   -webkit-box-shadow: 0 0 5px 1px var(--shadow-color);
           box-shadow: 0 0 5px 1px var(--shadow-color);
 }
@@ -279,6 +281,7 @@ body {
   border: none;
   margin-top: 25px;
   font-weight: 600;
+  border: 1px solid var(--shadow-color);
   background-color: var(--button-color);
 }
 
@@ -331,6 +334,7 @@ body {
   font-weight: 600;
   background-color: var(--button-color);
   margin-top: 20px;
+  border: 1px solid var(--shadow-color);
 }
 
 #page-identification #pan-connexion-admin .button-id:hover {
@@ -405,6 +409,7 @@ body {
   font-weight: 600;
   background-color: var(--button-color);
   margin-top: 30px;
+  border: 1px solid var(--shadow-color);
 }
 
 #page-identification #pan-ajout-gestionnaire .button-id:hover {
@@ -566,7 +571,7 @@ body {
 }
 
 #pan-profil form #pan-photo {
-  margin: 7.5% 2.5% 0 7.55%;
+  margin: 7.5% 2.5% 0 7.5%;
   text-align: center;
 }
 
@@ -608,6 +613,11 @@ body {
   font-weight: 600;
 }
 
+#pan-profil form .zone-infos .fas, #pan-profil form .zone-mdp .fas {
+  margin-left: 20px;
+  color: var(--error-color);
+}
+
 #pan-profil form .zone-infos #success, #pan-profil form .zone-infos #error, #pan-profil form .zone-mdp #success, #pan-profil form .zone-mdp #error {
   font-size: 1.5rem;
   font-weight: normal;
@@ -624,8 +634,8 @@ body {
   width: 100%;
   font-size: 1.65rem;
   padding: 6.5px;
-  border: 2px solid var(--border-color);
-  background-color: transparent;
+  border: 2px solid var(--shadow-color);
+  background-color: var(--nav-bg-color);
   margin: 2% 0 4%;
 }
 
@@ -633,6 +643,7 @@ body {
   width: 50%;
   padding: 10px;
   border: none;
+  border: 1px solid var(--shadow-color);
   font-weight: 600;
   background-color: var(--button-color);
   margin-top: 4%;

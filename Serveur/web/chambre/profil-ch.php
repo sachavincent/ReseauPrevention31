@@ -30,18 +30,17 @@ session_start();
       <form action="../script/modifier_profil.php?return=none" method="post"  enctype="multipart/form-data">
         <!-- conteneur image de profil avec nom prenom -->
         <div id="pan-photo">
-        <div id="pan-photo">
             <div class="img-profil">
-              <?php
-              if (file_exists('../images/' . $_SESSION['id'] . 'c.jpeg')){
-                echo  '<img src="../images/'. $_SESSION["id"]. 'c.jpeg"></div>';
-              } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.jpg')){
-                echo  '<img src="../images/'. $_SESSION["id"]. 'c.jpg"></div>';
-              } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.png')){
-                echo  '<img src="../images/'. $_SESSION["id"]. 'c.png"></div>';
-              } else {
-                echo  '<img src="../images/user.jpg"></div>';
-              } ?>
+                <?php
+                if (file_exists('../images/' . $_SESSION['id'] . 'c.jpeg')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'c.jpeg">';
+                } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.jpg')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'c.jpg">';
+                } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.png')){
+                echo  '<img src="../images/'. $_SESSION["id"]. 'c.png">';
+                } else {
+                echo  '<img src="../images/user.jpg">';
+                } ?>
             </div>
             <!-- affichage nom / prenom -->
             <h1 class="nom"> <?php echo $_SESSION['nom']." ".$_SESSION['prenom']; ?></h1>
@@ -77,7 +76,7 @@ session_start();
         </div>
         <!-- mdp actuel -->
         <div class="zone-mdp">
-          <p>Mot de passe actuel</p>
+          <p>Mot de passe actuel<i class="fas fa-exclamation-circle" title="Champ obligatoire"></i></p>
           <!-- <img class="required-input" src="../images/required.png" title="champ obligatoire" /> -->
           <input class="input-mdp" name="mdp" type="password" placeholder="Entrer le mot de passe actuel" required/>
           <!-- nouveau mdp -->
