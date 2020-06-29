@@ -143,7 +143,6 @@ function confirmChoice(linkUrl) {
 
         /* ===== FORCES ===== */
         case 'annonce' || 'conseil' || 'prive': ?>
-            <script>console.log("annonce");</script>
             <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
                 <input class="actions" type="button" value="supprimer" /></a>
         <?php

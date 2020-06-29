@@ -45,7 +45,7 @@ $color-error: #FF2646;
     --nav-select-font: #121212;
 
     // chambre - forces
-    --date-color: #9E9E9E;
+    --date-color: #808080;
 
     // others
     --blue-color: #0078D7;
@@ -187,13 +187,13 @@ body {
     color: var(--font-color);
     position: absolute;
     left: 0; right: 0; top: 0; bottom: 0;
-    // min-width: 1280px;
-    // min-height: 720px;
-//     overflow:;
+    min-width: 1000px;
+    min-height: 550px;
+    // PROFIL OVERFLOW A DEV
+    overflow: hidden;
 }
 
 // PERSONNALISATION DES BOUTONS
-
 .btn-admin {
     background-color: var(--panel-color);
     padding: 7.5px 15px;
@@ -538,7 +538,7 @@ body {
             }
 
             .fas {
-                margin-left: 20px;
+                margin-left: 12px;
                 color: var(--error-color);
             }
 
@@ -1032,8 +1032,7 @@ body {
 
         .onglet-msg, .onglet-msg-selected, .onglet-non-lu {
             width: 100%;
-            // height: 85px;
-            padding: 12.5px;
+            padding: 12.5px 15px;
             border-bottom: 1px solid var(--border-color);
             cursor: pointer;
 
@@ -1087,151 +1086,233 @@ body {
         }
     }
 
+    #pan-demande, #zone-annonce-conseil {
+        position: absolute;
+        left: 275px; right: 0; top: 54px; bottom: 0;
+        padding: 15px 25px 20px;
+        overflow-y: auto;
+    }
+
     // PANEL OUVERTURE DEMANDE (CHAMBRE)
     #pan-demande {
-        position: absolute;
-        left: 275px; right: 0; top: 56px; bottom: 0;
-        padding: 15px 25px;
-    }
-
-    // PANEL OUVERTURE ANNONCE / CONSEIL (CHAMBRE)
-    .zone-annonce-conseil {
-        position: absolute;
-        left: 275px; right: 0; top: 56px; bottom: 0;
-        padding: 15px 25px;
-       
-    }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#zone-msg {
-    position: absolute;
-    top: 51px;
-    bottom: 0;
-    left: 261px;
-    right: 0;
-    padding: 20px;
-    padding-left: 35px;
-    padding-right: 35px;
-
-    #zone-infos-prive {
-        height: 165px;
-        position: absolute;
-        background-color: $color-light;
-        top: 0px;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        padding-top: 7px;
-        padding-bottom: 15px;
-        padding-left: 35px;
-        padding-right: 35px;
-        border-bottom: 1px solid lightgray;
+        
         fieldset {
             border: none;
-        }
-        legend {
-            font-weight: bold;
-            font-size: 22px;
-            color: $color-second;
-            border-bottom: 2px solid $color-second;
-            margin-bottom: 10px;
-        }
-        p {
-            margin-bottom: 5px;
-        }
-    }
-    
-    #zone-discussion {
-        position: absolute;
-        top: 188px;
-        bottom: 120px;
-        left: 0;
-        right: 0;
-        padding: 20px;
-        padding-left: 35px;
-        padding-right: 35px;
-        overflow: auto;
-        .msg-force, .msg-user {
-            display: flex;
-            flex-direction: column;
-            padding: 25px;
-            max-width: 50%;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            color: $color-text;
-        }
-        .msg-user {
-            background-color: $color-third;
-        }
-        .msg-force {
-            background-color: $color-second;
-            margin-left: 45%;
-        }
-    }
+            padding-bottom: 15px;
 
-    #zone-reponse {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 110px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        border-top: 1px solid lightgrey;
-        z-index: 10;
-        fieldset {
-            border: none;
+            b {
+                font-weight: 600;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            time {
+                float: right;
+                margin-top: -23px;
+                font-size: 1.3rem;
+                color: var(--date-color);
+            }
+
             legend {
-                font-weight: bold;
-                font-size: 15px;
-                color: $color-second;
-                margin-bottom: 5px;
+                font-size: 2.0rem;
+                font-weight: 600;
+                color: var(--blue-color);
+            }
+
+            #cle {
+                font-size:2.5rem;
+                font-weight: 600;
+                margin-top: 10px;
             }
         }
-        #reponse-msg {
-            width: 89.5%;
-            height: 75px;
-            resize: none;
-            font-size: 16px;
-            padding: 2px;
-            padding-left: 5px;
-            padding-left: 5px;
+    }
+
+    // PANEL OUVERTURE MESSAGE PRIVE (FORCES)
+    #zone-msg {
+        position: absolute;
+        left: 275px; right: 0; top: 54px; bottom: 0;
+        background-color: bisque;
+        @include flex(column wrap, flex-start, flex-start);
+
+        #zone-infos-prive {
+            width: 100%;
+            background-color: rgb(206, 122, 25);
         }
-        [name="envoyer-msg"] {
-            width: 10%;
-            height: 45px;
-            position: absolute;
-            right: 2px;
-            margin-left: 3px;
-            background-color: $color-second;
-            color: $color-text;
+
+        #zone-discussion {
+            width: 100%;
+            background-color: green;
+        }
+
+        #zone-reponse {
+            width: 100%;
+            background-color: coral;
+        }
+    }
+
+    // PANEL OUVERTURE ANNONCE / CONSEIL (FORCES)
+    #zone-annonce-conseil {
+        
+        fieldset {
             border: none;
-            &:hover {
-                filter: brightness(120%);
-                cursor: pointer;
-                transition: 0.4s ease;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+
+            time {
+                float: right;
+                margin-top: -23px;
+                font-size: 1.3rem;
+                color: var(--date-color);
+            }
+
+            legend {
+                font-size: 2.2rem;
+                font-weight: 600;
+                color: var(--blue-color);
+            }
+
+            .user-concernes {
+                font-size: 1.4rem;
+                color: var(--date-color);
             }
         }
         
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #zone-msg {
+//     position: absolute;
+//     top: 51px;
+//     bottom: 0;
+//     left: 261px;
+//     right: 0;
+//     padding: 20px;
+//     padding-left: 35px;
+//     padding-right: 35px;
+
+//     #zone-infos-prive {
+//         height: 165px;
+//         position: absolute;
+//         background-color: $color-light;
+//         top: 0px;
+//         bottom: 0;
+//         right: 0;
+//         left: 0;
+//         padding-top: 7px;
+//         padding-bottom: 15px;
+//         padding-left: 35px;
+//         padding-right: 35px;
+//         border-bottom: 1px solid lightgray;
+//         fieldset {
+//             border: none;
+//         }
+//         legend {
+//             font-weight: bold;
+//             font-size: 22px;
+//             color: $color-second;
+//             border-bottom: 2px solid $color-second;
+//             margin-bottom: 10px;
+//         }
+//         p {
+//             margin-bottom: 5px;
+//         }
+//     }
+    
+//     #zone-discussion {
+//         position: absolute;
+//         top: 188px;
+//         bottom: 120px;
+//         left: 0;
+//         right: 0;
+//         padding: 20px;
+//         padding-left: 35px;
+//         padding-right: 35px;
+//         overflow: auto;
+//         .msg-force, .msg-user {
+//             display: flex;
+//             flex-direction: column;
+//             padding: 25px;
+//             max-width: 50%;
+//             margin-bottom: 15px;
+//             border-radius: 5px;
+//             color: $color-text;
+//         }
+//         .msg-user {
+//             background-color: $color-third;
+//         }
+//         .msg-force {
+//             background-color: $color-second;
+//             margin-left: 45%;
+//         }
+//     }
+
+//     #zone-reponse {
+//         position: absolute;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         height: 110px;
+//         padding-left: 10px;
+//         padding-right: 10px;
+//         padding-top: 5px;
+//         padding-bottom: 5px;
+//         border-top: 1px solid lightgrey;
+//         z-index: 10;
+//         fieldset {
+//             border: none;
+//             legend {
+//                 font-weight: bold;
+//                 font-size: 15px;
+//                 color: $color-second;
+//                 margin-bottom: 5px;
+//             }
+//         }
+//         #reponse-msg {
+//             width: 89.5%;
+//             height: 75px;
+//             resize: none;
+//             font-size: 16px;
+//             padding: 2px;
+//             padding-left: 5px;
+//             padding-left: 5px;
+//         }
+//         [name="envoyer-msg"] {
+//             width: 10%;
+//             height: 45px;
+//             position: absolute;
+//             right: 2px;
+//             margin-left: 3px;
+//             background-color: $color-second;
+//             color: $color-text;
+//             border: none;
+//             &:hover {
+//                 filter: brightness(120%);
+//                 cursor: pointer;
+//                 transition: 0.4s ease;
+//             }
+//         }
+        
+//     }
+// }
 

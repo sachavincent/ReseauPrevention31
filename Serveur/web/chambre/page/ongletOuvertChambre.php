@@ -25,37 +25,32 @@ if ($_GET['m'] != 'none') {
         $requetNbUtilisateurParAct->execute(array($infosUser['codeAct']));
         $infosUser['cle'] = sprintf("%03d", $infosUser['codeAct']) . $infosUser['codePostal'] . $infosUser['secteur'] . sprintf("%04d", count($requetNbUtilisateurParAct->fetchAll()) );
         $_SESSION[$onglet][$_GET['m']]['cle'] = $infosUser['cle'];
-    }
+    } ?>
 
-    // affichage
-    echo "
-        <section id='pan-demande'>
-            <fieldset>
-                <time id='date-demande'>" . $dateMsg . "</time>
-                <legend>INFORMATION DE LA DEMANDE</legend><br>
-                <b>Nom : </b><label>" . $infosUser['nomUtilisateur'] . "<br><br>
-                <b>Prénom : </b><label>" . $infosUser['prenomUtilisateur'] . "</label><br><br>
-                <b>Nom Société : </b><label>" . $infosUser['nomSociete'] . "</label><br><br>
-                <b>Type d'activité : </b><label>" . $infosUser['activite'] . "</label><br><br>
-                <b>Numéro Siret : </b><label>" . $infosUser['siret'] . " → </label>
-                <em onclick=window.open('https:\/\/www.infogreffe.fr/entreprise-societe/" . $infosUser['siret'] . "') />Cliquez-ici</em> pour vérifier le numéro Siret.<br><br>
-                <b>Localisation : </b><label>" . $infosUser['commune'] . " " . $infosUser['codePostal'] . "</label><br><br>
-                <b>Téléphone : </b><label>" . $infosUser['telephone'] . "</label><br><br>
-                <b>Adresse mail : </b><label>" . $infosUser['mail'] . "</label><br><br>
-            </fieldset>
-    ";
+    <!-- affichage -->
+    <section id='pan-demande'>
+        <fieldset>
+            <time id='date-demande'><?= $dateMsg ?></time>
+            <legend>INFORMATION DE LA DEMANDE</legend><br>
+            <label><b>Nom : </b><?= $infosUser['nomUtilisateur'] ?></label>
+            <label><b>Prénom : </b><?= $infosUser['prenomUtilisateur'] ?></label>
+            <label><b>Nom Société : </b><?= $infosUser['nomSociete'] ?></label>
+            <label><b>Type d'activité : </b><?= $infosUser['activite'] ?></label>
+            <label><b>Numéro Siret : </b><?= $infosUser['siret'] ?> → 
+            <a href="https://www.infogreffe.fr/entreprise-societe/<?= $infosUser['siret'] ?>" target="_blank">Cliquez-ici</a> pour vérifier le numéro Siret.</label>
+            <label><b>Localisation : </b><?php echo $infosUser['commune'] . " " . $infosUser['codePostal']; ?></label>
+            <label><b>Téléphone : </b><?= $infosUser['telephone'] ?></label>
+            <label><b>Adresse mail : </b><?= $infosUser['mail'] ?></label>
+        </fieldset>
 
-    // affichage de la clé d'identification
-    if ($_GET['e'] != 'refuse') {
-        echo "
-            <fieldset>
-                <legend>CLÉ D'IDENTIFICATION GÉNÉRÉE :</legend><br>
-                <label id='cle'>". $infosUser['cle'] . "</label><br>
-                </fieldset>
-            </section>";
-    } else {
-        echo "</section>";
-    }
-}
+    <!-- affichage de la clé d'identification -->
+    <?php if ($_GET['e'] != 'refuse') { ?>
+        <fieldset>
+            <legend>CLÉ D'IDENTIFICATION GÉNÉRÉE :</legend>
+            <label id='cle'><?= $infosUser['cle'] ?></label>
+        </fieldset>
+    <?php } ?>
 
-?>
+    </section> 
+
+<?php } ?>

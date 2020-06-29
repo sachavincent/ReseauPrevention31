@@ -19,7 +19,7 @@
   --nav-hover-bg: #e7e7e7d0;
   --nav-select-bg: #dadada;
   --nav-select-font: #121212;
-  --date-color: #9E9E9E;
+  --date-color: #808080;
   --blue-color: #0078D7;
   --error-color: #E81123;
   --success-color: #00CC6A;
@@ -135,6 +135,9 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
+  min-width: 1000px;
+  min-height: 550px;
+  overflow: hidden;
 }
 
 .btn-admin {
@@ -647,7 +650,7 @@ body {
 }
 
 #pan-profil form .zone-infos .fas, #pan-profil form .zone-mdp .fas {
-  margin-left: 20px;
+  margin-left: 12px;
   color: var(--error-color);
 }
 
@@ -740,7 +743,7 @@ body {
 
 #pan-content #liste-onglets .onglet-msg, #pan-content #liste-onglets .onglet-msg-selected, #pan-content #liste-onglets .onglet-non-lu {
   width: 100%;
-  padding: 12.5px;
+  padding: 12.5px 15px;
   border-bottom: 1px solid var(--border-color);
   cursor: pointer;
 }
@@ -800,153 +803,108 @@ body {
   margin-right: 25px;
 }
 
-#pan-content #pan-demande {
+#pan-content #pan-demande, #pan-content #zone-annonce-conseil {
   position: absolute;
   left: 275px;
   right: 0;
-  top: 56px;
+  top: 54px;
   bottom: 0;
-  padding: 15px 25px;
+  padding: 15px 25px 20px;
+  overflow-y: auto;
 }
 
-#pan-content .zone-annonce-conseil {
-  position: absolute;
-  left: 275px;
-  right: 0;
-  top: 56px;
-  bottom: 0;
-  padding: 15px 25px;
-}
-
-#zone-msg {
-  position: absolute;
-  top: 51px;
-  bottom: 0;
-  left: 261px;
-  right: 0;
-  padding: 20px;
-  padding-left: 35px;
-  padding-right: 35px;
-}
-
-#zone-msg #zone-infos-prive {
-  height: 165px;
-  position: absolute;
-  background-color: #F9F9F9;
-  top: 0px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  padding-top: 7px;
-  padding-bottom: 15px;
-  padding-left: 35px;
-  padding-right: 35px;
-  border-bottom: 1px solid lightgray;
-}
-
-#zone-msg #zone-infos-prive fieldset {
+#pan-content #pan-demande fieldset {
   border: none;
+  padding-bottom: 15px;
 }
 
-#zone-msg #zone-infos-prive legend {
-  font-weight: bold;
-  font-size: 22px;
-  color: #4285F4;
-  border-bottom: 2px solid #4285F4;
-  margin-bottom: 10px;
+#pan-content #pan-demande fieldset b {
+  font-weight: 600;
 }
 
-#zone-msg #zone-infos-prive p {
-  margin-bottom: 5px;
+#pan-content #pan-demande fieldset label {
+  display: block;
+  margin-bottom: 20px;
 }
 
-#zone-msg #zone-discussion {
+#pan-content #pan-demande fieldset time {
+  float: right;
+  margin-top: -23px;
+  font-size: 1.3rem;
+  color: var(--date-color);
+}
+
+#pan-content #pan-demande fieldset legend {
+  font-size: 2.0rem;
+  font-weight: 600;
+  color: var(--blue-color);
+}
+
+#pan-content #pan-demande fieldset #cle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#pan-content #zone-msg {
   position: absolute;
-  top: 188px;
-  bottom: 120px;
-  left: 0;
+  left: 275px;
   right: 0;
-  padding: 20px;
-  padding-left: 35px;
-  padding-right: 35px;
-  overflow: auto;
-}
-
-#zone-msg #zone-discussion .msg-force, #zone-msg #zone-discussion .msg-user {
+  top: 54px;
+  bottom: 0;
+  background-color: bisque;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding: 25px;
-  max-width: 50%;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+#pan-content #zone-msg #zone-infos-prive {
+  width: 100%;
+  background-color: #ce7a19;
+}
+
+#pan-content #zone-msg #zone-discussion {
+  width: 100%;
+  background-color: green;
+}
+
+#pan-content #zone-msg #zone-reponse {
+  width: 100%;
+  background-color: coral;
+}
+
+#pan-content #zone-annonce-conseil fieldset {
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
   margin-bottom: 15px;
-  border-radius: 5px;
-  color: #ececec;
 }
 
-#zone-msg #zone-discussion .msg-user {
-  background-color: #DB4437;
+#pan-content #zone-annonce-conseil fieldset time {
+  float: right;
+  margin-top: -23px;
+  font-size: 1.3rem;
+  color: var(--date-color);
 }
 
-#zone-msg #zone-discussion .msg-force {
-  background-color: #4285F4;
-  margin-left: 45%;
+#pan-content #zone-annonce-conseil fieldset legend {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--blue-color);
 }
 
-#zone-msg #zone-reponse {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 110px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-top: 1px solid lightgrey;
-  z-index: 10;
-}
-
-#zone-msg #zone-reponse fieldset {
-  border: none;
-}
-
-#zone-msg #zone-reponse fieldset legend {
-  font-weight: bold;
-  font-size: 15px;
-  color: #4285F4;
-  margin-bottom: 5px;
-}
-
-#zone-msg #zone-reponse #reponse-msg {
-  width: 89.5%;
-  height: 75px;
-  resize: none;
-  font-size: 16px;
-  padding: 2px;
-  padding-left: 5px;
-  padding-left: 5px;
-}
-
-#zone-msg #zone-reponse [name="envoyer-msg"] {
-  width: 10%;
-  height: 45px;
-  position: absolute;
-  right: 2px;
-  margin-left: 3px;
-  background-color: #4285F4;
-  color: #ececec;
-  border: none;
-}
-
-#zone-msg #zone-reponse [name="envoyer-msg"]:hover {
-  -webkit-filter: brightness(120%);
-          filter: brightness(120%);
-  cursor: pointer;
-  -webkit-transition: 0.4s ease;
-  transition: 0.4s ease;
+#pan-content #zone-annonce-conseil fieldset .user-concernes {
+  font-size: 1.4rem;
+  color: var(--date-color);
 }
 /*# sourceMappingURL=style.css.map */

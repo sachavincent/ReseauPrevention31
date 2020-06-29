@@ -24,13 +24,14 @@ if ($_GET['m'] != 'none') {
 
     // affichage du contenu de l'onglet selectionné
     switch ($_GET['e']) {
+        // OUVERTURE MSG PRIVES
         case 'prive': ?>
             <!-- zone d'ouverture du msg prive -->
             <section id="zone-msg">
                 <!-- champs infos msg prive -->
                 <section id="zone-infos-prive">
                     <fieldset>
-                    <legend><?=$objet ?></legend>
+                        <legend><?=$objet ?></legend>
                         <p><b>Utilisateur : </b><?=$nom ?> <?=$prenom ?></p>
                         <p><b>Adresse Mail : </b><?=$mail ?></p>
                         <p><b>Téléphone : </b><?=$telephone ?></p>
@@ -65,39 +66,38 @@ if ($_GET['m'] != 'none') {
                 <form action="../script/nouveauMessagePrive.php?m=<?=$_GET['m'] . "&idFil=" . $infoFil['idFilDeDiscussion'] ?>" method="POST">
                 <section id="zone-reponse">
                     <fieldset>
-                    <legend>Votre réponse</legend>
-                    <textarea id="reponse-msg" name="reponse-msg" required></textarea>
-                    <input type="submit" name="envoyer-msg" value="envoyer">
+                        <legend>Votre réponse</legend>
+                        <textarea id="reponse-msg" name="reponse-msg" required></textarea>
+                        <input type="submit" name="envoyer-msg" value="envoyer">
                     </fieldset>
                 </section>
                 </form>
             </section>
-<?php
-        break;
-        case 'annonce':
-            echo ('
-                    <section id="zone-annonce-conseil"> 
-                        <fieldset>
-                            <time id="date-msg">' . $dateMsg . '</time>
-                            <legend>' . $infosUser['objet'] . '</legend>
-                            <p class="user-concernes">Utilisateurs concernés : ' . $_SESSION['ANNONCE'][$_GET['m']]['nbDestinataire'] . '</p>
-                        </fieldset>
-                    </section>
-                    <div id="affichage-texte">' . nl2br($infosUser['texte']) . '</div>
-                ');
-        break;
-        case 'conseil':
-            echo ('
-                    <section id="zone-annonce-conseil"> 
-                        <fieldset>
-                            <time id="date-msg">' . $dateMsg . '</time>
-                            <legend>' . $infosUser['objet'] . '</legend>
-                            <p class="user-concernes">À destination des utilisateurs de l\'application mobile</p>
-                        </fieldset>
-                    </section>
-                    <div id="affichage-texte">' . nl2br($infosUser['texte']) . '</div>
-                ');
-        break;
+        <?php break;
+
+        // OUVERTURE ANNONCE
+        case 'annonce': ?>
+            <section id="zone-annonce-conseil"> 
+                <fieldset>
+                    <time id="date-msg"><?= $dateMsg ?></time>
+                    <legend><?= $infosUser['objet'] ?></legend>
+                    <p class="user-concernes">Utilisateurs concernés : <?= $_SESSION['ANNONCE'][$_GET['m']]['nbDestinataire'] ?></p>
+                </fieldset>
+                <div id="affichage-texte"><?= nl2br($infosUser['texte']) ?></div>
+            </section>
+        <?php break;
+
+        // OUVERTURE CONSEIL
+        case 'conseil': ?>
+            <section id="zone-annonce-conseil"> 
+                <fieldset>
+                    <time id="date-msg"><?= $dateMsg ?></time>
+                    <legend><?= $infosUser['objet'] ?></legend>
+                    <p class="user-concernes">À destination des utilisateurs de l'application mobile</p>
+                </fieldset>
+                <div id="affichage-texte"><?= nl2br($infosUser['texte']) ?></div>
+            </section>
+        <?php break;
     }
 }
 ?>
