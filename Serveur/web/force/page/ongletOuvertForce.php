@@ -27,73 +27,73 @@ if ($_GET['m'] != 'none') {
         case 'prive': ?>
             <!-- zone d'ouverture du msg prive -->
             <section id="zone-msg">
-              <!-- champs infos msg prive -->
-              <section id="zone-infos-prive">
-                <fieldset>
-                  <legend><?=$objet ?></legend>
-                    <p><b>Utilisateur : </b><?=$nom ?> <?=$prenom ?></p>
-                    <p><b>Adresse Mail : </b><?=$mail ?></p>
-                    <p><b>Téléphone : </b><?=$telephone ?></p>
-                    <p><b>Localisation : </b>secteur <?=$secteur ?></p>
-                    <p><b>Société : </b><?=$societe ?></p>
-                </fieldset>
-              </section>
+                <!-- champs infos msg prive -->
+                <section id="zone-infos-prive">
+                    <fieldset>
+                    <legend><?=$objet ?></legend>
+                        <p><b>Utilisateur : </b><?=$nom ?> <?=$prenom ?></p>
+                        <p><b>Adresse Mail : </b><?=$mail ?></p>
+                        <p><b>Téléphone : </b><?=$telephone ?></p>
+                        <p><b>Localisation : </b>secteur <?=$secteur ?></p>
+                        <p><b>Société : </b><?=$societe ?></p>
+                    </fieldset>
+                </section>
 
-              <!-- zone affichage des messages -->
-              <section id="zone-discussion">
-              <?php // traitement msg forces / user
-                $infoFil = $_SESSION['FIL_DE_DISCUSSION'][$_GET['m']];
-                foreach ($infoFil['message'] as $msg) {
-                    switch ($msg['emetteur']) {
-                        case 'FORCE':
-                            $emetteur = 'msg-force';
-                        break;
-                        case 'UTILISATEUR':
-                            $emetteur = 'msg-user';
-                        break;
-                    }
-                    echo '<div class=' . $emetteur . '>' . nl2br($msg['texte']) . '</div>';
-                } ?>
-              </section>
-              <!-- Bas de page par defaut des messages -->
-              <script>
-                var x = document.getElementById("zone-discussion");
-                x.scrollTop = x.scrollHeight;
-              </script>
+                <!-- zone affichage des messages -->
+                <section id="zone-discussion">
+                <?php // traitement msg forces / user
+                    $infoFil = $_SESSION['FIL_DE_DISCUSSION'][$_GET['m']];
+                    foreach ($infoFil['message'] as $msg) {
+                        switch ($msg['emetteur']) {
+                            case 'FORCE':
+                                $emetteur = 'msg-force';
+                            break;
+                            case 'UTILISATEUR':
+                                $emetteur = 'msg-user';
+                            break;
+                        }
+                        echo '<div class=' . $emetteur . '>' . nl2br($msg['texte']) . '</div>';
+                    } ?>
+                </section>
+                <!-- Bas de page par defaut des messages -->
+                <script>
+                    var x = document.getElementById("zone-discussion");
+                    x.scrollTop = x.scrollHeight;
+                </script>
 
-              <!-- zone de saisie de réponse -->
-              <form action="../script/nouveauMessagePrive.php?m=<?=$_GET['m'] . "&idFil=" . $infoFil['idFilDeDiscussion'] ?>" method="POST">
-              <section id="zone-reponse">
-                <fieldset>
-                  <legend>Votre réponse</legend>
-                  <textarea id="reponse-msg" name="reponse-msg" required></textarea>
-                  <input type="submit" name="envoyer-msg" value="envoyer">
-                </fieldset>
-              </section>
-              </form>
+                <!-- zone de saisie de réponse -->
+                <form action="../script/nouveauMessagePrive.php?m=<?=$_GET['m'] . "&idFil=" . $infoFil['idFilDeDiscussion'] ?>" method="POST">
+                <section id="zone-reponse">
+                    <fieldset>
+                    <legend>Votre réponse</legend>
+                    <textarea id="reponse-msg" name="reponse-msg" required></textarea>
+                    <input type="submit" name="envoyer-msg" value="envoyer">
+                    </fieldset>
+                </section>
+                </form>
             </section>
 <?php
         break;
         case 'annonce':
             echo ('
                     <section id="zone-annonce-conseil"> 
-                      <fieldset>
-                        <time id="date-msg">' . $dateMsg . '</time>
-                        <legend>' . $infosUser['objet'] . '</legend>
-                        <p class="user-concernes">Utilisateurs concernés : ' . $_SESSION['ANNONCE'][$_GET['m']]['nbDestinataire'] . '</p>
-                      </fieldset>
+                        <fieldset>
+                            <time id="date-msg">' . $dateMsg . '</time>
+                            <legend>' . $infosUser['objet'] . '</legend>
+                            <p class="user-concernes">Utilisateurs concernés : ' . $_SESSION['ANNONCE'][$_GET['m']]['nbDestinataire'] . '</p>
+                        </fieldset>
                     </section>
                     <div id="affichage-texte">' . nl2br($infosUser['texte']) . '</div>
-                 ');
+                ');
         break;
         case 'conseil':
             echo ('
                     <section id="zone-annonce-conseil"> 
-                      <fieldset>
-                        <time id="date-msg">' . $dateMsg . '</time>
-                        <legend>' . $infosUser['objet'] . '</legend>
-                        <p class="user-concernes">À destination des utilisateurs de l\'application mobile</p>
-                    </fieldset>
+                        <fieldset>
+                            <time id="date-msg">' . $dateMsg . '</time>
+                            <legend>' . $infosUser['objet'] . '</legend>
+                            <p class="user-concernes">À destination des utilisateurs de l\'application mobile</p>
+                        </fieldset>
                     </section>
                     <div id="affichage-texte">' . nl2br($infosUser['texte']) . '</div>
                 ');

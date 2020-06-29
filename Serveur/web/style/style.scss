@@ -32,7 +32,8 @@ $color-error: #FF2646;
     --msg-content: #FFFFFF;
 
     // buttons
-    --button-color: #c0c0c0;
+    --button-color: #0078D7;
+    --button-hover: #005A9E;
 
     // color nav gauche
     --nav-bg-color: #f5f5f5;
@@ -52,7 +53,7 @@ $color-error: #FF2646;
     --success-color: #00CC6A;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
     :root {
         --background-color: #100E17;
         --font-color: #f5f5f5;
@@ -69,11 +70,12 @@ $color-error: #FF2646;
         --msg-content: #FDFDFD;
 
         // buttons
-        --button-color: #100E17;
+        --button-color: #0091EA;
+        --button-hover: #01579B;
 
         // color nav gauche
         --nav-bg-color: #100E17;
-        --nav-profile-bg: #2196F3;
+        --nav-profile-bg: #0091EA;
         --nav-profile-font: #f5f5f5;
         --nav-onglet-font: #ffffff9a;
         --nav-hover-bg: #000;
@@ -83,7 +85,7 @@ $color-error: #FF2646;
         // chambre - forces
         --date-color: #9E9E9E;
 
-        --blue-color: #2196F3;
+        --blue-color: #0091EA;
         --error-color: #FF2646;
         --success-color: #26FF26;
     }
@@ -183,8 +185,6 @@ h1 {
 body {
     background-color: var(--background-color);
     color: var(--font-color);
-    // width: 100%;
-    // height: 100%;
     position: absolute;
     left: 0; right: 0; top: 0; bottom: 0;
     // min-width: 1280px;
@@ -192,18 +192,30 @@ body {
 //     overflow:;
 }
 
+// PERSONNALISATION DES BOUTONS
+
 .btn-admin {
-    background-color: var(--background-color);
+    background-color: var(--panel-color);
     padding: 7.5px 15px;
     border: none;
     border-radius: 0px;
     position: absolute;
     top: 0;
     left: 0;
-    border: 1px solid var(--shadow-color);
     @include shadow(5px, 1px);
     @include hover(var(--blue-color), var(--hover-font-color));
 }
+
+.button-id, .btn-profil, .actions, .new-annonce, .new-conseil {
+    padding: 7.5px;
+    border: none;
+    font-weight: 600;
+    color: var(--nav-profile-font);
+    background-color: var(--button-color);
+    box-shadow: 0px 2.5px 0px var(--shadow-color);
+    @include hover(var(--button-hover), var(--hover-font-color));
+}
+
 
 /* ========== IDENTIFICATION =========== */
 #page-identification {
@@ -235,7 +247,6 @@ body {
             margin: 10px 2.5px 0;
             padding: 10px;
             background-color: #f5f5f5;
-            // border: 2px solid transparent;
             @include shadow(5px, 1px);
             @include hover(var(--hover-bg-color), none);
         }
@@ -283,16 +294,10 @@ body {
             width: 100%;
             @include flex(row nowrap, space-between, center);
 
-            .bouton-id {
+            .button-id {
                 width: 45%;
                 padding: 10px;
-                border: none;
                 margin-top: 25px;
-                font-weight: 600;
-                border: 1px solid var(--shadow-color);
-                background-color: var(--button-color);
-                // @include shadow(2px, 1px);
-                @include hover(var(--blue-color), var(--hover-font-color));
             }
         }
     }
@@ -327,13 +332,7 @@ body {
         .button-id {
             width: 100%;
             padding: 10px;
-            border: none;
-            font-weight: 600;
-            background-color: var(--button-color);
             margin-top: 20px;
-            border: 1px solid var(--shadow-color);
-            // @include shadow(2px, 1px);
-            @include hover(var(--blue-color), var(--hover-font-color));
         }
     }
 
@@ -378,13 +377,7 @@ body {
         .button-id {
             width: 100%;
             padding: 10px;
-            border: none;
-            font-weight: 600;
-            background-color: var(--button-color);
             margin-top: 30px;
-            border: 1px solid var(--shadow-color);
-            // @include shadow(2px, 1px);
-            @include hover(var(--blue-color), var(--hover-font-color));
         }
 
         #ajout-success, #ajout-failed, #ajout-mdp-different, #ajout-id-existant {
@@ -431,6 +424,28 @@ body {
         }
     }
 
+    // BOUTONS POUR FORCES
+    .new-annonce, .new-conseil {
+        width: 75%;
+        padding: 10px;
+        margin: 15px 0 15px;
+        transition: 0.3s all ease;
+        
+        &:hover {
+            width: 100%;
+            transition: 0.3s all ease;
+            background-color: var(--button-color);
+        }
+    }
+
+    .new-annonce {
+        margin-bottom: 0;
+    }
+
+    .new-conseil {
+        margin-top: 5px;
+    }
+
     .onglets, .onglet-selected {
         width: 100%;
         background-color: transparent;
@@ -457,6 +472,12 @@ body {
         }
     }
 
+    .nb-connexions {
+        font-size: 1.4rem;
+        position: absolute;
+        bottom: 3%;
+    }
+
     .logo {
         position: absolute;
         bottom: 5%;
@@ -473,7 +494,6 @@ body {
 
     .block-titre {
         height: 15%;
-        // width: 100%;
         padding-top: 2%;
         text-align: center;
         color: var(--nav-profile-font);
@@ -543,15 +563,10 @@ body {
                 margin: 2% 0 4%;
             }
             
-            [value="valider"] {
+            .btn-profil {
                 width: 50%;
                 padding: 10px;
-                border: none;
-                border: 1px solid var(--shadow-color);
-                font-weight: 600;
-                background-color: var(--button-color);
                 margin-top: 4%;
-                @include hover(var(--blue-color), var(--hover-font-color));
             }
         }
     }
@@ -921,6 +936,70 @@ body {
 
 // }
 
+
+
+// #zone-annonce-conseil {
+//     height: 65px;
+//     position: absolute;
+//     background-color: $color-light;
+//     top: 51px;
+//     bottom: 0;
+//     right: 0;
+//     left: 261px;
+//     padding: 15px;
+//     padding-left: 35px;
+//     padding-right: 35px;
+//     border-bottom: 1px solid lightgray;
+//     fieldset {
+//         border: none;
+//         #date-msg {
+//             font-size: 13px;
+//             color: grey;
+//             position: absolute;
+//             right: 50px;
+//             top: 20px;
+//         }
+//         legend {
+//             font-weight: bold;
+//             font-size: 22px;
+//             color: $color-second;
+//             border-bottom: 2px solid $color-second;
+//         }
+//         .user-concernes {
+//             font-size: 14px;
+//             color: gray;
+//             margin-top: 10px;
+//         }
+//     }
+// }
+
+// #affichage-texte {
+//     position: absolute;
+//     top: 147px;
+//     bottom: 0;
+//     left: 261px;
+//     right: 0;
+//     padding-top: 15px;
+//     padding-left: 35px;
+//     padding-right: 35px;
+//     padding-bottom: 30px;
+//     overflow: auto;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ========== PAN DEMANDES / MESSAGES =========== */
 #pan-content {
     background-color: var(--page-content);
@@ -1004,144 +1083,42 @@ body {
 
         .actions {
             width: 125px;
-            padding: 7.5px;
-            border: none;
-            font-weight: 600;
             margin-right: 25px;
-            background-color: var(--button-color);
-            border: 1px solid var(--shadow-color);
-            @include hover(var(--blue-color), var(--hover-font-color));
         }
     }
 
+    // PANEL OUVERTURE DEMANDE (CHAMBRE)
     #pan-demande {
         position: absolute;
         left: 275px; right: 0; top: 56px; bottom: 0;
         padding: 15px 25px;
     }
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#zone-annonce-conseil {
-    height: 65px;
-    position: absolute;
-    background-color: $color-light;
-    top: 51px;
-    bottom: 0;
-    right: 0;
-    left: 261px;
-    padding: 15px;
-    padding-left: 35px;
-    padding-right: 35px;
-    border-bottom: 1px solid lightgray;
-    fieldset {
-        border: none;
-        #date-msg {
-            font-size: 13px;
-            color: grey;
-            position: absolute;
-            right: 50px;
-            top: 20px;
-        }
-        legend {
-            font-weight: bold;
-            font-size: 22px;
-            color: $color-second;
-            border-bottom: 2px solid $color-second;
-        }
-        .user-concernes {
-            font-size: 14px;
-            color: gray;
-            margin-top: 10px;
-        }
+    // PANEL OUVERTURE ANNONCE / CONSEIL (CHAMBRE)
+    .zone-annonce-conseil {
+        position: absolute;
+        left: 275px; right: 0; top: 56px; bottom: 0;
+        padding: 15px 25px;
+       
     }
+
+
 }
 
-#affichage-texte {
-    position: absolute;
-    top: 147px;
-    bottom: 0;
-    left: 261px;
-    right: 0;
-    padding-top: 15px;
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-bottom: 30px;
-    overflow: auto;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #zone-msg {
     position: absolute;

@@ -25,7 +25,7 @@ session_start();
             MON PROFIL
         </div>
         
-        <!-- ============================================== -->  
+        <!-- ========== PROFIL ========== -->  
 
         <form action="../script/modifier_profil.php?return=none" method="post"  enctype="multipart/form-data">
             <!-- conteneur image de profil avec nom prenom -->
@@ -87,7 +87,7 @@ session_start();
             <input class="input-mdp" name="confirmationMdp" type="password" placeholder="Confirmez ici le nouveau mot de passe"/>
 
             <!-- bouton valider -->
-            <input type="submit" value="valider" />
+            <input class="btn-profil" type="submit" value="valider" />
             </div>
 
         </form>

@@ -5,37 +5,35 @@ include("../script/connexionBDD.php");
 
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Boîte de réception</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="icon" type="image/png" href="../images/icon.png" />
-  </head>
+    <script src="https://kit.fontawesome.com/161f845565.js" crossorigin="anonymous"></script>
+</head>
 
-  <body>
+<body>
+    <!-- Chargement de la BDD -->
+    <?php include("../script/chargerInfos.php"); ?>
     <!-- affichage menu gauche -->
     <?php include("page/navForce.php"); ?>
 
     <!-- pan liste demandes -->
     <section id="pan-content">
-        <!-- ouverture du contenu | Privé | Annonce | Conseil | Corbeille | -->
+        <!-- ouverture du contenu | Privé | Annonce | Conseil | -->
         <?php switch ($_GET['e']) {
-            case 'prive' :
-                include("prive.php");
-            break;
-            case 'annonce' :
-                include("annonce.php");
-            break;
-            case 'conseil' :
-                include("conseil.php");
-            break;
+            case 'prive' || 'annonce' || 'conseil':
+                // affichage des infos
+                include("../script/afficherInfos.php");
+                break;
             case 'new_annonce' :
                 include("new_annonce.php");
-            break;
+                break;
             case 'new_conseil' :
                 include("new_conseil.php");
-            break;
+                break;
         } ?>
-        </section>
-  </body>
+    </section>
+</body>
 </html>
