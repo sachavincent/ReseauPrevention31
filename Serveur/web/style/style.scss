@@ -475,7 +475,7 @@ body {
         height: 15%;
         // width: 100%;
         padding-top: 2%;
-        padding-left: 50%;
+        text-align: center;
         color: var(--nav-profile-font);
         background-color: var(--blue-color);
         box-shadow: 0px 0px 20px -5px var(--blue-color);
@@ -993,9 +993,32 @@ body {
                 color: var(--nav-profile-font);
             }
         }
-
     }
     
+    #barre-actions {
+        background-color: var(--nav-bg-color);
+        position: absolute;
+        left: 275px; right: 0; top: 0;
+        padding: 7.5px 25px 7.5px;
+        border-bottom: 1px solid var(--border-color);
+
+        .actions {
+            width: 125px;
+            padding: 7.5px;
+            border: none;
+            font-weight: 600;
+            margin-right: 25px;
+            background-color: var(--button-color);
+            border: 1px solid var(--shadow-color);
+            @include hover(var(--blue-color), var(--hover-font-color));
+        }
+    }
+
+    #pan-demande {
+        position: absolute;
+        left: 275px; right: 0; top: 56px; bottom: 0;
+        padding: 15px 25px;
+    }
 }
 
 

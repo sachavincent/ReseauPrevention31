@@ -571,7 +571,7 @@ body {
 #pan-profil .block-titre {
   height: 15%;
   padding-top: 2%;
-  padding-left: 50%;
+  text-align: center;
   color: var(--nav-profile-font);
   background-color: var(--blue-color);
   -webkit-box-shadow: 0px 0px 20px -5px var(--blue-color);
@@ -789,6 +789,45 @@ body {
 
 #pan-content #liste-onglets .onglet-msg-selected #date-reception, #pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg-selected h10 {
   color: var(--nav-profile-font);
+}
+
+#pan-content #barre-actions {
+  background-color: var(--nav-bg-color);
+  position: absolute;
+  left: 275px;
+  right: 0;
+  top: 0;
+  padding: 7.5px 25px 7.5px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#pan-content #barre-actions .actions {
+  width: 125px;
+  padding: 7.5px;
+  border: none;
+  font-weight: 600;
+  margin-right: 25px;
+  background-color: var(--button-color);
+  border: 1px solid var(--shadow-color);
+}
+
+#pan-content #barre-actions .actions:hover {
+  cursor: pointer;
+  background-color: var(--blue-color);
+  color: var(--hover-font-color);
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#pan-content #pan-demande {
+  position: absolute;
+  left: 275px;
+  right: 0;
+  top: 56px;
+  bottom: 0;
+  padding: 15px 25px;
 }
 
 #zone-annonce-conseil {

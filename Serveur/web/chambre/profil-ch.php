@@ -39,7 +39,7 @@ session_start();
                     } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.png')){
                     echo  '<img src="../images/'. $_SESSION["id"]. 'c.png">';
                     } else {
-                    echo  '<img src="../images/user.jpg">';
+                    echo  '<img src="../images/profil/user.jpg">';
                     } ?>
                 </div>
                 <!-- affichage nom / prenom -->
