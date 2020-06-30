@@ -10,7 +10,7 @@
 
 <div id="objet-new-conseil">
     <fieldset>
-    <legend>Objet :</legend>
+    <legend>Objet du nouveau conseil :</legend>
     <input name='input-objet-conseil' required>
     <p class="user-concernes">à destination des utilisateurs de l'application mobile.</p>
     </fieldset>

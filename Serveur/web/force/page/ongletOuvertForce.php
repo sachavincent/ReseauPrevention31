@@ -65,11 +65,10 @@ if ($_GET['m'] != 'none') {
                 <!-- zone de saisie de réponse -->
                 <form action="../script/nouveauMessagePrive.php?m=<?=$_GET['m'] . "&idFil=" . $infoFil['idFilDeDiscussion'] ?>" method="POST">
                 <section id="zone-reponse">
-                    <fieldset>
-                        <legend>Votre réponse</legend>
-                        <textarea id="reponse-msg" name="reponse-msg" required></textarea>
-                        <input type="submit" name="envoyer-msg" value="envoyer">
-                    </fieldset>
+                    <div class="write-msg">
+                        <textarea name="reponse-msg" placeholder="Écrivez votre message ici ..." required></textarea>
+                    </div>
+                    <input type="submit" name="envoyer-msg" value="envoyer">
                 </section>
                 </form>
             </section>

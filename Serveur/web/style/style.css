@@ -20,12 +20,15 @@
   --nav-select-bg: #dadada;
   --nav-select-font: #121212;
   --date-color: #808080;
+  --msg-background: #fff;
+  --msg-block: #dadada;
+  --msg-font: #121212;
   --blue-color: #0078D7;
   --error-color: #E81123;
   --success-color: #00CC6A;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background-color: #100E17;
     --font-color: #f5f5f5;
@@ -48,6 +51,9 @@
     --nav-select-bg: #5fa1d61e;
     --nav-select-font: #fff;
     --date-color: #9E9E9E;
+    --msg-background: #100E17;
+    --msg-block: #303030;
+    --msg-font: #f5f5f5;
     --blue-color: #0091EA;
     --error-color: #FF2646;
     --success-color: #26FF26;
@@ -127,6 +133,13 @@ h1 {
   font-size: 2.0rem;
 }
 
+/* titre des demandes / msg / annonces / conseils */
+legend {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--blue-color);
+}
+
 body {
   background-color: var(--background-color);
   color: var(--font-color);
@@ -161,7 +174,7 @@ body {
           box-shadow: none;
 }
 
-.button-id, .btn-profil, .actions, .new-annonce, .new-conseil, .btn-new-annonce-conseil {
+.button-id, .btn-profil, .actions, .new-annonce, .new-conseil, .btn-new-annonce-conseil, [name="envoyer-msg"] {
   padding: 7.5px;
   border: none;
   font-weight: 600;
@@ -171,7 +184,7 @@ body {
           box-shadow: 0px 2.5px 0px var(--shadow-color);
 }
 
-.button-id:hover, .btn-profil:hover, .actions:hover, .new-annonce:hover, .new-conseil:hover, .btn-new-annonce-conseil:hover {
+.button-id:hover, .btn-profil:hover, .actions:hover, .new-annonce:hover, .new-conseil:hover, .btn-new-annonce-conseil:hover, [name="envoyer-msg"]:hover {
   cursor: pointer;
   background-color: var(--button-hover);
   color: var(--hover-font-color);
@@ -845,12 +858,6 @@ body {
   color: var(--date-color);
 }
 
-#pan-content #pan-demande fieldset legend {
-  font-size: 2.0rem;
-  font-weight: 600;
-  color: var(--blue-color);
-}
-
 #pan-content #pan-demande fieldset #cle {
   font-size: 2.5rem;
   font-weight: 600;
@@ -863,35 +870,109 @@ body {
   right: 0;
   top: 54px;
   bottom: 0;
-  background-color: bisque;
+}
+
+#pan-content #zone-msg #zone-infos-prive {
+  width: 100%;
+  padding: 15px 25px 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0px;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#pan-content #zone-msg #zone-infos-prive fieldset {
+  border: none;
+}
+
+#pan-content #zone-msg #zone-infos-prive fieldset p {
+  display: block;
+  margin-top: 7.5px;
+}
+
+#pan-content #zone-msg #zone-discussion {
+  width: 100%;
+  padding: 20px 25px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 223px;
+  bottom: 100px;
+  background-color: var(--msg-background);
+  overflow-y: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: column wrap;
-          flex-flow: column wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: none;
+      -ms-flex-pack: none;
+          justify-content: none;
+  -webkit-box-align: none;
+      -ms-flex-align: none;
+          align-items: none;
 }
 
-#pan-content #zone-msg #zone-infos-prive {
-  width: 100%;
-  background-color: #ce7a19;
+#pan-content #zone-msg #zone-discussion .msg-force, #pan-content #zone-msg #zone-discussion .msg-user {
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  max-width: 60%;
+  border-radius: 5px;
 }
 
-#pan-content #zone-msg #zone-discussion {
-  width: 100%;
-  background-color: green;
+#pan-content #zone-msg #zone-discussion .msg-force {
+  background-color: var(--blue-color);
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  color: var(--nav-profile-font);
+}
+
+#pan-content #zone-msg #zone-discussion .msg-user {
+  background-color: var(--msg-block);
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  color: var(--msg-font);
 }
 
 #pan-content #zone-msg #zone-reponse {
   width: 100%;
-  background-color: coral;
+  height: 110px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  background-color: var(--msg-background);
+}
+
+#pan-content #zone-msg #zone-reponse .write-msg {
+  position: absolute;
+  left: 25px;
+  right: 155px;
+  bottom: 10px;
+  top: 10px;
+}
+
+#pan-content #zone-msg #zone-reponse .write-msg textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 1.5rem;
+  padding: 6.5px 8px;
+  border: 2px solid var(--shadow-color);
+  background-color: var(--msg-block);
+  outline: none;
+  resize: none;
+}
+
+#pan-content #zone-msg #zone-reponse [name="envoyer-msg"] {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  width: 125px;
+  padding: 10px;
 }
 
 #pan-content #zone-annonce-conseil fieldset {
@@ -906,12 +987,6 @@ body {
   margin-top: -23px;
   font-size: 1.3rem;
   color: var(--date-color);
-}
-
-#pan-content #zone-annonce-conseil fieldset legend {
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: var(--blue-color);
 }
 
 #pan-content #zone-annonce-conseil fieldset .user-concernes {
@@ -932,12 +1007,6 @@ body {
   border: none;
 }
 
-#pan-content #objet-new-conseil fieldset legend {
-  font-size: 2.0rem;
-  font-weight: 600;
-  color: var(--blue-color);
-}
-
 #pan-content #objet-new-conseil fieldset .user-concernes {
   font-size: 1.4rem;
   color: var(--date-color);
@@ -950,6 +1019,7 @@ body {
   margin-top: 5px;
   border: 2px solid var(--shadow-color);
   background-color: var(--nav-bg-color);
+  outline: none;
 }
 
 #pan-content #write-conseil {
@@ -968,5 +1038,7 @@ body {
   padding: 6.5px 8px;
   border: 2px solid var(--shadow-color);
   background-color: var(--nav-bg-color);
+  outline: none;
+  resize: none;
 }
 /*# sourceMappingURL=style.css.map */

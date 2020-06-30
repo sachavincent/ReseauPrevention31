@@ -46,6 +46,9 @@ $color-error: #FF2646;
 
     // chambre - forces
     --date-color: #808080;
+    --msg-background: #fff;
+    --msg-block: #dadada;
+    --msg-font: #121212;
 
     // others
     --blue-color: #0078D7;
@@ -53,7 +56,7 @@ $color-error: #FF2646;
     --success-color: #00CC6A;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
         --background-color: #100E17;
         --font-color: #f5f5f5;
@@ -84,6 +87,9 @@ $color-error: #FF2646;
 
         // chambre - forces
         --date-color: #9E9E9E;
+        --msg-background: #100E17;
+        --msg-block: #303030;
+        --msg-font: #f5f5f5;
 
         --blue-color: #0091EA;
         --error-color: #FF2646;
@@ -182,6 +188,13 @@ h1 {
     font-size: 2.0rem;
 }
 
+/* titre des demandes / msg / annonces / conseils */
+legend {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--blue-color);
+}
+
 body {
     background-color: var(--background-color);
     color: var(--font-color);
@@ -206,7 +219,7 @@ body {
     @include hover(var(--blue-color), var(--hover-font-color));
 }
 
-.button-id, .btn-profil, .actions, .new-annonce, .new-conseil, .btn-new-annonce-conseil {
+.button-id, .btn-profil, .actions, .new-annonce, .new-conseil, .btn-new-annonce-conseil, [name="envoyer-msg"] {
     padding: 7.5px;
     border: none;
     font-weight: 600;
@@ -703,12 +716,6 @@ body {
                 color: var(--date-color);
             }
 
-            legend {
-                font-size: 2.0rem;
-                font-weight: 600;
-                color: var(--blue-color);
-            }
-
             #cle {
                 font-size:2.5rem;
                 font-weight: 600;
@@ -721,22 +728,87 @@ body {
     #zone-msg {
         position: absolute;
         left: 275px; right: 0; top: 54px; bottom: 0;
-        background-color: bisque;
-        @include flex(column wrap, flex-start, flex-start);
 
+        // infos de l'utilisateur du msg
         #zone-infos-prive {
             width: 100%;
-            background-color: rgb(206, 122, 25);
+            padding: 15px 25px 20px;
+            position: absolute;
+            left: 0; right: 0; top: 0px;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+
+            fieldset {
+                border: none;
+    
+                p {
+                    display: block;
+                    margin-top: 7.5px;
+                }
+            }   
+
         }
 
+        // zone de discussion
         #zone-discussion {
             width: 100%;
-            background-color: green;
+            padding: 20px 25px;
+            position: absolute;
+            left: 0; right: 0; top: 223px; bottom: 100px;
+            background-color: var(--msg-background);
+            overflow-y: auto;
+            @include flex(column, none, none);
+
+            .msg-force, .msg-user {
+                padding: 15px 20px;
+                margin-bottom: 15px;
+                max-width: 60%;
+                border-radius: 5px;
+            }
+
+            .msg-force {
+                background-color: var(--blue-color);
+                align-self: flex-end;
+                color: var(--nav-profile-font);
+            }
+            
+            .msg-user {
+                background-color: var(--msg-block);
+                align-self: flex-start;
+                color: var(--msg-font);
+            }
         }
 
+        // zone de réponse du message
         #zone-reponse {
             width: 100%;
-            background-color: coral;
+            height: 110px;
+            position: absolute;
+            left: 0; right: 0; bottom: 0px;
+            background-color: var(--msg-background);
+
+            .write-msg {
+                position: absolute;
+                left: 25px; right: 155px; bottom: 10px; top: 10px;
+
+                textarea {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 1.5rem;
+                    padding: 6.5px 8px;
+                    border: 2px solid var(--shadow-color);
+                    background-color: var(--msg-block);
+                    outline: none;
+                    resize: none;
+                }
+            }
+
+            [name="envoyer-msg"] {
+                position: absolute;
+                right: 25px; top: 10px;
+                width: 125px;
+                padding: 10px;
+            }
         }
     }
 
@@ -756,12 +828,6 @@ body {
                 color: var(--date-color);
             }
 
-            legend {
-                font-size: 2.2rem;
-                font-weight: 600;
-                color: var(--blue-color);
-            }
-
             .user-concernes {
                 font-size: 1.4rem;
                 color: var(--date-color);
@@ -777,12 +843,6 @@ body {
         fieldset {
             border: none;
 
-            legend {
-                font-size: 2.0rem;
-                font-weight: 600;
-                color: var(--blue-color);
-            }
-
             .user-concernes {
                 font-size: 1.4rem;
                 color: var(--date-color);
@@ -795,6 +855,7 @@ body {
                 margin-top: 5px;
                 border: 2px solid var(--shadow-color);
                 background-color: var(--nav-bg-color);
+                outline: none;
             }
         }
     }
@@ -811,6 +872,8 @@ body {
             padding: 6.5px 8px;
             border: 2px solid var(--shadow-color);
             background-color: var(--nav-bg-color);
+            outline: none;
+            resize: none;
         }
     }
     
