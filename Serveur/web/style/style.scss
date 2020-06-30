@@ -394,15 +394,17 @@ body {
         }
         
         select {
+            padding: 5px 8px;
+            color: var(--msg-font);
+            background-color: var(--nav-bg-color);
+            border: 2px solid var(--border-color);
             font-size: 1.6rem;
-            padding:5px;
             margin-top: 20px;
             border-radius: 0px;
-            color: #151515;
             
-            option {
-              color: #151515;
-            }
+            // option {
+            //   color: var(--msg-font);
+            // }
         }
         
         .input-new-gestionnaire {
