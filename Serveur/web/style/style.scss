@@ -318,10 +318,17 @@ body {
             @include hover(var(--hover-bg-color), none);
         }
 
+        label {
+            float: left;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
         [name="id"], [name="mdp"] {
             width: 100%;
             font-size: 1.6rem;
-            margin: 20px 0 5px;
+            margin: -5px 0 5px;
         }
 
         #login-failed {
@@ -357,11 +364,18 @@ body {
         @include center-xy-axis;
         @include shadow(10px, 2px);
 
+        label {
+            float: left;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 17.5px;
+        }
+
         [name="mdpAdmin"] {
             width: 100%;
             font-size: 1.6rem;
-            margin: 20px 0 0px;
-        }   
+            margin-top: -5px;
+        }
 
         #error {
             font-size: 1.3rem;
@@ -401,11 +415,18 @@ body {
             margin-top: 20px;
             border-radius: 0px;
         }
+
+        label {
+            float: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 17.5px;
+        }
         
         .input-new-gestionnaire {
             width: 100%;
             font-size: 1.6rem;
-            margin: 20px 0 5px;
+            margin-bottom: 5px;
         }
         
         .button-id {

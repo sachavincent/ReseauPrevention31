@@ -354,10 +354,17 @@ body {
           box-shadow: none;
 }
 
+#page-identification #pan-identification label {
+  float: left;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
 #page-identification #pan-identification [name="id"], #page-identification #pan-identification [name="mdp"] {
   width: 100%;
   font-size: 1.6rem;
-  margin: 20px 0 5px;
+  margin: -5px 0 5px;
 }
 
 #page-identification #pan-identification #login-failed {
@@ -409,10 +416,17 @@ body {
           box-shadow: 0 0 10px 2px var(--shadow-color);
 }
 
+#page-identification #pan-connexion-admin label {
+  float: left;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 17.5px;
+}
+
 #page-identification #pan-connexion-admin [name="mdpAdmin"] {
   width: 100%;
   font-size: 1.6rem;
-  margin: 20px 0 0px;
+  margin-top: -5px;
 }
 
 #page-identification #pan-connexion-admin #error {
@@ -470,10 +484,17 @@ body {
   border-radius: 0px;
 }
 
+#page-identification #pan-ajout-gestionnaire label {
+  float: left;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 17.5px;
+}
+
 #page-identification #pan-ajout-gestionnaire .input-new-gestionnaire {
   width: 100%;
   font-size: 1.6rem;
-  margin: 20px 0 5px;
+  margin-bottom: 5px;
 }
 
 #page-identification #pan-ajout-gestionnaire .button-id {

@@ -50,9 +50,11 @@ switch ($_GET['chambre']) {
             <div id="logo-choisi"><img src=<?= $_SESSION['logoChambre'];?> ></div>
             
             <!-- zone de saisie identifiant -->
+            <label>N O M &#160 D ' U T I L I S A T E U R</label>
             <input name='id' type="login" placeholder="Entrer le nom d'utilisateur" required>
 
             <!-- zone de saisie mdp -->
+            <label>M O T &#160 D E &#160 P A S S E</label>
             <input name='mdp' type="password" placeholder="Entrer le mot de passe" required>
 
             <!-- ligne d'erreur si la connexion échoue -->

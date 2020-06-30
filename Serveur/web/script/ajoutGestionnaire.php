@@ -26,6 +26,7 @@
             <form action="ajoutGestionnaire.php" method="post">
             <div id="pan-connexion-admin">
                 <h1>Connexion Administrateur</h1>
+                <label>M O T &#160 D E &#160 P A S S E</label>
                 <input type="password" name="mdpAdmin" placeholder="Entrer le mot de passe" required>
                 <?php if (isset($_GET['p']) AND $_GET['p'] == 'mdpInco') {
                     echo '<p id="error">Le mot de passe est incorrect.<p>';
@@ -96,11 +97,17 @@
                 </select>
                 
                 <!-- champs de saisies -->
+                <label class="identifiants">I D E N T I F I A N T</label>
                 <input class="input-new-gestionnaire" type="text" name="id" placeholder="Entrer l'identifiant" required>
+                <label class="identifiants">M O T &#160 D E &#160 P A S S E</label>
                 <input class="input-new-gestionnaire" type="password" name="mdp" placeholder="Entrer le mot de passe" required>
+                <label class="identifiants">C O N F I R M A T I O N</label>
                 <input class="input-new-gestionnaire" type="password" name="mdp-confirm" placeholder="Confirmation du mot de passe" required>
+                <label class="identifiants">N O M</label>
                 <input class="input-new-gestionnaire" type="text" name="nom" placeholder="Entrer le nom" required>
+                <label class="identifiants">P R É N O M</label>
                 <input class="input-new-gestionnaire" type="text" name="prenom" placeholder="Entrer le prénom" required>
+                <label class="identifiants">A D R E S S E &#160 M A I L</label>
                 <input class="input-new-gestionnaire" type="email" name="mail" placeholder="Entrer l'adresse email" required>
                 <!-- affichage erreur si erreur -->
                 <?php
