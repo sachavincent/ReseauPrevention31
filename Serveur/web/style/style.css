@@ -192,10 +192,18 @@ body {
   margin: -1px;
 }
 
-[name="id"], [name="mdp"], .input-new-gestionnaire, .input-infos, .input-mdp, [name='input-objet-conseil'], [name='input-objet-annonce'] {
+.input-infos, .input-mdp, [name='input-objet-conseil'], [name='input-objet-annonce'] {
   padding: 6.5px 8px;
   border: 2px solid var(--shadow-color);
   background-color: var(--nav-bg-color);
+}
+
+#pan-identification [name="id"], #pan-identification [name="mdp"], [name="mdpAdmin"], .input-new-gestionnaire {
+  padding: 10px 0 7.5px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid var(--input-border);
 }
 
 .btn-admin {
@@ -349,7 +357,6 @@ body {
 #page-identification #pan-identification [name="id"], #page-identification #pan-identification [name="mdp"] {
   width: 100%;
   font-size: 1.6rem;
-  outline: none;
   margin: 20px 0 5px;
 }
 
@@ -405,11 +412,6 @@ body {
 #page-identification #pan-connexion-admin [name="mdpAdmin"] {
   width: 100%;
   font-size: 1.6rem;
-  padding: 10px 0 7.5px;
-  border: none;
-  border-bottom: 2px solid var(--input-border);
-  outline: none;
-  background-color: transparent;
   margin: 20px 0 0px;
 }
 
@@ -471,11 +473,6 @@ body {
 #page-identification #pan-ajout-gestionnaire .input-new-gestionnaire {
   width: 100%;
   font-size: 1.6rem;
-  padding: 10px 0 7.5px;
-  border: none;
-  border-bottom: 2px solid var(--input-border);
-  outline: none;
-  background-color: transparent;
   margin: 20px 0 5px;
 }
 
@@ -726,9 +723,6 @@ body {
 #pan-profil form .zone-infos .input-infos, #pan-profil form .zone-infos .input-mdp, #pan-profil form .zone-mdp .input-infos, #pan-profil form .zone-mdp .input-mdp {
   width: 100%;
   font-size: 1.65rem;
-  padding: 6.5px 8px;
-  border: 2px solid var(--shadow-color);
-  background-color: var(--nav-bg-color);
   margin: 2% 0 4%;
 }
 
@@ -1056,10 +1050,7 @@ body {
 #pan-content #objet-new-conseil fieldset [name='input-objet-conseil'], #pan-content #objet-new-conseil fieldset [name='input-objet-annonce'], #pan-content #objet-new-annonce fieldset [name='input-objet-conseil'], #pan-content #objet-new-annonce fieldset [name='input-objet-annonce'] {
   width: 100%;
   font-size: 1.65rem;
-  padding: 6.5px 8px;
   margin-top: 5px;
-  border: 2px solid var(--border-color);
-  background-color: var(--nav-bg-color);
   outline: none;
 }
 

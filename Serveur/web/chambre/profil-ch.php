@@ -87,7 +87,7 @@ session_start();
             <input class="input-mdp" name="confirmationMdp" type="password" placeholder="Confirmez ici le nouveau mot de passe"/>
 
             <!-- bouton valider -->
-            <input class="btn-profil" type="submit" value="=Valider" />
+            <input class="btn-profil" type="submit" value="Valider" />
             </div>
 
         </form>
