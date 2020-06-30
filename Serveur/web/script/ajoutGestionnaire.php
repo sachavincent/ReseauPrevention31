@@ -42,6 +42,7 @@
             $mdpHach = ($requeteMdpAdmin->fetch())['mdp'];
 
             if (empty($mdpHach)){
+                session_destroy();
                 header('Location: ajoutGestionnaire.php?p=mdpInco');
                 exit();
             } else {
