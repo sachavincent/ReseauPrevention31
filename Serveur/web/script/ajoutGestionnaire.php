@@ -43,6 +43,7 @@
 
             if (empty($mdpHach)){
                 header('Location: ajoutGestionnaire.php?p=mdpInco');
+                exit();
             } else {
                 if (isset($_POST['select-chambre']) AND isset($_POST['mdp-confirm']) AND isset($_POST['id']) AND isset($_POST['mdp']) AND isset($_POST['nom']) AND isset($_POST['prenom']) AND isset($_POST['select-chambre']) AND isset($_POST['mail'])){
                     // chambre ou force
