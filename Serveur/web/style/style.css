@@ -1,62 +1,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Titillium+Web:wght@400;600;700&display=swap");
 :root {
   --background-color: #dddddd;
+  --page-content: #FAF9F8;
   --font-color: #121212;
+  --date-color: #808080;
+  --white-color: #f5f5f5;
+  --blue-color: #0078D7;
+  --button-hover: #005A9E;
+  --error-color: #E81123;
+  --success-color: #00CC6A;
   --panel-color: #f5f5f5;
+  --page-content: #FAF9F8;
   --border-color: #dadada;
-  --hover-bg-color: #dddddd;
-  --hover-font-color: #f5f5f5;
   --shadow-color: #b4b4b4;
   --input-border: #dadada;
-  --page-content: #FAF9F8;
-  --msg-content: #FFFFFF;
-  --button-color: #0078D7;
-  --button-hover: #005A9E;
-  --nav-bg-color: #f5f5f5;
-  --nav-profile-bg: #0078D7;
-  --nav-profile-font: #f5f5f5;
+  --hover-img: #dddddd;
+  --nav-background: #f5f5f5;
   --nav-onglet-font: #2236449a;
   --nav-hover-bg: #e7e7e7d0;
   --nav-select-bg: #dadada;
-  --nav-select-font: #121212;
-  --date-color: #808080;
   --msg-background: #fff;
   --msg-block: #dadada;
-  --msg-font: #121212;
-  --blue-color: #0078D7;
-  --error-color: #E81123;
-  --success-color: #00CC6A;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #100E17;
-    --font-color: #f5f5f5;
-    --panel-color: #17141D;
-    --border-color: #000;
-    --hover-bg-color: #ddddddce;
-    --hover-font-color: #f5f5f5;
-    --shadow-color: #000000;
-    --input-border: #eeeeee;
-    --primary-color: #F4F6F8;
     --page-content: #17141D;
-    --msg-content: #FDFDFD;
-    --button-color: #0091EA;
-    --button-hover: #01579B;
-    --nav-bg-color: #100E17;
-    --nav-profile-bg: #0091EA;
-    --nav-profile-font: #f5f5f5;
+    --font-color: #f5f5f5;
+    --date-color: #9E9E9E;
+    --white-color: #f5f5f5;
+    --blue-color: #0091EA;
+    --button-hover: #005A9E;
+    --error-color: #FF2646;
+    --success-color: #26FF26;
+    --panel-color: #17141D;
+    --page-content: #17141D;
+    --border-color: #000;
+    --shadow-color: #000;
+    --input-border: #eeeeee;
+    --hover-img: #ddddddce;
+    --nav-background: #100E17;
     --nav-onglet-font: #ffffff9a;
     --nav-hover-bg: #000;
     --nav-select-bg: #5fa1d61e;
-    --nav-select-font: #fff;
-    --date-color: #9E9E9E;
     --msg-background: #100E17;
     --msg-block: #303030;
-    --msg-font: #f5f5f5;
-    --blue-color: #0091EA;
-    --error-color: #FF2646;
-    --success-color: #26FF26;
   }
 }
 
@@ -160,7 +149,7 @@ body {
 
 /* Menu -----------------------*/
 .ui-menu {
-  background: var(--nav-bg-color);
+  background: var(--nav-background);
   list-style: none;
   padding: 10px;
   margin: 0;
@@ -194,8 +183,8 @@ body {
 
 .input-infos, .input-mdp, [name='input-objet-conseil'], [name='input-objet-annonce'] {
   padding: 6.5px 8px;
-  border: 2px solid var(--shadow-color);
-  background-color: var(--nav-bg-color);
+  border: 2px solid var(--border-color);
+  background-color: var(--nav-background);
 }
 
 #pan-identification [name="id"], #pan-identification [name="mdp"], [name="mdpAdmin"], .input-new-gestionnaire {
@@ -221,7 +210,7 @@ body {
 .btn-admin:hover {
   cursor: pointer;
   background-color: var(--blue-color);
-  color: var(--hover-font-color);
+  color: var(--white-color);
   -webkit-transition: 0.3s all ease;
   transition: 0.3s all ease;
   -webkit-box-shadow: none;
@@ -232,8 +221,8 @@ body {
   padding: 7.5px;
   border: none;
   font-weight: 600;
-  color: var(--nav-profile-font);
-  background-color: var(--button-color);
+  color: var(--white-color);
+  background-color: var(--blue-color);
   -webkit-box-shadow: 0px 2.5px 0px var(--shadow-color);
           box-shadow: 0px 2.5px 0px var(--shadow-color);
 }
@@ -241,7 +230,7 @@ body {
 .button-id:hover, .btn-profil:hover, .actions:hover, .new-annonce:hover, .new-conseil:hover, .btn-new-annonce-conseil:hover, [name="envoyer-msg"]:hover {
   cursor: pointer;
   background-color: var(--button-hover);
-  color: var(--hover-font-color);
+  color: var(--white-color);
   -webkit-transition: 0.3s all ease;
   transition: 0.3s all ease;
   -webkit-box-shadow: none;
@@ -299,7 +288,7 @@ body {
 
 #page-identification .pan-chambres img:hover, #page-identification .pan-forces img:hover {
   cursor: pointer;
-  background-color: var(--hover-bg-color);
+  background-color: var(--hover-img);
   color: none;
   -webkit-transition: 0.3s all ease;
   transition: 0.3s all ease;
@@ -346,7 +335,7 @@ body {
 
 #page-identification #pan-identification img:hover {
   cursor: pointer;
-  background-color: var(--hover-bg-color);
+  background-color: var(--hover-img);
   color: none;
   -webkit-transition: 0.3s all ease;
   transition: 0.3s all ease;
@@ -399,7 +388,7 @@ body {
 
 #page-identification #pan-identification .buttons-id [value="Retour"] {
   background-color: var(--background-color);
-  color: var(--msg-font);
+  color: var(--font-color);
 }
 
 #page-identification #pan-connexion-admin {
@@ -476,8 +465,8 @@ body {
 
 #page-identification #pan-ajout-gestionnaire select {
   padding: 5px 8px;
-  color: var(--msg-font);
-  background-color: var(--nav-bg-color);
+  color: var(--font-color);
+  background-color: var(--nav-background);
   border: 2px solid var(--border-color);
   font-size: 1.6rem;
   margin-top: 20px;
@@ -518,7 +507,7 @@ body {
 #nav-gauche {
   width: 225px;
   height: 100vh;
-  background-color: var(--nav-bg-color);
+  background-color: var(--nav-background);
   border-right: 1px solid var(--border-color);
   z-index: 10;
   display: -webkit-box;
@@ -539,7 +528,7 @@ body {
 #nav-gauche .onglet-profil {
   width: 100%;
   height: 53px;
-  background-color: var(--nav-profile-bg);
+  background-color: var(--blue-color);
   -webkit-box-shadow: 0px 0px 15px -5px var(--blue-color);
           box-shadow: 0px 0px 15px -5px var(--blue-color);
   display: -webkit-box;
@@ -559,7 +548,7 @@ body {
 }
 
 #nav-gauche .onglet-profil span {
-  color: var(--nav-profile-font);
+  color: var(--white-color);
   font-weight: 600;
   font-size: 1.8rem;
   margin-right: 40%;
@@ -585,7 +574,7 @@ body {
   width: 100%;
   -webkit-transition: 0.3s all ease;
   transition: 0.3s all ease;
-  background-color: var(--button-color);
+  background-color: var(--blue-color);
 }
 
 #nav-gauche .new-annonce {
@@ -623,13 +612,13 @@ body {
 
 #nav-gauche .onglet-selected {
   background-color: var(--nav-select-bg);
-  color: var(--nav-select-font);
-  border-left: 4px solid var(--nav-profile-bg);
+  color: var(--font-color);
+  border-left: 4px solid var(--blue-color);
   padding-left: 26px;
 }
 
 #nav-gauche .onglet-selected .number-msg {
-  color: var(--nav-profile-bg);
+  color: var(--blue-color);
 }
 
 #nav-gauche .nb-connexions {
@@ -658,7 +647,7 @@ body {
   height: 15%;
   padding-top: 2%;
   text-align: center;
-  color: var(--nav-profile-font);
+  color: var(--white-color);
   background-color: var(--blue-color);
   -webkit-box-shadow: 0px 0px 20px -5px var(--blue-color);
           box-shadow: 0px 0px 20px -5px var(--blue-color);
@@ -777,7 +766,7 @@ body {
 }
 
 #pan-content #liste-onglets #barre-refresh {
-  background-color: var(--nav-bg-color);
+  background-color: var(--nav-background);
   padding: 5px;
   border-bottom: 1px solid var(--border-color);
   display: -webkit-box;
@@ -856,11 +845,11 @@ body {
 }
 
 #pan-content #liste-onglets .onglet-msg-selected #date-reception, #pan-content #liste-onglets .onglet-msg-selected h9, #pan-content #liste-onglets .onglet-msg-selected h10 {
-  color: var(--nav-profile-font);
+  color: var(--white-color);
 }
 
 #pan-content #barre-actions, #pan-content #barre-envoi {
-  background-color: var(--nav-bg-color);
+  background-color: var(--nav-background);
   position: absolute;
   left: 275px;
   right: 0;
@@ -985,14 +974,14 @@ body {
   background-color: var(--blue-color);
   -ms-flex-item-align: end;
       align-self: flex-end;
-  color: var(--nav-profile-font);
+  color: var(--white-color);
 }
 
 #pan-content #zone-msg #zone-discussion .msg-user {
   background-color: var(--msg-block);
   -ms-flex-item-align: start;
       align-self: flex-start;
-  color: var(--msg-font);
+  color: var(--font-color);
 }
 
 #pan-content #zone-msg #zone-reponse {
@@ -1018,7 +1007,7 @@ body {
   height: 100%;
   font-size: 1.5rem;
   padding: 6.5px 8px;
-  border: 2px solid var(--shadow-color);
+  border: 2px solid var(--border-color);
   background-color: var(--msg-block);
   resize: none;
 }
@@ -1121,7 +1110,7 @@ body {
   width: 16%;
   margin: 0 15px;
   padding: 5px 8px;
-  background-color: var(--nav-bg-color);
+  background-color: var(--nav-background);
   border: 2px solid var(--border-color);
 }
 
@@ -1134,7 +1123,7 @@ body {
 #pan-content #zone-saisie-annonce img {
   width: 200px;
   float: right;
-  margin-top: -250px;
+  margin-top: -282px;
 }
 
 @media (max-width: 999px) {
@@ -1165,7 +1154,7 @@ body {
   font-size: 1.5rem;
   padding: 6.5px 8px;
   border: 2px solid var(--border-color);
-  background-color: var(--nav-bg-color);
+  background-color: var(--nav-background);
   outline: none;
   resize: none;
 }

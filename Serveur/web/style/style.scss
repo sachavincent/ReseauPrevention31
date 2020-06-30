@@ -4,85 +4,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Titillium+Web:wght@400;600;700&display=swap');
 
 :root {
-    // general colors
+    // main colors
     --background-color: #dddddd;
-    --font-color: #121212;
-    --panel-color: #f5f5f5;
-
-    --border-color: #dadada;
-    --hover-bg-color: #dddddd;
-    --hover-font-color: #f5f5f5;
-    --shadow-color: #b4b4b4;
-
-    --input-border: #dadada;
-
-    // grey colors
     --page-content: #FAF9F8;
-    --msg-content: #FFFFFF;
-
-    // buttons
-    --button-color: #0078D7;
+    --font-color: #121212;
+    
+    // specifics
+    --date-color: #808080;
+    --white-color: #f5f5f5;
+    --blue-color: #0078D7;
     --button-hover: #005A9E;
+    --error-color: #E81123;
+    --success-color: #00CC6A;
+
+    // elements colors
+    --panel-color: #f5f5f5;
+    --page-content: #FAF9F8;
+    --border-color: #dadada;
+    --shadow-color: #b4b4b4;
+    --input-border: #dadada;
+    --hover-img: #dddddd;
 
     // color nav gauche
-    --nav-bg-color: #f5f5f5;
-    --nav-profile-bg: #0078D7;
-    --nav-profile-font: #f5f5f5;
+    --nav-background: #f5f5f5;
     --nav-onglet-font: #2236449a;
     --nav-hover-bg: #e7e7e7d0;
     --nav-select-bg: #dadada;
-    --nav-select-font: #121212;
 
-    // chambre - forces
-    --date-color: #808080;
+    // message colors
     --msg-background: #fff;
     --msg-block: #dadada;
-    --msg-font: #121212;
-
-    // others
-    --blue-color: #0078D7;
-    --error-color: #E81123;
-    --success-color: #00CC6A;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
+        // main colors
         --background-color: #100E17;
-        --font-color: #f5f5f5;
-        --panel-color: #17141D;
-        --border-color: #000;
-        --hover-bg-color: #ddddddce;
-        --hover-font-color: #f5f5f5;
-        --shadow-color: #000000;
-
-        --input-border: #eeeeee;
-
-        --primary-color: #F4F6F8;
         --page-content: #17141D;
-        --msg-content: #FDFDFD;
+        --font-color: #f5f5f5;
+        
+        // specifics
+        --date-color: #9E9E9E;
+        --white-color: #f5f5f5;
+        --blue-color: #0091EA;
+        --button-hover: #005A9E;
+        --error-color: #FF2646;
+        --success-color: #26FF26;
 
-        // buttons
-        --button-color: #0091EA;
-        --button-hover: #01579B;
+        // elements colors
+        --panel-color: #17141D;
+        --page-content: #17141D;
+        --border-color: #000;
+        --shadow-color: #000;
+        --input-border: #eeeeee;
+        --hover-img: #ddddddce;
 
         // color nav gauche
-        --nav-bg-color: #100E17;
-        --nav-profile-bg: #0091EA;
-        --nav-profile-font: #f5f5f5;
+        --nav-background: #100E17;
         --nav-onglet-font: #ffffff9a;
         --nav-hover-bg: #000;
         --nav-select-bg: #5fa1d61e;
-        --nav-select-font: #fff;
 
-        // chambre - forces
-        --date-color: #9E9E9E;
+        // message colors
         --msg-background: #100E17;
         --msg-block: #303030;
-        --msg-font: #f5f5f5;
-
-        --blue-color: #0091EA;
-        --error-color: #FF2646;
-        --success-color: #26FF26;
     }
 }
 
@@ -196,7 +181,7 @@ body {
 .ui-autocomplete { position: absolute; cursor: default; }       
 /* Menu -----------------------*/
 .ui-menu {
-        background: var(--nav-bg-color);
+        background: var(--nav-background);
         list-style:none;
         padding: 10px;
         margin: 0;
@@ -227,8 +212,8 @@ body {
 // PERSONNALISATION DES INPUTS
 .input-infos, .input-mdp, [name='input-objet-conseil'], [name='input-objet-annonce'] {
     padding: 6.5px 8px;
-    border: 2px solid var(--shadow-color);
-    background-color: var(--nav-bg-color);
+    border: 2px solid var(--border-color);
+    background-color: var(--nav-background);
 }
 
 #pan-identification [name="id"],#pan-identification [name="mdp"], [name="mdpAdmin"], .input-new-gestionnaire {
@@ -249,17 +234,17 @@ body {
     top: 0;
     left: 0;
     @include shadow(5px, 1px);
-    @include hover(var(--blue-color), var(--hover-font-color));
+    @include hover(var(--blue-color), var(--white-color));
 }
 
 .button-id, .btn-profil, .actions, .new-annonce, .new-conseil, .btn-new-annonce-conseil, [name="envoyer-msg"] {
     padding: 7.5px;
     border: none;
     font-weight: 600;
-    color: var(--nav-profile-font);
-    background-color: var(--button-color);
+    color: var(--white-color);
+    background-color: var(--blue-color);
     box-shadow: 0px 2.5px 0px var(--shadow-color);
-    @include hover(var(--button-hover), var(--hover-font-color));
+    @include hover(var(--button-hover), var(--white-color));
 }
 
 
@@ -294,7 +279,7 @@ body {
             padding: 10px;
             background-color: #f5f5f5;
             @include shadow(5px, 1px);
-            @include hover(var(--hover-bg-color), none);
+            @include hover(var(--hover-img), none);
         }
     }
 
@@ -315,7 +300,7 @@ body {
             background-color: #f5f5f5;
             margin-bottom: 15px;
             @include shadow(5px, 1px);
-            @include hover(var(--hover-bg-color), none);
+            @include hover(var(--hover-img), none);
         }
 
         label {
@@ -350,7 +335,7 @@ body {
 
             [value="Retour"] {
                 background-color: var(--background-color);
-                color: var(--msg-font);
+                color: var(--font-color);
             }
         }
     }
@@ -408,8 +393,8 @@ body {
         
         select {
             padding: 5px 8px;
-            color: var(--msg-font);
-            background-color: var(--nav-bg-color);
+            color: var(--font-color);
+            background-color: var(--nav-background);
             border: 2px solid var(--border-color);
             font-size: 1.6rem;
             margin-top: 20px;
@@ -451,7 +436,7 @@ body {
 #nav-gauche {
     width: 225px;
     height: 100vh;
-    background-color: var(--nav-bg-color);
+    background-color: var(--nav-background);
     border-right: 1px solid var(--border-color);
     z-index: 10;
     @include flex(column wrap, flex-start, center);
@@ -459,13 +444,13 @@ body {
     .onglet-profil {
         width: 100%;
         height: 53px;
-        background-color: var(--nav-profile-bg);
+        background-color: var(--blue-color);
         box-shadow: 0px 0px 15px -5px var(--blue-color);
         @include flex(row wrap, center, center);
         text-align: right;
 
         span {
-            color: var(--nav-profile-font);
+            color: var(--white-color);
             font-weight: 600;
             font-size: 1.8rem;
             margin-right: 40%;
@@ -490,7 +475,7 @@ body {
         &:hover {
             width: 100%;
             transition: 0.3s all ease;
-            background-color: var(--button-color);
+            background-color: var(--blue-color);
         }
     }
 
@@ -520,12 +505,12 @@ body {
 
     .onglet-selected {
         background-color: var(--nav-select-bg);
-        color: var(--nav-select-font);
-        border-left: 4px solid var(--nav-profile-bg);
+        color: var(--font-color);
+        border-left: 4px solid var(--blue-color);
         padding-left: 26px;
 
         .number-msg {
-            color: var(--nav-profile-bg);
+            color: var(--blue-color);
         }
     }
 
@@ -552,7 +537,7 @@ body {
         height: 15%;
         padding-top: 2%;
         text-align: center;
-        color: var(--nav-profile-font);
+        color: var(--white-color);
         background-color: var(--blue-color);
         box-shadow: 0px 0px 20px -5px var(--blue-color);
         font-size: 2.5rem;
@@ -642,7 +627,7 @@ body {
         overflow-y: auto;
 
         #barre-refresh {
-            background-color: var(--nav-bg-color);
+            background-color: var(--nav-background);
             padding: 5px;
             border-bottom: 1px solid var(--border-color);
             @include flex(row wrap, center, center);
@@ -693,14 +678,14 @@ body {
             background-color: var(--blue-color);
 
             #date-reception, h9, h10 {
-                color: var(--nav-profile-font);
+                color: var(--white-color);
             }
         }
     }
     
     // BARRE ACTIONS
     #barre-actions, #barre-envoi {
-        background-color: var(--nav-bg-color);
+        background-color: var(--nav-background);
         position: absolute;
         left: 275px; right: 0; top: 0;
         padding: 7.5px 25px 7.5px;
@@ -806,13 +791,13 @@ body {
             .msg-force {
                 background-color: var(--blue-color);
                 align-self: flex-end;
-                color: var(--nav-profile-font);
+                color: var(--white-color);
             }
             
             .msg-user {
                 background-color: var(--msg-block);
                 align-self: flex-start;
-                color: var(--msg-font);
+                color: var(--font-color);
             }
         }
 
@@ -833,7 +818,7 @@ body {
                     height: 100%;
                     font-size: 1.5rem;
                     padding: 6.5px 8px;
-                    border: 2px solid var(--shadow-color);
+                    border: 2px solid var(--border-color);
                     background-color: var(--msg-block);
                     resize: none;
                 }
@@ -923,7 +908,7 @@ body {
                     width: 16%;
                     margin: 0 15px;
                     padding: 5px 8px;
-                    background-color: var(--nav-bg-color);
+                    background-color: var(--nav-background);
                     border: 2px solid var(--border-color);
                 }
 
@@ -938,7 +923,7 @@ body {
         img {
             width: 200px;
             float: right;
-            margin-top: -250px;
+            margin-top: -282px;
         }
 
         @media (max-width: 999px) {
@@ -972,7 +957,7 @@ body {
             font-size: 1.5rem;
             padding: 6.5px 8px;
             border: 2px solid var(--border-color);
-            background-color: var(--nav-bg-color);
+            background-color: var(--nav-background);
             outline: none;
             resize: none;
         }
