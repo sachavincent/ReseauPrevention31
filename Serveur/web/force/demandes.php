@@ -8,6 +8,7 @@ include("../script/connexionBDD.php");
 <head>
     <title>Boîte de réception</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="icon" type="image/png" href="../images/icon.png" />
     <script src="https://kit.fontawesome.com/161f845565.js" crossorigin="anonymous"></script>

@@ -3,17 +3,6 @@
 // fonts
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Titillium+Web:wght@400;600;700&display=swap');
 
-$color-dark: #121212;
-$color-dark-light: #1E1E1E;
-$color-light: #F9F9F9;
-$color-text: rgb(236, 236, 236);
-$color-hover-nav: #000000;
-$color-second: #4285F4;
-$color-third: #DB4437;
-$color-grey: whitesmoke;
-$color-success: #26FF26;
-$color-error: #FF2646;
-
 :root {
     // general colors
     --background-color: #dddddd;
@@ -56,7 +45,7 @@ $color-error: #FF2646;
     --success-color: #00CC6A;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
     :root {
         --background-color: #100E17;
         --font-color: #f5f5f5;
@@ -138,6 +127,7 @@ $color-error: #FF2646;
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
 }
   
 /* Track */
@@ -201,9 +191,43 @@ body {
     position: absolute;
     left: 0; right: 0; top: 0; bottom: 0;
     min-width: 1000px;
-    min-height: 550px;
+    min-height: 700px;
     // PROFIL OVERFLOW A DEV
-    // overflow: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
+    
+}
+
+// CUSTOMIZE AUTOCOMPLETION ANNONCE
+.ui-autocomplete { position: absolute; cursor: default; }       
+/* Menu -----------------------*/
+.ui-menu {
+        background: var(--nav-bg-color);
+        list-style:none;
+        padding: 10px;
+        margin: 0;
+        display:block;
+        width:227px;
+        border: 2px solid var(--border-color);
+}
+.ui-menu .ui-menu {
+        margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+        margin:0;
+        padding: 0;
+        width: 100%;
+}
+.ui-menu .ui-menu-item a {
+        text-decoration:none;
+        display:block;
+        padding:.2em .4em;
+        line-height:1.5;
+        zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+        margin: -1px;
 }
 
 // PERSONNALISATION DES BOUTONS
@@ -315,6 +339,7 @@ body {
 
             [value="retour"] {
                 background-color: var(--background-color);
+                color: var(--msg-font);
             }
         }
     }
@@ -447,6 +472,7 @@ body {
         padding: 10px;
         margin: 15px 0 15px;
         transition: 0.3s all ease;
+        border-radius: 0px;
         
         &:hover {
             width: 100%;
@@ -594,6 +620,7 @@ body {
     position: absolute;
     left: 225px; right: 0; top: 0; bottom: 0;
 
+    // liste des demandes / msg / annonces / conseils
     #liste-onglets {
         width: 275px;
         position: absolute;
@@ -635,7 +662,6 @@ body {
                 font-size: 1.6rem;
                 font-weight: 600;
                 color: var(--blue-color);
-
             }
 
             h10 {
@@ -805,14 +831,14 @@ body {
 
             [name="envoyer-msg"] {
                 position: absolute;
-                right: 25px; top: 10px;
+                right: 25px; top: 11px;
                 width: 125px;
                 padding: 10px;
             }
         }
     }
 
-    // PANEL OUVERTURE ANNONCE / CONSEIL (FORCES)
+    // PANEL OUVERTURE DES ANNONCES / CONSEILS (FORCES)
     #zone-annonce-conseil {
         
         fieldset {
@@ -835,7 +861,8 @@ body {
         }   
     }
 
-    #objet-new-conseil {
+    // PANEL NOUVEAU CONSEIL
+    #objet-new-conseil, #objet-new-annonce {
         position: absolute;
         left: 0px; right: 0; top: 54px; bottom: 0;
         padding: 15px 25px 20px;
@@ -848,19 +875,86 @@ body {
                 color: var(--date-color);
             }
 
-            [name='input-objet-conseil'] {
+            [name='input-objet-conseil'], [name='input-objet-annonce'] {
                 width: 100%;
                 font-size: 1.65rem;
                 padding: 6.5px 8px;
                 margin-top: 5px;
-                border: 2px solid var(--shadow-color);
+                border: 2px solid var(--border-color);
                 background-color: var(--nav-bg-color);
                 outline: none;
             }
         }
     }
 
-    #write-conseil {
+    // PANEL NOVUEAU ANNONCE
+    #zone-saisie-annonce {
+        position: absolute;
+        left: 0px; right: 0; top: 54px; bottom: 0;
+        padding: 15px 25px 20px;
+
+        fieldset {
+            border: none;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+
+            .champs-annonce {
+                margin-top: 10px;
+                @include flex(row nowrap, none, center);
+
+                .titre-categorie {
+                    display: block;
+                    width: 85px;
+                }
+
+                .select-categorie {
+                    display: block;
+                    width: 235px;
+                }
+
+                [type="text"] , select {
+                    width: 16%;
+                    margin: 0 15px;
+                    padding: 5px 8px;
+                    background-color: var(--nav-bg-color);
+                    border: 2px solid var(--border-color);
+                }
+
+                [type="checkbox"] {
+                    cursor: pointer;
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+        }
+
+        img {
+            width: 200px;
+            float: right;
+            margin-top: -250px;
+        }
+
+        @media (max-width: 999px) {
+            img {
+                display: none;
+            }
+
+            fieldset {
+                .champs-annonce {
+                    [type="text"] , select {
+                        width: 30%;
+                    }
+                }
+            }
+        }
+
+        #objet-new-annonce {
+            top: 330px;
+        }
+    }
+
+    // ZONE SAISIE CONSEIL / ANNONCE
+    #write-conseil, #write-annonce {
         position: absolute;
         left: 0px; right: 0; top: 180px; bottom: 0;
         padding: 0px 25px 25px;
@@ -870,344 +964,14 @@ body {
             height: 100%;
             font-size: 1.5rem;
             padding: 6.5px 8px;
-            border: 2px solid var(--shadow-color);
+            border: 2px solid var(--border-color);
             background-color: var(--nav-bg-color);
             outline: none;
             resize: none;
         }
     }
-    
 
-
-    // nouveau conseil
-//     #barre-envoi {
-//         height: 50px;
-//         position: absolute;
-//         top: 0;
-//         right: 0;
-//         left: 0;
-//         border-bottom: 1px solid lightgray;
-//         .btn-new-annonce-conseil {
-//             width: 115px;
-//             height: 35px;
-//             margin-top: 7.5px;
-//             margin-left: 50px;
-//             background-color: $color-second;
-//             color: $color-text;
-//             border: none;
-//             border-radius: 2px;
-//             &:hover {
-//                 filter: brightness(115%);
-//                 transition: 0.4s ease;
-//                 cursor: pointer;
-//             }
-//         }
-//     }
-//     #objet-new-conseil {
-//         height: 65px;
-//         position: absolute;
-//         top: 51px;
-//         right: 0;
-//         left: 0;
-//         padding: 15px;
-//         padding-left: 35px;
-//         padding-right: 35px;
-//         border-bottom: 1px solid lightgray;
-//         fieldset {
-//             border: none;
-//             legend {
-//                 font-weight: bold;
-//                 font-size: 22px;
-//                 color: $color-second;
-//                 border-bottom: 2px solid $color-second;
-//             }
-//             [name='input-objet-conseil'] {
-//                 width: 80%;
-//                 height: 25px;
-//                 padding: 0.5%;
-//                 padding-top: 2.5px;
-//                 padding-bottom: 2.5px;
-//                 font-size: 17px;
-//                 position: absolute;
-//                 top: 15px;
-//                 left: 115px;
-//             }
-//             .user-concernes {
-//                 font-size: 14px;
-//                 color: gray;
-//                 margin-top: 10px;
-//             }
-//         }
-//     }
-//     #write-conseil {
-//         width: 93%;
-//         min-width: 50%;
-//         padding: 3%;
-//         padding-top: 20px;
-//         padding-bottom: 25px;
-//         font-size: 15px;
-//         position: absolute;
-//         left: 0;
-//         right: 0;
-//         bottom: 0;
-//         top: 147px;
-//         border: none;
-//         resize: none;
-//         overflow-y: auto;
-//         outline: 0;
-//     }
-//     // nouvelle annonce
-//     #zone-saisie-annonce {
-//         height: 285px;
-//         position: absolute;
-//         top: 51px;
-//         right: 0;
-//         left: 0;
-//         padding: 15px;
-//         padding-left: 35px;
-//         padding-right: 35px;
-//         border-bottom: 1px solid lightgray;
-//         background-color: white;
-//         #carteHG {
-//             width: 225px;
-//             height: 225px;
-//             position: absolute;
-//             right: 10%;
-//             top: 25px;
-//         }
-//         fieldset {
-//             border: none;
-//             legend {
-//                 font-weight: bold;
-//                 font-size: 20px;
-//                 color: $color-second;
-//                 border-bottom: 2px solid $color-second;
-//                 margin-bottom: 15px;
-//             }
-//             .champs-annonce {
-//                 margin-top: 8px;
-//             }
-//             .rechercheActivite, .rechercheCommune, .select-zone {
-//                 height: 22px;
-//                 width: 15%;
-//                 padding: 2.5px;
-//                 padding-left: 5px;
-//                 padding-right: 5px;
-//                 margin-right: 1%;
-//             }
-//             #align-activite {
-//                 font-weight: bold;
-//                 margin-right: 15px;
-//             }
-//             #align-commune {
-//                 font-weight: bold;
-//                 margin-right: 6px;
-//             }
-//             #align-zone {
-//                 font-weight: bold;
-//                 margin-right: 42px;
-//             }
-//             .select-zone {
-//                 height: 30px;
-//                 width: 16%;
-//             }
-//             .select-all, [name="mail"] {
-//                 width: 15px;
-//                 height: 15px;
-//                 position: absolute;
-//                 left: 25%;
-//                 margin-top: 5px;
-//             }
-//             [type="checkbox"] {
-//                 cursor: pointer;
-//             }
-//         }
-//     }
-//     #objet-new-annonce {
-//         height: 45px;
-//         position: absolute;
-//         left: 0;
-//         right: 0;
-//         top: 367px;
-//         padding-top: 10px;
-//         padding-left: 35px;
-//         padding-right: 35px;
-//         padding-bottom: 25px;
-//         border-bottom: 1px solid lightgray;
-//         fieldset {
-//             border: none;
-//             legend {
-//                 font-weight: bold;
-//                 font-size: 20px;
-//                 color: $color-second;
-//                 border-bottom: 2px solid $color-second;
-//             }
-//             [name='input-objet-annonce'] {
-//                 width: 80%;
-//                 height: 25px;
-//                 padding: 0.5%;
-//                 padding-top: 2.5px;
-//                 padding-bottom: 2.5px;
-//                 font-size: 17px;
-//                 position: absolute;
-//                 top: 15px;
-//                 left: 115px;
-//             }
-//             #dest-concernes {
-//                 font-size: 15px;
-//                 color: grey;
-//                 display: block;
-//                 margin-top: 15px;
-//             }
-//         }
-//     }
-//     #write-annonce {
-//         width: 95%;
-//         padding: 2%;
-//         padding-top: 20px;
-//         padding-bottom: 25px;
-//         font-size: 15px;
-//         position: absolute;
-//         right: 0;
-//         left: 0;
-//         bottom: 0;
-//         top: 450px;
-//         border: none;
-//         resize: none;
-//         overflow-y: auto;
-//         outline: 0;
-//     }
-
-
+    #write-annonce {
+        top: 510px;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// #zone-msg {
-//     position: absolute;
-//     top: 51px;
-//     bottom: 0;
-//     left: 261px;
-//     right: 0;
-//     padding: 20px;
-//     padding-left: 35px;
-//     padding-right: 35px;
-
-//     #zone-infos-prive {
-//         height: 165px;
-//         position: absolute;
-//         background-color: $color-light;
-//         top: 0px;
-//         bottom: 0;
-//         right: 0;
-//         left: 0;
-//         padding-top: 7px;
-//         padding-bottom: 15px;
-//         padding-left: 35px;
-//         padding-right: 35px;
-//         border-bottom: 1px solid lightgray;
-//         fieldset {
-//             border: none;
-//         }
-//         legend {
-//             font-weight: bold;
-//             font-size: 22px;
-//             color: $color-second;
-//             border-bottom: 2px solid $color-second;
-//             margin-bottom: 10px;
-//         }
-//         p {
-//             margin-bottom: 5px;
-//         }
-//     }
-    
-//     #zone-discussion {
-//         position: absolute;
-//         top: 188px;
-//         bottom: 120px;
-//         left: 0;
-//         right: 0;
-//         padding: 20px;
-//         padding-left: 35px;
-//         padding-right: 35px;
-//         overflow: auto;
-//         .msg-force, .msg-user {
-//             display: flex;
-//             flex-direction: column;
-//             padding: 25px;
-//             max-width: 50%;
-//             margin-bottom: 15px;
-//             border-radius: 5px;
-//             color: $color-text;
-//         }
-//         .msg-user {
-//             background-color: $color-third;
-//         }
-//         .msg-force {
-//             background-color: $color-second;
-//             margin-left: 45%;
-//         }
-//     }
-
-//     #zone-reponse {
-//         position: absolute;
-//         left: 0;
-//         right: 0;
-//         bottom: 0;
-//         height: 110px;
-//         padding-left: 10px;
-//         padding-right: 10px;
-//         padding-top: 5px;
-//         padding-bottom: 5px;
-//         border-top: 1px solid lightgrey;
-//         z-index: 10;
-//         fieldset {
-//             border: none;
-//             legend {
-//                 font-weight: bold;
-//                 font-size: 15px;
-//                 color: $color-second;
-//                 margin-bottom: 5px;
-//             }
-//         }
-//         #reponse-msg {
-//             width: 89.5%;
-//             height: 75px;
-//             resize: none;
-//             font-size: 16px;
-//             padding: 2px;
-//             padding-left: 5px;
-//             padding-left: 5px;
-//         }
-//         [name="envoyer-msg"] {
-//             width: 10%;
-//             height: 45px;
-//             position: absolute;
-//             right: 2px;
-//             margin-left: 3px;
-//             background-color: $color-second;
-//             color: $color-text;
-//             border: none;
-//             &:hover {
-//                 filter: brightness(120%);
-//                 cursor: pointer;
-//                 transition: 0.4s ease;
-//             }
-//         }
-        
-//     }
-// }
-

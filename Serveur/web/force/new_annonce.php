@@ -27,10 +27,12 @@ if (!isset($commune)){
 
 <!-- zone de saisies du message -->
 <section id="zone-saisie-annonce">
-    <img src="../images/carte.png" alt="Carte" id="carteHG">
     <fieldset>
     <legend>Informations à compléter pour une nouvelle annonce :</legend>
-    <div class="champs-annonce"><span id="align-activite">Activités :</span>
+    
+    
+    <div class="champs-annonce">
+        <span class="titre-categorie">Activités :</span>
         <!-- menu deroulant des activites -->
         <input type="text" class="rechercheActivite" name='activite1' placeholder='Saisir une activité' onblur="afficheDest()"/>
         <input type="text" class="rechercheActivite" name='activite2' placeholder='Saisir une activité' onblur="afficheDest()"/>
@@ -38,25 +40,30 @@ if (!isset($commune)){
     </div>
 
     <!-- ligne selection toutes activites -->
-    <div class="champs-annonce">Sélectionner toutes les activités :
-        <input class="select-all" name="toutes-activites" type="checkbox" onclick="afficheDest()"/>
+    <div class="champs-annonce">
+        <span class="select-categorie">Sélectionner toutes les activités :</span>
+        <input name="toutes-activites" type="checkbox" onclick="afficheDest()"/>
     </div>
 
     <!-- menu deroulant des communes -->
-    <div class="champs-annonce"><span id="align-commune">Commune :</span>
+    <div class="champs-annonce">
+        <span class="titre-categorie">Commune :</span>
         <input type="text" class="rechercheCommune" name='commune1' placeholder='Saisir une commune' onblur="afficheDest()"/>
         <input type="text" class="rechercheCommune" name='commune2' placeholder='Saisir une commune' onblur="afficheDest()"/>
         <input type="text" class="rechercheCommune" name='commune3' placeholder='Saisir une commune' onblur="afficheDest()"/>
     </div>
 
     <!-- ligne selection toutes communes -->
-    <div class="champs-annonce">Sélectionner toutes les communes :
-        <input class="select-all" name="toutes-communes" type="checkbox" onclick="afficheDest()"/>
+    <div class="champs-annonce">
+        <span class="select-categorie">Sélectionner toutes les communes :</span>
+        <input name="toutes-communes" type="checkbox" onclick="afficheDest()"/>
     </div>
 
     <!-- menu deroulant des communes -->
-    <div class="champs-annonce"><span id="align-zone">Zone :</span>
-        <select name="secteur1" class="select-zone" size="l" onblur="afficheDest()">
+    <div class="champs-annonce">
+        <span class="titre-categorie">Zone :</span>
+
+        <select name="secteur1" size="l" onblur="afficheDest()">
             <option value="0">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
@@ -67,7 +74,7 @@ if (!isset($commune)){
             <option value=7>Secteur 7</option>
         </select>
 
-        <select name="secteur2" class="select-zone" size="l" onblur="afficheDest()">
+        <select name="secteur2" size="l" onblur="afficheDest()">
             <option value="0">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
@@ -78,7 +85,7 @@ if (!isset($commune)){
             <option value=7>Secteur 7</option>
         </select>
 
-        <select name="secteur3" class="select-zone" size="l" onblur="afficheDest()">
+        <select name="secteur3" size="l" onblur="afficheDest()">
             <option value="0">Choisir un secteur</option>
             <option value=1>Secteur 1</option>
             <option value=2>Secteur 2</option>
@@ -91,24 +98,34 @@ if (!isset($commune)){
     </div>
 
     <!-- ligne selection toutes zones -->
-    <div class="champs-annonce">Sélectionner toutes les zones :
-        <input class="select-all" name="toutes-zones" type="checkbox" onclick="afficheDest()"/>
+    <div class="champs-annonce">
+        <span class="select-categorie">Sélectionner toutes les zones :</span>
+        <input name="toutes-zones" type="checkbox" onclick="afficheDest()"/>
     </div>
 
     <!-- checkbox envoi mail -->
-    <div class="champs-annonce"><b>Envoyer l'annonce par mail :</b>
+    <div class="champs-annonce">
+        <span class="select-categorie"><b>Envoyer l'annonce par mail :</b></span>
         <input name="mail" type="checkbox"/>
     </div>
     </fieldset>
+
+    <img src="../images/carte.png" alt="Carte" id="carteHG">
+    <div id="objet-new-annonce">
+        <fieldset>
+        <legend>Objet de la nouvelle annonce :</legend>
+        <input name='input-objet-annonce' required>
+        <p class="user-concernes" id="dest-concernes">Nombre de destinataires concernés : 0</p>
+        </fieldset>
+    </div>
 </section>
 
-<div id="objet-new-annonce">
-    <fieldset>
-    <legend>Objet :</legend>
-    <input name='input-objet-annonce' required>
-    <p id="dest-concernes">Nombre de destinataires concernés : 0</p>
-    </fieldset>
+<!-- zone de redaction du message -->
+<div id="write-annonce">
+    <textarea name="texte" required></textarea>
 </div>
+
+</form>
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -165,21 +182,14 @@ if (!isset($commune)){
             
             },
             error : function(data){
-            dest.textContent = "Nombre de destinataires concernés : ko " ;
+            dest.textContent = "Nombre de destinataires concernés : erreur " ;
             console.log(data)
-            
             }
         });
-
     }
 </script>
 
-<!-- zone de redaction du message -->
-<textarea name="texte" id="write-annonce" required></textarea>
-
-</form>
 <!-- Traitement des recherches commune/activite -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
     $('.rechercheCommune').autocomplete({
     source : '../script/rechercheCommune.php',
