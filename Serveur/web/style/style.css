@@ -137,7 +137,6 @@ body {
   bottom: 0;
   min-width: 1000px;
   min-height: 550px;
-  overflow: hidden;
 }
 
 .btn-admin {
@@ -162,7 +161,7 @@ body {
           box-shadow: none;
 }
 
-.button-id, .btn-profil, .actions, .new-annonce, .new-conseil {
+.button-id, .btn-profil, .actions, .new-annonce, .new-conseil, .btn-new-annonce-conseil {
   padding: 7.5px;
   border: none;
   font-weight: 600;
@@ -172,7 +171,7 @@ body {
           box-shadow: 0px 2.5px 0px var(--shadow-color);
 }
 
-.button-id:hover, .btn-profil:hover, .actions:hover, .new-annonce:hover, .new-conseil:hover {
+.button-id:hover, .btn-profil:hover, .actions:hover, .new-annonce:hover, .new-conseil:hover, .btn-new-annonce-conseil:hover {
   cursor: pointer;
   background-color: var(--button-hover);
   color: var(--hover-font-color);
@@ -329,6 +328,10 @@ body {
   margin-top: 25px;
 }
 
+#page-identification #pan-identification .buttons-id [value="retour"] {
+  background-color: var(--background-color);
+}
+
 #page-identification #pan-connexion-admin {
   width: 400px;
   background-color: var(--panel-color);
@@ -463,7 +466,7 @@ body {
 
 #nav-gauche .onglet-profil {
   width: 100%;
-  height: 55px;
+  height: 53px;
   background-color: var(--nav-profile-bg);
   -webkit-box-shadow: 0px 0px 15px -5px var(--blue-color);
           box-shadow: 0px 0px 15px -5px var(--blue-color);
@@ -571,7 +574,6 @@ body {
 #pan-profil {
   background-color: var(--page-content);
   text-align: left;
-  height: 100vh;
   position: absolute;
   left: 225px;
   top: 0;
@@ -669,7 +671,7 @@ body {
 #pan-profil form .zone-infos .input-infos, #pan-profil form .zone-infos .input-mdp, #pan-profil form .zone-mdp .input-infos, #pan-profil form .zone-mdp .input-mdp {
   width: 100%;
   font-size: 1.65rem;
-  padding: 6.5px;
+  padding: 6.5px 8px;
   border: 2px solid var(--shadow-color);
   background-color: var(--nav-bg-color);
   margin: 2% 0 4%;
@@ -681,7 +683,6 @@ body {
   margin-top: 4%;
 }
 
-/* ========== PAN LISTE DEMANDES =========== */
 /* ========== PAN DEMANDES / MESSAGES =========== */
 #pan-content {
   background-color: var(--page-content);
@@ -788,7 +789,7 @@ body {
   color: var(--nav-profile-font);
 }
 
-#pan-content #barre-actions {
+#pan-content #barre-actions, #pan-content #barre-envoi {
   background-color: var(--nav-bg-color);
   position: absolute;
   left: 275px;
@@ -798,9 +799,13 @@ body {
   border-bottom: 1px solid var(--border-color);
 }
 
-#pan-content #barre-actions .actions {
+#pan-content #barre-actions .actions, #pan-content #barre-actions .btn-new-annonce-conseil, #pan-content #barre-envoi .actions, #pan-content #barre-envoi .btn-new-annonce-conseil {
   width: 125px;
   margin-right: 25px;
+}
+
+#pan-content #barre-envoi {
+  left: 0px;
 }
 
 #pan-content #pan-demande, #pan-content #zone-annonce-conseil {
@@ -825,6 +830,12 @@ body {
 #pan-content #pan-demande fieldset label {
   display: block;
   margin-bottom: 20px;
+  cursor: text;
+}
+
+#pan-content #pan-demande fieldset label i {
+  margin-left: 10px;
+  color: var(--blue-color);
 }
 
 #pan-content #pan-demande fieldset time {
@@ -906,5 +917,56 @@ body {
 #pan-content #zone-annonce-conseil fieldset .user-concernes {
   font-size: 1.4rem;
   color: var(--date-color);
+}
+
+#pan-content #objet-new-conseil {
+  position: absolute;
+  left: 0px;
+  right: 0;
+  top: 54px;
+  bottom: 0;
+  padding: 15px 25px 20px;
+}
+
+#pan-content #objet-new-conseil fieldset {
+  border: none;
+}
+
+#pan-content #objet-new-conseil fieldset legend {
+  font-size: 2.0rem;
+  font-weight: 600;
+  color: var(--blue-color);
+}
+
+#pan-content #objet-new-conseil fieldset .user-concernes {
+  font-size: 1.4rem;
+  color: var(--date-color);
+}
+
+#pan-content #objet-new-conseil fieldset [name='input-objet-conseil'] {
+  width: 100%;
+  font-size: 1.65rem;
+  padding: 6.5px 8px;
+  margin-top: 5px;
+  border: 2px solid var(--shadow-color);
+  background-color: var(--nav-bg-color);
+}
+
+#pan-content #write-conseil {
+  position: absolute;
+  left: 0px;
+  right: 0;
+  top: 180px;
+  bottom: 0;
+  padding: 0px 25px 25px;
+}
+
+#pan-content #write-conseil textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 1.5rem;
+  padding: 6.5px 8px;
+  border: 2px solid var(--shadow-color);
+  background-color: var(--nav-bg-color);
 }
 /*# sourceMappingURL=style.css.map */

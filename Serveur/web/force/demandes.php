@@ -23,7 +23,10 @@ include("../script/connexionBDD.php");
     <section id="pan-content">
         <!-- ouverture du contenu | Privé | Annonce | Conseil | -->
         <?php switch ($_GET['e']) {
-            case 'prive' || 'annonce' || 'conseil':
+            // prive OR annonce OR conseil
+            case 'prive' :
+            case 'annonce' :
+            case 'conseil' :
                 // affichage des infos
                 include("../script/afficherInfos.php");
                 break;

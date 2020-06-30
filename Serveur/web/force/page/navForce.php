@@ -19,7 +19,10 @@ switch ($_GET['e']) {
         $onglet_conseil   = "onglet-selected";
         $onglet_corbeille = "onglets";
     break;
-    case 'profil' || 'new_annonce' || 'new_conseil':
+    // profil OR new annonce OR new conseil
+    case 'profil' :
+    case 'new_annonce' :  
+    case 'new_conseil' :
         $onglet_prive     = "onglets";
         $onglet_annonce   = "onglets";
         $onglet_conseil   = "onglets";

@@ -16,12 +16,12 @@ if (!empty($_SESSION[$onglet])) {
             $affiche['created_at'] = $affiche['message'][$dernierMsg]['created_at'];
             // elements de l'onglet
             $objet = trunc($affiche['objet'], 15);
-            $texte = trunc($affiche['message'][$dernierMsg]['texte'], 22);
+            $texte = trunc($affiche['message'][$dernierMsg]['texte'], 35);
         } else {
             $msgOuvert = $affiche['ouvert'];
             // elements de l'onglet
             $objet = trunc($affiche['objet'], 15);
-            $texte = trunc($affiche['texte'], 25);
+            $texte = trunc($affiche['texte'], 35);
         }
         // date dans les onglets
         $dateSQL     = substr($affiche['created_at'], 0, 10);

@@ -36,8 +36,11 @@ if ($_GET['m'] != 'none') {
             <label><b>Prénom : </b><?= $infosUser['prenomUtilisateur'] ?></label>
             <label><b>Nom Société : </b><?= $infosUser['nomSociete'] ?></label>
             <label><b>Type d'activité : </b><?= $infosUser['activite'] ?></label>
-            <label><b>Numéro Siret : </b><?= $infosUser['siret'] ?> → 
-            <a href="https://www.infogreffe.fr/entreprise-societe/<?= $infosUser['siret'] ?>" target="_blank">Cliquez-ici</a> pour vérifier le numéro Siret.</label>
+            <label> <b>Numéro Siret : </b><?= $infosUser['siret'] ?>
+                <a href="https://www.infogreffe.fr/entreprise-societe/<?= $infosUser['siret'] ?>" target="_blank">
+                    <i class="fas fa-external-link-alt" title="CLiquez-ici pour vérifier le numéro Siret"></i>
+                </a>
+            </label>
             <label><b>Localisation : </b><?php echo $infosUser['commune'] . " " . $infosUser['codePostal']; ?></label>
             <label><b>Téléphone : </b><?= $infosUser['telephone'] ?></label>
             <label><b>Adresse mail : </b><?= $infosUser['mail'] ?></label>

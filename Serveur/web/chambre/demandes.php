@@ -12,6 +12,7 @@ include("../script/connexionBDD.php");
     <link rel="icon" type="image/png" href="../images/icon.png" />
     <script src="https://kit.fontawesome.com/161f845565.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <!-- Chargement de la BDD -->
     <?php include("../script/chargerInfos.php"); ?>

@@ -24,29 +24,29 @@ $_SESSION['connexion'] = false;
 
     <!-- conteneur principal -->
     <section id="page-identification">
-    <!-- choix avec selection de logos -->
-    <div class="pan-chambres">
-        <h1>Gestion des <em>chambres</em></h1>
-        <a href="identification.php?chambre=CA">
-        <img src="../images/ca.png" type="submit" name="chambre" />
-        </a>
-        <a href="identification.php?chambre=CMA">
-        <img src="../images/cma.png" type="submit" name="chambre" />
-        </a>
-        <a href="identification.php?chambre=CCI">
-        <img src="../images/cci.png" type="submit" name="chambre" />
-        </a>
-    </div>
+        <!-- choix avec selection de logos -->
+        <div class="pan-chambres">
+            <h1>Gestion des <em>chambres</em></h1>
+            <a href="identification.php?chambre=CA">
+            <img src="../images/ca.png" type="submit" name="chambre" />
+            </a>
+            <a href="identification.php?chambre=CMA">
+            <img src="../images/cma.png" type="submit" name="chambre" />
+            </a>
+            <a href="identification.php?chambre=CCI">
+            <img src="../images/cci.png" type="submit" name="chambre" />
+            </a>
+        </div>
 
-    <div class="pan-forces">
-        <h1>Gestion des <em>forces de l'ordre</em></h1>
-        <a href="identification.php?chambre=G">
-        <img src="../images/gendarmerie.png" type="submit" name="force" />
-        </a>
-        <a href="identification.php?chambre=P">
-        <img src="../images/police.png" type="submit" name="force" />
-        </a>
-    </div>
+        <div class="pan-forces">
+            <h1>Gestion des <em>forces de l'ordre</em></h1>
+            <a href="identification.php?chambre=G">
+            <img src="../images/gendarmerie.png" type="submit" name="force" />
+            </a>
+            <a href="identification.php?chambre=P">
+            <img src="../images/police.png" type="submit" name="force" />
+            </a>
+        </div>
     </section>
 </body>
 </html>

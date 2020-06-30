@@ -190,7 +190,7 @@ body {
     min-width: 1000px;
     min-height: 550px;
     // PROFIL OVERFLOW A DEV
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 // PERSONNALISATION DES BOUTONS
@@ -206,7 +206,7 @@ body {
     @include hover(var(--blue-color), var(--hover-font-color));
 }
 
-.button-id, .btn-profil, .actions, .new-annonce, .new-conseil {
+.button-id, .btn-profil, .actions, .new-annonce, .new-conseil, .btn-new-annonce-conseil {
     padding: 7.5px;
     border: none;
     font-weight: 600;
@@ -298,6 +298,10 @@ body {
                 width: 45%;
                 padding: 10px;
                 margin-top: 25px;
+            }
+
+            [value="retour"] {
+                background-color: var(--background-color);
             }
         }
     }
@@ -403,7 +407,7 @@ body {
 
     .onglet-profil {
         width: 100%;
-        height: 55px;
+        height: 53px;
         background-color: var(--nav-profile-bg);
         box-shadow: 0px 0px 15px -5px var(--blue-color);
         @include flex(row wrap, center, center);
@@ -488,7 +492,6 @@ body {
 #pan-profil {
     background-color: var(--page-content);
     text-align: left;
-    height: 100vh;
     position: absolute;
     left: 225px; top: 0; right: 0; bottom: 0;
 
@@ -557,7 +560,7 @@ body {
             .input-infos, .input-mdp {
                 width: 100%;
                 font-size: 1.65rem;
-                padding: 6.5px;
+                padding: 6.5px 8px;
                 border: 2px solid var(--shadow-color);
                 background-color: var(--nav-bg-color);
                 margin: 2% 0 4%;
@@ -572,170 +575,248 @@ body {
     }
 }
 
-/* ========== PAN LISTE DEMANDES =========== */
-// #pan-content {
-//     min-width: 1140px;
-//     min-height: 570px;
-//     position: absolute;
-//     background-color: $color-light;
-//     top: 0;
-//     bottom: 0;
-//     right: 0;
-//     left: 230px;
-//     overflow: hidden;
-//     #barre-refresh {
-//         width: 260px;
-//         height: 35px;
-//         background-color: $color-grey;
-//         position: absolute;
-//         top: -1px;
-//         border-bottom: 1px solid lightgrey;
-//         border-right: 1px solid lightgrey;
-//         img {
-//             width: 15px;
-//             height: 15px;
-//             position: absolute;
-//             margin-top: 10px;
-//             margin-left: 15%;
-//             &:hover {
-//                 filter: brightness(50%);
-//                 transition: 0.4s ease;
-//                 cursor: pointer;
-//             }
-//         }
-//         em {
-//             position: absolute;
-//             margin-left: 85px;
-//             padding-top: 6px;
-//             font-weight: 600;
-//             font-style: normal;
-//             color: $color-second;
-//             cursor: pointer;
-//             &:hover {
-//                 filter: brightness(50%);
-//                 transition: 0.4s ease;
-//                 cursor: pointer;
-//             }
-//         }
-//     }
-//     #liste-onglets {
-//         width: 260px;
-//         position: absolute;
-//         bottom: 0;
-//         top: 35px;
-//         border-right: 1px solid lightgrey;
-//         background-color: $color-grey;
-//         overflow: hidden;
-//         overflow-y: auto;
-//         .onglet-msg-selected, .onglet-msg, .onglet-non-lu {
-//             height: 75px;
-//             width: 100%;
-//             background-color: whitesmoke;
-//             display: flex;
-//             flex-direction: column;
-//             border-bottom: 1px solid lightgrey;
-//             &:hover {
-//                 filter: brightness(80%);
-//                 transition: 0.4s ease;
-//                 cursor: pointer;
-//             }
-//             #date-reception {
-//                 font-size: 12px;
-//                 position: absolute;
-//                 margin-left: 170px;
-//                 margin-top: 14px;
-//             }
-//             h9, h10 {
-//                 position: absolute;
-//                 margin-left: 22px;
-//             }
-//             h9 {
-//                 font-size: 15px;
-//                 font-weight: bold;
-//                 color: $color-second;
-//                 margin-top: 12px;
-//             }
-//             h10 {
-//                 font-size: 14px;
-//                 margin-top: 40px;
-//             }
-//         }
-//         .onglet-msg-selected {
-//             background-color: $color-second;
-//             h9, h10, #date-reception {
-//                 color: $color-text;
-//             }
-//         }
-//         .onglet-non-lu {
-//             &::after {
-//                 content: "";
-//                 position: absolute;
-//                 height: 75px;
-//                 background-color: $color-second;
-//                 width: 4px;
+/* ========== PAN DEMANDES / MESSAGES =========== */
+#pan-content {
+    background-color: var(--page-content);
+    position: absolute;
+    left: 225px; right: 0; top: 0; bottom: 0;
 
-//             }
-//         }
-//     }
-//     #barre-actions {
-//         height: 50px;
-//         position: absolute;
-//         top: 0;
-//         right: 0;
-//         left: 261px;
-//         border-bottom: 1px solid lightgrey;
-//         [type="button"] {
-//             width: 115px;
-//             height: 35px;
-//             margin-top: 7.5px;
-//             margin-left: 50px;
-//             background-color: $color-second;
-//             color: $color-text;
-//             border: none;
-//             border-radius: 2px;
-//             &:hover {
-//                 filter: brightness(115%);
-//                 transition: 0.4s ease;
-//                 cursor: pointer;
-//             }
-//         }
-//     }
-//     #pan-demande {
-//         position: absolute;
-//         right: 0;
-//         top: 51px;
-//         left: 261px;
-//         bottom: 0;
-//         padding: 20px;
-//         padding-left: 35px;
-//         padding-right: 35px;
-//         background-color: whitesmoke;
-//         fieldset {
-//             border: none;
-//             #date-demande {
-//                 font-size: 13px;
-//                 color: grey;
-//                 position: absolute;
-//                 right: 50px;
-//                 top: 20px;
-//             }
-//             legend {
-//                 font-weight: bold;
-//                 color: $color-second;
-//                 border-bottom: 2px solid $color-second;
-//             }
-//             em {
-//                 font-weight: 600;
-//                 color: $color-second;
-//                 cursor: pointer;
-//             }
-//             #cle {
-//                 font-size: 25px;
-//                 font-weight: 600;
-//             }
-//         }
-//     }
-//     // nouveau conseil
+    #liste-onglets {
+        width: 275px;
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        background-color: var(--page-content);
+        border-right: 1px solid var(--border-color);
+        overflow: hidden;
+        overflow-y: auto;
+
+        #barre-refresh {
+            background-color: var(--nav-bg-color);
+            padding: 5px;
+            border-bottom: 1px solid var(--border-color);
+            @include flex(row wrap, center, center);
+    
+            i, em {
+                font-style: normal;
+                color: var(--blue-color);
+                font-weight: 600;
+                margin: 0 25px 0 0px;
+                @include hover(none, var(--font-color));
+            }
+        }
+
+        .onglet-msg, .onglet-msg-selected, .onglet-non-lu {
+            width: 100%;
+            padding: 12.5px 15px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+
+            #date-reception {
+                color: var(--date-color);
+                font-size: 1.2rem;
+                float: right;
+                margin-right: 5px;
+            }
+
+            h9 {
+                font-size: 1.6rem;
+                font-weight: 600;
+                color: var(--blue-color);
+
+            }
+
+            h10 {
+                font-size: 1.4rem;
+                color: var(--font-color);
+            }
+        }
+
+        .onglet-msg, .onglet-non-lu {
+            @include hover(var(--nav-hover-bg), none);
+        }
+
+        .onglet-non-lu {
+            border-left: 4px solid var(--blue-color);
+        }
+
+        .onglet-msg-selected {
+            background-color: var(--blue-color);
+
+            #date-reception, h9, h10 {
+                color: var(--nav-profile-font);
+            }
+        }
+    }
+    
+    // BARRE ACTIONS
+    #barre-actions, #barre-envoi {
+        background-color: var(--nav-bg-color);
+        position: absolute;
+        left: 275px; right: 0; top: 0;
+        padding: 7.5px 25px 7.5px;
+        border-bottom: 1px solid var(--border-color);
+
+        .actions, .btn-new-annonce-conseil {
+            width: 125px;
+            margin-right: 25px;
+        }
+    }
+
+    // BARRE BOUTON NOUVEAU CONSEIL / ANNONCE
+    #barre-envoi {
+        left: 0px;
+    }
+
+    #pan-demande, #zone-annonce-conseil {
+        position: absolute;
+        left: 275px; right: 0; top: 54px; bottom: 0;
+        padding: 15px 25px 20px;
+        overflow-y: auto;
+    }
+
+    // PANEL OUVERTURE DEMANDE (CHAMBRE)
+    #pan-demande {
+        
+        fieldset {
+            border: none;
+            padding-bottom: 15px;
+
+            b {
+                font-weight: 600;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 20px;
+                cursor: text;
+
+                i {
+                    margin-left: 10px;
+                    color: var(--blue-color);
+                }
+            }
+
+            time {
+                float: right;
+                margin-top: -23px;
+                font-size: 1.3rem;
+                color: var(--date-color);
+            }
+
+            legend {
+                font-size: 2.0rem;
+                font-weight: 600;
+                color: var(--blue-color);
+            }
+
+            #cle {
+                font-size:2.5rem;
+                font-weight: 600;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    // PANEL OUVERTURE MESSAGE PRIVE (FORCES)
+    #zone-msg {
+        position: absolute;
+        left: 275px; right: 0; top: 54px; bottom: 0;
+        background-color: bisque;
+        @include flex(column wrap, flex-start, flex-start);
+
+        #zone-infos-prive {
+            width: 100%;
+            background-color: rgb(206, 122, 25);
+        }
+
+        #zone-discussion {
+            width: 100%;
+            background-color: green;
+        }
+
+        #zone-reponse {
+            width: 100%;
+            background-color: coral;
+        }
+    }
+
+    // PANEL OUVERTURE ANNONCE / CONSEIL (FORCES)
+    #zone-annonce-conseil {
+        
+        fieldset {
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+
+            time {
+                float: right;
+                margin-top: -23px;
+                font-size: 1.3rem;
+                color: var(--date-color);
+            }
+
+            legend {
+                font-size: 2.2rem;
+                font-weight: 600;
+                color: var(--blue-color);
+            }
+
+            .user-concernes {
+                font-size: 1.4rem;
+                color: var(--date-color);
+            }
+        }   
+    }
+
+    #objet-new-conseil {
+        position: absolute;
+        left: 0px; right: 0; top: 54px; bottom: 0;
+        padding: 15px 25px 20px;
+
+        fieldset {
+            border: none;
+
+            legend {
+                font-size: 2.0rem;
+                font-weight: 600;
+                color: var(--blue-color);
+            }
+
+            .user-concernes {
+                font-size: 1.4rem;
+                color: var(--date-color);
+            }
+
+            [name='input-objet-conseil'] {
+                width: 100%;
+                font-size: 1.65rem;
+                padding: 6.5px 8px;
+                margin-top: 5px;
+                border: 2px solid var(--shadow-color);
+                background-color: var(--nav-bg-color);
+            }
+        }
+    }
+
+    #write-conseil {
+        position: absolute;
+        left: 0px; right: 0; top: 180px; bottom: 0;
+        padding: 0px 25px 25px;
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            font-size: 1.5rem;
+            padding: 6.5px 8px;
+            border: 2px solid var(--shadow-color);
+            background-color: var(--nav-bg-color);
+        }
+    }
+    
+
+
+    // nouveau conseil
 //     #barre-envoi {
 //         height: 50px;
 //         position: absolute;
@@ -933,255 +1014,6 @@ body {
 //         overflow-y: auto;
 //         outline: 0;
 //     }
-
-// }
-
-
-
-// #zone-annonce-conseil {
-//     height: 65px;
-//     position: absolute;
-//     background-color: $color-light;
-//     top: 51px;
-//     bottom: 0;
-//     right: 0;
-//     left: 261px;
-//     padding: 15px;
-//     padding-left: 35px;
-//     padding-right: 35px;
-//     border-bottom: 1px solid lightgray;
-//     fieldset {
-//         border: none;
-//         #date-msg {
-//             font-size: 13px;
-//             color: grey;
-//             position: absolute;
-//             right: 50px;
-//             top: 20px;
-//         }
-//         legend {
-//             font-weight: bold;
-//             font-size: 22px;
-//             color: $color-second;
-//             border-bottom: 2px solid $color-second;
-//         }
-//         .user-concernes {
-//             font-size: 14px;
-//             color: gray;
-//             margin-top: 10px;
-//         }
-//     }
-// }
-
-// #affichage-texte {
-//     position: absolute;
-//     top: 147px;
-//     bottom: 0;
-//     left: 261px;
-//     right: 0;
-//     padding-top: 15px;
-//     padding-left: 35px;
-//     padding-right: 35px;
-//     padding-bottom: 30px;
-//     overflow: auto;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ========== PAN DEMANDES / MESSAGES =========== */
-#pan-content {
-    background-color: var(--page-content);
-    position: absolute;
-    left: 225px; right: 0; top: 0; bottom: 0;
-
-    #liste-onglets {
-        width: 275px;
-        position: absolute;
-        left: 0; right: 0; top: 0; bottom: 0;
-        background-color: var(--page-content);
-        border-right: 1px solid var(--border-color);
-        overflow: hidden;
-        overflow-y: auto;
-
-        #barre-refresh {
-            background-color: var(--nav-bg-color);
-            padding: 5px;
-            border-bottom: 1px solid var(--border-color);
-            @include flex(row wrap, center, center);
-    
-            i, em {
-                font-style: normal;
-                color: var(--blue-color);
-                font-weight: 600;
-                margin: 0 25px 0 0px;
-                @include hover(none, var(--font-color));
-            }
-        }
-
-        .onglet-msg, .onglet-msg-selected, .onglet-non-lu {
-            width: 100%;
-            padding: 12.5px 15px;
-            border-bottom: 1px solid var(--border-color);
-            cursor: pointer;
-
-            #date-reception {
-                color: var(--date-color);
-                font-size: 1.2rem;
-                float: right;
-                margin-right: 5px;
-            }
-
-            h9 {
-                font-size: 1.6rem;
-                font-weight: 600;
-                color: var(--blue-color);
-
-            }
-
-            h10 {
-                font-size: 1.4rem;
-                color: var(--font-color);
-            }
-        }
-
-        .onglet-msg, .onglet-non-lu {
-            @include hover(var(--nav-hover-bg), none);
-        }
-
-        .onglet-non-lu {
-            border-left: 4px solid var(--blue-color);
-        }
-
-        .onglet-msg-selected {
-            background-color: var(--blue-color);
-
-            #date-reception, h9, h10 {
-                color: var(--nav-profile-font);
-            }
-        }
-    }
-    
-    #barre-actions {
-        background-color: var(--nav-bg-color);
-        position: absolute;
-        left: 275px; right: 0; top: 0;
-        padding: 7.5px 25px 7.5px;
-        border-bottom: 1px solid var(--border-color);
-
-        .actions {
-            width: 125px;
-            margin-right: 25px;
-        }
-    }
-
-    #pan-demande, #zone-annonce-conseil {
-        position: absolute;
-        left: 275px; right: 0; top: 54px; bottom: 0;
-        padding: 15px 25px 20px;
-        overflow-y: auto;
-    }
-
-    // PANEL OUVERTURE DEMANDE (CHAMBRE)
-    #pan-demande {
-        
-        fieldset {
-            border: none;
-            padding-bottom: 15px;
-
-            b {
-                font-weight: 600;
-            }
-
-            label {
-                display: block;
-                margin-bottom: 20px;
-            }
-
-            time {
-                float: right;
-                margin-top: -23px;
-                font-size: 1.3rem;
-                color: var(--date-color);
-            }
-
-            legend {
-                font-size: 2.0rem;
-                font-weight: 600;
-                color: var(--blue-color);
-            }
-
-            #cle {
-                font-size:2.5rem;
-                font-weight: 600;
-                margin-top: 10px;
-            }
-        }
-    }
-
-    // PANEL OUVERTURE MESSAGE PRIVE (FORCES)
-    #zone-msg {
-        position: absolute;
-        left: 275px; right: 0; top: 54px; bottom: 0;
-        background-color: bisque;
-        @include flex(column wrap, flex-start, flex-start);
-
-        #zone-infos-prive {
-            width: 100%;
-            background-color: rgb(206, 122, 25);
-        }
-
-        #zone-discussion {
-            width: 100%;
-            background-color: green;
-        }
-
-        #zone-reponse {
-            width: 100%;
-            background-color: coral;
-        }
-    }
-
-    // PANEL OUVERTURE ANNONCE / CONSEIL (FORCES)
-    #zone-annonce-conseil {
-        
-        fieldset {
-            border: none;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-
-            time {
-                float: right;
-                margin-top: -23px;
-                font-size: 1.3rem;
-                color: var(--date-color);
-            }
-
-            legend {
-                font-size: 2.2rem;
-                font-weight: 600;
-                color: var(--blue-color);
-            }
-
-            .user-concernes {
-                font-size: 1.4rem;
-                color: var(--date-color);
-            }
-        }
-        
-    }
 
 
 }
