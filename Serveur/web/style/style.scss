@@ -86,7 +86,6 @@
     }
 }
 
-
 @keyframes apparition {
     from {
         opacity: 0;
@@ -128,6 +127,7 @@
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
+    opacity: 0.5;
 }
   
 /* Track */
@@ -139,13 +139,14 @@
 ::-webkit-scrollbar-thumb {
     background: var(--blue-color);
     border-radius: 2.5px;
+    opacity: 0.5;
 }
   
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: var(--blue-color); 
+    opacity: 0.5;
 }
-
 
 /* ========== MAIN CODE =========== */
 
@@ -168,10 +169,6 @@ html {
     scroll-behavior: smooth;    /* scrollbar smooth */
 }
 
-p {
-    font-size: 1.5rem;
-}
-
 h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
@@ -191,11 +188,8 @@ body {
     position: absolute;
     left: 0; right: 0; top: 0; bottom: 0;
     min-width: 1000px;
-    min-height: 700px;
-    // PROFIL OVERFLOW A DEV
-    overflow-y: auto;
-    overflow-x: auto;
-    
+    min-height: 600px;
+    overflow: auto;
 }
 
 // CUSTOMIZE AUTOCOMPLETION ANNONCE
@@ -228,6 +222,13 @@ body {
 .ui-menu .ui-menu-item a.ui-state-hover,
 .ui-menu .ui-menu-item a.ui-state-active {
         margin: -1px;
+}
+
+// PERSONNALISATION DES INPUTS
+[name="id"], [name="mdp"], .input-new-gestionnaire, .input-infos, .input-mdp, [name='input-objet-conseil'], [name='input-objet-annonce'] {
+    padding: 6.5px 8px;
+    border: 2px solid var(--shadow-color);
+    background-color: var(--nav-bg-color);
 }
 
 // PERSONNALISATION DES BOUTONS
@@ -312,11 +313,11 @@ body {
         [name="id"], [name="mdp"] {
             width: 100%;
             font-size: 1.6rem;
-            padding: 10px 0 7.5px;
-            border: none;
-            border-bottom: 2px solid var(--input-border);
+            // padding: 10px 0 7.5px;
+            // border: none;
+            // border-bottom: 2px solid var(--input-border);
             outline: none;
-            background-color: transparent;
+            // background-color: transparent;
             margin: 20px 0 5px;
         }
 
@@ -337,7 +338,7 @@ body {
                 margin-top: 25px;
             }
 
-            [value="retour"] {
+            [value="Retour"] {
                 background-color: var(--background-color);
                 color: var(--msg-font);
             }
@@ -401,10 +402,6 @@ body {
             font-size: 1.6rem;
             margin-top: 20px;
             border-radius: 0px;
-            
-            // option {
-            //   color: var(--msg-font);
-            // }
         }
         
         .input-new-gestionnaire {
@@ -506,6 +503,7 @@ body {
             color: var(--nav-onglet-font);
         }
     }
+
     .onglet-selected {
         background-color: var(--nav-select-bg);
         color: var(--nav-select-font);
@@ -826,7 +824,6 @@ body {
                     padding: 6.5px 8px;
                     border: 2px solid var(--shadow-color);
                     background-color: var(--msg-block);
-                    outline: none;
                     resize: none;
                 }
             }

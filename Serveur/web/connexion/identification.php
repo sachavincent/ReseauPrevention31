@@ -59,8 +59,8 @@ switch ($_GET['chambre']) {
             <?php if ($_SESSION['connexion']) { echo '<p id="login-failed">Identifiant ou mot de passe incorrect.</p>'; }?>
             <!-- boutons retour / valider -->
             <div class="buttons-id">
-                <input onclick="window.location.href='choix-chambre.php'"; class="button-id" type="button" value="retour" >
-                <input class="button-id" type="submit" value="valider" >
+                <input onclick="window.location.href='choix-chambre.php'"; class="button-id" type="button" value="Retour" >
+                <input class="button-id" type="submit" value="Valider" >
             </div>
             </form>
         </div>

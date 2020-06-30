@@ -117,34 +117,34 @@ function confirmChoice(linkUrl) {
         case 'attente': ?>
             <!-- bouton accepter / refuser -->
             <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter')">
-                <input class="actions" type="button" value="accepter"/></a>
+                <input class="actions" type="button" value="Accepter"/></a>
             <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser')">
-                <input class="actions" type="button" value="refuser" /></a>
+                <input class="actions" type="button" value="Refuser" /></a>
         <?php
             break;
         // page acceptees
         case 'accepte': ?>
             <!-- bouton refuser / supprimer -->
             <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=refuser')">
-                <input class="actions" type="button" value="refuser" /></a>
+                <input class="actions" type="button" value="Refuser" /></a>
             <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
-                <input class="actions" type="button" value="supprimer" /></a>
+                <input class="actions" type="button" value="Supprimer" /></a>
         <?php
             break;
         // page refusees
         case 'refuse': ?>
             <!-- bouton accepter / supprimer -->
             <a href="javascript:confirmChoice('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=accepter')">
-                <input class="actions" type="button" value="accepter"/></a>
+                <input class="actions" type="button" value="Accepter"/></a>
             <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
-                <input class="actions" type="button" value="supprimer" /></a>
+                <input class="actions" type="button" value="Supprimer" /></a>
         <?php
             break;  
 
         /* ===== FORCES ===== */
         case 'annonce' || 'conseil' || 'prive': ?>
             <a href="javascript:confirmDelete('../script/gestionBoutons.php?e=<?= $lien ?>&m=<?= $_GET['m'] ?>&b=supprimer')">
-                <input class="actions" type="button" value="supprimer" /></a>
+                <input class="actions" type="button" value="Supprimer" /></a>
         <?php
             break;
     } 

@@ -30,7 +30,7 @@
                 <?php if (isset($_GET['p']) AND $_GET['p'] == 'mdpInco') {
                     echo '<p id="error">Le mot de passe est incorrect.<p>';
                 } ?>
-                <input class="button-id" type="submit" value="valider">
+                <input class="button-id" type="submit" value="Valider">
             </div>
             </form>
         <?php 
@@ -122,7 +122,7 @@
                 }
                 ?>
                 <!-- btn valider -->
-                <input class="button-id" type="submit" value="valider">
+                <input class="button-id" type="submit" value="Valider">
             </div>
             </form>
 <?php   }

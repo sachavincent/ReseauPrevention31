@@ -22,7 +22,7 @@ if (!isset($commune)){
 
 <div id="barre-envoi">
     <input class="btn-new-annonce-conseil" type="submit" value="Envoyer" />
-    <input class="btn-new-annonce-conseil" type="button" value="supprimer" onclick="window.location.href='demandes.php?e=prive&m=none'" />
+    <input class="btn-new-annonce-conseil" type="button" value="Supprimer" onclick="window.location.href='demandes.php?e=prive&m=none'" />
 </div>
 
 <!-- zone de saisies du message -->
