@@ -357,7 +357,7 @@ body {
 
     // ajout gestionnaire (admin)
     #pan-connexion-admin {
-        width: 450px;
+        width: 400px;
         background-color: var(--panel-color);
         padding: 35px 50px;
         text-align: center;
@@ -393,7 +393,7 @@ body {
 
     // pan ajout gestionnaire
     #pan-ajout-gestionnaire {
-        width: 410px;
+        width: 450px;
         background-color: var(--panel-color);
         padding: 55px;
         @include flex(column wrap, none, none);

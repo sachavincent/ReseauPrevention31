@@ -403,7 +403,7 @@ body {
 }
 
 #page-identification #pan-connexion-admin {
-  width: 450px;
+  width: 400px;
   background-color: var(--panel-color);
   padding: 35px 50px;
   text-align: center;
@@ -443,7 +443,7 @@ body {
 }
 
 #page-identification #pan-ajout-gestionnaire {
-  width: 410px;
+  width: 450px;
   background-color: var(--panel-color);
   padding: 55px;
   display: -webkit-box;
