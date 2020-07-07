@@ -138,8 +138,6 @@ body {
   min-width: 1000px;
   min-height: 600px;
   overflow: auto;
-  -webkit-transition: 0.3s ease;
-  transition: 0.3s ease;
 }
 
 .switch-mode {
@@ -265,8 +263,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: 0.5s all ease;
-  transition: 0.5s all ease;
 }
 
 #page-identification .pan-chambres, #page-identification .pan-forces {

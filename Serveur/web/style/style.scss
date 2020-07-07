@@ -208,7 +208,6 @@ body {
     min-width: 1000px;
     min-height: 600px;
     overflow: auto;
-    transition: 0.3s ease;
 }
 
 // SWITCH LIGHT / DARK MODE
@@ -299,7 +298,6 @@ body {
 /* ========== IDENTIFICATION =========== */
 #page-identification {
     @include flex(row wrap, center, center);
-    transition: 0.5s all ease;
 
     // choix chambres
     .pan-chambres, .pan-forces {

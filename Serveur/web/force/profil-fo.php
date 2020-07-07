@@ -34,12 +34,12 @@ session_start();
             <div id="pan-photo">
                 <div class="img-profil">
                     <?php
-                    if (file_exists('../images/' . $_SESSION['id'] . 'c.jpeg')){
-                    echo  '<img src="../images/'. $_SESSION["id"]. 'c.jpeg">';
-                    } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.jpg')){
-                    echo  '<img src="../images/'. $_SESSION["id"]. 'c.jpg">';
-                    } elseif (file_exists('../images/' . $_SESSION['id'] . 'c.png')){
-                    echo  '<img src="../images/'. $_SESSION["id"]. 'c.png">';
+                    if (file_exists('../images/' . $_SESSION['id'] . 'f.jpeg')){
+                    echo  '<img src="../images/'. $_SESSION["id"]. 'f.jpeg">';
+                    } elseif (file_exists('../images/' . $_SESSION['id'] . 'f.jpg')){
+                    echo  '<img src="../images/'. $_SESSION["id"]. 'f.jpg">';
+                    } elseif (file_exists('../images/' . $_SESSION['id'] . 'f.png')){
+                    echo  '<img src="../images/'. $_SESSION["id"]. 'f.png">';
                     } else {
                     echo  '<img src="../images/profil/user.jpg">';
                     } ?>
