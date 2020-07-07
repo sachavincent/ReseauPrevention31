@@ -5,6 +5,8 @@ if (!empty($_SESSION[$onglet])) {
     $nb = 0;
     if (isset($_SESSION[$onglet]))
         $nb = count($_SESSION[$onglet]);
+    
+    // parcours de tous les onglets
     for ($i = 0; $i < $nb; $i++) {
         
         $affiche               = $_SESSION[$onglet][$i];
@@ -17,11 +19,24 @@ if (!empty($_SESSION[$onglet])) {
         $nomPrenom             = $affiche['nomUtilisateur'] . ' ' . $affiche['prenomUtilisateur'];
         $onglet_affiche        = $date . '<h9>' . trunc($nomPrenom, 18) . '</h9><br>' . '<h10>' . trunc($affiche['nomSociete'], 22) . ', ' . 'secteur ' . $affiche['secteur'] . '</h10>';
         $onglet_affiche_clique = $date . '<h9>' . trunc($nomPrenom, 18) . '</h9><br>' . '<h10>' . trunc($affiche['nomSociete'], 22) . ', ' . 'secteur ' . $affiche['secteur'] . '</h10>';
-        
+
+        // si msg est selectionné
+        if ($i == $_GET['m'] && $_GET['m'] != 'none') {
+            $onglet_class = 'onglet-msg-selected';
+        }
+        // si message non lu et non selectionné : 0 = message non ouvert, 1 = message ouvert
+        elseif ($msgOuvert == 0) {
+            $onglet_class = 'onglet-non-lu';
+        } 
+        // si msg non lu et non selectionné
+        else {
+            $onglet_class = 'onglet-msg';
+        }
+
         // si selection d'un onglet
         if ($_GET['m'] != 'none') {
-            // changement msg lu -> msg non lu
-            switch ($_GET['e']) {
+             // changement msg lu -> msg non lu
+             switch ($_GET['e']) {
                 case 'attente':
                     attenteNonLu($_GET['m']);
                     break;
@@ -32,29 +47,10 @@ if (!empty($_SESSION[$onglet])) {
                     refuseNonLu($_GET['m']);
                     break;
             }
-            // chargement des messages non ouverts (non lus)
-            if ($msgOuvert == 0) {
-                if ($i == $_GET['m']) {
-                    echo " <div class='onglet-msg-selected' onclick=window.location.href='demandes.php?e=" . $lien . "&m=" . $i . "'" . ">$onglet_affiche_clique</div> ";
-                } else {
-                    echo " <div class='onglet-non-lu' onclick=window.location.href='demandes.php?e=" . $lien . "&m=" . $i . "'" . ">$onglet_affiche</div> ";
-                }
-                // chargement des messages ouverts (lus)
-            } else {
-                if ($i == $_GET['m']) {
-                    echo " <div class='onglet-msg-selected' onclick=window.location.href='demandes.php?e=" . $lien . "&m=" . $i . "'" . ">$onglet_affiche_clique</div> ";
-                } else {
-                    echo " <div class='onglet-msg' onclick=window.location.href='demandes.php?e=" . $lien . "&m=" . $i . "'" . ">$onglet_affiche</div> ";
-                }
-            }
-            // si pas de selection d'un onglet
-        } else {
-            if ($msgOuvert == 0) {
-                echo " <div class='onglet-non-lu' onclick=window.location.href='demandes.php?e=" . $lien . "&m=" . $i . "'" . ">$onglet_affiche</div> ";
-            } else {
-                echo " <div class='onglet-msg' onclick=window.location.href='demandes.php?e=" . $lien . "&m=" . $i . "'" . ">$onglet_affiche</div> ";
-            }
         }
+
+        // affichage de l'onglet
+        echo " <div class=" . $onglet_class . " onclick=window.location.href='demandes.php?e=" . $lien . "&m=" . $i . "'" . ">$onglet_affiche</div> ";
     }
 }
 
