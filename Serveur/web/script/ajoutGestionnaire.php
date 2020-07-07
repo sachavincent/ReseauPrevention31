@@ -13,6 +13,8 @@
             <title>Page d'administration</title>
         </header>
 
+        <span class="switch-mode">🌓</span>
+
         <input class="btn-admin" type="button" value="retour" title="Cliquez ici pour revenir à l'écran des chambres"
         onclick="window.location.href='../connexion/choix-chambre.php'" >
 
@@ -136,5 +138,6 @@
     } 
 ?>
         </section>
+        <script src="../script/dark-mode.js"></script>
     </body>
 </html>

@@ -14,6 +14,7 @@ include("../script/connexionBDD.php");
 </head>
 
 <body>
+    <span class="switch-mode">🌓</span>
     <!-- Chargement de la BDD -->
     <?php include("../script/chargerInfos.php"); ?>
     <!-- affichage menu gauche -->
@@ -24,5 +25,6 @@ include("../script/connexionBDD.php");
         <!-- ouverture du contenu | En attente | Acceptees | Refusees | -->
         <?php include("../script/afficherInfos.php"); ?>
     </section>
+    <script src="../script/dark-mode.js"></script>
 </body>
 </html>

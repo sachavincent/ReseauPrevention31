@@ -24,6 +24,8 @@ session_start();
         <div class="block-titre">
             MON PROFIL
         </div>
+
+        <span class="switch-mode">🌓</span>
         
         <!-- ========== PROFIL ========== -->  
 
@@ -92,5 +94,6 @@ session_start();
 
         </form>
     </section>
+    <script src="../script/dark-mode.js"></script>
 </body>
 </html>

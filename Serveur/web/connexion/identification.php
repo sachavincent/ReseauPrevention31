@@ -33,6 +33,7 @@ switch ($_GET['chambre']) {
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="icon" type="image/png" href="../images/icon.png" />
+    
 </head>
 
 <body>
@@ -40,6 +41,8 @@ switch ($_GET['chambre']) {
     <header>
         <title>Identification</title>
     </header>
+
+    <span class="switch-mode">🌓</span>
 
     <!-- conteneur principal -->
     <section id="page-identification">
@@ -67,5 +70,6 @@ switch ($_GET['chambre']) {
             </form>
         </div>
     </section>
+    <script src="../script/dark-mode.js"></script>
 </body>
 </html>

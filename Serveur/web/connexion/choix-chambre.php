@@ -19,6 +19,8 @@ $_SESSION['connexion'] = false;
     <title>Identification</title>
     </header>
 
+    <span class="switch-mode">🌓</span>
+
     <input class="btn-admin" type="button" value="Administrateur" title="Accès administration des chambres"
     onclick="window.location.href='../script/ajoutGestionnaire.php'" >
 
@@ -48,5 +50,6 @@ $_SESSION['connexion'] = false;
             </a>
         </div>
     </section>
+    <script src="../script/dark-mode.js"></script>
 </body>
 </html>

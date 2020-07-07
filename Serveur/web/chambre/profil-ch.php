@@ -16,6 +16,8 @@ session_start();
         <title>Profil</title>
     </header>
 
+    <span class="switch-mode">🌓</span>
+
     <!-- affichage menu gauche -->
     <?php include("page/navChambre.php"); ?>
     <!-- ============================================== -->  
@@ -92,5 +94,6 @@ session_start();
 
         </form>
     </section>
+    <script src="../script/dark-mode.js"></script>
 </body>
 </html>
