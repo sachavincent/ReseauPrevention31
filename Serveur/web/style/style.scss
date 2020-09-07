@@ -200,6 +200,8 @@ body {
         display:block;
         width:227px;
         border: 2px solid var(--border-color);
+        max-height: 65vh;
+        overflow: auto;
 }
 .ui-menu .ui-menu {
         margin-top: -3px;
