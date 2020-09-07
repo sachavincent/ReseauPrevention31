@@ -3,7 +3,7 @@ include './connexionBDD.php';
 
 $term = $_GET['term'];
 
-$requete = $bdd->prepare('SELECT * FROM CodeActivite WHERE activite LIKE ? LIMIT 7');
+$requete = $bdd->prepare('SELECT * FROM CodeActivite WHERE activite LIKE ?');
 $requete->execute(array('%'.$term.'%'));
 
 $array = array(); 

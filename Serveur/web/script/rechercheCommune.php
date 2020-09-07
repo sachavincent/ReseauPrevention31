@@ -3,7 +3,7 @@ include './connexionBDD.php';
 
 $term = $_GET['term'];
 
-$requete = $bdd->prepare('SELECT * FROM Commune WHERE commune LIKE ? LIMIT 7');
+$requete = $bdd->prepare('SELECT * FROM Commune WHERE commune LIKE ?');
 $requete->execute(array('%'.$term.'%'));
 
 $array = array(); 
